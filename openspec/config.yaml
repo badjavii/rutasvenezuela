@@ -1,0 +1,18 @@
+schema: spec-driven
+context: |
+  RutasVenezuela (UCAB), equipo 2. Documentación y especificaciones en español.
+  PostgreSQL/Supabase concentra invariantes, procedimientos, funciones y triggers.
+  FastAPI/React es una propuesta provisional: Node.js aún está en discusión.
+  Consultar docs/trazabilidad.md, docs/arquitectura.md y docs/pruebas-tdd.md.
+  No inventar HU, RR, estados, atributos ni correcciones docentes.
+  Toda modificación del comportamiento exige especificación y caso de prueba.
+rules:
+  proposal:
+    - Distinguir requisitos confirmados, propuestas y decisiones pendientes.
+  specs:
+    - Describir comportamiento observable y escenarios Given/When/Then; evitar detalles de frameworks.
+  design:
+    - Priorizar integridad de PostgreSQL y contratos por capa; indicar decisiones abiertas.
+  tasks:
+    - Asociar las tareas al responsable y a las pruebas DB, API y UI correspondientes.
+    - Planificar RED, GREEN y REFACTOR; no afirmar pruebas ejecutadas sin evidencia.
