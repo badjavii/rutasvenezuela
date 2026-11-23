@@ -844,7 +844,7 @@ La razón social es clave alterna: es distinta de null y no se repite.
 
 ### RR-61
 
-Cada cuenta es de exactamente un actor: está en al menos una de las seis relaciones CUENTA_<ACTOR> y nunca en dos a la vez.
+Cada cuenta es de exactamente un actor: está en al menos una de las seis relaciones `CUENTA_<ACTOR>` y nunca en dos a la vez.
 
 - **Responsables relacionados:** Valeria.
 - **Grupos de requisitos vinculados (preliminar):** `HU-09.1–09.4`, `HU-08`.

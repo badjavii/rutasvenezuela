@@ -30,6 +30,8 @@ PostgreSQL (Supabase)
 
 La **base de datos determina las invariantes** incluso si la API o la interfaz omiten validaciones. No replicar reglas críticas como única validación del frontend ni del backend. La capa de API normaliza datos, aplica controles de acceso, maneja errores y ejecuta la operación transaccional correspondiente. Los reportes consultan datos reales.
 
+Ver [contratos técnicos por capa](contratos-por-capa.md) y el [plan de implementación](plan-entrega.md), con responsabilidades compartidas y dependencias.
+
 ## Convenciones
 
 - El alcance académico y la semántica se consultan en [el mapa de trazabilidad](trazabilidad.md) y las fuentes originales.

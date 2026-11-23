@@ -22,3 +22,12 @@ Estos documentos son **fuentes de trabajo aportadas en la conversación**, pero 
 - [ ] Confirmación del entorno de despliegue y protección de datos.
 
 **Política:** respetar la aclaración recibida: el modelo relacional se conserva como línea base válida. Las asociaciones HU↔RR del mapa siguen siendo **preliminares** hasta contrastarlas con el contenido de cada RR; no son nuevas correcciones del esquema.
+
+## Extracciones seguras para planificación
+
+- [103 historias y 324 criterios originales](requisitos/criterios-originales.md)
+- [134 RR en lenguaje natural](requisitos/catalogo-rr.md)
+- [Matriz detallada con enlaces a las capacidades](trazabilidad-detallada.csv)
+- [Estados de 21 mockups](pruebas/casos-interfaces.csv)
+
+Estas extracciones omiten identificadores personales presentes en la portada y son **referencias de planificación**, no sustitutos del PDF completo para las fórmulas lógicas del modelo.

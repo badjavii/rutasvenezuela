@@ -56,9 +56,13 @@ Separaremos **qué debe ocurrir (SDD)** de **cómo verificarlo (TDD)**:
 4. Aprobar el contrato; luego implementar por una rama específica mediante RED → GREEN → REFACTOR.
 5. Abrir PR con evidencia de pruebas y revisión de otro integrante.
 
-El [mapa de trazabilidad](docs/trazabilidad.md) (también [CSV](docs/trazabilidad.csv)) evita repetir identificadores académicos dentro de cada especificación.
+El [mapa de trazabilidad](docs/trazabilidad.md) (también [CSV](docs/trazabilidad.csv)) evita repetir identificadores académicos dentro de cada especificación. La [matriz detallada](docs/trazabilidad-detallada.csv) conecta las **103 historias** con **23 capacidades OpenSpec**; los [324 criterios](docs/requisitos/criterios-originales.md), las [134 RR](docs/requisitos/catalogo-rr.md) y los [21 mockups](docs/pruebas/casos-interfaces.csv) cuentan con planes TDD relacionados.
 
-La primera entrega contiene 8 consultas, 20 grupos CRUD (79 operaciones), 9 operaciones del negocio, 3 reportes y 4 valores agregados, según la matriz original. **Corrección aclarada:** la profesora no solicitó cambios al modelo relacional entregado. Las observaciones se refieren al ERE y a la elección de técnicas de modelado (incluidas oportunidades de generalización, extensibilidad y legibilidad). La trazabilidad HU↔RR aún debe revisarse como correspondencia documental, no como corrección del esquema. Ver [observaciones del ERE](docs/observaciones-ere.md).
+La primera entrega contiene 8 consultas, 20 grupos CRUD (79 operaciones), 9 operaciones del negocio, 3 reportes y 4 valores agregados, según la matriz original. Los casos planificados se distribuyen en [criterios](docs/pruebas/casos-criterios.csv), [restricciones SQL](docs/pruebas/casos-rr.csv), [estados UI](docs/pruebas/casos-interfaces.csv) e [integración E2E](docs/pruebas/casos-e2e.csv). **No son pruebas ejecutadas ni funcionalidades implementadas.** **Corrección aclarada:** la profesora no solicitó cambios al modelo relacional entregado. Las observaciones se refieren al ERE y a la elección de técnicas de modelado (incluidas oportunidades de generalización, extensibilidad y legibilidad). La trazabilidad HU↔RR aún debe revisarse como correspondencia documental, no como corrección del esquema. Ver [observaciones del ERE](docs/observaciones-ere.md).
+
+## Planificación detallada
+
+Las especificaciones por dominio se encuentran en [OpenSpec](openspec/changes/). La [guía SDD](docs/sdd-openspec.md), la [guía TDD](docs/pruebas-tdd.md), los [contratos por capa](docs/contratos-por-capa.md) y el [plan de entrega](docs/plan-entrega.md) explican cómo continuar desde aquí sin duplicar criterios académicos en los archivos funcionales.
 
 ## Instalación y ejecución
 
@@ -82,13 +86,14 @@ Las comprobaciones documentales pueden ejecutarse sin instalar dependencias:
 
 ```bash
 python3 scripts/validar_trazabilidad.py
+python3 scripts/validar_plan_sdd_tdd.py
 ```
 
 ## Colaboración y GitHub Actions
 
-El [flujo Git](docs/flujo-git.md) establece ramas del tipo `feature/<integrante>/<modulo>/<capa>-<tarea>`, como `feature/javier/territorio/database-estructuras`, con PR hacia `main` y commits progresivos por integrante.
+El [flujo Git](docs/flujo-git.md) adopta el formato **`<author>(<kind>/<layer>)-<description>`**, por ejemplo `javier(feat/database)-territory-tables` o `valeria(feat/frontend)-credentials-ui`. Todos los nombres técnicos de ramas usan inglés. Bash exige entrecomillar las ramas con paréntesis. Los cambios se integran mediante PR y commits progresivos por integrante.
 
-La acción [Calidad de documentación](.github/workflows/docs-quality.yml) verifica la presencia de documentación y la integridad de la matriz. **Aún no ejecuta tests SQL/API/UI**, porque no existe código funcional; estos checks se incorporarán al implementar cada capa.
+La acción [Calidad de documentación](.github/workflows/docs-quality.yml) valida la matriz, las **103 historias**, los **324 criterios**, las **134 RR**, las **21 vistas** y los vínculos con OpenSpec. **Aún no ejecuta tests SQL/API/UI**, porque no existe código funcional; estos checks se incorporarán al implementar cada capa.
 
 ## Créditos
 

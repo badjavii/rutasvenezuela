@@ -1,55 +1,70 @@
 # Desarrollo dirigido por especificaciones (SDD)
 
-Este repositorio utiliza [OpenSpec](https://github.com/Fission-AI/OpenSpec) con su estructura nativa (`openspec/config.yaml`, `openspec/specs/`, `openspec/changes/`).
+Se utiliza **[OpenSpec](https://openspec.dev/docs/schemas/spec-driven)** con el esquema oficial `spec-driven`. Los requisitos se documentan **por capacidad de dominio**, sin reproducir en cada uno los códigos académicos; la relación completa está en [trazabilidad detallada](trazabilidad-detallada.csv).
 
-## Fuente de verdad
+## Estado de planificación
 
-1. Enunciado y aclaraciones de la profesora.
-2. Aclaración de corrección: el **modelo relacional se mantiene sin cambios**; observaciones al ERE registradas en [observaciones-ere.md](observaciones-ere.md).
-3. ERE entregado y esquema relacional validado (conservar claves y relaciones).
-4. Requisitos y criterios de aceptación del informe.
-5. Propuestas técnicas identificadas como tales.
+- **103 historias** de la primera entrega desglosadas.
+- **324 criterios de aceptación** incorporados como escenarios OpenSpec y casos TDD planificados.
+- **23 capacidades** con especificación en borrador, repartidas en tres propuestas independientes.
+- **134 RR** catalogadas y vinculadas preliminarmente.
+- **21 interfaces** y sus 70 estados de mockup documentados.
 
-[El mapa de trazabilidad](trazabilidad.md) concentra HU, RR y V. **No transcribir esos códigos en todas las especificaciones**: redactar las capacidades en lenguaje del dominio. Cuando cambien los requisitos, actualizar primero este mapa.
+**Esto significa cobertura documental, no aprobación de las especificaciones ni ejecución de pruebas.** El modelo relacional de la primera entrega se conserva sin cambios según aclaración de la profesora.
 
-## Flujo acordado
+## Organización oficial
 
-1. Abrir una propuesta de cambio (ejemplo `territorio-estructuras-base`).
-2. Justificar el comportamiento, alcance, restricciones y dependencias en `proposal.md`.
-3. Describir requisitos observables y escenarios GIVEN/WHEN/THEN en `changes/<cambio>/specs/<capacidad>/spec.md`.
-4. En `design.md`, decidir objetos y transacciones de PostgreSQL, contratos de API e interfaz si aplica. Anotar alternativas abiertas.
-5. Derivar casos de prueba del escenario ([TDD](pruebas-tdd.md)) y planificar `tasks.md` por DB, API, UI e integración.
-6. Solicitar revisión humana de la especificación antes de escribir implementación.
-7. En la futura fase de implementación: pruebas RED, implementación GREEN, REFACTOR, CI y revisión de PR.
-8. Cuando el cambio esté verificado y aprobado, archivar mediante el flujo propio de OpenSpec.
-
-### Archivo de capacidad esperado
-
-```markdown
-# Gestión de incidencias
-
-## Requirement: Registro de reportes
-El sistema SHALL permitir reportes válidos por los actores autorizados.
-
-### Scenario: Registro de un visitante
-- **GIVEN** un visitante autorizado y un objeto afectado válido
-- **WHEN** registra el reporte con datos válidos
-- **THEN** persiste el reporte en estado preliminar con número correlativo
+```text
+openspec/
+├── config.yaml
+├── specs/               # Especificaciones vigentes consolidadas (aún sin aprobar)
+└── changes/             # Propuestas aún abiertas
+    ├── territory-heritage-plan/
+    │   ├── proposal.md
+    │   ├── design.md
+    │   ├── tasks.md
+    │   └── specs/<capability>/spec.md
+    ├── mobility-routes-plan/
+    │   └── ...
+    └── actors-commerce-plan/
+        └── ...
 ```
 
-**Advertencia:** el ejemplo ilustra el formato y deriva de los criterios de la HU original; no sustituye la revisión humana de escenarios ni autoriza alterar claves y relaciones del modelo relacional entregado.
+Se mantienen las especificaciones bajo `changes/` porque el proyecto está **en planificación**, todavía sin el ciclo de revisión, implementación y archivo concluido. No trasladarlas manualmente a `openspec/specs/`: utilizar el flujo oficial de OpenSpec cuando el cambio sea verificado y aprobado.
 
-### Organización
+## Flujo de trabajo
 
-Separar las capacidades por nombre del dominio (territorio/catalogo, patrimonio/hitos, incidencias/gestion, movilidad/vias-y-tramos, etc.). Una regla se define una sola vez. El mapa central relaciona esa regla con el código académico y con las vistas.
+1. Consultar informe original y [catálogo HU](requisitos/criterios-originales.md).
+2. Revisar [matriz de trazabilidad](trazabilidad-detallada.csv) para identificar capacidad, autor, RR y vista.
+3. Leer `proposal.md`: por qué y hasta dónde llega la capacidad.
+4. Revisar `specs/<capability>/spec.md`: requisitos observables y escenarios.
+5. Usar `design.md` para decisiones SQL/API/UI; FastAPI/React todavía están en evaluación frente a Node.js.
+6. Derivar/refinar pruebas por capa en [TDD](pruebas-tdd.md).
+7. Acordar `tasks.md`; implementar **solo** en una PR posterior que siga RED → GREEN → REFACTOR.
+8. Ejecutar revisión y archivo de cambios mediante OpenSpec cuando corresponda.
 
-No crear tres OpenSpec independientes ni reimplementar reglas por capa. La documentación de diseño puede hablar de DB/API/UI, pero la spec se centra en el comportamiento.
+## Autoridad de las fuentes
 
-## Pautas de revisión de calidad
+1. Enunciado y aclaraciones de la profesora.
+2. Modelo relacional validado en la primera entrega y fórmulas de RR.
+3. Historias y criterios originales.
+4. Mockups de las vistas.
+5. Propuestas técnicas (distinguidas de decisiones aprobadas).
 
-- Todo requisito tiene al menos un escenario verificable.
-- Ninguna decisión técnica se presenta como regla del negocio sin soporte.
-- Las dependencias cruzadas quedan explícitas.
-- Los datos de prueba reproducen escenarios válidos y violaciones de integridad.
-- En cambios de dominio compartido se solicita revisión de los responsables afectados.
-- Evitar especificaciones masivas que mezclen varias capacidades distintas.
+Las observaciones sobre el ERE no autorizan alterar el esquema relacional. Véase [observaciones-ere.md](observaciones-ere.md).
+
+## Revisión de calidad de cada capacidad
+
+- Requisitos separados por comportamiento observable (sin suposiciones nuevas).
+- Escenarios derivados de criterios del informe, pero **revisar manualmente GIVEN, WHEN y THEN** para definir fixtures y casos límite.
+- Correspondencia exacta con la matriz académica.
+- Diseño de SQL conserva claves, relaciones y semántica original.
+- Autorización y transacciones planificadas con tests de base de datos.
+- Las dependencias entre módulos se revisan entre integrantes.
+- Las pruebas propuestas **no se marcan en verde** hasta que exista evidencia de ejecución.
+
+## Herramientas
+
+OpenSpec 2.x puede inicializarse para OpenCode con `openspec init --tools opencode` en una instalación local. El repositorio ya conserva `openspec/config.yaml`; no es necesario regenerarlo salvo por decisión del equipo.
+
+[Guía oficial de escritura de especificaciones](https://github.com/Fission-AI/OpenSpec/blob/main/docs/writing-specs.md).

@@ -1,60 +1,84 @@
-# Flujo de trabajo Git y pull requests
+# Flujo Git y pull requests — Equipo 2
 
-Usaremos **main protegido por revisión humana de PR** como convención operativa (la protección automática de rama debe configurarse en GitHub por quienes administran el repositorio).
+## Convención de ramas
 
-## Ramas
-
-Git **no permite paréntesis ni dos puntos** en determinados nombres de referencia; en lugar de `feature(database):territories/table-creations`, emplearemos:
-
-```
-feature/<integrante>/<modulo>/<capa>-<tarea>
-```
-
-Ejemplos:
+Usamos **autor + (tipo/capa) + descripción** con términos en inglés:
 
 ```text
-feature/javier/territorio/database-estructuras
-feature/javier/incidencias/database-rutinas
-feature/javier/incidencias/backend-reportes
-feature/javier/incidencias/frontend-formulario
-feature/sebastian/movilidad/database-tramos
-feature/valeria/credenciales/database-canjes
-feature/valeria/actores/frontend-gestion
-docs/javier/sdd-tdd-trazabilidad
+<author>(<kind>/<layer>)-<short-description>
 ```
 
-Integrantes (segmentos normalizados): `javier`, `sebastian`, `valeria`. Capas: `database`, `backend`, `frontend`, `integracion`. Para cambios de documentación se permite `docs/<integrante>/<tema>`.
+- **Autor:** `javier`, `sebastian`, `valeria`.
+- **Tipo:** `feat` (funcionalidad), `docs` (documentación), `test` (pruebas), `fix` (corrección), `ci` (automatización).
+- **Capa:** `database`, `backend`, `frontend`, `spec`, `integration`, `infra`.
+- **Descripción:** palabras en inglés, minúsculas, separadas por guiones.
 
-## Procedimiento
+Ejemplos válidos:
 
-1. Actualizar `main` local; crear rama de un alcance pequeño.
-2. Consultar la spec vigente y el [mapa](trazabilidad.md).
-3. Documentar primero escenarios y pruebas previstas. En implementación: RED → GREEN → REFACTOR.
-4. Commit progresivo y **desde la cuenta real del integrante**; no agrupar el trabajo de todos bajo un mismo autor.
-5. Abrir PR a `main` con enlaces a capacidad OpenSpec, pruebas, evidencia y cambios de esquema.
-6. Ejecutar Actions, obtener revisión de otro integrante y resolver observaciones.
-7. Integrar mediante merge; no reescribir la historia de contribuciones ni simular commits.
+```text
+javier(docs/spec)-sdd-tdd-traceability
+javier(feat/database)-territory-tables
+javier(test/database)-incident-integrity
+javier(feat/backend)-incident-reporting
+sebastian(feat/database)-road-segments
+sebastian(feat/backend)-route-endpoints
+valeria(feat/frontend)-credentials-ui
+valeria(test/integration)-credential-redemption
+```
 
-## Plantilla corta de PR
+**Importante:** Git **prohíbe los dos puntos (`:`) en nombres de ramas**. Por eso `javier(doc/spec):sdd-tdd-trazabilidad` no es válido. La alternativa conserva los paréntesis y utiliza `-` después de ellos.
+
+Como Bash interpreta los paréntesis, **es obligatorio entrecomillar el nombre**:
+
+```bash
+git switch main
+git pull --ff-only
+git switch -c 'javier(feat/database)-territory-tables'
+git push -u origin 'javier(feat/database)-territory-tables'
+```
+
+## Desarrollo de cada funcionalidad
+
+1. Consultar la [capacidad OpenSpec](sdd-openspec.md), sus requisitos y escenarios.
+2. Seguir la [trazabilidad detallada](trazabilidad-detallada.csv) para ubicar HU, RR y mockups, sin duplicarlos en toda la implementación.
+3. Redactar o ajustar las pruebas previstas antes de implementar: RED → GREEN → REFACTOR.
+4. Hacer commits pequeños y progresivos desde la identidad de Git real del responsable.
+5. Abrir PR a `main`, enlazar la spec, pruebas, casos ejecutados y dependencias.
+6. Solicitar revisión de otro integrante; validar GitHub Actions antes del merge.
+7. Integrar únicamente cambios aprobados. Evitar pushes directos a `main`.
+
+## Reglas de colaboración
+
+- Cada miembro desarrolla las funciones de su módulo en **PostgreSQL, API e interfaz**; no se reparte el trabajo solamente por tecnología.
+- Si una modificación de SQL afecta relaciones de otro módulo, la PR requiere revisión del integrante afectado.
+- Los cambios de esquema y privilegios exigen atención especial y pruebas de reversibilidad.
+- El historial de commits debe ser real y atribuible; no simular actividad pasada.
+- Ningún agente automatiza un merge o despliegue sin autorización humana.
+- `main` debe conservarse estable. La protección automática de rama se configurará, si el equipo la considera necesaria, en los ajustes del repositorio.
+
+## Plantilla mínima de pull request
 
 ```markdown
 ## Alcance
-- Módulo / capa / responsable:
+- Responsable:
+- Módulo y capa:
+- Especificación OpenSpec:
+- Entrada de la matriz de trazabilidad:
 
-## Contrato
-- Spec OpenSpec:
-- Entrada del mapa de trazabilidad:
-- Correcciones pendientes:
+## Implementación
+- Contrato de datos / rutinas / interfaz:
+- Dependencias:
 
 ## Verificación
-- Escenarios y pruebas automatizadas:
-- Pruebas ejecutadas / no ejecutadas:
-- Evidencia de la BD:
+- Casos TDD previstos:
+- Pruebas ejecutadas:
+- Resultados y evidencia:
+- GitHub Actions:
 
-## Riesgos
-- Dependencias y migraciones:
+## Observaciones
+- Riesgos o dudas:
 ```
 
-## Colaboración entre capas
+## Convención de commits
 
-Cada integrante implementa sus historias en **todas** las capas. Si una funcionalidad cruza módulos (p. ej. incidencias ↔ tramos), el dueño coordina dependencias con quien mantiene esas relaciones. Evitar commits directos en `main` y mantener la revisión humana de migraciones SQL.
+Se recomienda `docs:`, `feat:`, `test:`, `fix:`, `ci:` o `refactor:`, con mensajes breves en inglés o español pero consistentes. El autor del commit debe ser quien realizó el trabajo y entiende su implementación.

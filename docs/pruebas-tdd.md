@@ -1,60 +1,67 @@
-# Plan de pruebas TDD por capa
+# Estrategia de desarrollo dirigido por pruebas (TDD)
 
-> **Estado:** plan de pruebas, **ninguna prueba ejecutada todavía**. Cada escenario parte de una especificación aprobada. Los códigos académicos se conservan en [el mapa](trazabilidad.md) y no se incrustan en los nombres funcionales del dominio.
+**Estado:** plan completo de cobertura derivado del documento original. **Ninguna prueba ejecutable ha sido implementada aún.** Los registros CSV son casos planificados, no resultados de CI.
 
-## Flujo SDD → TDD
+## Separación SDD y TDD
 
-1. Se aprueba una capacidad en OpenSpec (`proposal → specs + design → tasks`).
-2. Cada `Requirement` contiene escenarios observables (`GIVEN/WHEN/THEN`).
-3. El responsable deriva **casos positivos, negativos, límites y seguridad** para cada capa afectada.
-4. En implementación: **RED** (fallar por comportamiento ausente), **GREEN** (código mínimo), **REFACTOR** (mejora con pruebas verdes).
-5. La PR enlaza capacidad, prueba, evidencia y HU/RR/V por medio del mapa; no se declara cobertura sin ejecución.
+- **SDD/OpenSpec** determina comportamientos obligatorios y escenarios. No se fija un framework de aplicación definitivo.
+- **TDD** transforma los criterios de aceptación y las invariantes de SQL en comprobaciones observables. Las fuentes se identifican mediante el [mapa académico](trazabilidad-detallada.csv).
+- **Implementación posterior:** RED (probar y fallar), GREEN (mínimo código correcto), REFACTOR (mejora sin perder cobertura).
 
-## Contratos de prueba
+```text
+Historia (documento académico)
+  → mapa HU/RR/mockup
+  → capacidad / escenario OpenSpec (SDD)
+  → caso de prueba planificado (TDD)
+  → futura prueba RED → implementación GREEN → REFACTOR
+  → evidencia de CI y revisión de PR
+```
 
-| Capa | Herramienta propuesta | Qué verifica | Qué NO verifica |
-|---|---|---|---|
-| PostgreSQL | SQL transaccional/pgTAP (por decidir) | PK/FK/CHECK, integridad explícita, funciones, triggers, transacciones, privilegios, concurrencia | Mensajes de la interfaz |
-| Backend | pytest + httpx si se confirma FastAPI | Contratos, validaciones de entrada, manejo de errores y acceso autorizado | Invariantes que solo protege PostgreSQL |
-| Frontend | Vitest + Testing Library si se confirma React | Formularios, errores, estados, búsqueda, ordenamiento y paginación | Persistencia real por sí sola |
-| E2E | Evaluar Playwright | Operación desde UI hasta commit en BD y respuesta | Todas las combinaciones posibles |
+## Cobertura de planificación
 
-**Decisión abierta:** si se aprueba Node.js, cambiar exclusivamente herramientas/contratos de API; las pruebas de negocio en PostgreSQL deben permanecer.
+| Registro | Cobertura | Archivo |
+|---|---:|---|
+| Historias y criterios | **103 historias / 324 criterios** | [casos-criterios.csv](pruebas/casos-criterios.csv) |
+| Restricciones relacionales | **134 RR / 268 casos** (válido y violación) | [casos-rr.csv](pruebas/casos-rr.csv) |
+| Mockups | **21 vistas / 70 estados** | [casos-interfaces.csv](pruebas/casos-interfaces.csv) |
+| Flujos críticos y reportes | **12 recorridos E2E propuestos** | [casos-e2e.csv](pruebas/casos-e2e.csv) |
 
-## Especificación de un caso
+Los **674 casos de planificación** no equivalen a 674 pruebas ejecutadas. Antes de implementarlos, refinar los casos genéricos con fixtures, SQL exacto, precondiciones, errores esperados y transacciones. Pueden consolidarse cuando una misma prueba cubra varios criterios, conservando la matriz.
 
-| Campo | Propósito |
-|---|---|
-| ID | `DB-INC-001`, `API-INC-001`, `UI-INC-001` o `E2E-INC-001` |
-| Capacidad / escenario | Ruta OpenSpec + nombre de Scenario |
-| Tipo / responsable | Positivo, negativo, límite, transaccional, seguridad; quién lo desarrolla |
-| Precondición y datos | Fixtures/semillas disponibles, sin datos reales personales |
-| Acción y resultado observable | Comportamiento esperado de forma verificable |
-| Estado / evidencia | Planificado → RED → GREEN → REFACTOR, log de ejecución en CI cuando exista |
+## Capas y herramientas candidatas
 
-### Piloto: reportar incidencias (capacidad `incidencias/gestion`)
+| Capa | Herramientas | Qué demuestra |
+|---|---|---|
+| PostgreSQL/Supabase | SQL reproducible y transacciones reversibles; pgTAP por evaluar | PK, FK, claves compuestas, CHECK, UNIQUE, relaciones, invariantes, triggers, funciones, procedimientos, privilegios y rollback |
+| API | `pytest` + `httpx` **si se confirma FastAPI** | Validaciones, permisos, manejo de errores del gestor y contratos HTTP |
+| Interfaz | Vitest + Testing Library **si se confirma React** | Formularios, estados, listas vacías, filtros, paginación y orden |
+| E2E | Playwright, si aporta valor | UI → API → rutina SQL → persistencia/rechazo → UI |
 
-| Prueba planificada | Capa | Comportamiento esperado | Referencia académica |
-|---|---|---|---|
-| `DB-INC-001` | BD | Un reporte válido guarda número correlativo, fecha, severidad y entidad afectada | HU-19, RR-83 |
-| `DB-INC-002` | BD | Rechaza incidencia vinculada simultáneamente a hito y tramos | RR-84 |
-| `DB-INC-003` | BD | Registro de visitante/guía nace preliminar y sin verificación | HU-19, RR-87 |
-| `DB-INC-004` | BD | Registro de funcionario nace activo y no requiere VERIFICA | HU-19, RR-88 |
-| `DB-INC-005` | BD | Una transacción inválida no deja registro parcial | Integridad transaccional |
-| `API-INC-001` | API | Solicitud válida delega al gestor y expone resultado, sin duplicar invariantes | Propuesta de contrato |
-| `API-INC-002` | API | Entrada inválida se rechaza y no se escribe en la BD | Validación de seguridad |
-| `UI-INC-001` | UI | Permite elegir hito o tramos y muestra estado preliminar/activo | V09 |
-| `E2E-INC-001` | Integración | Formulario → API → función de BD → dato persistido | HU-19, V09 |
+Si se adopta Node.js, cambiar la herramienta de pruebas de API y los adaptadores; **no cambiar las reglas PostgreSQL ni la semántica de las especificaciones.**
 
-No suponer UUID, catálogo de categorías de incidencias, duplicidad por categoría ni notificaciones; ninguna de esas reglas fue acreditada por el informe de la primera entrega.
+## Diseño de datos y ejecución
 
-## Reglas de cierre de un cambio
+- Todas las pruebas DB se ejecutarán con **datos aislados**, sin secretos ni datos personales reales.
+- Escribir casos positivos y negativos: la BD debe rechazar operaciones inválidas, aunque se eludan los validadores web.
+- Para cada función o trigger comprobar valores resultantes, efectos colaterales y rollback.
+- Para operaciones con estados (incidencias, recorridos, credenciales), comprobar transiciones permitidas y prohibidas.
+- Probar privilegios efectivos con roles de prueba y sin `service_role` en el frontend.
+- Las consultas y reportes deberán verificar filtros, exclusión de datos privados y resultados vacíos.
+- Las vistas tabulares deben demostrar paginación, búsqueda y ordenamiento por columnas sobre datos reales.
 
-- Spec aprobada y trazabilidad vigente.
-- Cada escenario tiene prueba asignada a su capa, incluyendo casos negativos de integridad.
-- Pruebas automatizadas y ejecutadas en la rama cuando exista implementación.
-- Seeds mínimas sin datos reales sensibles.
-- Evidencia en PR; README actualizado si hay cambios de ejecución.
-- La profesora exige tablas **paginadas, buscables y ordenables por columnas**; la capa web debe demostrarlo con datos persistidos.
+## Ejemplo: gestión de incidencias
 
-Consulta [arquitectura](arquitectura.md) y [flujo Git](flujo-git.md).
+A partir del comportamiento original:
+
+- Visitante/guía reporta → estado **preliminar**.
+- Funcionario reporta → estado **activa**.
+- Solo hito **o** tramos como objeto afectado (exclusividad).
+- Verificación, prórroga y cierre deben respetar roles, fechas y competencias.
+
+**TDD:** primero probar en PostgreSQL el rechazo de una incidencia que afecta simultáneamente un hito y un tramo; después implementar la restricción necesaria. Luego cubrir el comportamiento API/UI. No inventar UUID, categorías de incidencia ni notificaciones.
+
+## Evidencia de finalización
+
+Para cada cambio: especificación revisada, caso TDD enlazado, prueba realmente ejecutada, salida del runner, commit individual y PR revisada. GitHub Actions actual solo comprueba **documentación**; los tests de producto se añadirán con la implementación.
+
+[Catálogo académico original](requisitos/criterios-originales.md) · [RR](requisitos/catalogo-rr.md) · [contratos por capa](contratos-por-capa.md).

@@ -1,4 +1,4 @@
-name: Calidad de documentación
+name: Calidad de documentación SDD/TDD
 
 on:
   pull_request:
@@ -10,14 +10,22 @@ permissions:
   contents: read
 
 jobs:
-  trazabilidad:
-    name: Validar trazabilidad y enlaces locales
+  verify-documentation:
+    name: Validar fuentes, specs y trazabilidad
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Comprobar datos de trazabilidad
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Comprobar matriz académica original
         run: python3 scripts/validar_trazabilidad.py
-      - name: Comprobar archivos básicos
+      - name: Comprobar cobertura de SDD y TDD
+        env:
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+        run: python3 scripts/validar_plan_sdd_tdd.py
+      - name: Comprobar estructura documental
         shell: bash
         run: |
           set -euo pipefail
@@ -26,7 +34,7 @@ jobs:
           test -f openspec/config.yaml
           test -f docs/sdd-openspec.md
           test -f docs/pruebas-tdd.md
-          test -f docs/trazabilidad.md
+          test -f docs/trazabilidad-detallada.csv
+          test -f docs/contratos-por-capa.md
           test -f docs/flujo-git.md
-          test -f docs/arquitectura.md
-          echo 'Documentación base presente.'
+          echo 'Estructura documental presente.'
