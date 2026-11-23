@@ -1,0 +1,32 @@
+name: Calidad de documentación
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trazabilidad:
+    name: Validar trazabilidad y enlaces locales
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Comprobar datos de trazabilidad
+        run: python3 scripts/validar_trazabilidad.py
+      - name: Comprobar archivos básicos
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f README.md
+          test -f AGENTS.md
+          test -f openspec/config.yaml
+          test -f docs/sdd-openspec.md
+          test -f docs/pruebas-tdd.md
+          test -f docs/trazabilidad.md
+          test -f docs/flujo-git.md
+          test -f docs/arquitectura.md
+          echo 'Documentación base presente.'
