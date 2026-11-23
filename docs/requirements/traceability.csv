@@ -1,0 +1,45 @@
+codigo,funcionalidad,responsable,capacidad,rr,vista,tipo,estado
+HU-01,Ficha del hito y sus rutas,Javier,patrimonio/hitos,"1,2,13,14,74-79",V03,Consulta,BASE-PRIMERA-ENTREGA
+HU-02,Recursos 3D cercanos,Javier,patrimonio/anclajes-3d,"3,15,78,80,81",V05,Consulta,BASE-PRIMERA-ENTREGA
+HU-03,Rutas por categoría y territorio,Sebastián,rutas/gestion,"34-36,106-111",V02,Consulta,BASE-PRIMERA-ENTREGA
+HU-04,Servicios en recorrido,Sebastián,movilidad/servicios-y-transbordos,"34,45,110",V04,Consulta,BASE-PRIMERA-ENTREGA
+HU-05,Paradas operativas de transbordo,Sebastián,movilidad/servicios-y-transbordos,"20,21,31-33,101,104",V04,Consulta,BASE-PRIMERA-ENTREGA
+HU-06,Valoraciones de rutas,Valeria,evaluaciones/consulta,"9-11,19,94-100",V04,Consulta,BASE-PRIMERA-ENTREGA
+HU-07,Validar credencial,Valeria,credenciales/gestion,"55-59,72,73,127-134",V10,Consulta,BASE-PRIMERA-ENTREGA
+HU-32,Experiencias vigentes del recorrido,Valeria,promociones/experiencias,"52-54,69-71,122-126",V04,Consulta,BASE-PRIMERA-ENTREGA
+HU-09.1–09.4,CRUD visitantes,Valeria,actores/identidades,"46,61,62,120",V18,CRUD,BASE-PRIMERA-ENTREGA
+HU-10.1–10.4,CRUD hitos,Javier,patrimonio/hitos,"1,2,13,14,74-79",V14,CRUD,BASE-PRIMERA-ENTREGA
+HU-11.1–11.4,CRUD categorías de hito,Javier,patrimonio/hitos,13,V14,CRUD,BASE-PRIMERA-ENTREGA
+HU-12.1–12.4,CRUD estados,Javier,territorio/catalogo,,V13,CRUD,BASE-PRIMERA-ENTREGA
+HU-13.1–13.4,CRUD puntos de anclaje,Javier,patrimonio/anclajes-3d,"3,15,78,80",V15,CRUD,BASE-PRIMERA-ENTREGA
+HU-14.1–14.4,CRUD recursos 3D,Javier,patrimonio/anclajes-3d,"3,15,81",V15,CRUD,BASE-PRIMERA-ENTREGA
+HU-15.1–15.4,CRUD vías,Sebastián,movilidad/vias-y-tramos,"29,30,102",V16,CRUD,BASE-PRIMERA-ENTREGA
+HU-16.1–16.4,CRUD paradas,Sebastián,movilidad/paradas,"20,21,31-33,101,104,105",V16,CRUD,BASE-PRIMERA-ENTREGA
+HU-17.1–17.4,CRUD rutas fijas,Sebastián,rutas/gestion,"34,35,106-111",V17,CRUD,BASE-PRIMERA-ENTREGA
+HU-18.1–18.4,CRUD experiencias promocionales,Valeria,promociones/experiencias,"52-54,69-71,122-126",V11,CRUD,BASE-PRIMERA-ENTREGA
+HU-23.1–23.3,Gestión de credenciales digitales,Valeria,credenciales/gestion,"55-59,72,73,127-134",V08,CRUD,BASE-PRIMERA-ENTREGA
+HU-24.1–24.4,CRUD eventos culturales,Javier,patrimonio/eventos,,V14,CRUD,BASE-PRIMERA-ENTREGA
+HU-25.1–25.4,CRUD rutas dinámicas,Sebastián,rutas/gestion,"22,35,36,106-112",V07,CRUD,BASE-PRIMERA-ENTREGA
+HU-26.1–26.4,CRUD funcionarios,Valeria,actores/identidades,"49,50,64,68",V18,CRUD,BASE-PRIMERA-ENTREGA
+HU-29.1–29.4,CRUD guías,Sebastián,guias/contrataciones,"23,37-40,116-118",V18,CRUD,BASE-PRIMERA-ENTREGA
+HU-30.1–30.4,CRUD comercios,Valeria,actores/comercios,"47,48,60,63,66,67,119,121",V18,CRUD,BASE-PRIMERA-ENTREGA
+HU-31.1–31.4,CRUD instituciones,Javier,instituciones/entes,"4,12,16,17,82",V18,CRUD,BASE-PRIMERA-ENTREGA
+HU-33.1–33.4,CRUD municipios,Javier,territorio/catalogo,,V13,CRUD,BASE-PRIMERA-ENTREGA
+HU-34.1–34.4,CRUD parroquias,Javier,territorio/catalogo,,V13,CRUD,BASE-PRIMERA-ENTREGA
+HU-35.1–35.4,CRUD tramos y conexiones,Sebastián,movilidad/vias-y-tramos,"29,103",V16,CRUD,BASE-PRIMERA-ENTREGA
+HU-08,Iniciar sesión,Valeria,actores/identidades,"46,47,49,51,61-65",V01,Negocio,BASE-PRIMERA-ENTREGA
+HU-19,Reportar incidencia,Javier,incidencias/gestion,"5,6,18,83-88,93",V09,Negocio,BASE-PRIMERA-ENTREGA
+HU-20,Verificar incidencia,Javier,incidencias/gestion,"7,86-88",V12,Negocio,BASE-PRIMERA-ENTREGA
+HU-21,Registrar recorrido,Sebastián,rutas/recorridos,"27,28,44,45,112-115",V06,Negocio,BASE-PRIMERA-ENTREGA
+HU-22,Publicar evaluación,Javier,evaluaciones/publicacion,"9-11,19,94-100",V06,Negocio,BASE-PRIMERA-ENTREGA
+HU-27,Canjear credencial,Valeria,credenciales/gestion,"55-59,72,73,127-134",V10,Negocio,BASE-PRIMERA-ENTREGA
+HU-28,Asignar guía a ruta fija,Sebastián,guias/contrataciones,"40,117,118",V17,Negocio,BASE-PRIMERA-ENTREGA
+HU-36,Prorrogar incidencia,Javier,incidencias/gestion,91-93,V12,Negocio,BASE-PRIMERA-ENTREGA
+HU-37,Cerrar incidencia,Javier,incidencias/gestion,"8,89-93",V12,Negocio,BASE-PRIMERA-ENTREGA
+RP-1,Conservación e incidencias por territorio,Javier,reportes/conservacion,"5-8,18,83-93",V19,Reporte,BASE-PRIMERA-ENTREGA
+RP-2,Experiencias y credenciales,Valeria,reportes/promociones,"52-59,69-73,119,122-134",V20,Reporte,BASE-PRIMERA-ENTREGA
+RP-3,Afluencia y calidad por ruta,Sebastián,reportes/afluencia,"44,45,113-115",V21,Reporte,BASE-PRIMERA-ENTREGA
+VA-1,Tiempos reales de ruta,Sebastián,rutas/tiempos-y-desvios,"106,112-115",V04,Valor agregado,BASE-PRIMERA-ENTREGA
+VA-2,Desvío por incidencia,Sebastián,rutas/tiempos-y-desvios,"83-85,102,103,110,113",V06,Valor agregado,BASE-PRIMERA-ENTREGA
+VA-3,Contratación de guía,Sebastián,guias/contrataciones,"24-26,41-43,117,118",V04,Valor agregado,BASE-PRIMERA-ENTREGA
+VA-4,Semáforo de seguridad,Javier,reportes/seguridad-rutas,"83-85,89-91",V04,Valor agregado,BASE-PRIMERA-ENTREGA

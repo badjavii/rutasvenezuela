@@ -1,0 +1,49 @@
+name: Documentation quality (SDD and TDD)
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  documentation:
+    name: Check sources, specifications and traceability
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate grouped academic traceability
+        run: python3 scripts/validar_trazabilidad.py
+      - name: Validate SDD/TDD planning coverage
+        env:
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+        run: python3 scripts/validar_plan_sdd_tdd.py
+      - name: Validate local Markdown links
+        run: python3 scripts/validar_enlaces.py
+      - name: Verify documentation files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f README.md
+          test -f AGENTS.md
+          test -f LICENSE
+          test -f openspec/config.yaml
+          test -f docs/README.md
+          test -f docs/development/sdd-guide.md
+          test -f docs/development/tdd-guide.md
+          test -f docs/development/git-workflow.md
+          test -f docs/requirements/traceability-detailed.csv
+          test -f references/README.md
+          test -f references/first-delivery.md
+          if grep -Eq 'data:image/|\[image[0-9]+\]:' references/first-delivery.md; then
+            echo 'Images remain in Markdown source.'
+            exit 1
+          fi
+          echo 'Documentation valid.'

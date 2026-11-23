@@ -1,0 +1,135 @@
+id,descripcion,responsables,vinculos_hu_grupo,estado_vinculos
+RR-1,La ubicación de cada hito registrado es distinta de null.,Javier,HU-01|HU-10.1–10.4,PRELIMINAR
+RR-2,El tramo sobre el que está un hito es distinto de null.,Javier,HU-01|HU-10.1–10.4,PRELIMINAR
+RR-3,El recurso 3D que proyecta cada punto es distinto de null.,Javier,HU-02|HU-13.1–13.4|HU-14.1–14.4,PRELIMINAR
+RR-4,La cuenta de cada ente es distinta de null y es clave alterna: una cuenta es de un solo ente.,Javier,HU-31.1–31.4,PRELIMINAR
+RR-5,La cuenta que genera cada incidencia es distinta de null.,Javier,HU-19|RP-1,PRELIMINAR
+RR-6,El hito afectado es distinto de null.,Javier,HU-19|RP-1,PRELIMINAR
+RR-7,El funcionario que verifica es distinto de null.,Javier,HU-20|RP-1,PRELIMINAR
+RR-8,El funcionario que cierra es distinto de null.,Javier,HU-37|RP-1,PRELIMINAR
+RR-9,El recorrido que respalda cada evaluación es distinto de null.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-10,El hito evaluado es distinto de null.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-11,La ruta evaluada es distinta de null.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-12,La denominación oficial es clave alterna: es distinta de null y no se repite.,Javier,HU-31.1–31.4,PRELIMINAR
+RR-13,Todo hito tiene al menos una categoría.,Javier,HU-01|HU-10.1–10.4|HU-11.1–11.4,PRELIMINAR
+RR-14,Todo hito tiene su ubicación.,Javier,HU-01|HU-10.1–10.4,PRELIMINAR
+RR-15,Todo punto de anclaje proyecta un recurso 3D.,Javier,HU-02|HU-13.1–13.4|HU-14.1–14.4,PRELIMINAR
+RR-16,Todo ente tiene competencia sobre al menos un municipio.,Javier,HU-31.1–31.4,PRELIMINAR
+RR-17,Todo ente tiene su cuenta.,Javier,HU-31.1–31.4,PRELIMINAR
+RR-18,Toda incidencia la generó una cuenta.,Javier,HU-19|RP-1,PRELIMINAR
+RR-19,Toda evaluación la respalda un recorrido.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-74,"El estado operativo de todo hito es disponible, en restauración, clausurado temporalmente o cerrado permanentemente.",Javier,HU-01|HU-10.1–10.4,PRELIMINAR
+RR-75,Un hito tiene al menos una fila en ABRE si y solo si no es de libre acceso.,Javier,HU-01|HU-10.1–10.4,PRELIMINAR
+RR-76,"En todo horario, el día es un día de la semana y la hora de cierre es posterior a la de apertura.",Javier,HU-01|HU-10.1–10.4,PRELIMINAR
+RR-77,Dos horarios del mismo hito y el mismo día no se cruzan.,Javier,HU-01|HU-10.1–10.4,PRELIMINAR
+RR-78,Toda latitud está entre −90 y 90 y toda longitud entre −180 y 180.,Javier,HU-01|HU-02|HU-10.1–10.4|HU-13.1–13.4,PRELIMINAR
+RR-79,El tramo sobre el que está un hito es de su mismo municipio.,Javier,HU-01|HU-10.1–10.4,PRELIMINAR
+RR-80,"El radio de activación y la escala son positivos, la altitud respecto al suelo no es negativa, el azimut y la rotación están en [0, 360) y la inclinación en [−90, 90].",Javier,HU-02|HU-13.1–13.4,PRELIMINAR
+RR-81,Todo recurso 3D tiene un tamaño positivo.,Javier,HU-02|HU-14.1–14.4,PRELIMINAR
+RR-82,"El nivel territorial es nacional, estadal o municipal. Un ente municipal tiene exactamente una fila en COMPETENCIA. Todas las filas de COMPETENCIA de un ente estadal tienen el mismo estado.",Javier,HU-31.1–31.4,PRELIMINAR
+RR-83,"El estado es preliminar, activa, descartada, vencida o resuelta, y la severidad es bajo, medio o crítico.",Javier|Sebastián,HU-19|RP-1|VA-2|VA-4,PRELIMINAR
+RR-84,"Toda incidencia tiene fila en AFECTA_HITO o en AFECTA_TRAMO, pero no en las dos.",Javier|Sebastián,HU-19|RP-1|VA-2|VA-4,PRELIMINAR
+RR-85,"Si una incidencia afecta dos o más tramos, cada tramo afectado tiene una fila en CONECTA con otro tramo afectado por la misma incidencia.",Javier|Sebastián,HU-19|RP-1|VA-2|VA-4,PRELIMINAR
+RR-86,"La cuenta que genera una incidencia está en CUENTA_VISITANTE, CUENTA_GUIA o CUENTA_FUNCIONARIO.",Javier,HU-19|HU-20|RP-1,PRELIMINAR
+RR-87,"Una incidencia preliminar la generó la cuenta de un visitante o de un guía, y no tiene fila en VERIFICA ni en CIERRA.",Javier,HU-19|HU-20|RP-1,PRELIMINAR
+RR-88,"Si la generó un visitante o un guía y ya no está preliminar, tiene fila en VERIFICA. Si la generó un funcionario, no la tiene. Toda incidencia descartada tiene fila en VERIFICA.",Javier,HU-19|HU-20|RP-1,PRELIMINAR
+RR-89,Una incidencia está resuelta si y solo si tiene fila en CIERRA. Tiene fecha de cierre si y solo si está resuelta.,Javier,HU-37|RP-1|VA-4,PRELIMINAR
+RR-90,El funcionario que cierra pertenece a un ente con competencia sobre el municipio del hito afectado o de alguno de los tramos afectados.,Javier,HU-37|RP-1|VA-4,PRELIMINAR
+RR-91,"Una incidencia activa o vencida está activa si y solo si su fechaEstimadaResolucion, o la nuevaFecha de alguna fila de PRORROGA con su mismo numeroReporte, todavía no pasó. Si ya pasaron todas, está vencida. (Solo en lenguaje natural: necesita la fecha de hoy, que el lenguaje de restricciones del curso no define.)",Javier,HU-36|HU-37|RP-1|VA-4,PRELIMINAR
+RR-92,"La nuevaFecha de toda prórroga es posterior a la fecha estimada de resolución de su incidencia, y esa incidencia no está preliminar ni descartada.",Javier,HU-36|HU-37|RP-1,PRELIMINAR
+RR-93,La fecha estimada de resolución y la fecha de cierre no son anteriores a la fecha de detección.,Javier,HU-19|HU-36|HU-37|RP-1,PRELIMINAR
+RR-94,La calificación y el índice de seguridad son enteros de 1 a 5.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-95,"Toda evaluación tiene fila en EVALUA_HITO o en EVALUA_RUTA, exactamente en una.",Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-96,"Si una evaluación es de una ruta, el recorrido que la respalda está completado y es sobre esa misma ruta.",Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-97,"Si una evaluación es de un hito, el recorrido que la respalda ya terminó y tiene fila en TRANSITA con ese hito.",Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-98,La fecha de emisión de una evaluación no es anterior al fin del recorrido que la respalda.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-99,La marca recorridoVerificado es verdadera si y solo si el recorrido que respalda la evaluación está completado.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-100,Dos evaluaciones distintas de ruta no las respalda el mismo recorrido. Tampoco dos evaluaciones distintas del mismo hito.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-20,La ubicación de cada parada es distinta de null.,Sebastián,HU-05|HU-16.1–16.4,PRELIMINAR
+RR-21,El tramo donde está cada parada es distinto de null.,Sebastián,HU-05|HU-16.1–16.4,PRELIMINAR
+RR-22,El visitante que crea cada ruta dinámica es distinto de null.,Sebastián,HU-25.1–25.4,PRELIMINAR
+RR-23,La cuenta de cada guía es distinta de null y es clave alterna: una cuenta es de un solo guía.,Sebastián,HU-29.1–29.4,PRELIMINAR
+RR-24,El visitante de cada contratación es distinto de null.,Sebastián,VA-3,PRELIMINAR
+RR-25,El guía de cada contratación es distinto de null.,Sebastián,VA-3,PRELIMINAR
+RR-26,La ruta de cada contratación es distinta de null.,Sebastián,VA-3,PRELIMINAR
+RR-27,El visitante de cada recorrido es distinto de null.,Sebastián,HU-21,PRELIMINAR
+RR-28,La ruta de cada recorrido es distinta de null.,Sebastián,HU-21,PRELIMINAR
+RR-29,Toda vía tiene al menos un tramo.,Sebastián,HU-15.1–15.4|HU-35.1–35.4,PRELIMINAR
+RR-30,Toda vía tiene al menos un modo permitido.,Sebastián,HU-15.1–15.4,PRELIMINAR
+RR-31,Toda parada tiene su ubicación.,Sebastián,HU-05|HU-16.1–16.4,PRELIMINAR
+RR-32,Toda parada está en un tramo.,Sebastián,HU-05|HU-16.1–16.4,PRELIMINAR
+RR-33,Toda parada tiene al menos un horario.,Sebastián,HU-05|HU-16.1–16.4,PRELIMINAR
+RR-34,Toda ruta tiene al menos dos hitos: el de origen y el de destino.,Sebastián,HU-03|HU-04|HU-17.1–17.4,PRELIMINAR
+RR-35,"Toda ruta es fija o dinámica, exactamente una de las dos.",Sebastián,HU-03|HU-17.1–17.4|HU-25.1–25.4,PRELIMINAR
+RR-36,Toda ruta dinámica la creó un visitante.,Sebastián,HU-03|HU-25.1–25.4,PRELIMINAR
+RR-37,Todo guía tiene su cuenta.,Sebastián,HU-29.1–29.4,PRELIMINAR
+RR-38,Todo guía habla al menos un idioma.,Sebastián,HU-29.1–29.4,PRELIMINAR
+RR-39,Todo guía tiene al menos una especialidad.,Sebastián,HU-29.1–29.4,PRELIMINAR
+RR-40,Todo guía tiene al menos una zona asignada.,Sebastián,HU-29.1–29.4|HU-28,PRELIMINAR
+RR-41,Toda contratación la hace un visitante.,Sebastián,VA-3,PRELIMINAR
+RR-42,Toda contratación es de un guía.,Sebastián,VA-3,PRELIMINAR
+RR-43,Toda contratación es para una ruta fija.,Sebastián,VA-3,PRELIMINAR
+RR-44,Todo recorrido lo hace un visitante.,Sebastián,HU-21|RP-3,PRELIMINAR
+RR-45,Todo recorrido es sobre una ruta.,Sebastián,HU-04|HU-21|RP-3,PRELIMINAR
+RR-101,Dos horarios de la misma parada y el mismo día no se cruzan.,Sebastián,HU-05|HU-16.1–16.4,PRELIMINAR
+RR-102,"El tipo de vía es calle, avenida, bulevar, caminería, sendero, puente u otro, y su estado es habilitada o cierre total por mantenimiento. Cada modo permitido es a pie, bicicleta, transporte público o vehículo adaptado.",Sebastián,HU-15.1–15.4|VA-2,PRELIMINAR
+RR-103,Un tramo no se conecta consigo mismo.,Sebastián,HU-35.1–35.4|VA-2,PRELIMINAR
+RR-104,"El estado es activa, en mantenimiento o fuera de servicio; la modalidad es metro, autobús, embarcadero o transporte por cable; la tarifa no es negativa; la frecuencia y el aforo son positivos.",Sebastián,HU-05|HU-16.1–16.4,PRELIMINAR
+RR-105,"El equipamiento es techo o marquesina, iluminación nocturna, taquilla, vigilancia, estacionamiento de transferencia o resguardo de bicicletas.",Sebastián,HU-16.1–16.4,PRELIMINAR
+RR-106,"La duración estimada, si la hay, es positiva. La visibilidad de una ruta dinámica es privada o pública, y su preferencia de transporte es a pie, bicicleta, transporte público o vehículo adaptado.",Sebastián,HU-03|HU-17.1–17.4|HU-25.1–25.4|VA-1,PRELIMINAR
+RR-107,"Toda ruta fija tiene en RUTA_TURISTICA su duración estimada, su mejor horario de inicio y su nivel de dificultad.",Sebastián,HU-03|HU-17.1–17.4|HU-25.1–25.4,PRELIMINAR
+RR-108,"Dentro de una ruta, dos filas de CONFORMA o de USA nunca comparten número de orden, y todo orden es positivo.",Sebastián,HU-03|HU-17.1–17.4|HU-25.1–25.4,PRELIMINAR
+RR-109,La secuencia de una ruta empieza en 1 con un hito y no deja huecos: toda fila con orden mayor que 1 tiene otra de la misma ruta con el orden anterior.,Sebastián,HU-03|HU-17.1–17.4|HU-25.1–25.4,PRELIMINAR
+RR-110,Toda parada de una ruta tiene un hito de la misma ruta antes y otro después.,Sebastián,HU-03|HU-04|HU-17.1–17.4|HU-25.1–25.4|VA-2,PRELIMINAR
+RR-111,"El hito de orden 1 de una ruta, que es su origen, está en el municipio de la ruta.",Sebastián,HU-03|HU-17.1–17.4|HU-25.1–25.4,PRELIMINAR
+RR-112,"Un recorrido es sobre una ruta fija, una ruta dinámica pública o una ruta dinámica que creó el mismo visitante que hace el recorrido.",Sebastián,HU-25.1–25.4|HU-21|VA-1,PRELIMINAR
+RR-113,"Un recorrido en curso no tiene ni fin ni estado; uno terminado tiene los dos. El estado es completado o abandonado, y el fin es posterior al inicio.",Sebastián,HU-21|RP-3|VA-1|VA-2,PRELIMINAR
+RR-114,"Los hitos que transita un recorrido están en CONFORMA para la ruta de su fila en SOBRE, y cada paso ocurre entre el inicio y el fin del recorrido.",Sebastián,HU-21|RP-3|VA-1,PRELIMINAR
+RR-115,"Si un recorrido está completado, tiene fila en TRANSITA con cada hito de su ruta.",Sebastián,HU-21|RP-3|VA-1,PRELIMINAR
+RR-116,Los años de trayectoria no son negativos y la tarifa horaria es positiva.,Sebastián,HU-29.1–29.4,PRELIMINAR
+RR-117,Un guía adscrito a una ruta fija tiene fila en TRABAJA con el municipio de esa ruta.,Sebastián,HU-29.1–29.4|HU-28|VA-3,PRELIMINAR
+RR-118,El guía de una contratación tiene fila en SIRVE con la ruta de esa contratación.,Sebastián,HU-29.1–29.4|HU-28|VA-3,PRELIMINAR
+RR-46,La cuenta de cada visitante es distinta de null y es clave alterna: una cuenta es de un solo visitante.,Valeria,HU-09.1–09.4|HU-08,PRELIMINAR
+RR-47,La cuenta de cada comercio es distinta de null y es clave alterna: una cuenta es de un solo comercio.,Valeria,HU-30.1–30.4|HU-08,PRELIMINAR
+RR-48,La ubicación de cada comercio es distinta de null.,Valeria,HU-30.1–30.4,PRELIMINAR
+RR-49,La cuenta de cada funcionario es distinta de null y es clave alterna: una cuenta es de un solo funcionario.,Valeria,HU-26.1–26.4|HU-08,PRELIMINAR
+RR-50,El ente al que pertenece cada funcionario es distinto de null.,Valeria,HU-26.1–26.4,PRELIMINAR
+RR-51,La cuenta de cada administrador es distinta de null y es clave alterna: una cuenta es de un solo administrador.,Valeria,HU-08,PRELIMINAR
+RR-52,El comercio que promueve cada experiencia es distinto de null.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-53,El guía que dirige cada experiencia es distinto de null.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-54,La ruta de cada experiencia es distinta de null.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-55,El visitante que adquiere cada credencial es distinto de null.,Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-56,La experiencia que ampara cada credencial es distinta de null.,Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-57,El hito reservado es distinto de null.,Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-58,El comercio reservado es distinto de null.,Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-59,La cuenta que valida cada credencial es distinta de null.,Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-60,La razón social es clave alterna: es distinta de null y no se repite.,Valeria,HU-30.1–30.4,PRELIMINAR
+RR-61,Cada cuenta es de exactamente un actor: está en al menos una de las seis relaciones CUENTA_<ACTOR> y nunca en dos a la vez.,Valeria,HU-09.1–09.4|HU-08,PRELIMINAR
+RR-62,Todo visitante tiene su cuenta.,Valeria,HU-09.1–09.4|HU-08,PRELIMINAR
+RR-63,Todo comercio tiene su cuenta.,Valeria,HU-30.1–30.4|HU-08,PRELIMINAR
+RR-64,Todo funcionario tiene su cuenta.,Valeria,HU-26.1–26.4|HU-08,PRELIMINAR
+RR-65,Todo administrador tiene su cuenta.,Valeria,HU-08,PRELIMINAR
+RR-66,Todo comercio tiene su ubicación.,Valeria,HU-30.1–30.4,PRELIMINAR
+RR-67,Todo comercio tiene al menos un horario.,Valeria,HU-30.1–30.4,PRELIMINAR
+RR-68,Todo funcionario pertenece a un ente.,Valeria,HU-26.1–26.4,PRELIMINAR
+RR-69,Toda experiencia la promueve un comercio.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-70,Toda experiencia la dirige un guía.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-71,Toda experiencia transcurre sobre una ruta.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-72,Toda credencial la adquirió un visitante.,Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-73,Toda credencial tiene la cuenta que la valida.,Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-119,Dos horarios del mismo comercio y el mismo día no se cruzan.,Valeria,HU-30.1–30.4|RP-2,PRELIMINAR
+RR-120,El grupo sanguíneo es uno de los ocho grupos ABO con su factor Rh.,Valeria,HU-09.1–09.4,PRELIMINAR
+RR-121,"La categoría es gastronómico, sanitario o alquiler de equipos, y el aforo es positivo.",Valeria,HU-30.1–30.4,PRELIMINAR
+RR-122,La fecha de vencimiento es posterior a la de activación y el cupo máximo es de al menos una persona.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-123,El precio total es positivo y el descuento está entre 0 y 100.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-124,Toda experiencia tiene al menos una fila en INCLUYE o en INCLUYE_COMERCIO.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-125,Todo hito que incluye una experiencia está en CONFORMA para la ruta de su fila en TRANSCURRE.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-126,Una experiencia transcurre sobre una ruta fija o sobre una ruta dinámica pública.,Valeria,HU-32|HU-18.1–18.4|RP-2,PRELIMINAR
+RR-127,"El estado es emitido, canjeado, cancelado o vencido; el monto abonado no es negativo; hay al menos un beneficiario.",Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-128,"Toda credencial tiene fila en RESERVA_HITO o en RESERVA_COMERCIO, exactamente en una.",Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-129,La cuenta que valida una credencial está en CUENTA_COMERCIO o en CUENTA_GUIA.,Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-130,"Si una credencial reserva un comercio y la valida la cuenta de un comercio, esa cuenta es la del comercio reservado.",Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-131,"Una credencial con estadoCredencial = 'emitido' no tiene su fechaHoraProgramada en el pasado. Si la fecha pasó sin canjearse, está vencida. (Solo en lenguaje natural: necesita la fecha de hoy, que el lenguaje de restricciones del curso no define.)",Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-132,"Si una credencial tiene fila en RESERVA_COMERCIO, hay una fila de DISPONIBLE del mismo rifJuridico cuyo diaSemana es el día de la semana de fechaHoraProgramada y cuyo rango de horaApertura a horaCierre contiene su hora. Lo mismo con RESERVA_HITO y ABRE, salvo que el hito tenga libreAcceso verdadero. (Solo en lenguaje natural: necesita el día de la semana y la hora de una fecha, que el lenguaje de restricciones del curso no define.)",Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-133,"Si una credencial se adquiere bajo una experiencia, el hito o el comercio que reserva está en INCLUYE o en INCLUYE_COMERCIO para esa experiencia.",Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
+RR-134,"Si una credencial se adquiere bajo una experiencia, sus beneficiarios no superan el cupo de la experiencia y su fecha programada está entre la activación y el vencimiento de la experiencia.",Valeria,HU-07|HU-23.1–23.3|HU-27|RP-2,PRELIMINAR
