@@ -2,7 +2,7 @@
 
 Material extraído de **RutasVenezuela_Entrega1 (2).pdf**, Anexo A. Se conserva el contenido de los criterios sin introducir cambios de comportamiento; se suprimen saltos de página y encabezados editoriales. **103 historias, 324 criterios**. No incluye datos personales de los integrantes.
 
-La relación HU↔capacidad↔mockup↔RR está en [trazabilidad detallada](../trazabilidad-detallada.csv). Este archivo es referencia académica y evita copiar los códigos HU a cada especificación del dominio.
+La relación HU↔capacidad↔mockup↔RR está en [trazabilidad detallada](traceability-detailed.csv). Este archivo es referencia académica y evita copiar los códigos HU a cada especificación del dominio.
 
 ## HU-01 — Ficha del hito y sus rutas (Javier)
 

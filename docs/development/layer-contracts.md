@@ -4,7 +4,7 @@
 
 ## Base de datos: reglas e integridad
 
-Cada capacidad se implementará utilizando las relaciones del modelo relacional entregado, con restricciones, transacciones y rutinas PostgreSQL según corresponda. **El SGBDR rechaza las violaciones aunque el cliente omita controles.** [Catálogo RR](../requirements/relational-rules.md) · [Casos SQL](../pruebas/casos-rr.csv).
+Cada capacidad se implementará utilizando las relaciones del modelo relacional entregado, con restricciones, transacciones y rutinas PostgreSQL según corresponda. **El SGBDR rechaza las violaciones aunque el cliente omita controles.** [Catálogo RR](../requirements/relational-rules.md) · [Casos SQL](../testing/database-cases.csv).
 
 ## Capa de aplicación: validación
 
@@ -17,7 +17,7 @@ Cada capacidad se implementará utilizando las relaciones del modelo relacional 
 
 ## Capa de interfaz: comportamiento observable
 
-- Cada vista cubrirá los estados diseñados en el informe: [casos por mockup](../pruebas/casos-interfaces.csv).
+- Cada vista cubrirá los estados diseñados en el informe: [casos por mockup](../testing/interface-cases.csv).
 - Todos los listados tabulares tendrán búsqueda, ordenamiento por columna y paginación.
 - Validaciones para experiencia de usuario; nunca sustituir la validación del backend ni del gestor.
 - Manejar carga, vacío, error y confirmaciones coherentes con los criterios originales.

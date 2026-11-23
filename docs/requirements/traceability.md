@@ -2,7 +2,7 @@
 
 **Línea base:** primera entrega de RutasVenezuela, informe del 5 de noviembre de 2026, matriz de trazabilidad (págs. impresas 75–76), índice de interfaces (págs. 11–12) y restricciones relacionales (capítulo 7). **Corrección aclarada:** la calificación fue 17,3/20 y el modelo relacional no requiere cambios; las observaciones son del ERE. Ver [registro](../project/ere-feedback.md).
 
-Este documento es el **índice agrupado (44 filas)**. La matriz [detallada de 103 historias](../trazabilidad-detallada.csv) enlaza cada historia con su archivo OpenSpec real; el [catálogo de 134 RR](relational-rules.md) conserva las formulaciones de las restricciones y el [plan TDD](../development/tdd-guide.md) enlaza 324 criterios a pruebas. La correspondencia HU↔RR sigue marcada como preliminar para revisión humana.
+Este documento es el **índice agrupado (44 filas)**. La matriz [detallada de 103 historias](traceability-detailed.csv) enlaza cada historia con su archivo OpenSpec real; el [catálogo de 134 RR](relational-rules.md) conserva las formulaciones de las restricciones y el [plan TDD](../development/tdd-guide.md) enlaza 324 criterios a pruebas. La correspondencia HU↔RR sigue marcada como preliminar para revisión humana.
 
 Este documento es el **puente único** entre los códigos académicos (HU, RR, V, RP y VA) y las **capacidades OpenSpec**. En las especificaciones se usan nombres de dominio; aquí se conservan los códigos para la defensa.
 
@@ -73,7 +73,7 @@ Este documento es el **puente único** entre los códigos académicos (HU, RR, V
 
 ## Documentos complementarios
 
-- [103 historias con enlaces concretos a las 23 capacidades OpenSpec](../trazabilidad-detallada.csv)
-- [324 criterios académicos](acceptance-criteria.md) y [casos de prueba](../pruebas/casos-criterios.csv)
-- [134 RR originales](relational-rules.md) y [268 pruebas de integridad](../pruebas/casos-rr.csv)
-- [70 estados de 21 mockups](../pruebas/casos-interfaces.csv)
+- [103 historias con enlaces concretos a las 23 capacidades OpenSpec](traceability-detailed.csv)
+- [324 criterios académicos](acceptance-criteria.md) y [casos de prueba](../testing/acceptance-cases.csv)
+- [134 RR originales](relational-rules.md) y [268 pruebas de integridad](../testing/database-cases.csv)
+- [70 estados de 21 mockups](../testing/interface-cases.csv)
