@@ -1,6 +1,7 @@
 # Tareas propuestas — Incidencias
 
-- [ ] Obtener las correcciones del modelo y contrastar reglas de incidencia.
+- [x] Registrar que no se requieren modificaciones al modelo relacional.
+- [ ] Contrastar las reglas de incidencia con el informe original y revisar los escenarios de prueba.
 - [ ] Revisar los escenarios con Javier y propietarios de cuentas y tramos.
 - [ ] Derivar pruebas DB sobre afectación exclusiva, estado inicial y rollback.
 - [ ] Derivar contratos y pruebas de API sin fijar framework definitivo.

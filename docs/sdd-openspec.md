@@ -5,8 +5,8 @@ Este repositorio utiliza [OpenSpec](https://github.com/Fission-AI/OpenSpec) con 
 ## Fuente de verdad
 
 1. Enunciado y aclaraciones de la profesora.
-2. Correcciones de la primera entrega, **todavía no incorporadas**.
-3. ERE y esquema relacional revisados.
+2. Aclaración de corrección: el **modelo relacional se mantiene sin cambios**; observaciones al ERE registradas en [observaciones-ere.md](observaciones-ere.md).
+3. ERE entregado y esquema relacional validado (conservar claves y relaciones).
 4. Requisitos y criterios de aceptación del informe.
 5. Propuestas técnicas identificadas como tales.
 
@@ -37,7 +37,7 @@ El sistema SHALL permitir reportes válidos por los actores autorizados.
 - **THEN** persiste el reporte en estado preliminar con número correlativo
 ```
 
-**Advertencia:** el ejemplo ilustra formato y deriva de los criterios de la HU original, **no** sustituye la especificación definitiva, que depende del modelo corregido.
+**Advertencia:** el ejemplo ilustra el formato y deriva de los criterios de la HU original; no sustituye la revisión humana de escenarios ni autoriza alterar claves y relaciones del modelo relacional entregado.
 
 ### Organización
 

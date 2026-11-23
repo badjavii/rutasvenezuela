@@ -18,7 +18,7 @@ Proyecto académico del **equipo 2** de Sistemas de Bases de Datos (UCAB). Profe
 - Mantener un único OpenSpec bajo `openspec/`. No duplicar reglas en cada capa.
 - SDD: especificar comportamientos observables; TDD: derivar pruebas por capa desde escenarios aprobados.
 - Conservar identificadores académicos solamente en el mapa; usar lenguaje de dominio en specs y pruebas.
-- La primera entrega disponible **no contiene las correcciones de la profesora**. No atribuirle decisiones no documentadas.
+- La corrección académica fue aclarada: **el modelo relacional entregado no requiere cambios**. Las observaciones corresponden al ERE y sus decisiones de modelado; ver [observaciones](docs/observaciones-ere.md). No atribuir reglas adicionales a la profesora.
 - No inventar tablas, atributos, historias, RR, mockups o estados. Marcar toda propuesta.
 - Cada miembro trabaja en su dominio **a través de base de datos, API e interfaz**.
 - No desplegar, mezclar PR ni ejecutar migraciones contra producción sin revisión.

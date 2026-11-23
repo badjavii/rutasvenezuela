@@ -5,6 +5,8 @@
 | Decisión | Estado | Fundamento |
 |---|---|---|
 | PostgreSQL como SGBDR OLTP | **Confirmada verbalmente** | Aprobación presencial de la profesora |
+| Modelo relacional de primera entrega | **Validado, sin cambios solicitados** | Aclaración del equipo tras la devolución calificada con 17,3/20 |
+| Observaciones de ERE | **Mejoras conceptuales, sin rediseño obligatorio del relacional** | Técnicas alternativas y oportunidades de generalización, legibilidad y extensibilidad |
 | Supabase para alojamiento de PostgreSQL | **Confirmada verbalmente** | Propuesta aprobada |
 | Reglas de negocio en el gestor | **Confirmada** | Procedimientos, funciones, triggers y restricciones |
 | Arquitectura web de tres capas | **Confirmada** | Recomendación presencial de la profesora |
@@ -41,7 +43,7 @@ La **base de datos determina las invariantes** incluso si la API o la interfaz o
 
 1. Acordar FastAPI frente a Node.js: framework concreto, librerías, justificación académica y tiempo de implementación.
 2. Definir gestión de conexiones, transacciones y seguridad en Supabase.
-3. Aplicar observaciones y correcciones de la primera entrega antes de congelar nombres de relaciones/atributos.
+3. Respetar los nombres y claves del modelo relacional entregado; registrar las observaciones del ERE como posibles mejoras conceptuales, **sin bloquear la planificación de PostgreSQL**.
 4. Acordar despliegue reproducible desde una sola computadora y mecanismo de datos de prueba.
 5. Confirmar número de grupo/NRC para el correo obligatorio.
 

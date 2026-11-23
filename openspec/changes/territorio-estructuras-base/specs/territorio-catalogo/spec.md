@@ -1,6 +1,6 @@
 # Catálogo territorial — Delta de especificación (propuesta)
 
-> **Estado: propuesta sin aprobar.** Traducida de la primera entrega; sujeta a correcciones de la profesora.
+> **Estado: propuesta sin aprobar.** Basada en la primera entrega; conserva el modelo relacional validado. Pendiente revisión de escenarios y pruebas, no de corrección del esquema.
 
 ## ADDED Requirements
 
@@ -36,4 +36,4 @@ El sistema SHALL asociar cada parroquia al municipio y estado propietarios, cons
 - **WHEN** se intenta crear una parroquia
 - **THEN** la base de datos rechaza la referencia inválida
 
-No introducir identificadores artificiales ni diseñar borrados en cascada hasta contrastar el modelo corregido.
+No introducir identificadores artificiales ni diseñar borrados en cascada sin sustento en el modelo relacional entregado.

@@ -1,6 +1,6 @@
 # Gestión de incidencias — Delta de especificación (propuesta)
 
-> **No aprobada / sin implementar.** Requisitos derivados de la HU de reportar incidencias y RR del informe original. Pendiente contrastar correcciones.
+> **No aprobada / sin implementar.** Requisitos derivados de la HU de reportar incidencias y RR del informe original. El modelo relacional entregado se conserva sin cambios; pendiente aprobación de escenarios TDD.
 
 ## ADDED Requirements
 

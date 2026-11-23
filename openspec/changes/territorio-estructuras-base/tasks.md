@@ -1,6 +1,7 @@
 # Tareas propuestas — Territorio
 
-- [ ] Incorporar y revisar el modelo corregido de la profesora.
+- [x] Registrar que la profesora no solicitó cambiar el modelo relacional.
+- [ ] Consultar las claves y relaciones del modelo relacional entregado para diseñar las pruebas.
 - [ ] Confirmar claves y restricciones del catálogo territorial.
 - [ ] Aprobar los escenarios de esta delta OpenSpec.
 - [ ] Derivar la matriz de pruebas DB para estados, municipios y parroquias.

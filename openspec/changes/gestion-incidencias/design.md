@@ -4,7 +4,7 @@
 
 ## Base de datos
 
-Usar relaciones, identificadores y claves del modelo relacional corregido; no introducir UUID ni catálogos adicionales por defecto. Registros y cambios de estado deben ser transacciones atómicas. Validar exclusividad de objeto afectado y competencias con mecanismos PostgreSQL nativos.
+Usar relaciones, identificadores y claves del modelo relacional entregado; no introducir UUID ni catálogos adicionales por defecto. Registros y cambios de estado deben ser transacciones atómicas. Validar exclusividad de objeto afectado y competencias con mecanismos PostgreSQL nativos.
 
 ## API (contrato todavía abierto)
 

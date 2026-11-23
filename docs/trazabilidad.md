@@ -1,6 +1,6 @@
 # Mapa de trazabilidad académica
 
-**Línea base:** primera entrega de RutasVenezuela, informe del 5 de noviembre de 2026, matriz de trazabilidad (págs. impresas 75–76), índice de interfaces (págs. 11–12) y restricciones relacionales (capítulo 7). **Pendiente de incorporar la corrección docente calificada con 17,3/20.**
+**Línea base:** primera entrega de RutasVenezuela, informe del 5 de noviembre de 2026, matriz de trazabilidad (págs. impresas 75–76), índice de interfaces (págs. 11–12) y restricciones relacionales (capítulo 7). **Corrección aclarada:** la calificación fue 17,3/20 y el modelo relacional no requiere cambios; las observaciones son del ERE. Ver [registro](observaciones-ere.md).
 
 Este documento es el **puente único** entre los códigos académicos (HU, RR, V, RP y VA) y las **capacidades OpenSpec**. En las especificaciones se usan nombres de dominio; aquí se conservan los códigos para la defensa.
 
@@ -61,7 +61,7 @@ Este documento es el **puente único** entre los códigos académicos (HU, RR, V
 - Los 134 identificadores `RR-1`–`RR-134` están referenciados al menos una vez como **asociaciones preliminares**. La semántica exacta de cada fórmula permanece en el informe original.
 - Los nombres de capacidad son rutas futuras bajo `openspec/specs/<capacidad>/spec.md`; **que una capacidad figure aquí no implica que esté aprobada o implementada**.
 - **Dependencias cruzadas:** cuentas/autenticación, recorridos/evaluaciones, competencia territorial/incidencias, tramos/rutas y credenciales/experiencias. Revisar conjuntamente antes de cerrar contratos.
-- Revisión pendiente: trasladar la corrección docente, confirmar variaciones de las restricciones y aprobar alcance funcional con el equipo.
+- Revisión pendiente: **verificar las asociaciones HU↔RR propuestas en este mapa** y aprobar el alcance funcional; no se contempla modificar el modelo relacional por las observaciones del ERE.
 
 ## Convenciones del mapa
 

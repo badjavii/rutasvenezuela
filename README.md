@@ -58,7 +58,7 @@ Separaremos **qué debe ocurrir (SDD)** de **cómo verificarlo (TDD)**:
 
 El [mapa de trazabilidad](docs/trazabilidad.md) (también [CSV](docs/trazabilidad.csv)) evita repetir identificadores académicos dentro de cada especificación.
 
-La primera entrega contiene 8 consultas, 20 grupos CRUD (79 operaciones), 9 operaciones del negocio, 3 reportes y 4 valores agregados, según la matriz original. **Las correcciones de la profesora están pendientes de incorporación** y pueden modificar esta línea base.
+La primera entrega contiene 8 consultas, 20 grupos CRUD (79 operaciones), 9 operaciones del negocio, 3 reportes y 4 valores agregados, según la matriz original. **Corrección aclarada:** la profesora no solicitó cambios al modelo relacional entregado. Las observaciones se refieren al ERE y a la elección de técnicas de modelado (incluidas oportunidades de generalización, extensibilidad y legibilidad). La trazabilidad HU↔RR aún debe revisarse como correspondencia documental, no como corrección del esquema. Ver [observaciones del ERE](docs/observaciones-ere.md).
 
 ## Instalación y ejecución
 

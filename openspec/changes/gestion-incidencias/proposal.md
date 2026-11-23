@@ -10,7 +10,7 @@ El sistema registra incidencias sobre hitos o tramos, con verificación, prórro
 
 ## Condición de avance
 
-La primera entrega sirve de referencia inicial, pero falta el documento calificado y corregido. No aprobar detalles de API/DDL hasta contrastarlo.
+El equipo confirmó que el modelo relacional entregado no requiere cambios. La especificación puede avanzar usando sus relaciones, claves y RR existentes; no aprobar los contratos de API ni decisiones SQL nuevas sin revisión de escenarios.
 
 ## Riesgos
 
