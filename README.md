@@ -41,7 +41,7 @@ rutasvenezuela/
 
 El desarrollo combina **SDD** (definir qué debe cumplir cada capacidad mediante OpenSpec) y **TDD** (derivar pruebas verificables antes de implementar).
 
-La primera entrega documenta **103 historias de usuario, 324 criterios de aceptación, 134 restricciones relacionales y 21 interfaces**. Estas referencias se conectan con especificaciones del dominio y planes de pruebas; **todavía no representan funcionalidades implementadas ni pruebas ejecutadas**.
+La primera entrega documenta **103 historias de usuario, 324 criterios de aceptación, 134 restricciones relacionales y 21 interfaces**. Consulta la [matriz detallada HU → especificación](docs/requirements/traceability-detailed.csv) para localizar la capacidad OpenSpec asociada. Estas referencias se conectan con especificaciones del dominio y planes de pruebas; **todavía no representan funcionalidades implementadas ni pruebas ejecutadas**.
 
 La puerta de entrada a toda la documentación es [docs/README.md](docs/README.md). Allí encontrarás las guías [SDD](docs/development/sdd-guide.md) y [TDD](docs/development/tdd-guide.md), la [trazabilidad académica](docs/requirements/traceability.md) y las [fuentes originales](references/README.md).
 
