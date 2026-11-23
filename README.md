@@ -1,112 +1,96 @@
 <div align="center">
 
-<!-- Logo -->
-<p align="center">
-    <img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="700" />
-</p>
+<img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="700">
 
-_Proyecto de Sistemas de Bases de Datos · Equipo 2 · UCAB_
+**Sistema web de gestión de rutas turísticas — UCAB**
 
-![Base de datos](https://img.shields.io/badge/Base_de_datos-PostgreSQL-94e2d5?labelColor=181825&style=for-the-badge&logo=postgresql&logoColor=white)
-![Plataforma](https://img.shields.io/badge/Plataforma-Supabase-f5c2e7?labelColor=181825&style=for-the-badge&logo=supabase&logoColor=white)
-![Estado](https://img.shields.io/badge/Estado-Planificación-a6e3a1?labelColor=181825&style=for-the-badge)
+![Database](https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Planning-6C7086?style=for-the-badge)
 
 </div>
 
 ## Sobre el proyecto
 
-**RutasVenezuela** es una aplicación web académica de la asignatura Sistemas de Bases de Datos de la Universidad Católica Andrés Bello (UCAB). Integra territorio, patrimonio, movilidad, rutas turísticas, actores, incidencias, experiencias y reportes mediante una **base de datos relacional transaccional OLTP**.
+**RutasVenezuela** es una aplicación web para gestionar territorio, patrimonio, rutas turísticas, movilidad, recorridos, visitantes, incidencias, experiencias y reportes. Se desarrolla como proyecto de la asignatura **Sistemas de Bases de Datos** de la Universidad Católica Andrés Bello (UCAB).
 
-Para la **segunda entrega (8 de diciembre de 2026)**, el énfasis está en el diseño e implementación del gestor: relaciones, restricciones de integridad, procedimientos almacenados, funciones, triggers, seguridad lógica, datos de prueba y consultas reales. El proyecto se encuentra **en planificación**, sin código funcional implementado todavía.
+El núcleo es una base de datos **PostgreSQL** transaccional (OLTP), desplegada mediante **Supabase**, que concentra restricciones de integridad, procedimientos almacenados, funciones y triggers. La aplicación sigue una arquitectura web de tres capas: presentación, servicio y datos.
 
-## Arquitectura
+**Stack de referencia:** React.js para la interfaz y Python/FastAPI para el backend; la elección definitiva de estas tecnologías todavía está pendiente de confirmación. La base de datos y sus reglas de negocio permanecen como prioridad.
 
-```text
-React.js (propuesto) → API FastAPI (propuesto) → PostgreSQL / Supabase (aprobado)
-  Presentación            Validación y acceso          Reglas y transacciones
-```
-
-La profesora aprobó PostgreSQL/Supabase y una arquitectura web de tres capas. **FastAPI y React siguen como propuesta técnica de Javier**, pendiente de revisar con Sebastián su alternativa basada en Node.js. Las **reglas de negocio viven en PostgreSQL**; el backend valida solicitudes y gestiona controles de acceso.
-
-Más detalles y decisiones pendientes en [Arquitectura](docs/arquitectura.md).
+**Fecha de la segunda entrega:** 8 de diciembre de 2026.
 
 ## Organización del repositorio
 
 ```text
 rutasvenezuela/
-├── assets/                 # Logo y recursos
-├── backend/                # Código del servicio (pendiente)
-├── frontend/               # Interfaz web (pendiente)
-├── database/               # Esquema SQL, funciones, triggers, roles y semillas
-├── docs/                   # SDD, TDD, trazabilidad, fuentes y flujo Git
-├── openspec/               # Especificaciones y propuestas OpenSpec
-├── scripts/                # Comprobaciones documentales
-├── .github/workflows/      # GitHub Actions
-├── AGENTS.md               # Instrucciones concisas para agentes
+├── assets/                 # Recursos del proyecto
+├── database/               # Estructuras, rutinas, triggers, seguridad y semillas
+├── backend/                # Aplicación de servidor
+├── frontend/               # Aplicación web
+├── openspec/               # Requisitos por capacidad y propuestas de cambio
+├── references/             # Informe íntegro y contexto externo
+├── docs/                   # Guías, trazabilidad y pruebas planificadas
+├── scripts/                # Validadores del proyecto
+├── .github/                # Plantillas y automatizaciones
+├── AGENTS.md               # Instrucciones para agentes de desarrollo
 └── README.md
 ```
 
-## Desarrollo por especificaciones y pruebas
+## Especificaciones y pruebas
 
-Separaremos **qué debe ocurrir (SDD)** de **cómo verificarlo (TDD)**:
+El desarrollo combina **SDD** (definir qué debe cumplir cada capacidad mediante OpenSpec) y **TDD** (derivar pruebas verificables antes de implementar).
 
-1. Identificar capacidad y responsable en el [mapa HU–RR–V](docs/trazabilidad.md).
-2. Especificar escenarios observables con [OpenSpec](docs/sdd-openspec.md).
-3. Derivar pruebas PostgreSQL, API, interfaz e integración con la [guía TDD](docs/pruebas-tdd.md).
-4. Aprobar el contrato; luego implementar por una rama específica mediante RED → GREEN → REFACTOR.
-5. Abrir PR con evidencia de pruebas y revisión de otro integrante.
+La primera entrega documenta **103 historias de usuario, 324 criterios de aceptación, 134 restricciones relacionales y 21 interfaces**. Estas referencias se conectan con especificaciones del dominio y planes de pruebas; **todavía no representan funcionalidades implementadas ni pruebas ejecutadas**.
 
-El [mapa de trazabilidad](docs/trazabilidad.md) (también [CSV](docs/trazabilidad.csv)) evita repetir identificadores académicos dentro de cada especificación. La [matriz detallada](docs/trazabilidad-detallada.csv) conecta las **103 historias** con **23 capacidades OpenSpec**; los [324 criterios](docs/requisitos/criterios-originales.md), las [134 RR](docs/requisitos/catalogo-rr.md) y los [21 mockups](docs/pruebas/casos-interfaces.csv) cuentan con planes TDD relacionados.
-
-La primera entrega contiene 8 consultas, 20 grupos CRUD (79 operaciones), 9 operaciones del negocio, 3 reportes y 4 valores agregados, según la matriz original. Los casos planificados se distribuyen en [criterios](docs/pruebas/casos-criterios.csv), [restricciones SQL](docs/pruebas/casos-rr.csv), [estados UI](docs/pruebas/casos-interfaces.csv) e [integración E2E](docs/pruebas/casos-e2e.csv). **No son pruebas ejecutadas ni funcionalidades implementadas.** **Corrección aclarada:** la profesora no solicitó cambios al modelo relacional entregado. Las observaciones se refieren al ERE y a la elección de técnicas de modelado (incluidas oportunidades de generalización, extensibilidad y legibilidad). La trazabilidad HU↔RR aún debe revisarse como correspondencia documental, no como corrección del esquema. Ver [observaciones del ERE](docs/observaciones-ere.md).
-
-## Planificación detallada
-
-Las especificaciones por dominio se encuentran en [OpenSpec](openspec/changes/). La [guía SDD](docs/sdd-openspec.md), la [guía TDD](docs/pruebas-tdd.md), los [contratos por capa](docs/contratos-por-capa.md) y el [plan de entrega](docs/plan-entrega.md) explican cómo continuar desde aquí sin duplicar criterios académicos en los archivos funcionales.
+La puerta de entrada a toda la documentación es [docs/README.md](docs/README.md). Allí encontrarás las guías [SDD](docs/development/sdd-guide.md) y [TDD](docs/development/tdd-guide.md), la [trazabilidad académica](docs/requirements/traceability.md) y las [fuentes originales](references/README.md).
 
 ## Instalación y ejecución
 
 ```bash
 git clone https://github.com/badjavii/rutasvenezuela.git
 cd rutasvenezuela
-```
 
-La aplicación todavía no tiene dependencias ni ejecutables. **No existe un comando de arranque funcional** en esta fase. Los pasos reproducibles de configuración y despliegue se completarán cuando estén implementadas las tres capas.
-
-Para iniciar documentación con OpenSpec:
-
-```bash
-npm install -g @fission-ai/openspec@latest
-openspec init --tools opencode
-```
-
-Si OpenSpec ya está inicializado (el repositorio contiene `openspec/config.yaml`), **no lo reinicialices innecesariamente**. El perfil de skills de OpenCode se configura localmente en cada máquina.
-
-Las comprobaciones documentales pueden ejecutarse sin instalar dependencias:
-
-```bash
+# Validaciones documentales, sin dependencias adicionales
 python3 scripts/validar_trazabilidad.py
 python3 scripts/validar_plan_sdd_tdd.py
 ```
 
-## Colaboración y GitHub Actions
+La aplicación todavía está en fase de planificación: no existe un comando de despliegue funcional. El procedimiento completo para configurar PostgreSQL, backend y frontend se añadirá cuando estén implementados.
 
-El [flujo Git](docs/flujo-git.md) adopta el formato **`<author>(<kind>/<layer>)-<description>`**, por ejemplo `javier(feat/database)-territory-tables` o `valeria(feat/frontend)-credentials-ui`. Todos los nombres técnicos de ramas usan inglés. Bash exige entrecomillar las ramas con paréntesis. Los cambios se integran mediante PR y commits progresivos por integrante.
+OpenSpec se encuentra configurado en `openspec/config.yaml`. Cada colaborador puede instalar localmente su CLI e integración con OpenCode.
 
-La acción [Calidad de documentación](.github/workflows/docs-quality.yml) valida la matriz, las **103 historias**, los **324 criterios**, las **134 RR**, las **21 vistas** y los vínculos con OpenSpec. **Aún no ejecuta tests SQL/API/UI**, porque no existe código funcional; estos checks se incorporarán al implementar cada capa.
+## Colaboración
+
+Las ramas individuales se proponen y revisan mediante **pull requests hacia `develop`**. La rama `main` se reserva para versiones estables; su promoción exige revisión, validación y un **Git tag** de versión. Las ramas de trabajo se conservan.
+
+Consulta [Git workflow](docs/development/git-workflow.md) para convenciones de ramas, commits, PR, revisiones, integración y versionado.
+
+## Integración continua
+
+El workflow [Documentation Quality](.github/workflows/docs-quality.yml) comprueba automáticamente la documentación, el mapa de trazabilidad y la cobertura planificada de SDD/TDD. Se ejecuta sobre pull requests dirigidos a `develop` o `main`.
+
+**Las pruebas funcionales de PostgreSQL, API e interfaz se añadirán durante la implementación.**
+
+## Documentación y referencias
+
+- [Índice de documentación](docs/README.md)
+- [Informe original de la primera entrega, sin imágenes](references/first-delivery.md)
+- [Repositorio de contexto y referencias externas](references/README.md)
+- [OpenSpec — documentación oficial](https://github.com/Fission-AI/OpenSpec)
 
 ## Créditos
 
-**Equipo 2 — Sistemas de Bases de Datos, Universidad Católica Andrés Bello (UCAB)**
+Este proyecto está orgullosamente diseñado y desarrollado por el **Equipo 2** de la asignatura **Sistemas de Bases de Datos** de la **Universidad Católica Andrés Bello (UCAB)**, bajo la supervisión de la profesora **Marlene Goncalves Da Silva**.
 
-**Profesora:** Marlene Goncalves Da Silva.
+| Integrante | Responsabilidades principales |
+|---|---|
+| **Javier Otero** | Territorio, patrimonio, hitos, instituciones, incidencias y evaluaciones |
+| **Sebastián Armas** | Movilidad, vías, tramos, rutas, guías y recorridos |
+| **Valeria Loreto** | Actores, visitantes, comercios, experiencias promocionales y credenciales |
 
-| Integrante | Dominio responsable | Liderazgo transversal de la primera entrega |
-|---|---|---|
-| **Javier Otero** | Territorio y patrimonio: hitos, anclajes, entidades públicas, incidencias y evaluaciones | Diagramación e integridad del ERE |
-| **Sebastián Armas** | Movilidad y rutas: vías, tramos, paradas, guías, rutas y recorridos | Modelo relacional, restricciones y seguridad lógica |
-| **Valeria Loreto** | Actores y comercio: visitantes, comercios, funcionarios, experiencias y credenciales | Interfaces, reportes y patrones de tablas |
+Cada integrante desarrolla las funcionalidades de su dominio a través de las capas pertinentes de la aplicación.
 
-Cada integrante debe desarrollar las funcionalidades de su dominio **en las tres capas** cuando corresponda; las responsabilidades no se dividen por framework.
+## Licencia
 
-Consulta [fuentes académicas](docs/fuentes.md) y [documentación OpenSpec](https://github.com/Fission-AI/OpenSpec).
+Este proyecto se distribuye bajo la **GNU General Public License, versión 3 (GPL-3.0)**. Consulta el archivo [LICENSE](LICENSE) para conocer los términos completos.

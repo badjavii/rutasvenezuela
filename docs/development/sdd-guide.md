@@ -1,6 +1,6 @@
 # Desarrollo dirigido por especificaciones (SDD)
 
-Se utiliza **[OpenSpec](https://openspec.dev/docs/schemas/spec-driven)** con el esquema oficial `spec-driven`. Los requisitos se documentan **por capacidad de dominio**, sin reproducir en cada uno los códigos académicos; la relación completa está en [trazabilidad detallada](trazabilidad-detallada.csv).
+Se utiliza **[OpenSpec](https://openspec.dev/docs/schemas/spec-driven)** con el esquema oficial `spec-driven`. Los requisitos se documentan **por capacidad de dominio**, sin reproducir en cada uno los códigos académicos; la relación completa está en [trazabilidad detallada](../trazabilidad-detallada.csv).
 
 ## Estado de planificación
 
@@ -34,12 +34,12 @@ Se mantienen las especificaciones bajo `changes/` porque el proyecto está **en 
 
 ## Flujo de trabajo
 
-1. Consultar informe original y [catálogo HU](requisitos/criterios-originales.md).
-2. Revisar [matriz de trazabilidad](trazabilidad-detallada.csv) para identificar capacidad, autor, RR y vista.
+1. Consultar informe original y [catálogo HU](../requirements/acceptance-criteria.md).
+2. Revisar [matriz de trazabilidad](../trazabilidad-detallada.csv) para identificar capacidad, autor, RR y vista.
 3. Leer `proposal.md`: por qué y hasta dónde llega la capacidad.
 4. Revisar `specs/<capability>/spec.md`: requisitos observables y escenarios.
 5. Usar `design.md` para decisiones SQL/API/UI; FastAPI/React todavía están en evaluación frente a Node.js.
-6. Derivar/refinar pruebas por capa en [TDD](pruebas-tdd.md).
+6. Derivar/refinar pruebas por capa en [TDD](tdd-guide.md).
 7. Acordar `tasks.md`; implementar **solo** en una PR posterior que siga RED → GREEN → REFACTOR.
 8. Ejecutar revisión y archivo de cambios mediante OpenSpec cuando corresponda.
 
@@ -51,7 +51,7 @@ Se mantienen las especificaciones bajo `changes/` porque el proyecto está **en 
 4. Mockups de las vistas.
 5. Propuestas técnicas (distinguidas de decisiones aprobadas).
 
-Las observaciones sobre el ERE no autorizan alterar el esquema relacional. Véase [observaciones-ere.md](observaciones-ere.md).
+Las observaciones sobre el ERE no autorizan alterar el esquema relacional. Véase [observaciones-ere.md](../project/ere-feedback.md).
 
 ## Revisión de calidad de cada capacidad
 

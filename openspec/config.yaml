@@ -1,20 +1,23 @@
 schema: spec-driven
 context: |
-  RutasVenezuela (UCAB), equipo 2. Documentación y especificaciones en español.
-  PostgreSQL/Supabase concentra invariantes, procedimientos, funciones y triggers.
-  FastAPI/React es una propuesta provisional: Node.js aún está en discusión.
-  Consultar docs/trazabilidad-detallada.csv, docs/arquitectura.md y docs/pruebas-tdd.md.
-  Tres cambios de dominio; 23 capacidades y 103 historias / 324 criterios de aceptación.
-  Nombres de ramas: <author>(<kind>/<layer>)-<description>, inglés y sin dos puntos.
-  No inventar HU, RR, estados, atributos ni correcciones docentes.
-  Toda modificación del comportamiento exige especificación y caso de prueba.
+  RutasVenezuela, Equipo 2, UCAB. Documentación funcional en español.
+  PostgreSQL/Supabase es el gestor OLTP y la fuente de verdad de reglas de negocio.
+  FastAPI/React es el stack de referencia provisional; aplicación aún por confirmar.
+  Modelo relacional de la primera entrega aceptado; no se rediseña por observaciones del ERE.
+  Consultar references/first-delivery.md, docs/README.md,
+  docs/requirements/traceability-detailed.csv y docs/development/tdd-guide.md.
+  103 historias y 324 criterios en 23 capacidades OpenSpec, sujetos a revisión.
+  Ramas: <author>(<kind>/<layer>)-<description>, hacia develop; conservar historial.
 rules:
   proposal:
-    - Distinguir requisitos confirmados, propuestas y decisiones pendientes.
+    - Identificar fuente, alcance, responsable y dependencias.
+    - Diferenciar decisiones confirmadas, provisionales y pendientes.
   specs:
-    - Describir comportamiento observable y escenarios Given/When/Then; evitar detalles de frameworks.
+    - Especificar comportamiento observable con Given/When/Then.
+    - No inventar claves, reglas ni atributos que no aparecen en la fuente.
   design:
-    - Priorizar integridad de PostgreSQL y contratos por capa; indicar decisiones abiertas.
+    - Las invariantes se implementan en PostgreSQL y se validan desde la API.
+    - Mantener contratos de backend y frontend neutrales a frameworks no confirmados.
   tasks:
-    - Asociar las tareas al responsable y a las pruebas DB, API y UI correspondientes.
-    - Planificar RED, GREEN y REFACTOR; no afirmar pruebas ejecutadas sin evidencia.
+    - Vincular escenarios con casos TDD y responsable.
+    - Implementar RED, GREEN, REFACTOR solo después de revisión humana.

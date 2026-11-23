@@ -5,7 +5,7 @@
 ## Separación SDD y TDD
 
 - **SDD/OpenSpec** determina comportamientos obligatorios y escenarios. No se fija un framework de aplicación definitivo.
-- **TDD** transforma los criterios de aceptación y las invariantes de SQL en comprobaciones observables. Las fuentes se identifican mediante el [mapa académico](trazabilidad-detallada.csv).
+- **TDD** transforma los criterios de aceptación y las invariantes de SQL en comprobaciones observables. Las fuentes se identifican mediante el [mapa académico](../trazabilidad-detallada.csv).
 - **Implementación posterior:** RED (probar y fallar), GREEN (mínimo código correcto), REFACTOR (mejora sin perder cobertura).
 
 ```text
@@ -21,10 +21,10 @@ Historia (documento académico)
 
 | Registro | Cobertura | Archivo |
 |---|---:|---|
-| Historias y criterios | **103 historias / 324 criterios** | [casos-criterios.csv](pruebas/casos-criterios.csv) |
-| Restricciones relacionales | **134 RR / 268 casos** (válido y violación) | [casos-rr.csv](pruebas/casos-rr.csv) |
-| Mockups | **21 vistas / 70 estados** | [casos-interfaces.csv](pruebas/casos-interfaces.csv) |
-| Flujos críticos y reportes | **12 recorridos E2E propuestos** | [casos-e2e.csv](pruebas/casos-e2e.csv) |
+| Historias y criterios | **103 historias / 324 criterios** | [casos-criterios.csv](../pruebas/casos-criterios.csv) |
+| Restricciones relacionales | **134 RR / 268 casos** (válido y violación) | [casos-rr.csv](../pruebas/casos-rr.csv) |
+| Mockups | **21 vistas / 70 estados** | [casos-interfaces.csv](../pruebas/casos-interfaces.csv) |
+| Flujos críticos y reportes | **12 recorridos E2E propuestos** | [casos-e2e.csv](../pruebas/casos-e2e.csv) |
 
 Los **674 casos de planificación** no equivalen a 674 pruebas ejecutadas. Antes de implementarlos, refinar los casos genéricos con fixtures, SQL exacto, precondiciones, errores esperados y transacciones. Pueden consolidarse cuando una misma prueba cubra varios criterios, conservando la matriz.
 
@@ -64,4 +64,4 @@ A partir del comportamiento original:
 
 Para cada cambio: especificación revisada, caso TDD enlazado, prueba realmente ejecutada, salida del runner, commit individual y PR revisada. GitHub Actions actual solo comprueba **documentación**; los tests de producto se añadirán con la implementación.
 
-[Catálogo académico original](requisitos/criterios-originales.md) · [RR](requisitos/catalogo-rr.md) · [contratos por capa](contratos-por-capa.md).
+[Catálogo académico original](../requirements/acceptance-criteria.md) · [RR](../requirements/relational-rules.md) · [contratos por capa](layer-contracts.md).

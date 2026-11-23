@@ -1,8 +1,8 @@
 # Mapa de trazabilidad académica
 
-**Línea base:** primera entrega de RutasVenezuela, informe del 5 de noviembre de 2026, matriz de trazabilidad (págs. impresas 75–76), índice de interfaces (págs. 11–12) y restricciones relacionales (capítulo 7). **Corrección aclarada:** la calificación fue 17,3/20 y el modelo relacional no requiere cambios; las observaciones son del ERE. Ver [registro](observaciones-ere.md).
+**Línea base:** primera entrega de RutasVenezuela, informe del 5 de noviembre de 2026, matriz de trazabilidad (págs. impresas 75–76), índice de interfaces (págs. 11–12) y restricciones relacionales (capítulo 7). **Corrección aclarada:** la calificación fue 17,3/20 y el modelo relacional no requiere cambios; las observaciones son del ERE. Ver [registro](../project/ere-feedback.md).
 
-Este documento es el **índice agrupado (44 filas)**. La matriz [detallada de 103 historias](trazabilidad-detallada.csv) enlaza cada historia con su archivo OpenSpec real; el [catálogo de 134 RR](requisitos/catalogo-rr.md) conserva las formulaciones de las restricciones y el [plan TDD](pruebas-tdd.md) enlaza 324 criterios a pruebas. La correspondencia HU↔RR sigue marcada como preliminar para revisión humana.
+Este documento es el **índice agrupado (44 filas)**. La matriz [detallada de 103 historias](../trazabilidad-detallada.csv) enlaza cada historia con su archivo OpenSpec real; el [catálogo de 134 RR](relational-rules.md) conserva las formulaciones de las restricciones y el [plan TDD](../development/tdd-guide.md) enlaza 324 criterios a pruebas. La correspondencia HU↔RR sigue marcada como preliminar para revisión humana.
 
 Este documento es el **puente único** entre los códigos académicos (HU, RR, V, RP y VA) y las **capacidades OpenSpec**. En las especificaciones se usan nombres de dominio; aquí se conservan los códigos para la defensa.
 
@@ -67,13 +67,13 @@ Este documento es el **puente único** entre los códigos académicos (HU, RR, V
 
 ## Convenciones del mapa
 
-`docs/trazabilidad.csv` refleja las mismas filas para validación automatizada. Para añadir una funcionalidad, actualizar **ambos** archivos en el mismo PR y enlazar su `Scenario` y prueba TDD. Los identificadores de pruebas viven en [pruebas-tdd.md](pruebas-tdd.md), no se mezclan con los nombres de las capacidades.
+`docs/requirements/traceability.csv` refleja las mismas filas para validación automatizada. Para añadir una funcionalidad, actualizar **ambos** archivos en el mismo PR y enlazar su `Scenario` y prueba TDD. Los identificadores de pruebas viven en [pruebas-tdd.md](../development/tdd-guide.md), no se mezclan con los nombres de las capacidades.
 
-**Fuentes:** [registro de fuentes](fuentes.md) · [SDD](sdd-openspec.md) · [TDD](pruebas-tdd.md).
+**Fuentes:** [registro de fuentes](../../references/README.md) · [SDD](../development/sdd-guide.md) · [TDD](../development/tdd-guide.md).
 
 ## Documentos complementarios
 
-- [103 historias con enlaces concretos a las 23 capacidades OpenSpec](trazabilidad-detallada.csv)
-- [324 criterios académicos](requisitos/criterios-originales.md) y [casos de prueba](pruebas/casos-criterios.csv)
-- [134 RR originales](requisitos/catalogo-rr.md) y [268 pruebas de integridad](pruebas/casos-rr.csv)
-- [70 estados de 21 mockups](pruebas/casos-interfaces.csv)
+- [103 historias con enlaces concretos a las 23 capacidades OpenSpec](../trazabilidad-detallada.csv)
+- [324 criterios académicos](acceptance-criteria.md) y [casos de prueba](../pruebas/casos-criterios.csv)
+- [134 RR originales](relational-rules.md) y [268 pruebas de integridad](../pruebas/casos-rr.csv)
+- [70 estados de 21 mockups](../pruebas/casos-interfaces.csv)

@@ -4,7 +4,7 @@
 
 ## Base de datos (prioritaria)
 
-Aplicar fielmente las relaciones y las claves de la primera entrega aprobada. Identificar PK, FK, CHECK, UNIQUE, restricciones explícitas y las invariantes transaccionales que requieran procedimientos, funciones o triggers; sin crear objetos nuevos por suposición. Derivar casos positivos y negativos en [el catálogo TDD](../../../docs/pruebas-tdd.md).
+Aplicar fielmente las relaciones y las claves de la primera entrega aprobada. Identificar PK, FK, CHECK, UNIQUE, restricciones explícitas y las invariantes transaccionales que requieran procedimientos, funciones o triggers; sin crear objetos nuevos por suposición. Derivar casos positivos y negativos en [el catálogo TDD](../../../docs/development/tdd-guide.md).
 
 ## Aplicación / API
 
@@ -12,7 +12,7 @@ Contrato neutral al framework hasta decidir FastAPI/Python frente a la alternati
 
 ## Interfaz
 
-Implementar los mockups vinculados por [trazabilidad](../../../docs/trazabilidad.md), incluyendo estados vacíos, errores, búsqueda, ordenamiento y paginación. React es provisional.
+Implementar los mockups vinculados por [trazabilidad](../../../docs/requirements/traceability.md), incluyendo estados vacíos, errores, búsqueda, ordenamiento y paginación. React es provisional.
 
 ## Integración
 

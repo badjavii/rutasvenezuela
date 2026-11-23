@@ -27,4 +27,4 @@ La evidencia aportada es **una página escaneada del ERE con anotaciones manuscr
 4. Conservar las observaciones conceptuales como antecedentes para la defensa, no como bloqueos de implementación.
 5. Si aparece una contradicción **concreta** entre un requisito y el modelo relacional, documentarla y discutirla antes de cambiar la estructura.
 
-[Mapa de trazabilidad](trazabilidad.md) · [SDD](sdd-openspec.md) · [TDD](pruebas-tdd.md)
+[Mapa de trazabilidad](../requirements/traceability.md) · [SDD](../development/sdd-guide.md) · [TDD](../development/tdd-guide.md)

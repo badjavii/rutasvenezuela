@@ -20,12 +20,12 @@ def require(condition, message):
 
 
 def main():
-    stories = rows("docs/trazabilidad-detallada.csv")
-    criteria = rows("docs/pruebas/casos-criterios.csv")
-    rules = rows("docs/requisitos/catalogo-rr.csv")
-    rule_tests = rows("docs/pruebas/casos-rr.csv")
-    screens = rows("docs/pruebas/casos-interfaces.csv")
-    e2e = rows("docs/pruebas/casos-e2e.csv")
+    stories = rows("docs/requirements/traceability-detailed.csv")
+    criteria = rows("docs/testing/acceptance-cases.csv")
+    rules = rows("docs/requirements/relational-rules.csv")
+    rule_tests = rows("docs/testing/database-cases.csv")
+    screens = rows("docs/testing/interface-cases.csv")
+    e2e = rows("docs/testing/integration-cases.csv")
 
     require(len(stories) == 103, f"Se esperaban 103 historias, hay {len(stories)}")
     require(len(criteria) == 324, f"Se esperaban 324 criterios, hay {len(criteria)}")
@@ -92,18 +92,18 @@ def main():
 
     # Convención de ramas en PR (no bloquear checkout de main ni ejecución local).
     branch = os.environ.get("GITHUB_HEAD_REF", "")
-    if branch:
+    if branch and branch not in {"develop", "main"}:
         pattern = (
             r"(?:javier|sebastian|valeria)"
             r"\((?:feat|docs|test|fix|ci)/(?:database|backend|frontend|spec|integration|infra)\)"
             r"-[a-z0-9]+(?:-[a-z0-9]+)*"
         )
         require(re.fullmatch(pattern, branch) is not None,
-                f"La rama {branch!r} no cumple docs/flujo-git.md")
+                f"La rama {branch!r} no cumple docs/development/git-workflow.md")
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    for path in ("docs/trazabilidad-detallada.csv", "docs/sdd-openspec.md",
-                 "docs/pruebas-tdd.md", "docs/flujo-git.md"):
+    for path in ("docs/requirements/traceability-detailed.csv", "docs/development/sdd-guide.md",
+                 "docs/development/tdd-guide.md", "docs/development/git-workflow.md"):
         require(path in readme, f"Enlace al README ausente: {path}")
 
     print("OK: 103 HU, 324 criterios, 23 capacidades, 134 RR,")

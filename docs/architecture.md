@@ -10,7 +10,7 @@
 | Supabase para alojamiento de PostgreSQL | **Confirmada verbalmente** | Propuesta aprobada |
 | Reglas de negocio en el gestor | **Confirmada** | Procedimientos, funciones, triggers y restricciones |
 | Arquitectura web de tres capas | **Confirmada** | Recomendación presencial de la profesora |
-| Backend Python + FastAPI | **Propuesta provisional** | Javier; pendiente de discutir alternativa Node.js de Sebastián |
+| Backend Python + FastAPI | **Propuesta provisional** | Javier; pendiente de discutir alternativa de backend en evaluación |
 | Frontend React.js | **Propuesta provisional** | Javier; revisar junto con la alternativa de Sebastián |
 | Librerías de pruebas de API y UI | **Propuestas** | Condicionadas a la tecnología finalmente acordada |
 | Roles y autenticación específicos | **Pendiente** | Se debe conciliar autenticación de la aplicación y privilegios de PostgreSQL |
@@ -30,11 +30,11 @@ PostgreSQL (Supabase)
 
 La **base de datos determina las invariantes** incluso si la API o la interfaz omiten validaciones. No replicar reglas críticas como única validación del frontend ni del backend. La capa de API normaliza datos, aplica controles de acceso, maneja errores y ejecuta la operación transaccional correspondiente. Los reportes consultan datos reales.
 
-Ver [contratos técnicos por capa](contratos-por-capa.md) y el [plan de implementación](plan-entrega.md), con responsabilidades compartidas y dependencias.
+Ver [contratos técnicos por capa](development/layer-contracts.md) y el [plan de implementación](project/delivery-plan.md), con responsabilidades compartidas y dependencias.
 
 ## Convenciones
 
-- El alcance académico y la semántica se consultan en [el mapa de trazabilidad](trazabilidad.md) y las fuentes originales.
+- El alcance académico y la semántica se consultan en [el mapa de trazabilidad](requirements/traceability.md) y las fuentes originales.
 - No utilizar tipos o extensiones espaciales incompatibles con el enunciado; las coordenadas se representan mediante tipos numéricos primitivos.
 - No permitir acceso directo del navegador con credenciales de servicio.
 - Distinguir usuarios/roles del dominio de roles/privilegios del gestor.

@@ -7,8 +7,8 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-CSV = ROOT / "docs" / "trazabilidad.csv"
-MAP = ROOT / "docs" / "trazabilidad.md"
+CSV = ROOT / "docs" / "requirements" / "traceability.csv"
+MAP = ROOT / "docs" / "requirements" / "traceability.md"
 REQUIRED = {"codigo", "funcionalidad", "responsable", "capacidad", "rr", "vista", "tipo", "estado"}
 EXPECTED_TYPES = {"Consulta": 8, "CRUD": 20, "Negocio": 9, "Reporte": 3, "Valor agregado": 4}
 OWNERS = {"Javier", "Sebastián", "Valeria"}

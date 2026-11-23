@@ -10,7 +10,7 @@ Convertir las historias originales de Sebastián en requisitos verificables y pr
 
 ## Resultado esperado
 
-Especificaciones OpenSpec por capacidad, matriz detallada de trazabilidad y casos de prueba por criterio. [Mapa](../../../docs/trazabilidad-detallada.csv) · [TDD](../../../docs/pruebas-tdd.md).
+Especificaciones OpenSpec por capacidad, matriz detallada de trazabilidad y casos de prueba por criterio. [Mapa](../../../docs/requirements/traceability-detailed.csv) · [TDD](../../../docs/development/tdd-guide.md).
 
 ## Límites
 
