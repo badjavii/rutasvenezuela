@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BROKEN = []
 CHECK = [ROOT / "README.md", ROOT / "AGENTS.md"]
 CHECK.extend((ROOT / "docs").rglob("*.md"))
-CHECK.extend((ROOT / "openspec").rglob("*.md"))
+CHECK.extend((ROOT / "specs").rglob("*.md"))
 CHECK.extend((ROOT / "references").rglob("*.md"))
 
 for file in CHECK:

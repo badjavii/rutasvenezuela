@@ -34,6 +34,11 @@ jobs:
             echo 'Restore the stable README before opening a PR.'
             exit 1
           fi
+      - name: Validate work-branch scripts and registry
+        shell: bash
+        run: |
+          bash -n scripts/new-work-branch.sh scripts/prepare-pr.sh
+          python3 scripts/validate_branch_ledger.py
       - name: Verify documentation files
         shell: bash
         run: |

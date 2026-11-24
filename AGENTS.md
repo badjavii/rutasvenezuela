@@ -24,3 +24,10 @@ RutasVenezuela es el proyecto del Equipo 2 de Sistemas de Bases de Datos (UCAB).
 - No publicar README temporales de estado de rama en un PR. Consultar las instrucciones de la constitución y del Git workflow para el procedimiento de limpieza.
 - No modificar `main`, fusionar cambios, forzar refs o desplegar sin autorización.
 - No subir secretos ni alterar fuentes académicas originales.
+
+## README y trazabilidad de ramas
+
+- Crear ramas desde `origin/develop` con `bash scripts/new-work-branch.sh`.
+- Antes del PR, restaurar README estable con `bash scripts/prepare-pr.sh`; no integrar READMEs temporales.
+- Usar [el registro de ramas](docs/project/branch-ledger.csv) para fechas y estado, sin inventar PR o ejecución de pruebas.
+- La rama de demostración del README no es base de desarrollo.

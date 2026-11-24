@@ -1,0 +1,3 @@
+branch,owner,kind,layer,summary,source,target,created_at,pull_request,status,updated_at
+"javier(docs/spec)-consolidate-planning",Javier Otero,docs,spec,Consolidar fuentes y migrar SDD,develop,develop,,https://github.com/badjavii/rutasvenezuela/pull/4,merged,
+"javier(docs/spec)-branch-readme-preview",Javier Otero,docs,spec,Demostración temporal de README,develop,develop,2026-11-23,,preview,2026-11-23

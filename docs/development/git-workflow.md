@@ -49,7 +49,31 @@ git switch -c 'javier(feat/database)-territory-tables'
 git push -u origin 'javier(feat/database)-territory-tables'
 ```
 
-## 3. Convención de commits
+## 3. README temporal y registro por rama
+
+La creación de ramas se realiza siempre desde `origin/develop`. No se usa una rama de plantilla como base porque arrastraría código y divergencias. Git no posee un ajuste para seleccionar una rama padre por defecto al usar `git switch -c`; el script de trabajo proporciona ese comportamiento.
+
+```bash
+bash scripts/new-work-branch.sh javier feat database territory-tables "Create territory structures"
+```
+
+El comando crea la rama, genera un README de estado desde [la plantilla](../../templates/branch-readme.md) y registra la rama en [branch-ledger.csv](../project/branch-ledger.csv). Es un README temporal, que contiene propósito, responsable, capa, cambios previstos, estado de pruebas y PR.
+
+Antes de abrir el PR:
+
+```bash
+bash scripts/prepare-pr.sh
+```
+
+El script restaura el README institucional de la base de la rama y deja la entrada del registro lista para revisión. Los commits del README temporal siguen en el historial, pero no aparecen en el contenido final del PR. GitHub Actions bloquea los PR cuyo README aún tenga el marcador `BRANCH_STATUS_README`. Las PR que actualicen legítimamente el README institucional se gestionan como cambios documentales independientes.
+
+El registro central contiene las ramas incorporadas mediante PR; las ramas todavía en trabajo pueden aparecer en la plataforma antes de que su registro se integre. Registrar solo fechas y vínculos verificables.
+
+### Rama de demostración
+
+La rama `javier(docs/spec)-branch-readme-preview` sirve para revisar el formato del README. No se utiliza como origen de nuevas ramas ni se fusiona a `develop` sin aprobación.
+
+## 4. Convención de commits
 
 Formato basado en Conventional Commits:
 
