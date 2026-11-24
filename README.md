@@ -2,7 +2,7 @@
 
 <img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="700">
 
-**Sistema web de gestión de rutas turísticas — UCAB**
+Sistema web de gestión de rutas turísticas : UCAB
 
 ![Database](https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
@@ -12,9 +12,9 @@
 
 ## Sobre el proyecto
 
-**RutasVenezuela** es una aplicación web para gestionar territorio, patrimonio, rutas turísticas, movilidad, recorridos, visitantes, incidencias, experiencias y reportes. Se desarrolla como proyecto de la asignatura **Sistemas de Bases de Datos** de la Universidad Católica Andrés Bello (UCAB).
+RutasVenezuela es una aplicación web para gestionar territorio, patrimonio, rutas turísticas, movilidad, recorridos, visitantes, incidencias, experiencias y reportes. Se desarrolla como proyecto de la asignatura Sistemas de Bases de Datos de la Universidad Católica Andrés Bello (UCAB).
 
-El núcleo es una base de datos **PostgreSQL** transaccional (OLTP), desplegada mediante **Supabase**, que concentra restricciones de integridad, procedimientos almacenados, funciones y triggers. La aplicación sigue una arquitectura web de tres capas: presentación, servicio y datos.
+El núcleo es una base de datos PostgreSQL transaccional (OLTP), desplegada mediante Supabase, que concentra restricciones de integridad, procedimientos almacenados, funciones y triggers. La aplicación sigue una arquitectura web de tres capas: presentación, servicio y datos.
 
 **Stack de referencia:** React.js para la interfaz y Python/FastAPI para el backend; la elección definitiva de estas tecnologías todavía está pendiente de confirmación. La base de datos y sus reglas de negocio permanecen como prioridad.
 
@@ -39,9 +39,9 @@ rutasvenezuela/
 
 ## Especificaciones y pruebas
 
-El desarrollo combina **SDD** (definir qué debe cumplir cada capacidad mediante las plantillas de especificación) y **TDD** (derivar pruebas verificables antes de implementar).
+El desarrollo combina SDD (definir qué debe cumplir cada capacidad mediante las plantillas de especificación) y TDD (derivar pruebas verificables antes de implementar).
 
-La primera entrega documenta **103 historias de usuario, 324 criterios de aceptación, 134 restricciones relacionales y 21 interfaces**. Consulta la [matriz detallada HU → especificación](docs/requirements/traceability-detailed.csv) para localizar la especificación SDD asociada. Estas referencias se conectan con especificaciones del dominio y planes de pruebas; **todavía no representan funcionalidades implementadas ni pruebas ejecutadas**.
+La primera entrega documenta 103 historias de usuario, 324 criterios de aceptación, 134 restricciones relacionales y 21 interfaces. Consulta la [matriz detallada HU → especificación](docs/requirements/traceability-detailed.csv) para localizar la especificación SDD asociada. Estas referencias se conectan con especificaciones del dominio y planes de pruebas; todavía no representan funcionalidades implementadas ni pruebas ejecutadas.
 
 La puerta de entrada a toda la documentación es [docs/README.md](docs/README.md). Allí encontrarás las guías [SDD](docs/development/sdd-guide.md) y [TDD](docs/development/tdd-guide.md), la [trazabilidad académica](docs/requirements/traceability.md) y las [fuentes originales](references/README.md).
 
@@ -62,7 +62,7 @@ Las especificaciones se mantienen en [specs/README.md](specs/README.md) y se bas
 
 ## Colaboración
 
-Las ramas individuales se proponen y revisan mediante **pull requests hacia `develop`**. La rama `main` se reserva para versiones estables; su promoción exige revisión, validación y un **Git tag** de versión. Las ramas de trabajo se conservan.
+Las ramas individuales se proponen y revisan mediante pull requests hacia `develop`. La rama `main` se reserva para versiones estables; su promoción exige revisión, validación y un Git tag de versión. Las ramas de trabajo se conservan.
 
 Consulta [Git workflow](docs/development/git-workflow.md) para convenciones de ramas, commits, PR, revisiones, integración y versionado.
 
@@ -70,7 +70,7 @@ Consulta [Git workflow](docs/development/git-workflow.md) para convenciones de r
 
 El workflow [Documentation Quality](.github/workflows/docs-quality.yml) comprueba automáticamente la documentación, el mapa de trazabilidad y la cobertura planificada de SDD/TDD. Se ejecuta sobre pull requests dirigidos a `develop` o `main`.
 
-**Las pruebas funcionales de PostgreSQL, API e interfaz se añadirán durante la implementación.**
+Las pruebas funcionales de PostgreSQL, API e interfaz se añadirán durante la implementación.
 
 ## Documentación y referencias
 
@@ -81,16 +81,16 @@ El workflow [Documentation Quality](.github/workflows/docs-quality.yml) comprueb
 
 ## Créditos
 
-Este proyecto está orgullosamente diseñado y desarrollado por el **Equipo 2** de la asignatura **Sistemas de Bases de Datos** de la **Universidad Católica Andrés Bello (UCAB)**, bajo la supervisión de la profesora **Marlene Goncalves Da Silva**.
+Este proyecto está orgullosamente diseñado y desarrollado por el Equipo 2 de la asignatura Sistemas de Bases de Datos de la Universidad Católica Andrés Bello (UCAB), bajo la supervisión de la profesora Marlene Goncalves Da Silva.
 
 | Integrante | Responsabilidades principales |
 |---|---|
-| **Javier Otero** | Territorio, patrimonio, hitos, instituciones, incidencias y evaluaciones |
-| **Sebastián Armas** | Movilidad, vías, tramos, rutas, guías y recorridos |
-| **Valeria Loreto** | Actores, visitantes, comercios, experiencias promocionales y credenciales |
+| Javier Otero | Territorio, patrimonio, hitos, instituciones, incidencias y evaluaciones |
+| Sebastián Armas | Movilidad, vías, tramos, rutas, guías y recorridos |
+| Valeria Loreto | Actores, visitantes, comercios, experiencias promocionales y credenciales |
 
 Cada integrante desarrolla las funcionalidades de su dominio a través de las capas pertinentes de la aplicación.
 
 ## Licencia
 
-Este proyecto se distribuye bajo la **GNU General Public License, versión 3 (GPL-3.0)**. Consulta el archivo [LICENSE](LICENSE) para conocer los términos completos.
+Este proyecto se distribuye bajo la GNU General Public License, versión 3 (GPL-3.0). Consulta el archivo [LICENSE](LICENSE) para conocer los términos completos.

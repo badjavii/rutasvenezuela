@@ -1,6 +1,6 @@
 # Plan de implementación y cierre
 
-Consulta la **fecha oficial de entrega** y el estado de la aplicación en el [README principal](../../README.md). Este documento define dependencias técnicas sin repetir el calendario académico.
+Consulta la fecha oficial de entrega y el estado de la aplicación en el [README principal](../../README.md). Este documento define dependencias técnicas sin repetir el calendario académico.
 
 ## Etapas de trabajo
 
@@ -32,4 +32,4 @@ Cada integrante implementa su alcance en base de datos, aplicación e interfaz c
 - [ ] Commits progresivos reales de cada integrante.
 - [ ] Integración verificada en `develop`, release hacia `main` con tag cuando el equipo lo autorice.
 
-Los [casos TDD](../development/tdd-guide.md) son **planificados**, no ejecutados. No declarar funcionalidades terminadas basándose exclusivamente en documentación.
+Los [casos TDD](../development/tdd-guide.md) son planificados, no ejecutados. No declarar funcionalidades terminadas basándose exclusivamente en documentación.

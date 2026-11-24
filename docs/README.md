@@ -1,6 +1,6 @@
-# Guía de documentación — RutasVenezuela
+# Guía de documentación : RutasVenezuela
 
-Este directorio contiene las **guías operativas** y la **documentación derivada** del proyecto. Para leer el informe académico íntegro, usa [references/first-delivery.md](../references/first-delivery.md). Para conocer la propuesta y las especificaciones del dominio, consulta [especificaciones SDD](../specs/README.md).
+Este directorio contiene las guías operativas y la documentación derivada del proyecto. Para leer el informe académico íntegro, usa [references/first-delivery.md](../references/first-delivery.md). Para conocer la propuesta y las especificaciones del dominio, consulta [especificaciones SDD](../specs/README.md).
 
 ## Cómo orientarse
 
@@ -50,4 +50,4 @@ docs/
 3. **SDD:** describe comportamientos observables propuestos, todavía pendientes de revisión humana.
 4. **TDD:** planifica casos; no representa pruebas ejecutadas.
 
-El contenido se redacta en **español**. Los identificadores de archivos, ramas, commits y PR siguen convenciones técnicas en inglés.
+El contenido se redacta en español. Los identificadores de archivos, ramas, commits y PR siguen convenciones técnicas en inglés.

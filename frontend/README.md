@@ -1,6 +1,6 @@
 <div align="center">
 
-# RutasVenezuela — Frontend
+# RutasVenezuela : Frontend
 
 <!-- Subtítulo -->
 _Interfaz web y experiencia de usuario_
@@ -13,7 +13,7 @@ _Interfaz web y experiencia de usuario_
 
 ## Sobre el módulo
 
-El **frontend** contendrá la interfaz web de RutasVenezuela.
+El frontend contendrá la interfaz web de RutasVenezuela.
 
 Su propósito será proporcionar los componentes visuales, formularios y mecanismos de navegación necesarios para interactuar con las funcionalidades de la aplicación.
 
@@ -40,4 +40,4 @@ La interfaz todavía no dispone de una implementación ejecutable.
 
 ## Créditos
 
-Módulo perteneciente al proyecto **RutasVenezuela**, desarrollado para la asignatura Sistemas de Bases de Datos de la UCAB.
+Módulo perteneciente al proyecto RutasVenezuela, desarrollado para la asignatura Sistemas de Bases de Datos de la UCAB.

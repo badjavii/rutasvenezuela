@@ -2,11 +2,11 @@
 
 **Línea base:** primera entrega de RutasVenezuela, informe del 5 de noviembre de 2026, matriz de trazabilidad (págs. impresas 75–76), índice de interfaces (págs. 11–12) y restricciones relacionales (capítulo 7). **Corrección aclarada:** la calificación fue 17,3/20 y el modelo relacional no requiere cambios; las observaciones son del ERE. Ver [registro](../project/ere-feedback.md).
 
-Este documento es el **índice agrupado (44 filas)**. La matriz [detallada de 103 historias](traceability-detailed.csv) enlaza cada historia con su archivo SDD real; el [catálogo de 134 RR](relational-rules.md) conserva las formulaciones de las restricciones y el [plan TDD](../development/tdd-guide.md) enlaza 324 criterios a pruebas. La correspondencia HU↔RR sigue marcada como preliminar para revisión humana.
+Este documento es el índice agrupado (44 filas). La matriz [detallada de 103 historias](traceability-detailed.csv) enlaza cada historia con su archivo SDD real; el [catálogo de 134 RR](relational-rules.md) conserva las formulaciones de las restricciones y el [plan TDD](../development/tdd-guide.md) enlaza 324 criterios a pruebas. La correspondencia HU↔RR sigue marcada como preliminar para revisión humana.
 
-Este documento es el **puente único** entre los códigos académicos (HU, RR, V, RP y VA) y las **capacidades SDD**. En las especificaciones se usan nombres de dominio; aquí se conservan los códigos para la defensa.
+Este documento es el puente único entre los códigos académicos (HU, RR, V, RP y VA) y las capacidades SDD. En las especificaciones se usan nombres de dominio; aquí se conservan los códigos para la defensa.
 
-**Lectura:** cada fila vincula una HU (o grupo CRUD) con su responsable, capacidad prevista, RR relacionadas y mockup V. La asociación HU↔RR es una **agrupación de planificación** derivada del tema de la regla: debe revisarse contra los criterios de aceptación y las correcciones. «—» significa que la matriz del informe no aporta RR específicas directamente asignables; **no** significa que el módulo carezca de restricciones.
+**Lectura:** cada fila vincula una HU (o grupo CRUD) con su responsable, capacidad prevista, RR relacionadas y mockup V. La asociación HU↔RR es una agrupación de planificación derivada del tema de la regla: debe revisarse contra los criterios de aceptación y las correcciones. «:» significa que la matriz del informe no aporta RR específicas directamente asignables; no significa que el módulo carezca de restricciones.
 
 | Código | Funcionalidad | Responsable | Capacidad SDD prevista | RR relacionadas (preliminar) | Vista |
 |---|---|---|---|---|---|
@@ -21,7 +21,7 @@ Este documento es el **puente único** entre los códigos académicos (HU, RR, V
 | HU-09.1–09.4 | CRUD visitantes | Valeria | `actores/identidades` | RR-46, RR-61, RR-62, RR-120 | V18 |
 | HU-10.1–10.4 | CRUD hitos | Javier | `patrimonio/hitos` | RR-1, RR-2, RR-13, RR-14, RR-74-79 | V14 |
 | HU-11.1–11.4 | CRUD categorías de hito | Javier | `patrimonio/hitos` | RR-13 | V14 |
-| HU-12.1–12.4 | CRUD estados | Javier | `territorio/catalogo` | — | V13 |
+| HU-12.1–12.4 | CRUD estados | Javier | `territorio/catalogo` | : | V13 |
 | HU-13.1–13.4 | CRUD puntos de anclaje | Javier | `patrimonio/anclajes-3d` | RR-3, RR-15, RR-78, RR-80 | V15 |
 | HU-14.1–14.4 | CRUD recursos 3D | Javier | `patrimonio/anclajes-3d` | RR-3, RR-15, RR-81 | V15 |
 | HU-15.1–15.4 | CRUD vías | Sebastián | `movilidad/vias-y-tramos` | RR-29, RR-30, RR-102 | V16 |
@@ -29,14 +29,14 @@ Este documento es el **puente único** entre los códigos académicos (HU, RR, V
 | HU-17.1–17.4 | CRUD rutas fijas | Sebastián | `rutas/gestion` | RR-34, RR-35, RR-106-111 | V17 |
 | HU-18.1–18.4 | CRUD experiencias promocionales | Valeria | `promociones/experiencias` | RR-52-54, RR-69-71, RR-122-126 | V11 |
 | HU-23.1–23.3 | Gestión de credenciales digitales | Valeria | `credenciales/gestion` | RR-55-59, RR-72, RR-73, RR-127-134 | V08 |
-| HU-24.1–24.4 | CRUD eventos culturales | Javier | `patrimonio/eventos` | — | V14 |
+| HU-24.1–24.4 | CRUD eventos culturales | Javier | `patrimonio/eventos` | : | V14 |
 | HU-25.1–25.4 | CRUD rutas dinámicas | Sebastián | `rutas/gestion` | RR-22, RR-35, RR-36, RR-106-112 | V07 |
 | HU-26.1–26.4 | CRUD funcionarios | Valeria | `actores/identidades` | RR-49, RR-50, RR-64, RR-68 | V18 |
 | HU-29.1–29.4 | CRUD guías | Sebastián | `guias/contrataciones` | RR-23, RR-37-40, RR-116-118 | V18 |
 | HU-30.1–30.4 | CRUD comercios | Valeria | `actores/comercios` | RR-47, RR-48, RR-60, RR-63, RR-66, RR-67, RR-119, RR-121 | V18 |
 | HU-31.1–31.4 | CRUD instituciones | Javier | `instituciones/entes` | RR-4, RR-12, RR-16, RR-17, RR-82 | V18 |
-| HU-33.1–33.4 | CRUD municipios | Javier | `territorio/catalogo` | — | V13 |
-| HU-34.1–34.4 | CRUD parroquias | Javier | `territorio/catalogo` | — | V13 |
+| HU-33.1–33.4 | CRUD municipios | Javier | `territorio/catalogo` | : | V13 |
+| HU-34.1–34.4 | CRUD parroquias | Javier | `territorio/catalogo` | : | V13 |
 | HU-35.1–35.4 | CRUD tramos y conexiones | Sebastián | `movilidad/vias-y-tramos` | RR-29, RR-103 | V16 |
 | HU-08 | Iniciar sesión | Valeria | `actores/identidades` | RR-46, RR-47, RR-49, RR-51, RR-61-65 | V01 |
 | HU-19 | Reportar incidencia | Javier | `incidencias/gestion` | RR-5, RR-6, RR-18, RR-83-88, RR-93 | V09 |
@@ -57,17 +57,17 @@ Este documento es el **puente único** entre los códigos académicos (HU, RR, V
 
 ## Cobertura e interpretación
 
-- **8 consultas, 20 grupos CRUD (79 operaciones), 9 operaciones de negocio, 3 reportes y 4 valores agregados = 103** unidades de HU/funcionalidad según la primera entrega.
-- Este índice agrupa los CRUD por entidad (p. ej. `HU-10.1–10.4`); para TDD se desglosan los cuatro criterios por separado. **Credenciales** utiliza tres operaciones.
+- 8 consultas, 20 grupos CRUD (79 operaciones), 9 operaciones de negocio, 3 reportes y 4 valores agregados = 103 unidades de HU/funcionalidad según la primera entrega.
+- Este índice agrupa los CRUD por entidad (p. ej. `HU-10.1–10.4`); para TDD se desglosan los cuatro criterios por separado. Credenciales utiliza tres operaciones.
 - Las 21 vistas/mocks (`V01` a `V21`) aparecen enlazadas. Una vista puede abarcar varias capacidades.
-- Los 134 identificadores `RR-1`–`RR-134` están referenciados al menos una vez como **asociaciones preliminares**. La semántica exacta de cada fórmula permanece en el informe original.
-- Los nombres de capacidad son rutas futuras bajo `specs/<dominio>/<capacidad>/spec.md`; **que una capacidad figure aquí no implica que esté aprobada o implementada**.
+- Los 134 identificadores `RR-1`–`RR-134` están referenciados al menos una vez como asociaciones preliminares. La semántica exacta de cada fórmula permanece en el informe original.
+- Los nombres de capacidad son rutas futuras bajo `specs/<dominio>/<capacidad>/spec.md`; que una capacidad figure aquí no implica que esté aprobada o implementada.
 - **Dependencias cruzadas:** cuentas/autenticación, recorridos/evaluaciones, competencia territorial/incidencias, tramos/rutas y credenciales/experiencias. Revisar conjuntamente antes de cerrar contratos.
-- Revisión pendiente: **verificar las asociaciones HU↔RR propuestas en este mapa** y aprobar el alcance funcional; no se contempla modificar el modelo relacional por las observaciones del ERE.
+- Revisión pendiente: verificar las asociaciones HU↔RR propuestas en este mapa y aprobar el alcance funcional; no se contempla modificar el modelo relacional por las observaciones del ERE.
 
 ## Convenciones del mapa
 
-`docs/requirements/traceability.csv` refleja las mismas filas para validación automatizada. Para añadir una funcionalidad, actualizar **ambos** archivos en el mismo PR y enlazar su criterio de aceptación y prueba TDD. Los identificadores de pruebas viven en [pruebas-tdd.md](../development/tdd-guide.md), no se mezclan con los nombres de las capacidades.
+`docs/requirements/traceability.csv` refleja las mismas filas para validación automatizada. Para añadir una funcionalidad, actualizar ambos archivos en el mismo PR y enlazar su criterio de aceptación y prueba TDD. Los identificadores de pruebas viven en [pruebas-tdd.md](../development/tdd-guide.md), no se mezclan con los nombres de las capacidades.
 
 **Fuentes:** [registro de fuentes](../../references/README.md) · [SDD](../development/sdd-guide.md) · [TDD](../development/tdd-guide.md).
 

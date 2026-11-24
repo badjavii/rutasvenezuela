@@ -1,6 +1,6 @@
 <div align="center">
 
-# RutasVenezuela — Backend
+# RutasVenezuela : Backend
 
 <!-- Subtítulo -->
 _Aplicación del servidor y lógica de negocio_
@@ -13,7 +13,7 @@ _Aplicación del servidor y lógica de negocio_
 
 ## Sobre el módulo
 
-El **backend** será responsable de implementar la lógica de negocio de RutasVenezuela y gestionar la comunicación entre la interfaz web y la base de datos.
+El backend será responsable de implementar la lógica de negocio de RutasVenezuela y gestionar la comunicación entre la interfaz web y la base de datos.
 
 Este módulo permitirá procesar solicitudes, validar información y ejecutar las operaciones necesarias para el funcionamiento de la aplicación.
 
@@ -40,4 +40,4 @@ El módulo todavía no dispone de una implementación ejecutable.
 
 ## Créditos
 
-Módulo perteneciente al proyecto **RutasVenezuela**, desarrollado para la asignatura Sistemas de Bases de Datos de la UCAB.
+Módulo perteneciente al proyecto RutasVenezuela, desarrollado para la asignatura Sistemas de Bases de Datos de la UCAB.
