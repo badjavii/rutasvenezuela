@@ -1,70 +1,35 @@
 # Desarrollo dirigido por especificaciones (SDD)
 
-Se utiliza **[OpenSpec](https://openspec.dev/docs/schemas/spec-driven)** con el esquema oficial `spec-driven`. Los requisitos se documentan **por capacidad de dominio**, sin reproducir en cada uno los códigos académicos; la relación completa está en [trazabilidad detallada](../requirements/traceability-detailed.csv).
+El proyecto sigue la metodología de la clase de APIs de Python, basada en una constitución de trabajo y tres artefactos por capacidad: `spec.md`, `plan.md` y `tasks.md`. No requiere la CLI de OpenSpec.
 
-## Estado de planificación
+## 1. Cómo navegar
 
-- **103 historias** de la primera entrega desglosadas.
-- **324 criterios de aceptación** incorporados como escenarios OpenSpec y casos TDD planificados.
-- **23 capacidades** con especificación en borrador, repartidas en tres propuestas independientes.
-- **134 RR** catalogadas y vinculadas preliminarmente.
-- **21 interfaces** y sus 70 estados de mockup documentados.
+En [specs/README.md](../../specs/README.md) se encuentran las especificaciones, agrupadas en tres dominios: territorio/patrimonio, movilidad/rutas y actores/comercio.
 
-**Esto significa cobertura documental, no aprobación de las especificaciones ni ejecución de pruebas.** El modelo relacional de la primera entrega se conserva sin cambios según aclaración de la profesora.
+La [constitución](../../specs/constitution.md) define criterios transversales. En [templates/](../../specs/templates/) se conservan las plantillas ajustadas a este proyecto y en [specs/memory.md](../../specs/memory.md) constan decisiones y próxima prioridad.
 
-## Organización oficial
+## 2. Fuente y trazabilidad
 
-```text
-openspec/
-├── config.yaml
-├── specs/               # Especificaciones vigentes consolidadas (aún sin aprobar)
-└── changes/             # Propuestas aún abiertas
-    ├── territory-heritage-plan/
-    │   ├── proposal.md
-    │   ├── design.md
-    │   ├── tasks.md
-    │   └── specs/<capability>/spec.md
-    ├── mobility-routes-plan/
-    │   └── ...
-    └── actors-commerce-plan/
-        └── ...
-```
+La fuente académica es [el informe original](../../references/first-delivery.md). Las historias, reglas y pantallas se relacionan en la [matriz detallada](../requirements/traceability-detailed.csv). La matriz indica la especificación concreta y las pruebas relevantes, evitando repetir identificadores académicos en todos los textos.
 
-Se mantienen las especificaciones bajo `changes/` porque el proyecto está **en planificación**, todavía sin el ciclo de revisión, implementación y archivo concluido. No trasladarlas manualmente a `openspec/specs/`: utilizar el flujo oficial de OpenSpec cuando el cambio sea verificado y aprobado.
+Se mantienen 103 historias, 324 criterios de aceptación y 23 capacidades de dominio. Las asociaciones de RR son preliminares y requieren revisión humana; no son instrucciones para modificar el esquema relacional validado.
 
-## Flujo de trabajo
+## 3. Flujo de elaboración
 
-1. Consultar informe original y [catálogo HU](../requirements/acceptance-criteria.md).
-2. Revisar [matriz de trazabilidad](../requirements/traceability-detailed.csv) para identificar capacidad, autor, RR y vista.
-3. Leer `proposal.md`: por qué y hasta dónde llega la capacidad.
-4. Revisar `specs/<capability>/spec.md`: requisitos observables y escenarios.
-5. Usar `design.md` para decisiones SQL/API/UI; FastAPI/React todavía están en evaluación frente a Node.js.
-6. Derivar/refinar pruebas por capa en [TDD](tdd-guide.md).
-7. Acordar `tasks.md`; implementar **solo** en una PR posterior que siga RED → GREEN → REFACTOR.
-8. Ejecutar revisión y archivo de cambios mediante OpenSpec cuando corresponda.
+1. Identificar capacidad y responsable usando la matriz.
+2. Redactar `spec.md` con objetivo, requisitos, reglas, criterios, restricciones, exclusiones y decisiones abiertas.
+3. Crear `plan.md` con estrategia y componentes por capa, sin registrar tareas terminadas.
+4. Definir `tasks.md` con unidades de trabajo verificables y sus pruebas.
+5. Aprobar los criterios antes de programar.
+6. Aplicar el [ciclo TDD](tdd-guide.md) para cada nueva regla o comportamiento.
+7. Actualizar `tasks.md` y `specs/memory.md` al cerrar cada tarea con evidencia.
 
-## Autoridad de las fuentes
+Las especificaciones existentes son propuestas iniciales derivadas del informe, no contratos aprobados ni prueba de que la aplicación esté implementada.
 
-1. Enunciado y aclaraciones de la profesora.
-2. Modelo relacional validado en la primera entrega y fórmulas de RR.
-3. Historias y criterios originales.
-4. Mockups de las vistas.
-5. Propuestas técnicas (distinguidas de decisiones aprobadas).
+## 4. Responsabilidades entre capas
 
-Las observaciones sobre el ERE no autorizan alterar el esquema relacional. Véase [observaciones-ere.md](../project/ere-feedback.md).
+Cada integrante desarrolla su funcionalidad a través de PostgreSQL, API e interfaz cuando corresponda. La base de datos conserva reglas de integridad y transacciones; el backend valida y autoriza. No se fija un framework de API mientras esté pendiente la decisión colectiva.
 
-## Revisión de calidad de cada capacidad
+## 5. Control de cambios
 
-- Requisitos separados por comportamiento observable (sin suposiciones nuevas).
-- Escenarios derivados de criterios del informe, pero **revisar manualmente GIVEN, WHEN y THEN** para definir fixtures y casos límite.
-- Correspondencia exacta con la matriz académica.
-- Diseño de SQL conserva claves, relaciones y semántica original.
-- Autorización y transacciones planificadas con tests de base de datos.
-- Las dependencias entre módulos se revisan entre integrantes.
-- Las pruebas propuestas **no se marcan en verde** hasta que exista evidencia de ejecución.
-
-## Herramientas
-
-OpenSpec 2.x puede inicializarse para OpenCode con `openspec init --tools opencode` en una instalación local. El repositorio ya conserva `openspec/config.yaml`; no es necesario regenerarlo salvo por decisión del equipo.
-
-[Guía oficial de escritura de especificaciones](https://github.com/Fission-AI/OpenSpec/blob/main/docs/writing-specs.md).
+Toda propuesta técnica que amplíe alcance requiere revisión humana. Los agentes consultan [AGENTS.md](../../AGENTS.md), la constitución, la capacidad y el Git workflow antes de modificar código. No se mantienen copias paralelas de especificaciones en carpetas propias del agente.
