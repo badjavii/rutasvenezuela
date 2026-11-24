@@ -1,112 +1,45 @@
+<!-- BRANCH_TRACE_README -->
 <div align="center">
 
-<!-- Logo -->
-<p align="center">
-    <img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="700" />
-</p>
+<img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="620">
 
-_Proyecto de Sistemas de Bases de Datos · Equipo 2 · UCAB_
+# RutasVenezuela: trazabilidad del workflow de la rama
 
-![Base de datos](https://img.shields.io/badge/Base_de_datos-PostgreSQL-94e2d5?labelColor=181825&style=for-the-badge&logo=postgresql&logoColor=white)
-![Plataforma](https://img.shields.io/badge/Plataforma-Supabase-f5c2e7?labelColor=181825&style=for-the-badge&logo=supabase&logoColor=white)
-![Estado](https://img.shields.io/badge/Estado-Planificación-a6e3a1?labelColor=181825&style=for-the-badge)
+Registro de una rama de planificación histórica. El README institucional vigente se encuentra en `develop` y `main`.
 
 </div>
 
-## Sobre el proyecto
+## Identificación de la rama
 
-**RutasVenezuela** es una aplicación web académica de la asignatura Sistemas de Bases de Datos de la Universidad Católica Andrés Bello (UCAB). Integra territorio, patrimonio, movilidad, rutas turísticas, actores, incidencias, experiencias y reportes mediante una **base de datos relacional transaccional OLTP**.
+| Campo | Valor |
+|---|---|
+| Rama | `javier(docs/spec)-sdd-tdd-traceability` |
+| Responsable | Javier Otero |
+| Tipo de cambio | `docs` |
+| Capa | `spec` |
+| Rama de origen y destino original | `main` |
+| Pull request | [PR #2](https://github.com/badjavii/rutasvenezuela/pull/2) |
+| Estado | PR cerrado sin merge; aportes conservados en la evolución posterior |
 
-Para la **segunda entrega (8 de diciembre de 2026)**, el énfasis está en el diseño e implementación del gestor: relaciones, restricciones de integridad, procedimientos almacenados, funciones, triggers, seguridad lógica, datos de prueba y consultas reales. El proyecto se encuentra **en planificación**, sin código funcional implementado todavía.
+## Propósito y alcance
 
-## Arquitectura
+Organizar inicialmente la trazabilidad entre historias de usuario, restricciones relacionales, interfaces y casos de prueba, junto con la planificación SDD/TDD de RutasVenezuela para la segunda entrega.
 
-```text
-React.js (propuesto) → API FastAPI (propuesto) → PostgreSQL / Supabase (aprobado)
-  Presentación            Validación y acceso          Reglas y transacciones
-```
+## Cambios contemplados en la rama
 
-La profesora aprobó PostgreSQL/Supabase y una arquitectura web de tres capas. **FastAPI y React siguen como propuesta técnica de Javier**, pendiente de revisar con Sebastián su alternativa basada en Node.js. Las **reglas de negocio viven en PostgreSQL**; el backend valida solicitudes y gestiona controles de acceso.
+- Preparación de las matrices de trazabilidad por responsable y capacidad.
+- Derivación de criterios de aceptación y casos TDD planificados.
+- Propuestas iniciales de documentación y automatización de validaciones.
+- Uso histórico de OpenSpec, sustituido posteriormente por las plantillas SDD de la clase.
 
-Más detalles y decisiones pendientes en [Arquitectura](docs/arquitectura.md).
+## Historial de integración
 
-## Organización del repositorio
+El [PR #2](https://github.com/badjavii/rutasvenezuela/pull/2) se cerró sin merge. Su trabajo de planificación se conservó y evolucionó en la rama `javier(docs/spec)-consolidate-planning`, integrada mediante los [PR #3](https://github.com/badjavii/rutasvenezuela/pull/3) y [PR #4](https://github.com/badjavii/rutasvenezuela/pull/4).
 
-```text
-rutasvenezuela/
-├── assets/                 # Logo y recursos
-├── backend/                # Código del servicio (pendiente)
-├── frontend/               # Interfaz web (pendiente)
-├── database/               # Esquema SQL, funciones, triggers, roles y semillas
-├── docs/                   # SDD, TDD, trazabilidad, fuentes y flujo Git
-├── openspec/               # Especificaciones y propuestas OpenSpec
-├── scripts/                # Comprobaciones documentales
-├── .github/workflows/      # GitHub Actions
-├── AGENTS.md               # Instrucciones concisas para agentes
-└── README.md
-```
+La metodología vigente debe consultarse en el [SDD de develop](https://github.com/badjavii/rutasvenezuela/tree/develop/specs). Esta rama no constituye la base actual para nuevas implementaciones.
 
-## Desarrollo por especificaciones y pruebas
+## Verificación y observaciones
 
-Separaremos **qué debe ocurrir (SDD)** de **cómo verificarlo (TDD)**:
+Las comprobaciones de esta etapa eran documentales. No representan ejecución de pruebas funcionales de PostgreSQL, API o interfaz.
 
-1. Identificar capacidad y responsable en el [mapa HU–RR–V](docs/trazabilidad.md).
-2. Especificar escenarios observables con [OpenSpec](docs/sdd-openspec.md).
-3. Derivar pruebas PostgreSQL, API, interfaz e integración con la [guía TDD](docs/pruebas-tdd.md).
-4. Aprobar el contrato; luego implementar por una rama específica mediante RED → GREEN → REFACTOR.
-5. Abrir PR con evidencia de pruebas y revisión de otro integrante.
-
-El [mapa de trazabilidad](docs/trazabilidad.md) (también [CSV](docs/trazabilidad.csv)) evita repetir identificadores académicos dentro de cada especificación. La [matriz detallada](docs/trazabilidad-detallada.csv) conecta las **103 historias** con **23 capacidades OpenSpec**; los [324 criterios](docs/requisitos/criterios-originales.md), las [134 RR](docs/requisitos/catalogo-rr.md) y los [21 mockups](docs/pruebas/casos-interfaces.csv) cuentan con planes TDD relacionados.
-
-La primera entrega contiene 8 consultas, 20 grupos CRUD (79 operaciones), 9 operaciones del negocio, 3 reportes y 4 valores agregados, según la matriz original. Los casos planificados se distribuyen en [criterios](docs/pruebas/casos-criterios.csv), [restricciones SQL](docs/pruebas/casos-rr.csv), [estados UI](docs/pruebas/casos-interfaces.csv) e [integración E2E](docs/pruebas/casos-e2e.csv). **No son pruebas ejecutadas ni funcionalidades implementadas.** **Corrección aclarada:** la profesora no solicitó cambios al modelo relacional entregado. Las observaciones se refieren al ERE y a la elección de técnicas de modelado (incluidas oportunidades de generalización, extensibilidad y legibilidad). La trazabilidad HU↔RR aún debe revisarse como correspondencia documental, no como corrección del esquema. Ver [observaciones del ERE](docs/observaciones-ere.md).
-
-## Planificación detallada
-
-Las especificaciones por dominio se encuentran en [OpenSpec](openspec/changes/). La [guía SDD](docs/sdd-openspec.md), la [guía TDD](docs/pruebas-tdd.md), los [contratos por capa](docs/contratos-por-capa.md) y el [plan de entrega](docs/plan-entrega.md) explican cómo continuar desde aquí sin duplicar criterios académicos en los archivos funcionales.
-
-## Instalación y ejecución
-
-```bash
-git clone https://github.com/badjavii/rutasvenezuela.git
-cd rutasvenezuela
-```
-
-La aplicación todavía no tiene dependencias ni ejecutables. **No existe un comando de arranque funcional** en esta fase. Los pasos reproducibles de configuración y despliegue se completarán cuando estén implementadas las tres capas.
-
-Para iniciar documentación con OpenSpec:
-
-```bash
-npm install -g @fission-ai/openspec@latest
-openspec init --tools opencode
-```
-
-Si OpenSpec ya está inicializado (el repositorio contiene `openspec/config.yaml`), **no lo reinicialices innecesariamente**. El perfil de skills de OpenCode se configura localmente en cada máquina.
-
-Las comprobaciones documentales pueden ejecutarse sin instalar dependencias:
-
-```bash
-python3 scripts/validar_trazabilidad.py
-python3 scripts/validar_plan_sdd_tdd.py
-```
-
-## Colaboración y GitHub Actions
-
-El [flujo Git](docs/flujo-git.md) adopta el formato **`<author>(<kind>/<layer>)-<description>`**, por ejemplo `javier(feat/database)-territory-tables` o `valeria(feat/frontend)-credentials-ui`. Todos los nombres técnicos de ramas usan inglés. Bash exige entrecomillar las ramas con paréntesis. Los cambios se integran mediante PR y commits progresivos por integrante.
-
-La acción [Calidad de documentación](.github/workflows/docs-quality.yml) valida la matriz, las **103 historias**, los **324 criterios**, las **134 RR**, las **21 vistas** y los vínculos con OpenSpec. **Aún no ejecuta tests SQL/API/UI**, porque no existe código funcional; estos checks se incorporarán al implementar cada capa.
-
-## Créditos
-
-**Equipo 2 — Sistemas de Bases de Datos, Universidad Católica Andrés Bello (UCAB)**
-
-**Profesora:** Marlene Goncalves Da Silva.
-
-| Integrante | Dominio responsable | Liderazgo transversal de la primera entrega |
-|---|---|---|
-| **Javier Otero** | Territorio y patrimonio: hitos, anclajes, entidades públicas, incidencias y evaluaciones | Diagramación e integridad del ERE |
-| **Sebastián Armas** | Movilidad y rutas: vías, tramos, paradas, guías, rutas y recorridos | Modelo relacional, restricciones y seguridad lógica |
-| **Valeria Loreto** | Actores y comercio: visitantes, comercios, funcionarios, experiencias y credenciales | Interfaces, reportes y patrones de tablas |
-
-Cada integrante debe desarrollar las funcionalidades de su dominio **en las tres capas** cuando corresponda; las responsabilidades no se dividen por framework.
-
-Consulta [fuentes académicas](docs/fuentes.md) y [documentación OpenSpec](https://github.com/Fission-AI/OpenSpec).
+Este README se conserva solo para la trazabilidad histórica de la rama; no debe fusionarse con el README institucional.
