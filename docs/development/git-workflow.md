@@ -94,7 +94,7 @@ refactor(backend): simplify route response mapping
 
 Hacer commits pequeños, progresivos y atribuibles al integrante real. No agrupar todo en un solo commit ni fabricar contribuciones.
 
-## 4. Títulos y descripciones de pull requests
+## 5. Títulos y descripciones de pull requests
 
 **Título:** mismo formato de Conventional Commits y en inglés:
 
@@ -108,7 +108,7 @@ fix(backend): handle invalid route parameters
 
 **Comentarios en revisión:** describir el comportamiento observado, la corrección concreta solicitada y el requisito/escenario afectado; evitar mensajes ambiguos. Contestar el hilo con la decisión aplicada y el commit que la resuelve.
 
-## 5. Revisión e integración
+## 6. Revisión e integración
 
 1. Una rama de trabajo nace de `develop`.
 2. El integrante revisa [SDD](sdd-guide.md) y [TDD](tdd-guide.md) antes de implementar.
@@ -120,7 +120,7 @@ fix(backend): handle invalid route parameters
 
 `main` y `develop` deben quedar protegidas frente a pushes directos o borrados cuando la configuración del repositorio permita aplicar reglas de protección. Esta política está documentada, pero no implica que la protección de GitHub ya esté habilitada.
 
-## 6. Versiones estables y Git tags
+## 7. Versiones estables y Git tags
 
 Se usa Semantic Versioning (`MAJOR.MINOR.PATCH`), con tags anotados `vX.Y.Z`.
 
@@ -140,6 +140,6 @@ git push origin v0.1.0
 
 El tag debe señalar exactamente el commit publicado; no crear versiones en ramas sin revisar. Registrar los cambios del release mediante descripción y, cuando proceda, GitHub Releases.
 
-## 7. Responsabilidades
+## 8. Responsabilidades
 
 Cada integrante desarrolla su dominio a través de base de datos, API e interfaz, según la historia. Las dependencias entre módulos se revisan con el responsable correspondiente. No se ejecutan merges a `main` ni despliegues sin revisión humana.
