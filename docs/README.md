@@ -12,7 +12,7 @@ Este directorio contiene las guías operativas y la documentación derivada del 
 | Especificar una funcionalidad | [Guía SDD](development/sdd-guide.md) | [especificaciones SDD](../specs/README.md) |
 | Preparar o ejecutar pruebas | [Guía TDD](development/tdd-guide.md) | [Casos de prueba](testing/) |
 | Trabajar con ramas o abrir un PR | [Git workflow](development/git-workflow.md) | [Plantilla de PR](../.github/pull_request_template.md) |
-| Consultar las ramas del equipo | [Registro de ramas](project/branch-ledger.csv) | [README temporal](../templates/branch-readme.md) |
+| Consultar las ramas del equipo | [Registro de ramas](project/branch-ledger.csv) | [README de trazabilidad](../templates/branch-readme.md) |
 | Revisar el alcance y la entrega | [Plan de entrega](project/delivery-plan.md) | [Observaciones del ERE](project/ere-feedback.md) |
 
 ## Estructura

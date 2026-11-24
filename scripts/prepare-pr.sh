@@ -8,8 +8,7 @@ branch="$(git branch --show-current)"
 [[ -z "$(git status --porcelain)" ]] || { echo 'Confirma primero los cambios pendientes' >&2; exit 1; }
 
 git fetch origin develop
-base="$(git merge-base HEAD origin/develop)"
-git show "$base:README.md" > README.md
+git show origin/develop:README.md > README.md
 
 python3 - "$branch" <<'PY'
 import csv
@@ -35,7 +34,7 @@ with path.open("w", encoding="utf-8", newline="") as handle:
     writer.writerows(records)
 PY
 
-if grep -q BRANCH_STATUS_README README.md; then
+if grep -q BRANCH_TRACE_README README.md; then
   echo 'No se pudo restaurar el README principal' >&2
   exit 1
 fi
@@ -43,8 +42,8 @@ git add README.md docs/project/branch-ledger.csv
 if ! git diff --cached --quiet; then
   git commit -m 'docs(branch): restore project README before review'
 fi
-if ! git diff --quiet "$base" HEAD -- README.md; then
-  echo 'README.md sigue apareciendo en el diff; revisa antes de abrir el PR' >&2
+if ! git diff --quiet origin/develop HEAD -- README.md; then
+  echo 'README.md sigue apareciendo en el diff contra develop; revisa antes de abrir el PR' >&2
   exit 1
 fi
 echo 'README estable restaurado. Puede abrirse un PR a develop.'

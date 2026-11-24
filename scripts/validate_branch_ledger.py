@@ -17,8 +17,13 @@ with path.open(encoding="utf-8", newline="") as f:
 assert len({row["branch"] for row in rows}) == len(rows), "Ramas duplicadas"
 for row in rows:
     assert row["branch"] and row["summary"], "Registro incompleto"
-    assert row["target"] == "develop", row["branch"]
-    assert row["source"] == "develop", row["branch"]
+    # Las ramas históricas previas al uso de develop podían apuntar a main.
+    if row["status"] == "closed":
+        assert row["target"] in {"main", "develop"}, row["branch"]
+        assert row["source"] in {"main", "develop"}, row["branch"]
+    else:
+        assert row["target"] == "develop", row["branch"]
+        assert row["source"] == "develop", row["branch"]
     for key in ("created_at", "updated_at"):
         if row[key]:
             date.fromisoformat(row[key])

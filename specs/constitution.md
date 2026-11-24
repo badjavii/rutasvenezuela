@@ -39,8 +39,8 @@ No completar tareas sin pruebas relevantes y regresión correcta, revisión de c
 
 ## 9. Flujo Git
 
-Ramas de trabajo desde `develop`; PR revisadas hacia `develop`, sin borrar ramas de desarrollo. `main` se reserva para versiones estables con tags. El README de estado de una rama nunca debe integrarse al README principal mediante PR. Consultar `docs/development/git-workflow.md`.
+Ramas de trabajo desde `develop`; PR revisadas hacia `develop`, sin borrar ramas de desarrollo. `main` se reserva para versiones estables con tags. El README de trazabilidad del workflow de una rama nunca debe integrarse al README principal mediante PR. Consultar `docs/development/git-workflow.md`.
 
 ## 10. Seguimiento de ramas
 
-Las ramas nacen de `develop`, generan un README temporal desde [la plantilla](../templates/branch-readme.md) y registran su estado en [la matriz](../docs/project/branch-ledger.csv). Antes de abrir PR se restaura el README institucional, y el control automático rechaza el README de estado. La rama demostrativa no es base de nuevas funcionalidades.
+Las ramas nacen de `develop`, generan un README de trazabilidad desde [la plantilla](../templates/branch-readme.md) y registran su estado en [la matriz](../docs/project/branch-ledger.csv). Antes de abrir PR se restaura el README institucional, y el control automático rechaza el README de trazabilidad. La rama demostrativa no es base de nuevas funcionalidades.

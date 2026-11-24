@@ -1,45 +1,46 @@
-<!-- BRANCH_STATUS_README -->
+<!-- BRANCH_TRACE_README -->
 <div align="center">
 
 <img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="620">
 
-# RutasVenezuela: estado de la rama
+# RutasVenezuela: trazabilidad del workflow de la rama
 
-Documento temporal de trabajo. No reemplaza el README institucional ni debe aparecer en el PR final.
+Documento de seguimiento exclusivo de esta rama. El README institucional se conserva en `develop` y `main`.
 
 </div>
 
-## Identificación
+## Identificación de la rama
 
 | Campo | Valor |
 |---|---|
 | Rama | `{{BRANCH}}` |
 | Responsable | {{OWNER}} |
-| Tipo | `{{KIND}}` |
+| Tipo de cambio | `{{KIND}}` |
 | Capa | `{{LAYER}}` |
 | Fecha de creación | {{CREATED_DATE}} |
-| Rama de origen / destino | `develop` |
-| Pull request | Pendiente |
+| Rama de origen | `develop` |
+| Destino de integración | `develop` |
+| Pull request | Pendiente de apertura |
 | Estado | En preparación |
 
-## Funcionalidad
+## Propósito y alcance
 
 {{SUMMARY}}
 
-## Cambios previstos
+## Cambios contemplados
 
-- Especificación y pruebas vinculadas al alcance.
-- Cambios de implementación en la capa correspondiente.
-- Validaciones de integración antes de abrir PR.
+- Especificaciones y criterios de aceptación asociados a este trabajo.
+- Cambios necesarios de la capa o módulo, sin alterar funcionalidades ajenas.
+- Pruebas y documentación que correspondan al alcance de la rama.
 
 ## Verificación
 
-- Casos TDD: por vincular.
-- Pruebas ejecutadas: ninguna sin evidencia.
-- GitHub Actions: se evaluará durante el PR.
+- Casos TDD: pendientes de concretar según las especificaciones aplicables.
+- Pruebas ejecutadas: ninguna declarada sin evidencia.
+- GitHub Actions: se revisará al abrir el PR.
 
-## Integración
+## Integración y referencias
 
-[Constitución SDD](specs/constitution.md) · [Flujo Git](docs/development/git-workflow.md)
+[Constitución SDD](specs/constitution.md) · [Git workflow](docs/development/git-workflow.md)
 
-Antes de abrir el PR: `bash scripts/prepare-pr.sh`. La trazabilidad se conserva en `docs/project/branch-ledger.csv`.
+Antes de abrir un PR, ejecutar `bash scripts/prepare-pr.sh`. El README institucional debe restaurarse para que el PR no incluya este documento; su historial de commits permanece en la rama. La matriz central se encuentra en `docs/project/branch-ledger.csv`.

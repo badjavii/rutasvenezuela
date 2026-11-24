@@ -27,11 +27,11 @@ jobs:
         run: python3 scripts/validar_plan_sdd_tdd.py
       - name: Validate local Markdown links
         run: python3 scripts/validar_enlaces.py
-      - name: Reject temporary branch README
+      - name: Reject work-branch traceability README
         shell: bash
         run: |
-          if grep -q 'BRANCH_STATUS_README' README.md; then
-            echo 'Restore the stable README before opening a PR.'
+          if grep -Eq 'BRANCH_(STATUS|TRACE)_README' README.md; then
+            echo 'Restore the institutional README before opening a PR.'
             exit 1
           fi
       - name: Validate work-branch scripts and registry

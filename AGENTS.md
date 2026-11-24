@@ -21,13 +21,13 @@ RutasVenezuela es el proyecto del Equipo 2 de Sistemas de Bases de Datos (UCAB).
 - `tasks.md` registra el progreso; `specs/memory.md` reúne decisiones y siguiente trabajo.
 - No declarar pruebas ejecutadas cuando solo existen casos planificados.
 - Las ramas de desarrollo nacen de `develop` y preservan su historial. Los PR de trabajo se dirigen a `develop`.
-- No publicar README temporales de estado de rama en un PR. Consultar las instrucciones de la constitución y del Git workflow para el procedimiento de limpieza.
+- No publicar README de trazabilidad del workflow de rama en un PR. Consultar las instrucciones de la constitución y del Git workflow para el procedimiento de limpieza.
 - No modificar `main`, fusionar cambios, forzar refs o desplegar sin autorización.
 - No subir secretos ni alterar fuentes académicas originales.
 
-## README y trazabilidad de ramas
+## README de trazabilidad y registro de ramas
 
 - Crear ramas desde `origin/develop` con `bash scripts/new-work-branch.sh`.
-- Antes del PR, restaurar README estable con `bash scripts/prepare-pr.sh`; no integrar READMEs temporales.
+- Antes del PR, restaurar README estable con `bash scripts/prepare-pr.sh`; no integrar el README de trazabilidad de la rama.
 - Usar [el registro de ramas](docs/project/branch-ledger.csv) para fechas y estado, sin inventar PR o ejecución de pruebas.
 - La rama de demostración del README no es base de desarrollo.
