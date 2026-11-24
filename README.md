@@ -1,45 +1,43 @@
-<!-- BRANCH_STATUS_README -->
+<!-- BRANCH_TRACE_README -->
 <div align="center">
 
 <img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="620">
 
-# RutasVenezuela: estado de la rama
+# RutasVenezuela: trazabilidad del workflow de la rama
 
-Documento temporal de trabajo. No reemplaza el README institucional ni debe aparecer en el PR final.
+Vista de ejemplo para presentar el README de una rama de trabajo. No sustituye al README institucional.
 
 </div>
 
-## Identificación
+## Identificación de la rama
 
 | Campo | Valor |
 |---|---|
 | Rama | `javier(docs/spec)-branch-readme-preview` |
 | Responsable | Javier Otero |
-| Tipo | `docs` |
+| Tipo de cambio | `docs` |
 | Capa | `spec` |
 | Fecha de creación | 2026-11-23 |
-| Rama de origen / destino | `develop` |
-| Pull request | No creado: rama de demostración |
-| Estado | Vista previa para revisión |
+| Rama de origen y destino | `develop` |
+| Pull request | No se ha creado |
+| Estado | Demostración del formato |
 
-## Funcionalidad
+## Propósito y alcance
 
-Presentar un ejemplo de README temporal para las ramas de desarrollo. Esta rama sirve únicamente como demostración: no contiene implementación funcional, pruebas ejecutadas ni un pull request asociado.
+Mostrar cómo se documentan el responsable, la funcionalidad, el alcance, el estado de implementación y la integración de una rama, sin mezclar su información con los créditos académicos del proyecto.
 
-## Cambios previstos
+## Cambios contemplados
 
-- Especificación y pruebas vinculadas al alcance.
-- Cambios de implementación en la capa correspondiente.
-- Validaciones de integración antes de abrir PR.
+- Probar el formato de la plantilla `templates/branch-readme.md`.
+- Acordar un mecanismo para conservar la trazabilidad del workflow.
+- Evitar que el README específico de la rama forme parte de un PR de aplicación.
 
 ## Verificación
 
-- Casos TDD: por vincular.
-- Pruebas ejecutadas: ninguna sin evidencia.
-- GitHub Actions: se evaluará durante el PR.
+No se implementó funcionalidad ni se ejecutaron pruebas de producto. Esta rama sirve únicamente como ejemplo del README.
 
 ## Integración
 
-[Constitución SDD](specs/constitution.md) · [Flujo Git](docs/development/git-workflow.md)
+No existe un PR asociado y no se propone fusionar esta rama. Las ramas de nuevas funcionalidades deben partir de `develop`, no de esta demostración.
 
-Antes de abrir el PR: `bash scripts/prepare-pr.sh`. La trazabilidad se conserva en `docs/project/branch-ledger.csv`.
+Consulta la [guía vigente del Git workflow](https://github.com/badjavii/rutasvenezuela/blob/develop/docs/development/git-workflow.md).
