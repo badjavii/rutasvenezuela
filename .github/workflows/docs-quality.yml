@@ -27,6 +27,13 @@ jobs:
         run: python3 scripts/validar_plan_sdd_tdd.py
       - name: Validate local Markdown links
         run: python3 scripts/validar_enlaces.py
+      - name: Reject temporary branch README
+        shell: bash
+        run: |
+          if grep -q 'BRANCH_STATUS_README' README.md; then
+            echo 'Restore the stable README before opening a PR.'
+            exit 1
+          fi
       - name: Verify documentation files
         shell: bash
         run: |
@@ -34,7 +41,8 @@ jobs:
           test -f README.md
           test -f AGENTS.md
           test -f LICENSE
-          test -f openspec/config.yaml
+          test -f specs/constitution.md
+          test -f specs/README.md
           test -f docs/README.md
           test -f docs/development/sdd-guide.md
           test -f docs/development/tdd-guide.md

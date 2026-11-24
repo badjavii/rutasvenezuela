@@ -2,13 +2,13 @@
 
 **Línea base:** primera entrega de RutasVenezuela, informe del 5 de noviembre de 2026, matriz de trazabilidad (págs. impresas 75–76), índice de interfaces (págs. 11–12) y restricciones relacionales (capítulo 7). **Corrección aclarada:** la calificación fue 17,3/20 y el modelo relacional no requiere cambios; las observaciones son del ERE. Ver [registro](../project/ere-feedback.md).
 
-Este documento es el **índice agrupado (44 filas)**. La matriz [detallada de 103 historias](traceability-detailed.csv) enlaza cada historia con su archivo OpenSpec real; el [catálogo de 134 RR](relational-rules.md) conserva las formulaciones de las restricciones y el [plan TDD](../development/tdd-guide.md) enlaza 324 criterios a pruebas. La correspondencia HU↔RR sigue marcada como preliminar para revisión humana.
+Este documento es el **índice agrupado (44 filas)**. La matriz [detallada de 103 historias](traceability-detailed.csv) enlaza cada historia con su archivo SDD real; el [catálogo de 134 RR](relational-rules.md) conserva las formulaciones de las restricciones y el [plan TDD](../development/tdd-guide.md) enlaza 324 criterios a pruebas. La correspondencia HU↔RR sigue marcada como preliminar para revisión humana.
 
-Este documento es el **puente único** entre los códigos académicos (HU, RR, V, RP y VA) y las **capacidades OpenSpec**. En las especificaciones se usan nombres de dominio; aquí se conservan los códigos para la defensa.
+Este documento es el **puente único** entre los códigos académicos (HU, RR, V, RP y VA) y las **capacidades SDD**. En las especificaciones se usan nombres de dominio; aquí se conservan los códigos para la defensa.
 
 **Lectura:** cada fila vincula una HU (o grupo CRUD) con su responsable, capacidad prevista, RR relacionadas y mockup V. La asociación HU↔RR es una **agrupación de planificación** derivada del tema de la regla: debe revisarse contra los criterios de aceptación y las correcciones. «—» significa que la matriz del informe no aporta RR específicas directamente asignables; **no** significa que el módulo carezca de restricciones.
 
-| Código | Funcionalidad | Responsable | Capacidad OpenSpec prevista | RR relacionadas (preliminar) | Vista |
+| Código | Funcionalidad | Responsable | Capacidad SDD prevista | RR relacionadas (preliminar) | Vista |
 |---|---|---|---|---|---|
 | HU-01 | Ficha del hito y sus rutas | Javier | `patrimonio/hitos` | RR-1, RR-2, RR-13, RR-14, RR-74-79 | V03 |
 | HU-02 | Recursos 3D cercanos | Javier | `patrimonio/anclajes-3d` | RR-3, RR-15, RR-78, RR-80, RR-81 | V05 |
@@ -61,19 +61,19 @@ Este documento es el **puente único** entre los códigos académicos (HU, RR, V
 - Este índice agrupa los CRUD por entidad (p. ej. `HU-10.1–10.4`); para TDD se desglosan los cuatro criterios por separado. **Credenciales** utiliza tres operaciones.
 - Las 21 vistas/mocks (`V01` a `V21`) aparecen enlazadas. Una vista puede abarcar varias capacidades.
 - Los 134 identificadores `RR-1`–`RR-134` están referenciados al menos una vez como **asociaciones preliminares**. La semántica exacta de cada fórmula permanece en el informe original.
-- Los nombres de capacidad son rutas futuras bajo `openspec/specs/<capacidad>/spec.md`; **que una capacidad figure aquí no implica que esté aprobada o implementada**.
+- Los nombres de capacidad son rutas futuras bajo `specs/<dominio>/<capacidad>/spec.md`; **que una capacidad figure aquí no implica que esté aprobada o implementada**.
 - **Dependencias cruzadas:** cuentas/autenticación, recorridos/evaluaciones, competencia territorial/incidencias, tramos/rutas y credenciales/experiencias. Revisar conjuntamente antes de cerrar contratos.
 - Revisión pendiente: **verificar las asociaciones HU↔RR propuestas en este mapa** y aprobar el alcance funcional; no se contempla modificar el modelo relacional por las observaciones del ERE.
 
 ## Convenciones del mapa
 
-`docs/requirements/traceability.csv` refleja las mismas filas para validación automatizada. Para añadir una funcionalidad, actualizar **ambos** archivos en el mismo PR y enlazar su `Scenario` y prueba TDD. Los identificadores de pruebas viven en [pruebas-tdd.md](../development/tdd-guide.md), no se mezclan con los nombres de las capacidades.
+`docs/requirements/traceability.csv` refleja las mismas filas para validación automatizada. Para añadir una funcionalidad, actualizar **ambos** archivos en el mismo PR y enlazar su criterio de aceptación y prueba TDD. Los identificadores de pruebas viven en [pruebas-tdd.md](../development/tdd-guide.md), no se mezclan con los nombres de las capacidades.
 
 **Fuentes:** [registro de fuentes](../../references/README.md) · [SDD](../development/sdd-guide.md) · [TDD](../development/tdd-guide.md).
 
 ## Documentos complementarios
 
-- [103 historias con enlaces concretos a las 23 capacidades OpenSpec](traceability-detailed.csv)
+- [103 historias con enlaces concretos a las 23 capacidades SDD](traceability-detailed.csv)
 - [324 criterios académicos](acceptance-criteria.md) y [casos de prueba](../testing/acceptance-cases.csv)
 - [134 RR originales](relational-rules.md) y [268 pruebas de integridad](../testing/database-cases.csv)
 - [70 estados de 21 mockups](../testing/interface-cases.csv)

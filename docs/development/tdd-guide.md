@@ -4,14 +4,14 @@
 
 ## Separación SDD y TDD
 
-- **SDD/OpenSpec** determina comportamientos obligatorios y escenarios. No se fija un framework de aplicación definitivo.
+- **SDD por plantillas** determina comportamientos obligatorios y escenarios. No se fija un framework de aplicación definitivo.
 - **TDD** transforma los criterios de aceptación y las invariantes de SQL en comprobaciones observables. Las fuentes se identifican mediante el [mapa académico](../requirements/traceability-detailed.csv).
 - **Implementación posterior:** RED (probar y fallar), GREEN (mínimo código correcto), REFACTOR (mejora sin perder cobertura).
 
 ```text
 Historia (documento académico)
   → mapa HU/RR/mockup
-  → capacidad / escenario OpenSpec (SDD)
+  → especificación y criterio de aceptación SDD (SDD)
   → caso de prueba planificado (TDD)
   → futura prueba RED → implementación GREEN → REFACTOR
   → evidencia de CI y revisión de PR

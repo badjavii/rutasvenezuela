@@ -32,4 +32,4 @@ Abrir PR hacia `develop`, revisar los permisos de acceso y el SHA del submódulo
 
 ## Relación con el desarrollo
 
-La [trazabilidad](../docs/requirements/traceability.md) asocia los identificadores académicos con las capacidades de [OpenSpec](../openspec/changes/) y los casos [TDD](../docs/development/tdd-guide.md). Las especificaciones no sustituyen estas fuentes.
+La [trazabilidad](../docs/requirements/traceability.md) asocia los identificadores académicos con las capacidades de [las especificaciones SDD](../specs/README.md) y los casos [TDD](../docs/development/tdd-guide.md). Las especificaciones no sustituyen estas fuentes.

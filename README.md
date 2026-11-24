@@ -28,7 +28,7 @@ rutasvenezuela/
 ├── database/               # Estructuras, rutinas, triggers, seguridad y semillas
 ├── backend/                # Aplicación de servidor
 ├── frontend/               # Aplicación web
-├── openspec/               # Requisitos por capacidad y propuestas de cambio
+├── specs/                  # SDD: constitución, especificaciones, planes y tareas
 ├── references/             # Informe íntegro y contexto externo
 ├── docs/                   # Guías, trazabilidad y pruebas planificadas
 ├── scripts/                # Validadores del proyecto
@@ -39,9 +39,9 @@ rutasvenezuela/
 
 ## Especificaciones y pruebas
 
-El desarrollo combina **SDD** (definir qué debe cumplir cada capacidad mediante OpenSpec) y **TDD** (derivar pruebas verificables antes de implementar).
+El desarrollo combina **SDD** (definir qué debe cumplir cada capacidad mediante las plantillas de especificación) y **TDD** (derivar pruebas verificables antes de implementar).
 
-La primera entrega documenta **103 historias de usuario, 324 criterios de aceptación, 134 restricciones relacionales y 21 interfaces**. Consulta la [matriz detallada HU → especificación](docs/requirements/traceability-detailed.csv) para localizar la capacidad OpenSpec asociada. Estas referencias se conectan con especificaciones del dominio y planes de pruebas; **todavía no representan funcionalidades implementadas ni pruebas ejecutadas**.
+La primera entrega documenta **103 historias de usuario, 324 criterios de aceptación, 134 restricciones relacionales y 21 interfaces**. Consulta la [matriz detallada HU → especificación](docs/requirements/traceability-detailed.csv) para localizar la especificación SDD asociada. Estas referencias se conectan con especificaciones del dominio y planes de pruebas; **todavía no representan funcionalidades implementadas ni pruebas ejecutadas**.
 
 La puerta de entrada a toda la documentación es [docs/README.md](docs/README.md). Allí encontrarás las guías [SDD](docs/development/sdd-guide.md) y [TDD](docs/development/tdd-guide.md), la [trazabilidad académica](docs/requirements/traceability.md) y las [fuentes originales](references/README.md).
 
@@ -58,7 +58,7 @@ python3 scripts/validar_plan_sdd_tdd.py
 
 La aplicación todavía está en fase de planificación: no existe un comando de despliegue funcional. El procedimiento completo para configurar PostgreSQL, backend y frontend se añadirá cuando estén implementados.
 
-OpenSpec se encuentra configurado en `openspec/config.yaml`. Cada colaborador puede instalar localmente su CLI e integración con OpenCode.
+Las especificaciones se mantienen en [specs/README.md](specs/README.md) y se basan en las plantillas de la clase de APIs de Python.
 
 ## Colaboración
 
@@ -77,7 +77,7 @@ El workflow [Documentation Quality](.github/workflows/docs-quality.yml) comprueb
 - [Índice de documentación](docs/README.md)
 - [Informe original de la primera entrega, sin imágenes](references/first-delivery.md)
 - [Repositorio de contexto y referencias externas](references/README.md)
-- [OpenSpec — documentación oficial](https://github.com/Fission-AI/OpenSpec)
+- [Especificaciones SDD](specs/README.md)
 
 ## Créditos
 

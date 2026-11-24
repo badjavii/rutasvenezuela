@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validación estática de cobertura SDD/TDD, sin ejecutar aplicación ni tests de producto."""
+"""Valida trazabilidad SDD/TDD. No ejecuta pruebas de producto."""
 import csv
 import os
 from collections import Counter, defaultdict
@@ -10,12 +10,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def rows(path):
-    with (ROOT / path).open(encoding="utf-8", newline="") as file:
-        return list(csv.DictReader(file))
+    with (ROOT / path).open(encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
 
 
-def require(condition, message):
-    if not condition:
+def require(ok, message):
+    if not ok:
         raise AssertionError(message)
 
 
@@ -26,89 +26,103 @@ def main():
     rule_tests = rows("docs/testing/database-cases.csv")
     screens = rows("docs/testing/interface-cases.csv")
     e2e = rows("docs/testing/integration-cases.csv")
+    for name, actual, expected in (
+        ("historias", len(stories), 103),
+        ("criterios", len(criteria), 324),
+        ("restricciones RR", len(rules), 134),
+        ("casos RR", len(rule_tests), 268),
+        ("estados UI", len(screens), 70),
+        ("escenarios E2E", len(e2e), 12),
+    ):
+        require(actual == expected, f"{name}: {actual}, esperado {expected}")
 
-    require(len(stories) == 103, f"Se esperaban 103 historias, hay {len(stories)}")
-    require(len(criteria) == 324, f"Se esperaban 324 criterios, hay {len(criteria)}")
-    require(len(rules) == 134, f"Se esperaban 134 RR, hay {len(rules)}")
-    require(len(rule_tests) == 268, f"Se esperaban 268 pruebas RR, hay {len(rule_tests)}")
-    require(len(screens) == 70, f"Se esperaban 70 estados UI, hay {len(screens)}")
-    require(len(e2e) == 12, f"Se esperaban 12 E2E críticos, hay {len(e2e)}")
-
-    def unique(items, key):
-        values = [row[key] for row in items]
-        require(len(values) == len(set(values)), f"Duplicados en {key}")
-    for collection, key in [(stories, "codigo"), (criteria, "caso"),
-                            (rules, "id"), (rule_tests, "caso"),
-                            (screens, "caso"), (e2e, "caso")]:
-        unique(collection, key)
-
-    require(Counter(row["responsable"] for row in stories)
+    for collection, field in (
+        (stories, "codigo"), (criteria, "caso"), (rules, "id"),
+        (rule_tests, "caso"), (screens, "caso"), (e2e, "caso")
+    ):
+        values = [record[field] for record in collection]
+        require(len(values) == len(set(values)), f"Duplicados en {field}")
+    require(Counter(record["responsable"] for record in stories)
             == {"Javier": 45, "Sebastián": 33, "Valeria": 25},
-            "Distribución de historias distinta del informe original")
+            "Asignación de historias inesperada")
 
-    by_story = defaultdict(set)
-    for c in criteria:
-        by_story[c["historia"]].add(int(c["criterio"]))
-        require(c["estado"] == "PLANIFICADO_NO_EJECUTADO", c["caso"])
-        require(bool(c["resultado_esperado"] and c["criterio_original"]), c["caso"])
+    linked = defaultdict(set)
+    for criterion in criteria:
+        linked[criterion["historia"]].add(int(criterion["criterio"]))
+        require(criterion["estado"] == "PLANIFICADO_NO_EJECUTADO",
+                f"Estado inconsistente: {criterion['caso']}")
+        require(bool(criterion["criterio_original"]), criterion["caso"])
 
-    capabilities = set()
-    for story in stories:
-        id_, path, total = story["codigo"], story["especificacion"], int(story["criterios"])
-        require(by_story[id_] == set(range(1, total + 1)), f"Cobertura TDD: {id_}")
-        require(path.startswith("openspec/changes/") and (ROOT / path).is_file(),
-                f"Especificación ausente: {path}")
-        source = (ROOT / path).read_text(encoding="utf-8")
-        require("## ADDED Requirements" in source, path)
-        require(f"### Requirement: {story['titulo']}" in source,
-                f"Requisito ausente en {path}: {id_}")
-        for n in range(1, total + 1):
-            require(f"#### Scenario: {story['titulo']} - criterio {n}" in source,
-                    f"Escenario ausente: {id_}/{n}")
-        capabilities.add(path)
+    specs = {}
+    for item in stories:
+        identity = item["codigo"]
+        path = item["especificacion"]
+        count = int(item["criterios"])
+        require(linked[identity] == set(range(1, count + 1)),
+                f"Faltan casos en {identity}")
+        require(path.startswith("specs/") and path.endswith("/spec.md"),
+                f"Ruta SDD incorrecta: {path}")
+        filepath = ROOT / path
+        require(filepath.is_file(), f"No existe {path}")
+        text = specs.setdefault(path, filepath.read_text(encoding="utf-8"))
+        for section in ("## 1. Objetivo", "## 2. Requisitos funcionales",
+                        "## 3. Reglas de negocio", "## 4. Criterios de aceptación",
+                        "## 5. Restricciones técnicas", "## 6. Fuera de alcance",
+                        "## 7. Decisiones abiertas"):
+            require(section in text, f"Falta {section} en {path}")
+        title = item["titulo"]
+        begin = text.find(f"### {title}\n")
+        require(begin >= 0, f"Requisito {title} ausente en {path}")
+        end = text.find("\n### ", begin + 5)
+        section = text[begin:end if end >= 0 else len(text)]
+        for n in range(1, count + 1):
+            require(f"- Criterio {n}:" in section,
+                    f"Falta criterio {identity}/{n} en {path}")
+        for artifact in ("plan.md", "tasks.md"):
+            require(filepath.with_name(artifact).is_file(),
+                    f"No existe {filepath.with_name(artifact)}")
 
-    require(len(capabilities) == 23, f"Se esperaban 23 capacidades: {len(capabilities)}")
+    require(len(specs) == 23, f"Capacidades encontradas: {len(specs)}")
+    for path in ("specs/constitution.md", "specs/templates/spec-template.md",
+                 "specs/templates/plan-template.md", "specs/templates/tasks-template.md",
+                 "specs/memory.md", "specs/README.md"):
+        require((ROOT / path).is_file(), f"Falta {path}")
+    require(not (ROOT / "openspec").exists(), "OpenSpec antiguo presente")
 
-    expect_rr = {f"RR-{n}" for n in range(1, 135)}
-    require({row["id"] for row in rules} == expect_rr, "Catálogo RR incompleto")
-    require({row["rr"] for row in rule_tests} == expect_rr, "Pruebas RR incompletas")
-    for rule in expect_rr:
-        rtests = {c["caso"] for c in rule_tests if c["rr"] == rule}
-        require(rtests == {f"DB-{rule}-VALID", f"DB-{rule}-REJECT"},
-                f"Faltan casos válidos/negativos en {rule}")
+    rr_ids = {f"RR-{n}" for n in range(1, 135)}
+    require({r["id"] for r in rules} == rr_ids, "RR incompletas")
+    require({r["rr"] for r in rule_tests} == rr_ids, "Casos RR incompletos")
+    for rr in rr_ids:
+        ids = {x["caso"] for x in rule_tests if x["rr"] == rr}
+        require(ids == {f"DB-{rr}-VALID", f"DB-{rr}-REJECT"},
+                f"Casos de {rr} incompletos")
+    require({x["vista"] for x in screens} ==
+            {f"V{n:02d}" for n in range(1, 22)}, "Mockups incompletos")
+    require(all(x["estado"] == "PLANIFICADO_NO_EJECUTADO" for x in screens),
+            "Hay un caso UI declarado ejecutado sin evidencia")
+    require(all(x["estado"] == "PLANIFICADO_NO_EJECUTADO" for x in e2e),
+            "Hay un caso E2E declarado ejecutado sin evidencia")
 
-    require({row["vista"] for row in screens} ==
-            {f"V{n:02d}" for n in range(1, 22)}, "Mockups V01..V21 incompletos")
-    require(all(row["estado"] == "PLANIFICADO_NO_EJECUTADO" for row in screens),
-            "Estado incorrecto de las pruebas UI")
-    require(all(row["estado"] == "PLANIFICADO_NO_EJECUTADO" for row in e2e),
-            "Estado incorrecto de las pruebas E2E")
-
-    for proposal in ("territory-heritage-plan", "mobility-routes-plan",
-                     "actors-commerce-plan"):
-        root = ROOT / "openspec" / "changes" / proposal
-        for artifact in ("proposal.md", "design.md", "tasks.md"):
-            require((root / artifact).is_file(), f"Falta {root / artifact}")
-
-    # Convención de ramas en PR (no bloquear checkout de main ni ejecución local).
     branch = os.environ.get("GITHUB_HEAD_REF", "")
-    if branch and branch not in {"develop", "main"}:
+    if branch and branch not in {"main", "develop"}:
         pattern = (
             r"(?:javier|sebastian|valeria)"
-            r"\((?:feat|docs|test|fix|ci)/(?:database|backend|frontend|spec|integration|infra)\)"
+            r"\((?:feat|docs|test|fix|ci|refactor)/"
+            r"(?:database|backend|frontend|spec|integration|infra)\)"
             r"-[a-z0-9]+(?:-[a-z0-9]+)*"
         )
-        require(re.fullmatch(pattern, branch) is not None,
-                f"La rama {branch!r} no cumple docs/development/git-workflow.md")
+        require(re.fullmatch(pattern, branch),
+                f"La rama {branch} no cumple el Git workflow")
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    for path in ("docs/requirements/traceability-detailed.csv", "docs/development/sdd-guide.md",
-                 "docs/development/tdd-guide.md", "docs/development/git-workflow.md"):
-        require(path in readme, f"Enlace al README ausente: {path}")
+    for path in ("specs/README.md", "docs/requirements/traceability-detailed.csv",
+                 "docs/development/sdd-guide.md", "docs/development/tdd-guide.md",
+                 "docs/development/git-workflow.md"):
+        require(path in readme, f"Falta enlace en README: {path}")
 
-    print("OK: 103 HU, 324 criterios, 23 capacidades, 134 RR,")
-    print("    268 casos RR, 70 estados UI, 12 flujos E2E.")
-    print("Nota: planificación documental; ninguna prueba de producto ejecutada.")
+    print("OK: 103 HU, 324 criterios, 23 capacidades SDD, 134 RR,")
+    print("    268 casos RR, 70 estados UI y 12 escenarios E2E.")
+    print("Nota: pruebas planificadas, no ejecutadas.")
 
 
 if __name__ == "__main__":

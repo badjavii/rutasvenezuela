@@ -1,27 +1,26 @@
-# Instrucciones de agentes — RutasVenezuela
+# Instrucciones para agentes
 
-Proyecto del **Equipo 2** de Sistemas de Bases de Datos (UCAB). Documentos en español, nombres técnicos de ramas/commits/PR en inglés.
+RutasVenezuela es el proyecto del Equipo 2 de Sistemas de Bases de Datos (UCAB). Los documentos se redactan en español; código, ramas, commits y títulos PR se redactan en inglés.
 
 ## Orden de consulta
 
-1. [Inicio de documentación](docs/README.md)
-2. [Fuentes académicas originales](references/README.md)
-3. [Mapa de trazabilidad](docs/requirements/traceability.md)
-4. [Guía SDD / OpenSpec](docs/development/sdd-guide.md)
-5. [Guía TDD](docs/development/tdd-guide.md)
-6. [Arquitectura](docs/architecture.md)
-7. [Git workflow](docs/development/git-workflow.md)
+1. [Documentación](docs/README.md)
+2. [Fuente académica](references/first-delivery.md)
+3. [Constitución de trabajo](specs/constitution.md)
+4. [Matriz de trazabilidad](docs/requirements/traceability-detailed.csv)
+5. [SDD](docs/development/sdd-guide.md) y [TDD](docs/development/tdd-guide.md)
+6. [Git workflow](docs/development/git-workflow.md)
 
-## Reglas de trabajo
+## Reglas
 
-- **PostgreSQL/Supabase** mantiene reglas del negocio, invariantes, procedimientos, funciones, triggers y restricciones. No suplir estas garantías únicamente en API/UI.
-- **FastAPI/React son tecnologías de referencia provisionales** para la aplicación. No congelar APIs, librerías o herramientas sin aprobación.
-- El modelo relacional de la primera entrega **se conserva**. Las observaciones de la profesora sobre el ERE no autorizan rediseñarlo.
-- Los requisitos y criterios de aceptación provienen de `references/first-delivery.md`; los identificadores académicos se localizan mediante la matriz de trazabilidad. No inventar HU, RR, nombres de tablas ni estados.
-- OpenSpec en `openspec/` mantiene capacidades y escenarios; los CSV de TDD son planes, **no pruebas ejecutadas**.
-- Cada integrante desarrolla funcionalidades del dominio asignado en las capas necesarias.
-- Implementación futura: escenario aprobado → prueba RED → implementación GREEN → REFACTOR → revisión.
-- Todas las PR de trabajo van hacia `develop`; solo `develop` puede promocionarse a `main` mediante PR de release revisada y Git tag.
-- Ramas según `<author>(<kind>/<layer>)-<description>`, en inglés, sin dos puntos; **conservar las ramas tras el merge**.
-- No hacer merges, force pushes, cambios directos a `main` o despliegues de producción por cuenta propia.
-- No introducir credenciales o secretos en archivos versionados. Revisar la exposición de datos personales del informe original antes de redistribuirlo.
+- Se usan `specs/<dominio>/<capacidad>/spec.md`, `plan.md` y `tasks.md`. No se requiere OpenSpec.
+- El modelo relacional de la primera entrega se conserva. PostgreSQL/Supabase contiene las reglas de negocio, triggers, procedimientos, funciones y restricciones.
+- FastAPI y React son el stack de referencia provisional, no una decisión definitiva.
+- No inventar HU, RR, campos, endpoints, tablas ni supuestos; consultar los documentos originales antes de implementar.
+- Antes de escribir código, revisar la especificación y crear pruebas: RED, GREEN, refactorización y regresión.
+- `tasks.md` registra el progreso; `specs/memory.md` reúne decisiones y siguiente trabajo.
+- No declarar pruebas ejecutadas cuando solo existen casos planificados.
+- Las ramas de desarrollo nacen de `develop` y preservan su historial. Los PR de trabajo se dirigen a `develop`.
+- No publicar README temporales de estado de rama en un PR. Consultar las instrucciones de la constitución y del Git workflow para el procedimiento de limpieza.
+- No modificar `main`, fusionar cambios, forzar refs o desplegar sin autorización.
+- No subir secretos ni alterar fuentes académicas originales.

@@ -36,4 +36,4 @@ Cada capacidad se implementará utilizando las relaciones del modelo relacional 
 
 ## Política de cambios
 
-Cada contrato público se describe primero mediante su capacidad OpenSpec. Las pruebas de contrato verifican que el adaptador API/UI no altera el comportamiento definido por la base de datos. Cuando se acuerde la tecnología del backend, completar los diseños con rutas, entradas, salidas y errores concretos, sin modificar las reglas académicas.
+Cada contrato público se describe primero mediante su capacidad SDD. Las pruebas de contrato verifican que el adaptador API/UI no altera el comportamiento definido por la base de datos. Cuando se acuerde la tecnología del backend, completar los diseños con rutas, entradas, salidas y errores concretos, sin modificar las reglas académicas.
