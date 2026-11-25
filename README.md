@@ -3,7 +3,7 @@
 
 <img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="620">
 
-# RutasVenezuela: trazabilidad del workflow de la rama
+*RutasVenezuela: trazabilidad del workflow de la rama*
 
 Registro de la consolidación documental para la segunda entrega. La presentación institucional del proyecto está en `develop` y `main`.
 
