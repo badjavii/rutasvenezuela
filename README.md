@@ -3,7 +3,7 @@
 
 <img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="620">
 
-# RutasVenezuela: trazabilidad del workflow de la rama
+*RutasVenezuela: trazabilidad del workflow de la rama*
 
 Vista de ejemplo para presentar el README de una rama de trabajo. No sustituye al README institucional.
 
