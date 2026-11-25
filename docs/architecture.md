@@ -66,7 +66,7 @@ Ver [contratos técnicos por capa](development/layer-contracts.md), [convencione
 ## Decisiones abiertas prioritarias
 
 1. Confirmar con la profesora que PL/pgSQL cuenta como PL/SQL y que la defensa puede hacerse con PostgreSQL local y pgAdmin.
-2. Definir con qué identificador inicia sesión cada actor: `CUENTA` solo tiene `idCuenta` y `contrasena`.
+2. Definir cómo encuentra el sistema la cuenta a partir del identificador que escribe el actor: está en su relación (cédula, RIF, registro del guía) y se enlaza con `CUENTA` por `CUENTA_<ACTOR>`.
 3. Definir cómo elige el rol una persona con varios roles (HU-08, criterio 3).
 4. Acordar despliegue reproducible desde una sola computadora y mecanismo de datos de prueba.
 5. Confirmar número de grupo/NRC para el correo obligatorio.

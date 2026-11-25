@@ -10,14 +10,7 @@ Describir el comportamiento verificable de reportes seguridad rutas: 1 historia 
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
-
-- RR-83 (VA-4): El estado es preliminar, activa, descartada, vencida o resuelta, y la severidad es bajo, medio o crítico.
-- RR-84 (VA-4): Toda incidencia tiene fila en AFECTA_HITO o en AFECTA_TRAMO, pero no en las dos.
-- RR-85 (VA-4): Si una incidencia afecta dos o más tramos, cada tramo afectado tiene una fila en CONECTA con otro tramo afectado por la misma incidencia.
-- RR-89 (VA-4): Una incidencia está resuelta si y solo si tiene fila en CIERRA. Tiene fecha de cierre si y solo si está resuelta.
-- RR-90 (VA-4): El funcionario que cierra pertenece a un ente con competencia sobre el municipio del hito afectado o de alguno de los tramos afectados.
-- RR-91 (VA-4): Una incidencia activa o vencida está activa si y solo si su fechaEstimadaResolucion, o la nuevaFecha de alguna fila de PRORROGA con su mismo numeroReporte, todavía no pasó. Si ya pasaron todas, está vencida. (Solo en lenguaje natural: necesita la fecha de hoy, que el lenguaje de restricciones del curso no define.)
+No tiene RR propias: el capítulo 7 de la primera entrega escribe cada RR sobre una relación, y esta capacidad no tiene tablas. Las RR de las tablas que consulta las implementan sus dueños.
 
 ## 4. Criterios de aceptación
 
@@ -58,5 +51,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Definir qué tablas de otras capacidades lee cada consulta o reporte.

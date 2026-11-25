@@ -13,16 +13,16 @@ Describir el comportamiento verificable de actores comercios: 4 historias de Val
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-47 (HU-30.1, HU-30.2, HU-30.3, HU-30.4): La cuenta de cada comercio es distinta de null y es clave alterna: una cuenta es de un solo comercio.
-- RR-48 (HU-30.1, HU-30.2, HU-30.3, HU-30.4): La ubicación de cada comercio es distinta de null.
-- RR-60 (HU-30.1, HU-30.2, HU-30.3, HU-30.4): La razón social es clave alterna: es distinta de null y no se repite.
-- RR-63 (HU-30.1, HU-30.2, HU-30.3, HU-30.4): Todo comercio tiene su cuenta.
-- RR-66 (HU-30.1, HU-30.2, HU-30.3, HU-30.4): Todo comercio tiene su ubicación.
-- RR-67 (HU-30.1, HU-30.2, HU-30.3, HU-30.4): Todo comercio tiene al menos un horario.
-- RR-119 (HU-30.1, HU-30.2, HU-30.3, HU-30.4): Dos horarios del mismo comercio y el mismo día no se cruzan.
-- RR-121 (HU-30.1, HU-30.2, HU-30.3, HU-30.4): La categoría es gastronómico, sanitario o alquiler de equipos, y el aforo es positivo.
+- RR-47 (CUENTA_COMERCIO, Valeria): La cuenta de cada comercio es distinta de null y es clave alterna: una cuenta es de un solo comercio.
+- RR-48 (UBICADO, Valeria): La ubicación de cada comercio es distinta de null.
+- RR-60 (COMERCIO, Valeria): La razón social es clave alterna: es distinta de null y no se repite.
+- RR-63 (COMERCIO, Valeria): Todo comercio tiene su cuenta.
+- RR-66 (COMERCIO, Valeria): Todo comercio tiene su ubicación.
+- RR-67 (COMERCIO, Valeria): Todo comercio tiene al menos un horario.
+- RR-119 (DISPONIBLE, Valeria): Dos horarios del mismo comercio y el mismo día no se cruzan.
+- RR-121 (COMERCIO, Valeria): La categoría es gastronómico, sanitario o alquiler de equipos, y el aforo es positivo.
 
 ## 4. Criterios de aceptación
 
@@ -95,7 +95,7 @@ Restricciones del relacional asociadas a las historias de esta capacidad, tomada
 - Capa de datos: PostgreSQL alojado en Supabase y usado solo como PostgreSQL (sin Supabase Auth, API automática ni RLS). Objetos en el esquema `rutasvzla`. Las reglas de negocio se implementan en el gestor con restricciones, triggers, funciones y procedimientos en PL/pgSQL, y el gestor autoriza cada operación con roles y `GRANT`/`REVOKE`.
 - Capa de aplicación: Next.js en el servidor (server actions y `server/db`). Abre la transacción, ejecuta `SET LOCAL ROLE` con el rol de la sesión y llama a la función o al procedimiento. No repite las reglas del gestor ni decide permisos por su cuenta.
 - Capa de presentación: Next.js (server components y client components). Muestra los datos y los errores que devuelve el gestor; sus validaciones son solo de experiencia de usuario.
-- Tablas propias: `comercio`, `ubicado`, `disponible`. Nombres físicos según las [convenciones de base de datos](../../../docs/development/database-conventions.md).
+- Tablas propias: `comercio`, `cuenta_comercio`, `ubicado`, `disponible`. Nombres físicos según las [convenciones de base de datos](../../../docs/development/database-conventions.md).
 - Claves foráneas hacia tablas de otras capacidades (se crean en `database/02_claves/`, después de todas las tablas):
   - `cuenta` (CUENTA), de `actores-identidades` (Valeria).
   - `ubicacion_geografica` (UBICACION_GEOGRAFICA), de `patrimonio-hitos` (Javier).
@@ -108,5 +108,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier los datos de prueba de las tablas referidas.

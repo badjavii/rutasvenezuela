@@ -5,7 +5,7 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 ## T-01. Capa de datos
 
 - [ ] Identificar las tablas de otras capacidades que se leen.
-- [ ] Escribir las pruebas SQL de RR-9, RR-10, RR-11, RR-19, RR-94, RR-95, RR-96, RR-97, RR-98, RR-99, RR-100 y confirmar RED.
+- [ ] Escribir las pruebas SQL de los criterios y confirmar RED.
 - [ ] Implementar en `database/03_reglas/evaluaciones-consulta.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_visitante` en `database/04_seguridad/evaluaciones-consulta.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/evaluaciones-consulta.sql`.

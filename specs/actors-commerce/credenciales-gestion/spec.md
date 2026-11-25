@@ -14,23 +14,23 @@ Describir el comportamiento verificable de credenciales gestion: 5 historias de 
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-55 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): El visitante que adquiere cada credencial es distinto de null.
-- RR-56 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): La experiencia que ampara cada credencial es distinta de null.
-- RR-57 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): El hito reservado es distinto de null.
-- RR-58 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): El comercio reservado es distinto de null.
-- RR-59 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): La cuenta que valida cada credencial es distinta de null.
-- RR-72 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): Toda credencial la adquirió un visitante.
-- RR-73 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): Toda credencial tiene la cuenta que la valida.
-- RR-127 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): El estado es emitido, canjeado, cancelado o vencido; el monto abonado no es negativo; hay al menos un beneficiario.
-- RR-128 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): Toda credencial tiene fila en RESERVA_HITO o en RESERVA_COMERCIO, exactamente en una.
-- RR-129 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): La cuenta que valida una credencial está en CUENTA_COMERCIO o en CUENTA_GUIA.
-- RR-130 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): Si una credencial reserva un comercio y la valida la cuenta de un comercio, esa cuenta es la del comercio reservado.
-- RR-131 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): Una credencial con estadoCredencial = 'emitido' no tiene su fechaHoraProgramada en el pasado. Si la fecha pasó sin canjearse, está vencida. (Solo en lenguaje natural: necesita la fecha de hoy, que el lenguaje de restricciones del curso no define.)
-- RR-132 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): Si una credencial tiene fila en RESERVA_COMERCIO, hay una fila de DISPONIBLE del mismo rifJuridico cuyo diaSemana es el día de la semana de fechaHoraProgramada y cuyo rango de horaApertura a horaCierre contiene su hora. Lo mismo con RESERVA_HITO y ABRE, salvo que el hito tenga libreAcceso verdadero. (Solo en lenguaje natural: necesita el día de la semana y la hora de una fecha, que el lenguaje de restricciones del curso no define.)
-- RR-133 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): Si una credencial se adquiere bajo una experiencia, el hito o el comercio que reserva está en INCLUYE o en INCLUYE_COMERCIO para esa experiencia.
-- RR-134 (HU-07, HU-23.1, HU-23.2, HU-23.3, HU-27): Si una credencial se adquiere bajo una experiencia, sus beneficiarios no superan el cupo de la experiencia y su fecha programada está entre la activación y el vencimiento de la experiencia.
+- RR-55 (ADQUIERE, Valeria): El visitante que adquiere cada credencial es distinto de null.
+- RR-56 (AMPARA, Valeria): La experiencia que ampara cada credencial es distinta de null.
+- RR-57 (RESERVA_HITO, Valeria): El hito reservado es distinto de null.
+- RR-58 (RESERVA_COMERCIO, Valeria): El comercio reservado es distinto de null.
+- RR-59 (VALIDA, Valeria): La cuenta que valida cada credencial es distinta de null.
+- RR-72 (CREDENCIAL_DIGITAL, Valeria): Toda credencial la adquirió un visitante.
+- RR-73 (CREDENCIAL_DIGITAL, Valeria): Toda credencial tiene la cuenta que la valida.
+- RR-127 (CREDENCIAL_DIGITAL, Valeria): El estado es emitido, canjeado, cancelado o vencido; el monto abonado no es negativo; hay al menos un beneficiario.
+- RR-128 (CREDENCIAL_DIGITAL, Valeria): Toda credencial tiene fila en RESERVA_HITO o en RESERVA_COMERCIO, exactamente en una.
+- RR-129 (VALIDA, Valeria): La cuenta que valida una credencial está en CUENTA_COMERCIO o en CUENTA_GUIA.
+- RR-130 (VALIDA, Valeria): Si una credencial reserva un comercio y la valida la cuenta de un comercio, esa cuenta es la del comercio reservado.
+- RR-131 (CREDENCIAL_DIGITAL, Valeria): Una credencial con estadoCredencial = 'emitido' no tiene su fechaHoraProgramada en el pasado. Si la fecha pasó sin canjearse, está vencida. (Solo en lenguaje natural: necesita la fecha de hoy, que el lenguaje de restricciones del curso no define.)
+- RR-132 (CREDENCIAL_DIGITAL, Valeria): Si una credencial tiene fila en RESERVA_COMERCIO, hay una fila de DISPONIBLE del mismo rifJuridico cuyo diaSemana es el día de la semana de fechaHoraProgramada y cuyo rango de horaApertura a horaCierre contiene su hora. Lo mismo con RESERVA_HITO y ABRE, salvo que el hito tenga libreAcceso verdadero. (Solo en lenguaje natural: necesita el día de la semana y la hora de una fecha, que el lenguaje de restricciones del curso no define.)
+- RR-133 (AMPARA, Valeria): Si una credencial se adquiere bajo una experiencia, el hito o el comercio que reserva está en INCLUYE o en INCLUYE_COMERCIO para esa experiencia.
+- RR-134 (AMPARA, Valeria): Si una credencial se adquiere bajo una experiencia, sus beneficiarios no superan el cupo de la experiencia y su fecha programada está entre la activación y el vencimiento de la experiencia.
 
 ## 4. Criterios de aceptación
 
@@ -133,5 +133,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier los datos de prueba de las tablas referidas.

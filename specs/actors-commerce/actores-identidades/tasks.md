@@ -4,9 +4,9 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 
 ## T-01. Capa de datos
 
-- [ ] Crear `cuenta`, `visitante`, `funcionario`, `pertenece_a`, `administrador` en `database/01_tablas/actores-identidades.sql`.
+- [ ] Crear `cuenta`, `visitante`, `cuenta_visitante`, `funcionario`, `cuenta_funcionario`, `pertenece_a`, `administrador`, `cuenta_administrador` en `database/01_tablas/actores-identidades.sql`.
 - [ ] Agregar sus claves foráneas en `database/02_claves/actores-identidades.sql`.
-- [ ] Escribir las pruebas SQL de RR-46, RR-47, RR-49, RR-50, RR-51, RR-61, RR-62, RR-63, RR-64, RR-65, RR-68, RR-120 y confirmar RED.
+- [ ] Escribir las pruebas SQL de RR-46, RR-49, RR-50, RR-51, RR-61, RR-62, RR-64, RR-65, RR-68, RR-120 y confirmar RED.
 - [ ] Implementar en `database/03_reglas/actores-identidades.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_visitante`, `rol_guia`, `rol_comercio`, `rol_ente`, `rol_funcionario`, `rol_administrador` en `database/04_seguridad/actores-identidades.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/actores-identidades.sql`.

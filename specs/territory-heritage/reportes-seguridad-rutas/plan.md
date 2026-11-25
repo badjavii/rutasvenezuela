@@ -4,6 +4,8 @@
 
 Implementar [la especificación](spec.md) (VA-4) sin añadir funcionalidades.
 
+Sprint según la matriz de trazabilidad de la primera entrega (cap. 8): S4: VA-4.
+
 ## 2. Estrategia general
 
 TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN → refactorización. Después la capa de aplicación, la capa de presentación y la regresión.
@@ -13,7 +15,7 @@ TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN
 ### Capa de datos (PostgreSQL en Supabase, esquema `rutasvzla`)
 
 - Sin tablas propias: funciones o vistas de solo lectura sobre tablas de otras capacidades.
-- Reglas RR-83, RR-84, RR-85, RR-89, RR-90, RR-91 en `database/03_reglas/reportes-seguridad-rutas.sql`: triggers, funciones y procedimientos en PL/pgSQL.
+- Reglas (ninguna asociada) en `database/03_reglas/reportes-seguridad-rutas.sql`: triggers, funciones y procedimientos en PL/pgSQL.
 - Privilegios en `database/04_seguridad/reportes-seguridad-rutas.sql`: `GRANT` sobre las rutinas a `rol_visitante`.
 - Datos de prueba en `database/05_datos/reportes-seguridad-rutas.sql`.
 

@@ -5,7 +5,7 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 ## T-01. Capa de datos
 
 - [ ] Identificar las tablas de otras capacidades que se leen.
-- [ ] Escribir las pruebas SQL de RR-5, RR-6, RR-7, RR-8, RR-18, RR-83, RR-84, RR-85, RR-86, RR-87, RR-88, RR-89, RR-90, RR-91, RR-92, RR-93 y confirmar RED.
+- [ ] Escribir las pruebas SQL de los criterios y confirmar RED.
 - [ ] Implementar en `database/03_reglas/reportes-conservacion.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_ente` en `database/04_seguridad/reportes-conservacion.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/reportes-conservacion.sql`.

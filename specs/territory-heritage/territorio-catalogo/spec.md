@@ -21,8 +21,7 @@ Describir el comportamiento verificable de territorio catalogo: 12 historias de 
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
-
+No tiene RR propias: el capítulo 7 de la primera entrega escribe cada RR sobre una relación, y esta capacidad no tiene tablas. Las RR de las tablas que consulta las implementan sus dueños.
 
 ## 4. Criterios de aceptación
 
@@ -172,4 +171,4 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.

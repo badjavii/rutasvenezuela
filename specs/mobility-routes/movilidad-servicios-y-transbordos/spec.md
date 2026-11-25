@@ -11,18 +11,7 @@ Describir el comportamiento verificable de movilidad servicios y transbordos: 2 
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
-
-- RR-20 (HU-05): La ubicación de cada parada es distinta de null.
-- RR-21 (HU-05): El tramo donde está cada parada es distinto de null.
-- RR-31 (HU-05): Toda parada tiene su ubicación.
-- RR-32 (HU-05): Toda parada está en un tramo.
-- RR-33 (HU-05): Toda parada tiene al menos un horario.
-- RR-34 (HU-04): Toda ruta tiene al menos dos hitos: el de origen y el de destino.
-- RR-45 (HU-04): Todo recorrido es sobre una ruta.
-- RR-101 (HU-05): Dos horarios de la misma parada y el mismo día no se cruzan.
-- RR-104 (HU-05): El estado es activa, en mantenimiento o fuera de servicio; la modalidad es metro, autobús, embarcadero o transporte por cable; la tarifa no es negativa; la frecuencia y el aforo son positivos.
-- RR-110 (HU-04): Toda parada de una ruta tiene un hito de la misma ruta antes y otro después.
+No tiene RR propias: el capítulo 7 de la primera entrega escribe cada RR sobre una relación, y esta capacidad no tiene tablas. Las RR de las tablas que consulta las implementan sus dueños.
 
 ## 4. Criterios de aceptación
 
@@ -90,5 +79,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Definir qué tablas de otras capacidades lee cada consulta o reporte.

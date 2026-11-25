@@ -10,16 +10,16 @@ Describir el comportamiento verificable de rutas recorridos: 1 historia de Sebas
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-27 (HU-21): El visitante de cada recorrido es distinto de null.
-- RR-28 (HU-21): La ruta de cada recorrido es distinta de null.
-- RR-44 (HU-21): Todo recorrido lo hace un visitante.
-- RR-45 (HU-21): Todo recorrido es sobre una ruta.
-- RR-112 (HU-21): Un recorrido es sobre una ruta fija, una ruta dinámica pública o una ruta dinámica que creó el mismo visitante que hace el recorrido.
-- RR-113 (HU-21): Un recorrido en curso no tiene ni fin ni estado; uno terminado tiene los dos. El estado es completado o abandonado, y el fin es posterior al inicio.
-- RR-114 (HU-21): Los hitos que transita un recorrido están en CONFORMA para la ruta de su fila en SOBRE, y cada paso ocurre entre el inicio y el fin del recorrido.
-- RR-115 (HU-21): Si un recorrido está completado, tiene fila en TRANSITA con cada hito de su ruta.
+- RR-27 (REALIZA, Sebastián): El visitante de cada recorrido es distinto de null.
+- RR-28 (SOBRE, Sebastián): La ruta de cada recorrido es distinta de null.
+- RR-44 (RECORRIDO, Sebastián): Todo recorrido lo hace un visitante.
+- RR-45 (RECORRIDO, Sebastián): Todo recorrido es sobre una ruta.
+- RR-112 (SOBRE, Sebastián): Un recorrido es sobre una ruta fija, una ruta dinámica pública o una ruta dinámica que creó el mismo visitante que hace el recorrido.
+- RR-113 (RECORRIDO, Sebastián): Un recorrido en curso no tiene ni fin ni estado; uno terminado tiene los dos. El estado es completado o abandonado, y el fin es posterior al inicio.
+- RR-114 (TRANSITA, Sebastián): Los hitos que transita un recorrido están en CONFORMA para la ruta de su fila en SOBRE, y cada paso ocurre entre el inicio y el fin del recorrido.
+- RR-115 (SOBRE, Sebastián): Si un recorrido está completado, tiene fila en TRANSITA con cada hito de su ruta.
 
 ## 4. Criterios de aceptación
 
@@ -72,5 +72,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier y Valeria los datos de prueba de las tablas referidas.

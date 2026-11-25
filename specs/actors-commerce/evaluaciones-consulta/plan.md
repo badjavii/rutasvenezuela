@@ -4,6 +4,8 @@
 
 Implementar [la especificación](spec.md) (HU-06) sin añadir funcionalidades.
 
+Sprint según la matriz de trazabilidad de la primera entrega (cap. 8): S3: HU-06.
+
 ## 2. Estrategia general
 
 TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN → refactorización. Después la capa de aplicación, la capa de presentación y la regresión.
@@ -13,7 +15,7 @@ TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN
 ### Capa de datos (PostgreSQL en Supabase, esquema `rutasvzla`)
 
 - Sin tablas propias: funciones o vistas de solo lectura sobre tablas de otras capacidades.
-- Reglas RR-9, RR-10, RR-11, RR-19, RR-94, RR-95, RR-96, RR-97, RR-98, RR-99, RR-100 en `database/03_reglas/evaluaciones-consulta.sql`: triggers, funciones y procedimientos en PL/pgSQL.
+- Reglas (ninguna asociada) en `database/03_reglas/evaluaciones-consulta.sql`: triggers, funciones y procedimientos en PL/pgSQL.
 - Privilegios en `database/04_seguridad/evaluaciones-consulta.sql`: `GRANT` sobre las rutinas a `rol_visitante`.
 - Datos de prueba en `database/05_datos/evaluaciones-consulta.sql`.
 

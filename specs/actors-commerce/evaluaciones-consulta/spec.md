@@ -10,19 +10,7 @@ Describir el comportamiento verificable de evaluaciones consulta: 1 historia de 
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
-
-- RR-9 (HU-06): El recorrido que respalda cada evaluación es distinto de null.
-- RR-10 (HU-06): El hito evaluado es distinto de null.
-- RR-11 (HU-06): La ruta evaluada es distinta de null.
-- RR-19 (HU-06): Toda evaluación la respalda un recorrido.
-- RR-94 (HU-06): La calificación y el índice de seguridad son enteros de 1 a 5.
-- RR-95 (HU-06): Toda evaluación tiene fila en EVALUA_HITO o en EVALUA_RUTA, exactamente en una.
-- RR-96 (HU-06): Si una evaluación es de una ruta, el recorrido que la respalda está completado y es sobre esa misma ruta.
-- RR-97 (HU-06): Si una evaluación es de un hito, el recorrido que la respalda ya terminó y tiene fila en TRANSITA con ese hito.
-- RR-98 (HU-06): La fecha de emisión de una evaluación no es anterior al fin del recorrido que la respalda.
-- RR-99 (HU-06): La marca recorridoVerificado es verdadera si y solo si el recorrido que respalda la evaluación está completado.
-- RR-100 (HU-06): Dos evaluaciones distintas de ruta no las respalda el mismo recorrido. Tampoco dos evaluaciones distintas del mismo hito.
+No tiene RR propias: el capítulo 7 de la primera entrega escribe cada RR sobre una relación, y esta capacidad no tiene tablas. Las RR de las tablas que consulta las implementan sus dueños.
 
 ## 4. Criterios de aceptación
 
@@ -59,5 +47,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Definir qué tablas de otras capacidades lee cada consulta o reporte.

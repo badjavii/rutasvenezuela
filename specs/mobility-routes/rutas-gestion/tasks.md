@@ -6,7 +6,7 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 
 - [ ] Crear `ruta_turistica`, `ruta_fija`, `ruta_dinamica`, `conforma`, `usa`, `crea` en `database/01_tablas/rutas-gestion.sql`.
 - [ ] Agregar sus claves foráneas en `database/02_claves/rutas-gestion.sql`.
-- [ ] Escribir las pruebas SQL de RR-22, RR-34, RR-35, RR-36, RR-106, RR-107, RR-108, RR-109, RR-110, RR-111, RR-112 y confirmar RED.
+- [ ] Escribir las pruebas SQL de RR-22, RR-34, RR-35, RR-36, RR-106, RR-107, RR-108, RR-109, RR-110, RR-111 y confirmar RED.
 - [ ] Implementar en `database/03_reglas/rutas-gestion.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_visitante`, `rol_administrador` en `database/04_seguridad/rutas-gestion.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/rutas-gestion.sql`.

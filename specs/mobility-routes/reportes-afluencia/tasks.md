@@ -5,7 +5,7 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 ## T-01. Capa de datos
 
 - [ ] Identificar las tablas de otras capacidades que se leen.
-- [ ] Escribir las pruebas SQL de RR-44, RR-45, RR-113, RR-114, RR-115 y confirmar RED.
+- [ ] Escribir las pruebas SQL de los criterios y confirmar RED.
 - [ ] Implementar en `database/03_reglas/reportes-afluencia.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_ente`, `rol_funcionario` en `database/04_seguridad/reportes-afluencia.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/reportes-afluencia.sql`.

@@ -18,19 +18,18 @@ Describir el comportamiento verificable de rutas gestion: 9 historias de Sebasti
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-22 (HU-25.1, HU-25.2, HU-25.3, HU-25.4): El visitante que crea cada ruta dinámica es distinto de null.
-- RR-34 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4): Toda ruta tiene al menos dos hitos: el de origen y el de destino.
-- RR-35 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): Toda ruta es fija o dinámica, exactamente una de las dos.
-- RR-36 (HU-03, HU-25.1, HU-25.2, HU-25.3, HU-25.4): Toda ruta dinámica la creó un visitante.
-- RR-106 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): La duración estimada, si la hay, es positiva. La visibilidad de una ruta dinámica es privada o pública, y su preferencia de transporte es a pie, bicicleta, transporte público o vehículo adaptado.
-- RR-107 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): Toda ruta fija tiene en RUTA_TURISTICA su duración estimada, su mejor horario de inicio y su nivel de dificultad.
-- RR-108 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): Dentro de una ruta, dos filas de CONFORMA o de USA nunca comparten número de orden, y todo orden es positivo.
-- RR-109 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): La secuencia de una ruta empieza en 1 con un hito y no deja huecos: toda fila con orden mayor que 1 tiene otra de la misma ruta con el orden anterior.
-- RR-110 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): Toda parada de una ruta tiene un hito de la misma ruta antes y otro después.
-- RR-111 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): El hito de orden 1 de una ruta, que es su origen, está en el municipio de la ruta.
-- RR-112 (HU-25.1, HU-25.2, HU-25.3, HU-25.4): Un recorrido es sobre una ruta fija, una ruta dinámica pública o una ruta dinámica que creó el mismo visitante que hace el recorrido.
+- RR-22 (CREA, Sebastián): El visitante que crea cada ruta dinámica es distinto de null.
+- RR-34 (RUTA_TURISTICA, Sebastián): Toda ruta tiene al menos dos hitos: el de origen y el de destino.
+- RR-35 (RUTA_TURISTICA, Sebastián): Toda ruta es fija o dinámica, exactamente una de las dos.
+- RR-36 (RUTA_DINAMICA, Sebastián): Toda ruta dinámica la creó un visitante.
+- RR-106 (RUTA_TURISTICA, Sebastián): La duración estimada, si la hay, es positiva. La visibilidad de una ruta dinámica es privada o pública, y su preferencia de transporte es a pie, bicicleta, transporte público o vehículo adaptado.
+- RR-107 (RUTA_FIJA, Sebastián): Toda ruta fija tiene en RUTA_TURISTICA su duración estimada, su mejor horario de inicio y su nivel de dificultad.
+- RR-108 (CONFORMA, Sebastián): Dentro de una ruta, dos filas de CONFORMA o de USA nunca comparten número de orden, y todo orden es positivo.
+- RR-109 (RUTA_TURISTICA, Sebastián): La secuencia de una ruta empieza en 1 con un hito y no deja huecos: toda fila con orden mayor que 1 tiene otra de la misma ruta con el orden anterior.
+- RR-110 (USA, Sebastián): Toda parada de una ruta tiene un hito de la misma ruta antes y otro después.
+- RR-111 (CONFORMA, Sebastián): El hito de orden 1 de una ruta, que es su origen, está en el municipio de la ruta.
 
 ## 4. Criterios de aceptación
 
@@ -212,5 +211,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier y Valeria los datos de prueba de las tablas referidas.

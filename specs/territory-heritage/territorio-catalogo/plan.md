@@ -4,6 +4,8 @@
 
 Implementar [la especificación](spec.md) (HU-12.1, HU-12.2, HU-12.3, HU-12.4, HU-33.1, HU-33.2, HU-33.3, HU-33.4, HU-34.1, HU-34.2, HU-34.3, HU-34.4) sin añadir funcionalidades.
 
+Sprint según la matriz de trazabilidad de la primera entrega (cap. 8): S1: HU-12.1, HU-12.2, HU-12.3, HU-12.4, HU-33.1, HU-33.2, HU-33.3, HU-33.4, HU-34.1, HU-34.2, HU-34.3, HU-34.4.
+
 ## 2. Estrategia general
 
 TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN → refactorización. Después la capa de aplicación, la capa de presentación y la regresión.

@@ -17,12 +17,12 @@ Describir el comportamiento verificable de movilidad vias y tramos: 8 historias 
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-29 (HU-15.1, HU-15.2, HU-15.3, HU-15.4, HU-35.1, HU-35.2, HU-35.3, HU-35.4): Toda vía tiene al menos un tramo.
-- RR-30 (HU-15.1, HU-15.2, HU-15.3, HU-15.4): Toda vía tiene al menos un modo permitido.
-- RR-102 (HU-15.1, HU-15.2, HU-15.3, HU-15.4): El tipo de vía es calle, avenida, bulevar, caminería, sendero, puente u otro, y su estado es habilitada o cierre total por mantenimiento. Cada modo permitido es a pie, bicicleta, transporte público o vehículo adaptado.
-- RR-103 (HU-35.1, HU-35.2, HU-35.3, HU-35.4): Un tramo no se conecta consigo mismo.
+- RR-29 (VIA, Sebastián): Toda vía tiene al menos un tramo.
+- RR-30 (VIA, Sebastián): Toda vía tiene al menos un modo permitido.
+- RR-102 (VIA, Sebastián): El tipo de vía es calle, avenida, bulevar, caminería, sendero, puente u otro, y su estado es habilitada o cierre total por mantenimiento. Cada modo permitido es a pie, bicicleta, transporte público o vehículo adaptado.
+- RR-103 (CONECTA, Sebastián): Un tramo no se conecta consigo mismo.
 
 ## 4. Criterios de aceptación
 
@@ -150,5 +150,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier los datos de prueba de las tablas referidas.

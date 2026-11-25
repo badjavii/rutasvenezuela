@@ -4,7 +4,7 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 
 ## T-01. Capa de datos
 
-- [ ] Crear `guia`, `guia_idioma`, `guia_especialidad`, `trabaja`, `sirve`, `contratacion`, `contrata_visitante`, `contrata_guia`, `contrata_ruta` en `database/01_tablas/guias-contrataciones.sql`.
+- [ ] Crear `guia`, `cuenta_guia`, `guia_idioma`, `guia_especialidad`, `trabaja`, `sirve`, `contratacion`, `contrata_visitante`, `contrata_guia`, `contrata_ruta` en `database/01_tablas/guias-contrataciones.sql`.
 - [ ] Agregar sus claves foráneas en `database/02_claves/guias-contrataciones.sql`.
 - [ ] Escribir las pruebas SQL de RR-23, RR-24, RR-25, RR-26, RR-37, RR-38, RR-39, RR-40, RR-41, RR-42, RR-43, RR-116, RR-117, RR-118 y confirmar RED.
 - [ ] Implementar en `database/03_reglas/guias-contrataciones.sql` hasta GREEN y refactorizar.

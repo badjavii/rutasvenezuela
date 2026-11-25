@@ -4,6 +4,8 @@
 
 Implementar [la especificación](spec.md) (RP-2) sin añadir funcionalidades.
 
+Sprint según la matriz de trazabilidad de la primera entrega (cap. 8): S4: RP-2.
+
 ## 2. Estrategia general
 
 TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN → refactorización. Después la capa de aplicación, la capa de presentación y la regresión.
@@ -13,7 +15,7 @@ TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN
 ### Capa de datos (PostgreSQL en Supabase, esquema `rutasvzla`)
 
 - Sin tablas propias: funciones o vistas de solo lectura sobre tablas de otras capacidades.
-- Reglas RR-52, RR-53, RR-54, RR-55, RR-56, RR-57, RR-58, RR-59, RR-69, RR-70, RR-71, RR-72, RR-73, RR-119, RR-122, RR-123, RR-124, RR-125, RR-126, RR-127, RR-128, RR-129, RR-130, RR-131, RR-132, RR-133, RR-134 en `database/03_reglas/reportes-promociones.sql`: triggers, funciones y procedimientos en PL/pgSQL.
+- Reglas (ninguna asociada) en `database/03_reglas/reportes-promociones.sql`: triggers, funciones y procedimientos en PL/pgSQL.
 - Privilegios en `database/04_seguridad/reportes-promociones.sql`: `GRANT` sobre las rutinas a `rol_guia`, `rol_comercio`.
 - Datos de prueba en `database/05_datos/reportes-promociones.sql`.
 

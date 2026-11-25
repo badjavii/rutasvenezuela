@@ -15,22 +15,22 @@ Describir el comportamiento verificable de guias contrataciones: 6 historias de 
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-23 (HU-29.1, HU-29.2, HU-29.3, HU-29.4): La cuenta de cada guía es distinta de null y es clave alterna: una cuenta es de un solo guía.
-- RR-24 (VA-3): El visitante de cada contratación es distinto de null.
-- RR-25 (VA-3): El guía de cada contratación es distinto de null.
-- RR-26 (VA-3): La ruta de cada contratación es distinta de null.
-- RR-37 (HU-29.1, HU-29.2, HU-29.3, HU-29.4): Todo guía tiene su cuenta.
-- RR-38 (HU-29.1, HU-29.2, HU-29.3, HU-29.4): Todo guía habla al menos un idioma.
-- RR-39 (HU-29.1, HU-29.2, HU-29.3, HU-29.4): Todo guía tiene al menos una especialidad.
-- RR-40 (HU-29.1, HU-29.2, HU-29.3, HU-29.4, HU-28): Todo guía tiene al menos una zona asignada.
-- RR-41 (VA-3): Toda contratación la hace un visitante.
-- RR-42 (VA-3): Toda contratación es de un guía.
-- RR-43 (VA-3): Toda contratación es para una ruta fija.
-- RR-116 (HU-29.1, HU-29.2, HU-29.3, HU-29.4): Los años de trayectoria no son negativos y la tarifa horaria es positiva.
-- RR-117 (HU-29.1, HU-29.2, HU-29.3, HU-29.4, HU-28, VA-3): Un guía adscrito a una ruta fija tiene fila en TRABAJA con el municipio de esa ruta.
-- RR-118 (HU-29.1, HU-29.2, HU-29.3, HU-29.4, HU-28, VA-3): El guía de una contratación tiene fila en SIRVE con la ruta de esa contratación.
+- RR-23 (CUENTA_GUIA, Sebastián): La cuenta de cada guía es distinta de null y es clave alterna: una cuenta es de un solo guía.
+- RR-24 (CONTRATA_VISITANTE, Sebastián): El visitante de cada contratación es distinto de null.
+- RR-25 (CONTRATA_GUIA, Sebastián): El guía de cada contratación es distinto de null.
+- RR-26 (CONTRATA_RUTA, Sebastián): La ruta de cada contratación es distinta de null.
+- RR-37 (GUIA, Sebastián): Todo guía tiene su cuenta.
+- RR-38 (GUIA, Sebastián): Todo guía habla al menos un idioma.
+- RR-39 (GUIA, Sebastián): Todo guía tiene al menos una especialidad.
+- RR-40 (GUIA, Sebastián): Todo guía tiene al menos una zona asignada.
+- RR-41 (CONTRATACION, Sebastián): Toda contratación la hace un visitante.
+- RR-42 (CONTRATACION, Sebastián): Toda contratación es de un guía.
+- RR-43 (CONTRATACION, Sebastián): Toda contratación es para una ruta fija.
+- RR-116 (GUIA, Sebastián): Los años de trayectoria no son negativos y la tarifa horaria es positiva.
+- RR-117 (SIRVE, Sebastián): Un guía adscrito a una ruta fija tiene fila en TRABAJA con el municipio de esa ruta.
+- RR-118 (CONTRATACION, Sebastián): El guía de una contratación tiene fila en SIRVE con la ruta de esa contratación.
 
 ## 4. Criterios de aceptación
 
@@ -125,7 +125,7 @@ Restricciones del relacional asociadas a las historias de esta capacidad, tomada
 - Capa de datos: PostgreSQL alojado en Supabase y usado solo como PostgreSQL (sin Supabase Auth, API automática ni RLS). Objetos en el esquema `rutasvzla`. Las reglas de negocio se implementan en el gestor con restricciones, triggers, funciones y procedimientos en PL/pgSQL, y el gestor autoriza cada operación con roles y `GRANT`/`REVOKE`.
 - Capa de aplicación: Next.js en el servidor (server actions y `server/db`). Abre la transacción, ejecuta `SET LOCAL ROLE` con el rol de la sesión y llama a la función o al procedimiento. No repite las reglas del gestor ni decide permisos por su cuenta.
 - Capa de presentación: Next.js (server components y client components). Muestra los datos y los errores que devuelve el gestor; sus validaciones son solo de experiencia de usuario.
-- Tablas propias: `guia`, `guia_idioma`, `guia_especialidad`, `trabaja`, `sirve`, `contratacion`, `contrata_visitante`, `contrata_guia`, `contrata_ruta`. Nombres físicos según las [convenciones de base de datos](../../../docs/development/database-conventions.md).
+- Tablas propias: `guia`, `cuenta_guia`, `guia_idioma`, `guia_especialidad`, `trabaja`, `sirve`, `contratacion`, `contrata_visitante`, `contrata_guia`, `contrata_ruta`. Nombres físicos según las [convenciones de base de datos](../../../docs/development/database-conventions.md).
 - Claves foráneas hacia tablas de otras capacidades (se crean en `database/02_claves/`, después de todas las tablas):
   - `cuenta` (CUENTA), de `actores-identidades` (Valeria).
   - `municipio` (MUNICIPIO), de `territorio-catalogo` (Javier).
@@ -139,5 +139,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier y Valeria los datos de prueba de las tablas referidas.

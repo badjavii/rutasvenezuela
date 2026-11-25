@@ -4,6 +4,8 @@
 
 Implementar [la especificación](spec.md) (RP-3) sin añadir funcionalidades.
 
+Sprint según la matriz de trazabilidad de la primera entrega (cap. 8): S4: RP-3.
+
 ## 2. Estrategia general
 
 TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN → refactorización. Después la capa de aplicación, la capa de presentación y la regresión.
@@ -13,7 +15,7 @@ TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN
 ### Capa de datos (PostgreSQL en Supabase, esquema `rutasvzla`)
 
 - Sin tablas propias: funciones o vistas de solo lectura sobre tablas de otras capacidades.
-- Reglas RR-44, RR-45, RR-113, RR-114, RR-115 en `database/03_reglas/reportes-afluencia.sql`: triggers, funciones y procedimientos en PL/pgSQL.
+- Reglas (ninguna asociada) en `database/03_reglas/reportes-afluencia.sql`: triggers, funciones y procedimientos en PL/pgSQL.
 - Privilegios en `database/04_seguridad/reportes-afluencia.sql`: `GRANT` sobre las rutinas a `rol_ente`, `rol_funcionario`.
 - Datos de prueba en `database/05_datos/reportes-afluencia.sql`.
 

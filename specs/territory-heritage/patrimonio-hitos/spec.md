@@ -18,18 +18,18 @@ Describir el comportamiento verificable de patrimonio hitos: 9 historias de Javi
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-1 (HU-01, HU-10.1, HU-10.2, HU-10.3, HU-10.4): La ubicación de cada hito registrado es distinta de null.
-- RR-2 (HU-01, HU-10.1, HU-10.2, HU-10.3, HU-10.4): El tramo sobre el que está un hito es distinto de null.
-- RR-13 (HU-01, HU-10.1, HU-10.2, HU-10.3, HU-10.4, HU-11.1, HU-11.2, HU-11.3, HU-11.4): Todo hito tiene al menos una categoría.
-- RR-14 (HU-01, HU-10.1, HU-10.2, HU-10.3, HU-10.4): Todo hito tiene su ubicación.
-- RR-74 (HU-01, HU-10.1, HU-10.2, HU-10.3, HU-10.4): El estado operativo de todo hito es disponible, en restauración, clausurado temporalmente o cerrado permanentemente.
-- RR-75 (HU-01, HU-10.1, HU-10.2, HU-10.3, HU-10.4): Un hito tiene al menos una fila en ABRE si y solo si no es de libre acceso.
-- RR-76 (HU-01, HU-10.1, HU-10.2, HU-10.3, HU-10.4): En todo horario, el día es un día de la semana y la hora de cierre es posterior a la de apertura.
-- RR-77 (HU-01, HU-10.1, HU-10.2, HU-10.3, HU-10.4): Dos horarios del mismo hito y el mismo día no se cruzan.
-- RR-78 (HU-01, HU-10.1, HU-10.2, HU-10.3, HU-10.4): Toda latitud está entre −90 y 90 y toda longitud entre −180 y 180.
-- RR-79 (HU-01, HU-10.1, HU-10.2, HU-10.3, HU-10.4): El tramo sobre el que está un hito es de su mismo municipio.
+- RR-1 (REGISTRA, Javier): La ubicación de cada hito registrado es distinta de null.
+- RR-2 (SE_UBICA_EN, Javier): El tramo sobre el que está un hito es distinto de null.
+- RR-13 (HITO, Javier): Todo hito tiene al menos una categoría.
+- RR-14 (HITO, Javier): Todo hito tiene su ubicación.
+- RR-74 (HITO, Javier): El estado operativo de todo hito es disponible, en restauración, clausurado temporalmente o cerrado permanentemente.
+- RR-75 (HITO, Javier): Un hito tiene al menos una fila en ABRE si y solo si no es de libre acceso.
+- RR-76 (HORARIO, Javier): En todo horario, el día es un día de la semana y la hora de cierre es posterior a la de apertura.
+- RR-77 (ABRE, Javier): Dos horarios del mismo hito y el mismo día no se cruzan.
+- RR-78 (UBICACION_GEOGRAFICA, Javier): Toda latitud está entre −90 y 90 y toda longitud entre −180 y 180.
+- RR-79 (SE_UBICA_EN, Javier): El tramo sobre el que está un hito es de su mismo municipio.
 
 ## 4. Criterios de aceptación
 
@@ -189,5 +189,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Sebastián los datos de prueba de las tablas referidas.

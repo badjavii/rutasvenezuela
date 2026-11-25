@@ -6,7 +6,7 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 
 - [ ] Crear `punto_geoespacial`, `punto_hipervinculo`, `recurso_3d`, `proyecta` en `database/01_tablas/patrimonio-anclajes-3d.sql`.
 - [ ] Agregar sus claves foráneas en `database/02_claves/patrimonio-anclajes-3d.sql`.
-- [ ] Escribir las pruebas SQL de RR-3, RR-15, RR-78, RR-80, RR-81 y confirmar RED.
+- [ ] Escribir las pruebas SQL de RR-3, RR-15, RR-80, RR-81 y confirmar RED.
 - [ ] Implementar en `database/03_reglas/patrimonio-anclajes-3d.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_visitante`, `rol_administrador` en `database/04_seguridad/patrimonio-anclajes-3d.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/patrimonio-anclajes-3d.sql`.

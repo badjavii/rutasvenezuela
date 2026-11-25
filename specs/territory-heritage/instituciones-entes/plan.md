@@ -4,6 +4,8 @@
 
 Implementar [la especificación](spec.md) (HU-31.1, HU-31.2, HU-31.3, HU-31.4) sin añadir funcionalidades.
 
+Sprint según la matriz de trazabilidad de la primera entrega (cap. 8): S1: HU-31.1, HU-31.2, HU-31.3, HU-31.4.
+
 ## 2. Estrategia general
 
 TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN → refactorización. Después la capa de aplicación, la capa de presentación y la regresión.
@@ -12,7 +14,7 @@ TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN
 
 ### Capa de datos (PostgreSQL en Supabase, esquema `rutasvzla`)
 
-- Tablas propias: `ente_publico`, `competencia` en `database/01_tablas/instituciones-entes.sql` (clave primaria, `NOT NULL`, `UNIQUE` y `CHECK` simples).
+- Tablas propias: `ente_publico`, `cuenta_ente_publico`, `competencia` en `database/01_tablas/instituciones-entes.sql` (clave primaria, `NOT NULL`, `UNIQUE` y `CHECK` simples).
 - Claves foráneas en `database/02_claves/instituciones-entes.sql`.
 - Reglas RR-4, RR-12, RR-16, RR-17, RR-82 en `database/03_reglas/instituciones-entes.sql`: triggers, funciones y procedimientos en PL/pgSQL.
 - Privilegios en `database/04_seguridad/instituciones-entes.sql`: `GRANT` sobre las rutinas a `rol_administrador`.

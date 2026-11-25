@@ -4,7 +4,7 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 
 ## T-01. Capa de datos
 
-- [ ] Crear `ente_publico`, `competencia` en `database/01_tablas/instituciones-entes.sql`.
+- [ ] Crear `ente_publico`, `cuenta_ente_publico`, `competencia` en `database/01_tablas/instituciones-entes.sql`.
 - [ ] Agregar sus claves foráneas en `database/02_claves/instituciones-entes.sql`.
 - [ ] Escribir las pruebas SQL de RR-4, RR-12, RR-16, RR-17, RR-82 y confirmar RED.
 - [ ] Implementar en `database/03_reglas/instituciones-entes.sql` hasta GREEN y refactorizar.

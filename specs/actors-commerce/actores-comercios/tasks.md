@@ -4,7 +4,7 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 
 ## T-01. Capa de datos
 
-- [ ] Crear `comercio`, `ubicado`, `disponible` en `database/01_tablas/actores-comercios.sql`.
+- [ ] Crear `comercio`, `cuenta_comercio`, `ubicado`, `disponible` en `database/01_tablas/actores-comercios.sql`.
 - [ ] Agregar sus claves foráneas en `database/02_claves/actores-comercios.sql`.
 - [ ] Escribir las pruebas SQL de RR-47, RR-48, RR-60, RR-63, RR-66, RR-67, RR-119, RR-121 y confirmar RED.
 - [ ] Implementar en `database/03_reglas/actores-comercios.sql` hasta GREEN y refactorizar.

@@ -10,13 +10,7 @@ Describir el comportamiento verificable de reportes afluencia: 1 historia de Seb
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
-
-- RR-44 (RP-3): Todo recorrido lo hace un visitante.
-- RR-45 (RP-3): Todo recorrido es sobre una ruta.
-- RR-113 (RP-3): Un recorrido en curso no tiene ni fin ni estado; uno terminado tiene los dos. El estado es completado o abandonado, y el fin es posterior al inicio.
-- RR-114 (RP-3): Los hitos que transita un recorrido están en CONFORMA para la ruta de su fila en SOBRE, y cada paso ocurre entre el inicio y el fin del recorrido.
-- RR-115 (RP-3): Si un recorrido está completado, tiene fila en TRANSITA con cada hito de su ruta.
+No tiene RR propias: el capítulo 7 de la primera entrega escribe cada RR sobre una relación, y esta capacidad no tiene tablas. Las RR de las tablas que consulta las implementan sus dueños.
 
 ## 4. Criterios de aceptación
 
@@ -61,5 +55,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Definir qué tablas de otras capacidades lee cada consulta o reporte.

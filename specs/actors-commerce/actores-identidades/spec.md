@@ -18,20 +18,18 @@ Describir el comportamiento verificable de actores identidades: 9 historias de V
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-46 (HU-09.1, HU-09.2, HU-09.3, HU-09.4, HU-08): La cuenta de cada visitante es distinta de null y es clave alterna: una cuenta es de un solo visitante.
-- RR-47 (HU-08): La cuenta de cada comercio es distinta de null y es clave alterna: una cuenta es de un solo comercio.
-- RR-49 (HU-26.1, HU-26.2, HU-26.3, HU-26.4, HU-08): La cuenta de cada funcionario es distinta de null y es clave alterna: una cuenta es de un solo funcionario.
-- RR-50 (HU-26.1, HU-26.2, HU-26.3, HU-26.4): El ente al que pertenece cada funcionario es distinto de null.
-- RR-51 (HU-08): La cuenta de cada administrador es distinta de null y es clave alterna: una cuenta es de un solo administrador.
-- RR-61 (HU-09.1, HU-09.2, HU-09.3, HU-09.4, HU-08): Cada cuenta es de exactamente un actor: está en al menos una de las seis relaciones CUENTA_<ACTOR> y nunca en dos a la vez.
-- RR-62 (HU-09.1, HU-09.2, HU-09.3, HU-09.4, HU-08): Todo visitante tiene su cuenta.
-- RR-63 (HU-08): Todo comercio tiene su cuenta.
-- RR-64 (HU-26.1, HU-26.2, HU-26.3, HU-26.4, HU-08): Todo funcionario tiene su cuenta.
-- RR-65 (HU-08): Todo administrador tiene su cuenta.
-- RR-68 (HU-26.1, HU-26.2, HU-26.3, HU-26.4): Todo funcionario pertenece a un ente.
-- RR-120 (HU-09.1, HU-09.2, HU-09.3, HU-09.4): El grupo sanguíneo es uno de los ocho grupos ABO con su factor Rh.
+- RR-46 (CUENTA_VISITANTE, Valeria): La cuenta de cada visitante es distinta de null y es clave alterna: una cuenta es de un solo visitante.
+- RR-49 (CUENTA_FUNCIONARIO, Valeria): La cuenta de cada funcionario es distinta de null y es clave alterna: una cuenta es de un solo funcionario.
+- RR-50 (PERTENECE_A, Valeria): El ente al que pertenece cada funcionario es distinto de null.
+- RR-51 (CUENTA_ADMINISTRADOR, Valeria): La cuenta de cada administrador es distinta de null y es clave alterna: una cuenta es de un solo administrador.
+- RR-61 (CUENTA, Valeria): Cada cuenta es de exactamente un actor: está en al menos una de las seis relaciones CUENTA_<ACTOR> y nunca en dos a la vez.
+- RR-62 (VISITANTE, Valeria): Todo visitante tiene su cuenta.
+- RR-64 (FUNCIONARIO, Valeria): Todo funcionario tiene su cuenta.
+- RR-65 (ADMINISTRADOR, Valeria): Todo administrador tiene su cuenta.
+- RR-68 (FUNCIONARIO, Valeria): Todo funcionario pertenece a un ente.
+- RR-120 (VISITANTE, Valeria): El grupo sanguíneo es uno de los ocho grupos ABO con su factor Rh.
 
 ## 4. Criterios de aceptación
 
@@ -147,7 +145,7 @@ Restricciones del relacional asociadas a las historias de esta capacidad, tomada
 - Capa de datos: PostgreSQL alojado en Supabase y usado solo como PostgreSQL (sin Supabase Auth, API automática ni RLS). Objetos en el esquema `rutasvzla`. Las reglas de negocio se implementan en el gestor con restricciones, triggers, funciones y procedimientos en PL/pgSQL, y el gestor autoriza cada operación con roles y `GRANT`/`REVOKE`.
 - Capa de aplicación: Next.js en el servidor (server actions y `server/db`). Abre la transacción, ejecuta `SET LOCAL ROLE` con el rol de la sesión y llama a la función o al procedimiento. No repite las reglas del gestor ni decide permisos por su cuenta.
 - Capa de presentación: Next.js (server components y client components). Muestra los datos y los errores que devuelve el gestor; sus validaciones son solo de experiencia de usuario.
-- Tablas propias: `cuenta`, `visitante`, `funcionario`, `pertenece_a`, `administrador`. Nombres físicos según las [convenciones de base de datos](../../../docs/development/database-conventions.md).
+- Tablas propias: `cuenta`, `visitante`, `cuenta_visitante`, `funcionario`, `cuenta_funcionario`, `pertenece_a`, `administrador`, `cuenta_administrador`. Nombres físicos según las [convenciones de base de datos](../../../docs/development/database-conventions.md).
 - Claves foráneas hacia tablas de otras capacidades (se crean en `database/02_claves/`, después de todas las tablas):
   - `ente_publico` (ENTE_PUBLICO), de `instituciones-entes` (Javier).
 - Roles que actúan: `rol_visitante`, `rol_guia`, `rol_comercio`, `rol_ente`, `rol_funcionario`, `rol_administrador`.
@@ -158,7 +156,7 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier los datos de prueba de las tablas referidas.
-- ¿Con qué identificador inicia sesión cada actor? `CUENTA` solo guarda `idCuenta` y `contrasena`; HU-08 habla de cédula, pasaporte, RIF o registro del guía según el actor.
+- Inicio de sesión: `CUENTA` guarda `idCuenta` y `contrasena`, y el identificador de cada actor (cédula o pasaporte, RIF, registro del guía) está en su relación, enlazada por `CUENTA_<ACTOR>`. Falta decidir cómo sabe el sistema en qué relación buscar el identificador que escribe el actor (HU-08, criterio 1).
 - Persona con varios roles (HU-08, criterio 3): cómo elige el rol de la interacción al iniciar sesión.

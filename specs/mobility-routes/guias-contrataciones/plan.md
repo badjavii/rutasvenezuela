@@ -4,6 +4,8 @@
 
 Implementar [la especificación](spec.md) (HU-29.1, HU-29.2, HU-29.3, HU-29.4, HU-28, VA-3) sin añadir funcionalidades.
 
+Sprint según la matriz de trazabilidad de la primera entrega (cap. 8): S1: HU-29.1, HU-29.2, HU-29.3, HU-29.4; S3: HU-28; S4: VA-3.
+
 ## 2. Estrategia general
 
 TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN → refactorización. Después la capa de aplicación, la capa de presentación y la regresión.
@@ -12,7 +14,7 @@ TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN
 
 ### Capa de datos (PostgreSQL en Supabase, esquema `rutasvzla`)
 
-- Tablas propias: `guia`, `guia_idioma`, `guia_especialidad`, `trabaja`, `sirve`, `contratacion`, `contrata_visitante`, `contrata_guia`, `contrata_ruta` en `database/01_tablas/guias-contrataciones.sql` (clave primaria, `NOT NULL`, `UNIQUE` y `CHECK` simples).
+- Tablas propias: `guia`, `cuenta_guia`, `guia_idioma`, `guia_especialidad`, `trabaja`, `sirve`, `contratacion`, `contrata_visitante`, `contrata_guia`, `contrata_ruta` en `database/01_tablas/guias-contrataciones.sql` (clave primaria, `NOT NULL`, `UNIQUE` y `CHECK` simples).
 - Claves foráneas en `database/02_claves/guias-contrataciones.sql`.
 - Reglas RR-23, RR-24, RR-25, RR-26, RR-37, RR-38, RR-39, RR-40, RR-41, RR-42, RR-43, RR-116, RR-117, RR-118 en `database/03_reglas/guias-contrataciones.sql`: triggers, funciones y procedimientos en PL/pgSQL.
 - Privilegios en `database/04_seguridad/guias-contrataciones.sql`: `GRANT` sobre las rutinas a `rol_visitante`, `rol_administrador`.

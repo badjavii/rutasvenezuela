@@ -14,19 +14,19 @@ Describir el comportamiento verificable de promociones experiencias: 5 historias
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-52 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): El comercio que promueve cada experiencia es distinto de null.
-- RR-53 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): El guía que dirige cada experiencia es distinto de null.
-- RR-54 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): La ruta de cada experiencia es distinta de null.
-- RR-69 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): Toda experiencia la promueve un comercio.
-- RR-70 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): Toda experiencia la dirige un guía.
-- RR-71 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): Toda experiencia transcurre sobre una ruta.
-- RR-122 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): La fecha de vencimiento es posterior a la de activación y el cupo máximo es de al menos una persona.
-- RR-123 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): El precio total es positivo y el descuento está entre 0 y 100.
-- RR-124 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): Toda experiencia tiene al menos una fila en INCLUYE o en INCLUYE_COMERCIO.
-- RR-125 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): Todo hito que incluye una experiencia está en CONFORMA para la ruta de su fila en TRANSCURRE.
-- RR-126 (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4): Una experiencia transcurre sobre una ruta fija o sobre una ruta dinámica pública.
+- RR-52 (PROMUEVE, Valeria): El comercio que promueve cada experiencia es distinto de null.
+- RR-53 (DIRIGE, Valeria): El guía que dirige cada experiencia es distinto de null.
+- RR-54 (TRANSCURRE, Valeria): La ruta de cada experiencia es distinta de null.
+- RR-69 (EXPERIENCIA_TURISTICA, Valeria): Toda experiencia la promueve un comercio.
+- RR-70 (EXPERIENCIA_TURISTICA, Valeria): Toda experiencia la dirige un guía.
+- RR-71 (EXPERIENCIA_TURISTICA, Valeria): Toda experiencia transcurre sobre una ruta.
+- RR-122 (EXPERIENCIA_TURISTICA, Valeria): La fecha de vencimiento es posterior a la de activación y el cupo máximo es de al menos una persona.
+- RR-123 (EXPERIENCIA_TURISTICA, Valeria): El precio total es positivo y el descuento está entre 0 y 100.
+- RR-124 (EXPERIENCIA_TURISTICA, Valeria): Toda experiencia tiene al menos una fila en INCLUYE o en INCLUYE_COMERCIO.
+- RR-125 (INCLUYE, Valeria): Todo hito que incluye una experiencia está en CONFORMA para la ruta de su fila en TRANSCURRE.
+- RR-126 (TRANSCURRE, Valeria): Una experiencia transcurre sobre una ruta fija o sobre una ruta dinámica pública.
 
 ## 4. Criterios de aceptación
 
@@ -132,5 +132,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier y Sebastián los datos de prueba de las tablas referidas.

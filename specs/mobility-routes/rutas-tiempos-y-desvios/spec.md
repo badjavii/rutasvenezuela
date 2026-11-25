@@ -11,19 +11,7 @@ Describir el comportamiento verificable de rutas tiempos y desvios: 2 historias 
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
-
-- RR-83 (VA-2): El estado es preliminar, activa, descartada, vencida o resuelta, y la severidad es bajo, medio o crítico.
-- RR-84 (VA-2): Toda incidencia tiene fila en AFECTA_HITO o en AFECTA_TRAMO, pero no en las dos.
-- RR-85 (VA-2): Si una incidencia afecta dos o más tramos, cada tramo afectado tiene una fila en CONECTA con otro tramo afectado por la misma incidencia.
-- RR-102 (VA-2): El tipo de vía es calle, avenida, bulevar, caminería, sendero, puente u otro, y su estado es habilitada o cierre total por mantenimiento. Cada modo permitido es a pie, bicicleta, transporte público o vehículo adaptado.
-- RR-103 (VA-2): Un tramo no se conecta consigo mismo.
-- RR-106 (VA-1): La duración estimada, si la hay, es positiva. La visibilidad de una ruta dinámica es privada o pública, y su preferencia de transporte es a pie, bicicleta, transporte público o vehículo adaptado.
-- RR-110 (VA-2): Toda parada de una ruta tiene un hito de la misma ruta antes y otro después.
-- RR-112 (VA-1): Un recorrido es sobre una ruta fija, una ruta dinámica pública o una ruta dinámica que creó el mismo visitante que hace el recorrido.
-- RR-113 (VA-1, VA-2): Un recorrido en curso no tiene ni fin ni estado; uno terminado tiene los dos. El estado es completado o abandonado, y el fin es posterior al inicio.
-- RR-114 (VA-1): Los hitos que transita un recorrido están en CONFORMA para la ruta de su fila en SOBRE, y cada paso ocurre entre el inicio y el fin del recorrido.
-- RR-115 (VA-1): Si un recorrido está completado, tiene fila en TRANSITA con cada hito de su ruta.
+No tiene RR propias: el capítulo 7 de la primera entrega escribe cada RR sobre una relación, y esta capacidad no tiene tablas. Las RR de las tablas que consulta las implementan sus dueños.
 
 ## 4. Criterios de aceptación
 
@@ -79,5 +67,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Definir qué tablas de otras capacidades lee cada consulta o reporte.

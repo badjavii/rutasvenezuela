@@ -13,24 +13,24 @@ Describir el comportamiento verificable de incidencias gestion: 4 historias de J
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-5 (HU-19): La cuenta que genera cada incidencia es distinta de null.
-- RR-6 (HU-19): El hito afectado es distinto de null.
-- RR-7 (HU-20): El funcionario que verifica es distinto de null.
-- RR-8 (HU-37): El funcionario que cierra es distinto de null.
-- RR-18 (HU-19): Toda incidencia la generó una cuenta.
-- RR-83 (HU-19): El estado es preliminar, activa, descartada, vencida o resuelta, y la severidad es bajo, medio o crítico.
-- RR-84 (HU-19): Toda incidencia tiene fila en AFECTA_HITO o en AFECTA_TRAMO, pero no en las dos.
-- RR-85 (HU-19): Si una incidencia afecta dos o más tramos, cada tramo afectado tiene una fila en CONECTA con otro tramo afectado por la misma incidencia.
-- RR-86 (HU-19, HU-20): La cuenta que genera una incidencia está en CUENTA_VISITANTE, CUENTA_GUIA o CUENTA_FUNCIONARIO.
-- RR-87 (HU-19, HU-20): Una incidencia preliminar la generó la cuenta de un visitante o de un guía, y no tiene fila en VERIFICA ni en CIERRA.
-- RR-88 (HU-19, HU-20): Si la generó un visitante o un guía y ya no está preliminar, tiene fila en VERIFICA. Si la generó un funcionario, no la tiene. Toda incidencia descartada tiene fila en VERIFICA.
-- RR-89 (HU-37): Una incidencia está resuelta si y solo si tiene fila en CIERRA. Tiene fecha de cierre si y solo si está resuelta.
-- RR-90 (HU-37): El funcionario que cierra pertenece a un ente con competencia sobre el municipio del hito afectado o de alguno de los tramos afectados.
-- RR-91 (HU-36, HU-37): Una incidencia activa o vencida está activa si y solo si su fechaEstimadaResolucion, o la nuevaFecha de alguna fila de PRORROGA con su mismo numeroReporte, todavía no pasó. Si ya pasaron todas, está vencida. (Solo en lenguaje natural: necesita la fecha de hoy, que el lenguaje de restricciones del curso no define.)
-- RR-92 (HU-36, HU-37): La nuevaFecha de toda prórroga es posterior a la fecha estimada de resolución de su incidencia, y esa incidencia no está preliminar ni descartada.
-- RR-93 (HU-19, HU-36, HU-37): La fecha estimada de resolución y la fecha de cierre no son anteriores a la fecha de detección.
+- RR-5 (GENERA, Javier): La cuenta que genera cada incidencia es distinta de null.
+- RR-6 (AFECTA_HITO, Javier): El hito afectado es distinto de null.
+- RR-7 (VERIFICA, Javier): El funcionario que verifica es distinto de null.
+- RR-8 (CIERRA, Javier): El funcionario que cierra es distinto de null.
+- RR-18 (INCIDENCIA, Javier): Toda incidencia la generó una cuenta.
+- RR-83 (INCIDENCIA, Javier): El estado es preliminar, activa, descartada, vencida o resuelta, y la severidad es bajo, medio o crítico.
+- RR-84 (INCIDENCIA, Javier): Toda incidencia tiene fila en AFECTA_HITO o en AFECTA_TRAMO, pero no en las dos.
+- RR-85 (AFECTA_TRAMO, Javier): Si una incidencia afecta dos o más tramos, cada tramo afectado tiene una fila en CONECTA con otro tramo afectado por la misma incidencia.
+- RR-86 (GENERA, Javier): La cuenta que genera una incidencia está en CUENTA_VISITANTE, CUENTA_GUIA o CUENTA_FUNCIONARIO.
+- RR-87 (INCIDENCIA, Javier): Una incidencia preliminar la generó la cuenta de un visitante o de un guía, y no tiene fila en VERIFICA ni en CIERRA.
+- RR-88 (GENERA, Javier): Si la generó un visitante o un guía y ya no está preliminar, tiene fila en VERIFICA. Si la generó un funcionario, no la tiene. Toda incidencia descartada tiene fila en VERIFICA.
+- RR-89 (INCIDENCIA, Javier): Una incidencia está resuelta si y solo si tiene fila en CIERRA. Tiene fecha de cierre si y solo si está resuelta.
+- RR-90 (CIERRA, Javier): El funcionario que cierra pertenece a un ente con competencia sobre el municipio del hito afectado o de alguno de los tramos afectados.
+- RR-91 (INCIDENCIA, Javier): Una incidencia activa o vencida está activa si y solo si su fechaEstimadaResolucion, o la nuevaFecha de alguna fila de PRORROGA con su mismo numeroReporte, todavía no pasó. Si ya pasaron todas, está vencida. (Solo en lenguaje natural: necesita la fecha de hoy, que el lenguaje de restricciones del curso no define.)
+- RR-92 (PRORROGA, Javier): La nuevaFecha de toda prórroga es posterior a la fecha estimada de resolución de su incidencia, y esa incidencia no está preliminar ni descartada.
+- RR-93 (INCIDENCIA, Javier): La fecha estimada de resolución y la fecha de cierre no son anteriores a la fecha de detección.
 
 ## 4. Criterios de aceptación
 
@@ -137,5 +137,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Sebastián y Valeria los datos de prueba de las tablas referidas.

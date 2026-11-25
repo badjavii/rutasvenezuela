@@ -5,7 +5,7 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 ## T-01. Capa de datos
 
 - [ ] Identificar las tablas de otras capacidades que se leen.
-- [ ] Escribir las pruebas SQL de RR-20, RR-21, RR-31, RR-32, RR-33, RR-34, RR-45, RR-101, RR-104, RR-110 y confirmar RED.
+- [ ] Escribir las pruebas SQL de los criterios y confirmar RED.
 - [ ] Implementar en `database/03_reglas/movilidad-servicios-y-transbordos.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_visitante` en `database/04_seguridad/movilidad-servicios-y-transbordos.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/movilidad-servicios-y-transbordos.sql`.

@@ -18,13 +18,12 @@ Describir el comportamiento verificable de patrimonio anclajes 3d: 9 historias d
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-3 (HU-02, HU-13.1, HU-13.2, HU-13.3, HU-13.4, HU-14.1, HU-14.2, HU-14.3, HU-14.4): El recurso 3D que proyecta cada punto es distinto de null.
-- RR-15 (HU-02, HU-13.1, HU-13.2, HU-13.3, HU-13.4, HU-14.1, HU-14.2, HU-14.3, HU-14.4): Todo punto de anclaje proyecta un recurso 3D.
-- RR-78 (HU-02, HU-13.1, HU-13.2, HU-13.3, HU-13.4): Toda latitud está entre −90 y 90 y toda longitud entre −180 y 180.
-- RR-80 (HU-02, HU-13.1, HU-13.2, HU-13.3, HU-13.4): El radio de activación y la escala son positivos, la altitud respecto al suelo no es negativa, el azimut y la rotación están en [0, 360) y la inclinación en [−90, 90].
-- RR-81 (HU-02, HU-14.1, HU-14.2, HU-14.3, HU-14.4): Todo recurso 3D tiene un tamaño positivo.
+- RR-3 (PROYECTA, Javier): El recurso 3D que proyecta cada punto es distinto de null.
+- RR-15 (PUNTO_GEOESPACIAL, Javier): Todo punto de anclaje proyecta un recurso 3D.
+- RR-80 (PUNTO_GEOESPACIAL, Javier): El radio de activación y la escala son positivos, la altitud respecto al suelo no es negativa, el azimut y la rotación están en [0, 360) y la inclinación en [−90, 90].
+- RR-81 (RECURSO_3D, Javier): Todo recurso 3D tiene un tamaño positivo.
 
 ## 4. Criterios de aceptación
 
@@ -179,4 +178,4 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.

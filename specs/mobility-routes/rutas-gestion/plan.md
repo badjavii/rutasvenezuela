@@ -4,6 +4,8 @@
 
 Implementar [la especificación](spec.md) (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4) sin añadir funcionalidades.
 
+Sprint según la matriz de trazabilidad de la primera entrega (cap. 8): S2: HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4; S3: HU-25.1, HU-25.2, HU-25.3, HU-25.4.
+
 ## 2. Estrategia general
 
 TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN → refactorización. Después la capa de aplicación, la capa de presentación y la regresión.
@@ -14,7 +16,7 @@ TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN
 
 - Tablas propias: `ruta_turistica`, `ruta_fija`, `ruta_dinamica`, `conforma`, `usa`, `crea` en `database/01_tablas/rutas-gestion.sql` (clave primaria, `NOT NULL`, `UNIQUE` y `CHECK` simples).
 - Claves foráneas en `database/02_claves/rutas-gestion.sql`.
-- Reglas RR-22, RR-34, RR-35, RR-36, RR-106, RR-107, RR-108, RR-109, RR-110, RR-111, RR-112 en `database/03_reglas/rutas-gestion.sql`: triggers, funciones y procedimientos en PL/pgSQL.
+- Reglas RR-22, RR-34, RR-35, RR-36, RR-106, RR-107, RR-108, RR-109, RR-110, RR-111 en `database/03_reglas/rutas-gestion.sql`: triggers, funciones y procedimientos en PL/pgSQL.
 - Privilegios en `database/04_seguridad/rutas-gestion.sql`: `GRANT` sobre las rutinas a `rol_visitante`, `rol_administrador`.
 - Datos de prueba en `database/05_datos/rutas-gestion.sql`.
 

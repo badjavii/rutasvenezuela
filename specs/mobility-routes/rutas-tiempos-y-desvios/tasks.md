@@ -5,7 +5,7 @@ El estado de implementación se registra solo aquí. No existen pruebas ejecutad
 ## T-01. Capa de datos
 
 - [ ] Identificar las tablas de otras capacidades que se leen.
-- [ ] Escribir las pruebas SQL de RR-83, RR-84, RR-85, RR-102, RR-103, RR-106, RR-110, RR-112, RR-113, RR-114, RR-115 y confirmar RED.
+- [ ] Escribir las pruebas SQL de los criterios y confirmar RED.
 - [ ] Implementar en `database/03_reglas/rutas-tiempos-y-desvios.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_visitante`, `rol_guia` en `database/04_seguridad/rutas-tiempos-y-desvios.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/rutas-tiempos-y-desvios.sql`.

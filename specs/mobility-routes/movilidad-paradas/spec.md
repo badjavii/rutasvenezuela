@@ -13,16 +13,16 @@ Describir el comportamiento verificable de movilidad paradas: 4 historias de Seb
 
 ## 3. Reglas de negocio
 
-Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
 
-- RR-20 (HU-16.1, HU-16.2, HU-16.3, HU-16.4): La ubicación de cada parada es distinta de null.
-- RR-21 (HU-16.1, HU-16.2, HU-16.3, HU-16.4): El tramo donde está cada parada es distinto de null.
-- RR-31 (HU-16.1, HU-16.2, HU-16.3, HU-16.4): Toda parada tiene su ubicación.
-- RR-32 (HU-16.1, HU-16.2, HU-16.3, HU-16.4): Toda parada está en un tramo.
-- RR-33 (HU-16.1, HU-16.2, HU-16.3, HU-16.4): Toda parada tiene al menos un horario.
-- RR-101 (HU-16.1, HU-16.2, HU-16.3, HU-16.4): Dos horarios de la misma parada y el mismo día no se cruzan.
-- RR-104 (HU-16.1, HU-16.2, HU-16.3, HU-16.4): El estado es activa, en mantenimiento o fuera de servicio; la modalidad es metro, autobús, embarcadero o transporte por cable; la tarifa no es negativa; la frecuencia y el aforo son positivos.
-- RR-105 (HU-16.1, HU-16.2, HU-16.3, HU-16.4): El equipamiento es techo o marquesina, iluminación nocturna, taquilla, vigilancia, estacionamiento de transferencia o resguardo de bicicletas.
+- RR-20 (SE_LOCALIZA, Sebastián): La ubicación de cada parada es distinta de null.
+- RR-21 (ESTA_EN, Sebastián): El tramo donde está cada parada es distinto de null.
+- RR-31 (PARADA_TRANSPORTE, Sebastián): Toda parada tiene su ubicación.
+- RR-32 (PARADA_TRANSPORTE, Sebastián): Toda parada está en un tramo.
+- RR-33 (PARADA_TRANSPORTE, Sebastián): Toda parada tiene al menos un horario.
+- RR-101 (FUNCIONA, Sebastián): Dos horarios de la misma parada y el mismo día no se cruzan.
+- RR-104 (PARADA_TRANSPORTE, Sebastián): El estado es activa, en mantenimiento o fuera de servicio; la modalidad es metro, autobús, embarcadero o transporte por cable; la tarifa no es negativa; la frecuencia y el aforo son positivos.
+- RR-105 (EQUIPAMIENTO_URBANO, Sebastián): El equipamiento es techo o marquesina, iluminación nocturna, taquilla, vigilancia, estacionamiento de transferencia o resguardo de bicicletas.
 
 ## 4. Criterios de aceptación
 
@@ -117,5 +117,5 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 ## 7. Decisiones abiertas
 
-- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier los datos de prueba de las tablas referidas.
