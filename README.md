@@ -22,7 +22,7 @@ El núcleo es una base de datos PostgreSQL transaccional (OLTP), desplegada medi
 
 ## Seguridad
 
-El diseño contempla roles de actor en PostgreSQL, transacciones con `SET LOCAL ROLE` y contexto de identidad por cuenta. Las rutinas verificarán propiedad y competencia además de los privilegios del rol. El navegador no accede al gestor. El contrato transversal de seguridad y sus casos TDD se encuentran en revisión; esta descripción no implica que la autenticación o autorización por registro esté implementada.
+El diseño contempla roles de actor en PostgreSQL, transacciones con `SET LOCAL ROLE` y contexto de identidad por cuenta. Las rutinas verificarán propiedad y competencia además de los privilegios del rol. El navegador no accede al gestor. El [contrato transversal de seguridad (PR #7)](https://github.com/badjavii/rutasvenezuela/pull/7) y sus 23 casos TDD se encuentran en revisión; esta descripción no implica que la autenticación o autorización por registro esté implementada. Las [convenciones TypeScript (PR #8)](https://github.com/badjavii/rutasvenezuela/pull/8) se revisan por separado.
 
 ## Organización del repositorio
 
@@ -67,7 +67,7 @@ Las especificaciones se mantienen en [specs/README.md](specs/README.md) y se bas
 
 Las ramas individuales se proponen y revisan mediante pull requests hacia `develop`. La rama `main` se reserva para versiones estables; su promoción exige revisión, validación y un Git tag de versión. Las ramas de trabajo se conservan.
 
-Consulta [Git workflow](docs/development/git-workflow.md) para convenciones de ramas, commits, PR, revisiones, integración y versionado.
+Consulta [Git workflow](docs/development/git-workflow.md) para convenciones de ramas, commits, PR, revisiones, integración y versionado. El [registro de ramas](docs/project/branch-ledger.csv) conserva el responsable, estado y PR asociado.
 
 ## Integración continua
 
