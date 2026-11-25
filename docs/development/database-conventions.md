@@ -7,10 +7,10 @@ Cómo se pasa el modelo relacional de la primera entrega a tablas físicas de Po
 Todos los objetos del proyecto van en el esquema `rutasvzla`, no en `public`. Cada script empieza con:
 
 ```sql
-SET search_path TO rutasvzla, public;
+SET search_path TO rutasvzla, public, extensions;
 ```
 
-`public` queda solo para extensiones como `pgcrypto`.
+`public` y `extensions` quedan solo para extensiones como `pgcrypto`: en un PostgreSQL local está en `public` y en Supabase en `extensions`. Un esquema que no existe en el `search_path` se ignora, así que la misma línea sirve en los dos.
 
 ## Nombres
 
@@ -43,9 +43,31 @@ Cada restricción que implementa una RR lleva un comentario con su código (`-- 
 
 ## Tipos
 
-- Coordenadas (latitud, longitud, elevación, altitud): `NUMERIC`, sin tipos espaciales (HU-02, criterio 3).
-- Contraseñas: se guarda el hash de `crypt(…, gen_salt('bf'))` de `pgcrypto`, nunca el texto.
-- El resto de los tipos y dominios los fija el dueño de cada tabla según los dominios del ERE de la primera entrega.
+**Propuesta, pendiente de aprobación de los tres.** El PDF de la primera entrega fija los atributos de cada relación, pero casi nunca su tipo. Para que las claves foráneas entre capacidades coincidan, todos usan esta tabla.
+
+**Regla principal:** una columna que es clave foránea tiene exactamente el tipo de la columna que referencia, aunque el modelo la renombre (`estado_hito`, `tramo_origen`, `municipio_ruta`…).
+
+| Atributos del relacional | Tipo |
+|---|---|
+| Nombres que forman claves o se referencian: `nombreEstado`, `nombreMunicipio`, `nombreParroquia`, `nombreHito`, `nombreVia`, `nombreRuta`, `nombreParada`, `nombreEvento`, `denominacion`, `tipoEquipamiento` | `VARCHAR(100)` |
+| Otros nombres y textos cortos: `nombres`, `apellidos`, `nombreFuncionario`, `razonSocial`, `funcionarioEnlace`, `titulo`, `cargo`, `especialidad`, `paisOrigen`, `idioma`, `idiomaNativo`, `acreditacion`, `decretoAdscripcion`, `permisoSanitario`, `accesibilidad`, `condicionTerreno`, `version`, `formato` | `VARCHAR(100)` |
+| Textos largos: `descripcion`, `narrativaEvento`, `opinionTextual`, `justificacion`, `hipervinculo`, `rutaAlmacenamiento` | `TEXT` |
+| Identificadores que escribe el actor y códigos: `cedulaPasaporte`, `cedulaFuncionario`, `cedulaAdmin`, `rifInstitucional`, `rifJuridico`, `rtn`, `codigoLicencia`, `codigoTerminal`, `codigoCredencial`, `codigoPromocional`, `codigoResena`, `cuentaBancaria`, `telefonoEmergencia` | `VARCHAR(30)` |
+| `correo` | `VARCHAR(254)` |
+| Claves que genera el sistema: `idCuenta`, `idRecorrido`, `idRecurso`, `numeroReporte`, `nroContratacion` | `INTEGER GENERATED ALWAYS AS IDENTITY` en la tabla que las crea; `INTEGER` donde se referencian |
+| `contrasena` | `TEXT` (hash de `crypt(…, gen_salt('bf'))`, nunca el texto) |
+| Listas cerradas: `estadoOperativo`, `estadoVia`, `estadoParada`, `estadoRecorrido`, `estadoCredencial`, `tipoVia`, `modo`, `modalidad`, `nivelTerritorial`, `nivelSeveridad`, `nivelDificultad`, `nivelAdecuacion`, `categoriaComercial`, `visibilidad`, `preferenciaTransporte`, `grupoSanguineo`, `diaSemana` | `VARCHAR(30)` + `CHECK (… IN (…))` con su `-- RR-n`, sin `ENUM`, para que la regla se lea igual que en el capítulo 7 |
+| Fechas: `fechaActivacion`, `fechaCierre`, `fechaContratacion`, `fechaEmision`, `fechaEstimadaResolucion`, `fechaInicio`, `fechaVencimiento`, `nuevaFecha` | `DATE` |
+| Fecha y hora: `fechaHoraDeteccion`, `fechaHoraInicio`, `fechaHoraFin`, `fechaHoraPaso`, `fechaHoraProgramada` | `TIMESTAMP` (hora de Venezuela: `app_rv` trabaja en `America/Caracas`) |
+| Horas: `horaApertura`, `horaCierre`, `mejorHorarioInicio` | `TIME` |
+| Duraciones: `duracionEstimada`, `frecuenciaPaso` | `INTEGER` (minutos) |
+| Montos: `costo`, `precioTotal`, `montoAbonado`, `tarifaBasica`, `tarifaHoraria` | `NUMERIC(12,2)` |
+| Coordenadas: `latitud`, `longitud` | `NUMERIC(9,6)`, sin tipos espaciales (HU-02, criterio 3) |
+| Medidas: `elevacion`, `altitudRespectoSuelo`, `alturaDentroEstructura`, `radioActivacion`, `escalaVisualizacion`, `azimut`, `rotacion`, `inclinacion`, `tamanoMB`, `porcentajeDescuento` | `NUMERIC(10,2)` |
+| Cantidades: `numeroTramo`, `orden`, `calificacion`, `indiceSeguridad`, `aforo`, `aforoMaximo`, `cupoMaximo`, `cantidadBeneficiarios`, `aniosTrayectoria` | `INTEGER` |
+| Sí/no: `libreAcceso`, `recorridoVerificado`, `tieneDesnivel`, `tieneEscalinata` | `BOOLEAN` |
+
+Si un atributo no aparece aquí, se agrega a la tabla en el mismo PR que lo usa.
 
 ## Scripts y orden de construcción
 
@@ -53,7 +75,7 @@ Un archivo por capacidad en cada carpeta, con el mismo nombre de la capacidad (p
 
 | Orden | Carpeta | Contenido |
 |---|---|---|
-| 0 | `database/00_esquema.sql` | Extensiones, esquema `rutasvzla` y roles base (`rv_owner`, `app_rv`, roles de actor) |
+| 0 | `database/00_esquema.sql` | Extensiones, esquema `rutasvzla` y roles base (`rv_owner`, `app_rv`, roles de actor). Es común y no crea tablas |
 | 1 | `database/01_tablas/` | `CREATE TABLE` con clave primaria, `NOT NULL`, `UNIQUE` y `CHECK` simples, sin claves foráneas |
 | 2 | `database/02_claves/` | `ALTER TABLE … ADD CONSTRAINT … FOREIGN KEY` |
 | 3 | `database/03_reglas/` | Triggers, funciones y procedimientos en PL/pgSQL |
@@ -61,7 +83,7 @@ Un archivo por capacidad en cada carpeta, con el mismo nombre de la capacidad (p
 | 5 | `database/05_datos/` | Datos de prueba |
 | — | `database/tests/` | Pruebas SQL, cada una dentro de `BEGIN … ROLLBACK` |
 
-Un script `database/build.sql` ejecuta todo en ese orden con `\ir` de `psql`. Las claves foráneas van después de todas las tablas para que el orden de creación no importe y para romper los ciclos entre capacidades (por ejemplo `instituciones-entes` ↔ `actores-identidades`). La clave foránea la escribe el dueño de la tabla que referencia, en su propio archivo de `02_claves/`.
+`database/build.sql` ejecuta todo en ese orden con `\ir` de `psql`, en una sola transacción y como `rv_owner`. Ya lista el archivo de cada capacidad con tablas, así que nadie tiene que editarlo para la fase 1. `database/test.sql` corre las pruebas de `database/tests/`. Las claves foráneas van después de todas las tablas para que el orden de creación no importe y para romper los ciclos entre capacidades (por ejemplo `instituciones-entes` ↔ `actores-identidades`). La clave foránea la escribe el dueño de la tabla que referencia, en su propio archivo de `02_claves/`.
 
 ## Ejecución
 

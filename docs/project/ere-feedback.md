@@ -21,7 +21,7 @@ La evidencia aportada es una página escaneada del ERE con anotaciones manuscrit
 
 ## Acciones acordadas
 
-1. No modificar `database/schema.sql` durante esta fase de planificación.
+1. No modificar `database/schema.sql` durante esta fase de planificación. Cumplida: al empezar la fase 1, el archivo vacío se reemplazó por `database/00_esquema.sql` y `database/build.sql`.
 2. No reemplazar claves naturales/compuestas por UUID, ni añadir tablas puente o generalizaciones nuevas por iniciativa del agente.
 3. Definir especificaciones observables sobre el esquema relacional aprobado y derivar primero pruebas SQL de PK/FK, integridad y transacciones.
 4. Conservar las observaciones conceptuales como antecedentes para la defensa, no como bloqueos de implementación.
