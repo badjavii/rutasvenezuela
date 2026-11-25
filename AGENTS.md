@@ -15,7 +15,8 @@ RutasVenezuela es el proyecto del Equipo 2 de Sistemas de Bases de Datos (UCAB).
 
 - Se usan `specs/<dominio>/<capacidad>/spec.md`, `plan.md` y `tasks.md`. No se requiere OpenSpec.
 - El modelo relacional de la primera entrega se conserva. PostgreSQL/Supabase contiene las reglas de negocio, triggers, procedimientos, funciones y restricciones.
-- FastAPI y React son el stack de referencia provisional, no una decisión definitiva.
+- Arquitectura adoptada: Next.js para las capas de presentación y aplicación, y PostgreSQL en Supabase (solo como PostgreSQL) para la capa de datos. La autorización la hace el gestor con roles; no hay una API aparte. Ver [arquitectura](docs/architecture.md).
+- Los objetos de la base de datos van en el esquema `rutasvzla`, con los nombres del modelo relacional en snake_case; ver [convenciones](docs/development/database-conventions.md).
 - No inventar HU, RR, campos, endpoints, tablas ni supuestos; consultar los documentos originales antes de implementar.
 - Antes de escribir código, revisar la especificación y crear pruebas: RED, GREEN, refactorización y regresión.
 - `tasks.md` registra el progreso; `specs/memory.md` reúne decisiones y siguiente trabajo.

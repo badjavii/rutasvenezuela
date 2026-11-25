@@ -7,7 +7,7 @@ Explicar en español qué se modifica y por qué.
 - Integrante:
 - Módulo:
 - Capa:
-- Especificación OpenSpec:
+- Especificación SDD:
 - Requisitos relacionados (ver matriz):
 
 ## Cambios

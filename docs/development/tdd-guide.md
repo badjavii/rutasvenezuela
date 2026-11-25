@@ -4,7 +4,7 @@
 
 ## Separación SDD y TDD
 
-- SDD por plantillas determina comportamientos obligatorios y escenarios. No se fija un framework de aplicación definitivo.
+- SDD por plantillas determina comportamientos obligatorios y escenarios. La arquitectura es Next.js + PostgreSQL ([arquitectura](../architecture.md)).
 - TDD transforma los criterios de aceptación y las invariantes de SQL en comprobaciones observables. Las fuentes se identifican mediante el [mapa académico](../requirements/traceability-detailed.csv).
 - **Implementación posterior:** RED (probar y fallar), GREEN (mínimo código correcto), REFACTOR (mejora sin perder cobertura).
 
@@ -33,11 +33,11 @@ Los 674 casos de planificación no equivalen a 674 pruebas ejecutadas. Antes de 
 | Capa | Herramientas | Qué demuestra |
 |---|---|---|
 | PostgreSQL/Supabase | SQL reproducible y transacciones reversibles; pgTAP por evaluar | PK, FK, claves compuestas, CHECK, UNIQUE, relaciones, invariantes, triggers, funciones, procedimientos, privilegios y rollback |
-| API | `pytest` + `httpx` si se confirma FastAPI | Validaciones, permisos, manejo de errores del gestor y contratos HTTP |
-| Interfaz | Vitest + Testing Library si se confirma React | Formularios, estados, listas vacías, filtros, paginación y orden |
-| E2E | Playwright, si aporta valor | UI → API → rutina SQL → persistencia/rechazo → UI |
+| Aplicación (server actions) | Vitest contra una base de prueba | `SET LOCAL ROLE`, llamada a la rutina, rechazo de un rol sin privilegio y manejo de errores del gestor |
+| Presentación | Vitest + Testing Library | Formularios, estados, listas vacías, filtros, paginación y orden |
+| E2E | Playwright, si aporta valor | Interfaz → server action → rutina SQL → persistencia/rechazo → interfaz |
 
-Si se adopta Node.js, cambiar la herramienta de pruebas de API y los adaptadores; no cambiar las reglas PostgreSQL ni la semántica de las especificaciones.
+La prioridad es la capa de datos: las reglas y los permisos se prueban primero en PostgreSQL.
 
 ## Diseño de datos y ejecución
 
@@ -45,7 +45,7 @@ Si se adopta Node.js, cambiar la herramienta de pruebas de API y los adaptadores
 - Escribir casos positivos y negativos: la BD debe rechazar operaciones inválidas, aunque se eludan los validadores web.
 - Para cada función o trigger comprobar valores resultantes, efectos colaterales y rollback.
 - Para operaciones con estados (incidencias, recorridos, credenciales), comprobar transiciones permitidas y prohibidas.
-- Probar privilegios efectivos con roles de prueba y sin `service_role` en el frontend.
+- Probar privilegios efectivos con los roles de actor (`SET ROLE rol_…`) y comprobar que un rol sin `GRANT` recibe el rechazo del gestor.
 - Las consultas y reportes deberán verificar filtros, exclusión de datos privados y resultados vacíos.
 - Las vistas tabulares deben demostrar paginación, búsqueda y ordenamiento por columnas sobre datos reales.
 
@@ -58,7 +58,7 @@ A partir del comportamiento original:
 - Solo hito o tramos como objeto afectado (exclusividad).
 - Verificación, prórroga y cierre deben respetar roles, fechas y competencias.
 
-**TDD:** primero probar en PostgreSQL el rechazo de una incidencia que afecta simultáneamente un hito y un tramo; después implementar la restricción necesaria. Luego cubrir el comportamiento API/UI. No inventar UUID, categorías de incidencia ni notificaciones.
+**TDD:** primero probar en PostgreSQL el rechazo de una incidencia que afecta simultáneamente un hito y un tramo; después implementar la restricción necesaria. Luego cubrir la server action y la interfaz. No inventar UUID, categorías de incidencia ni notificaciones.
 
 ## Evidencia de finalización
 

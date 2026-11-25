@@ -2,7 +2,7 @@
 
 ## 1. Objetivo
 
-Documentar el comportamiento verificable de promociones experiencias a partir del informe académico.
+Describir el comportamiento verificable de promociones experiencias: 5 historias de Valeria Loreto (HU-32, HU-18.1, HU-18.2, HU-18.3, HU-18.4), conforme a la primera entrega.
 
 ## 2. Requisitos funcionales
 
@@ -14,101 +14,123 @@ Documentar el comportamiento verificable de promociones experiencias a partir de
 
 ## 3. Reglas de negocio
 
-Consultar [RR](../../../docs/requirements/relational-rules.md) y [trazabilidad](../../../docs/requirements/traceability-detailed.csv). No se incorporan nuevas reglas por inferencia.
+RR del capítulo 7 de la primera entrega escritas sobre las tablas de esta capacidad (la relación del ∀ exterior), con su autor. La fórmula completa está en el informe y el texto en el [catálogo RR](../../../docs/requirements/relational-rules.md). No se modifican las restricciones del modelo relacional validado.
+
+- RR-52 (PROMUEVE, Valeria): El comercio que promueve cada experiencia es distinto de null.
+- RR-53 (DIRIGE, Valeria): El guía que dirige cada experiencia es distinto de null.
+- RR-54 (TRANSCURRE, Valeria): La ruta de cada experiencia es distinta de null.
+- RR-69 (EXPERIENCIA_TURISTICA, Valeria): Toda experiencia la promueve un comercio.
+- RR-70 (EXPERIENCIA_TURISTICA, Valeria): Toda experiencia la dirige un guía.
+- RR-71 (EXPERIENCIA_TURISTICA, Valeria): Toda experiencia transcurre sobre una ruta.
+- RR-122 (EXPERIENCIA_TURISTICA, Valeria): La fecha de vencimiento es posterior a la de activación y el cupo máximo es de al menos una persona.
+- RR-123 (EXPERIENCIA_TURISTICA, Valeria): El precio total es positivo y el descuento está entre 0 y 100.
+- RR-124 (EXPERIENCIA_TURISTICA, Valeria): Toda experiencia tiene al menos una fila en INCLUYE o en INCLUYE_COMERCIO.
+- RR-125 (INCLUYE, Valeria): Todo hito que incluye una experiencia está en CONFORMA para la ruta de su fila en TRANSCURRE.
+- RR-126 (TRANSCURRE, Valeria): Una experiencia transcurre sobre una ruta fija o sobre una ruta dinámica pública.
 
 ## 4. Criterios de aceptación
 
 ### Experiencias vigentes de un recorrido
 
 - Criterio 1: El visitante elige una ruta y el sistema lista sus experiencias vigentes: las que tienen la fecha actual entre su fecha de activación y su fecha de vencimiento.
-  - Dado: Se cumplen las precondiciones del comportamiento «Experiencias vigentes de un recorrido»
-  - Cuando: el actor solicita «Experiencias vigentes de un recorrido» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol.
+  - Cuando: El visitante solicita ver las experiencias promocionales vigentes de una ruta.
   - Entonces: El visitante elige una ruta y el sistema lista sus experiencias vigentes: las que tienen la fecha actual entre su fecha de activación y su fecha de vencimiento.
 - Criterio 2: Para cada experiencia muestra título, descripción, precio, porcentaje de descuento, cupo y código promocional si lo tiene.
-  - Dado: Se cumplen las precondiciones del comportamiento «Experiencias vigentes de un recorrido»
-  - Cuando: el actor solicita «Experiencias vigentes de un recorrido» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol.
+  - Cuando: El visitante solicita ver las experiencias promocionales vigentes de una ruta.
   - Entonces: Para cada experiencia muestra título, descripción, precio, porcentaje de descuento, cupo y código promocional si lo tiene.
-- Criterio 3: el sistema lo indica.
-  - Dado: Se cumple la condición «la ruta no tiene experiencias vigentes»
-  - Cuando: el actor solicita «Experiencias vigentes de un recorrido» en esas circunstancias
-  - Entonces: el sistema lo indica.
+- Criterio 3: Si la ruta no tiene experiencias vigentes, el sistema lo indica.
+  - Dado: El visitante inició sesión con su rol; la ruta no tiene experiencias vigentes.
+  - Cuando: El visitante solicita ver las experiencias promocionales vigentes de una ruta.
+  - Entonces: El sistema lo indica.
 
 ### Registrar experiencia promocional
 
-- Criterio 1: el sistema la rechaza.
-  - Dado: Se cumple la condición «registro una experiencia con el mismo título y la misma fecha de activación que otra»
-  - Cuando: el actor solicita «Registrar experiencia promocional» en esas circunstancias
-  - Entonces: el sistema la rechaza.
+- Criterio 1: Si registro una experiencia con el mismo título y la misma fecha de activación que otra, el sistema la rechaza.
+  - Dado: El comercio o guía inició sesión con su rol.
+  - Cuando: El comercio o guía registra una experiencia con el mismo título y la misma fecha de activación que otra.
+  - Entonces: El sistema la rechaza.
 - Criterio 2: Cada experiencia tiene descripción, precio total, cupo máximo por grupo, porcentaje de descuento y fecha de vencimiento; el código promocional es opcional.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar experiencia promocional»
-  - Cuando: el actor solicita «Registrar experiencia promocional» en esas circunstancias
+  - Dado: El comercio o guía inició sesión con su rol.
+  - Cuando: El comercio o guía solicita registrar experiencias promocionales.
   - Entonces: Cada experiencia tiene descripción, precio total, cupo máximo por grupo, porcentaje de descuento y fecha de vencimiento; el código promocional es opcional.
-- Criterio 3: el sistema la rechaza.
-  - Dado: Se cumple la condición «la fecha de vencimiento no es posterior a la de activación»
-  - Cuando: el actor solicita «Registrar experiencia promocional» en esas circunstancias
-  - Entonces: el sistema la rechaza.
-- Criterio 4: el sistema la rechaza.
-  - Dado: Se cumple la condición «el cupo es menor que una persona»
-  - Cuando: el actor solicita «Registrar experiencia promocional» en esas circunstancias
-  - Entonces: el sistema la rechaza.
+- Criterio 3: Si la fecha de vencimiento no es posterior a la de activación, el sistema la rechaza.
+  - Dado: El comercio o guía inició sesión con su rol; la fecha de vencimiento no es posterior a la de activación.
+  - Cuando: El comercio o guía solicita registrar experiencias promocionales.
+  - Entonces: El sistema la rechaza.
+- Criterio 4: Si el cupo es menor que una persona, el sistema la rechaza.
+  - Dado: El comercio o guía inició sesión con su rol; el cupo es menor que una persona.
+  - Cuando: El comercio o guía solicita registrar experiencias promocionales.
+  - Entonces: El sistema la rechaza.
 - Criterio 5: La experiencia se vincula al comercio que la promueve, al guía certificado que la dirige, a la ruta del recorrido y a los hitos o comercios (servicios) que incluye.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar experiencia promocional»
-  - Cuando: el actor solicita «Registrar experiencia promocional» en esas circunstancias
+  - Dado: El comercio o guía inició sesión con su rol.
+  - Cuando: El comercio o guía solicita registrar experiencias promocionales.
   - Entonces: La experiencia se vincula al comercio que la promueve, al guía certificado que la dirige, a la ruta del recorrido y a los hitos o comercios (servicios) que incluye.
 
 ### Consultar experiencia promocional
 
 - Criterio 1: Veo la lista de mis experiencias.
-  - Dado: Se cumplen las precondiciones del comportamiento «Consultar experiencia promocional»
-  - Cuando: el actor solicita «Consultar experiencia promocional» en esas circunstancias
+  - Dado: El comercio o guía inició sesión con su rol; existe al menos un registro de experiencia promocional.
+  - Cuando: El comercio o guía solicita consultar sus experiencias promocionales.
   - Entonces: Veo la lista de mis experiencias.
 - Criterio 2: Puedo abrir una experiencia y ver sus datos y sus vínculos.
-  - Dado: Se cumplen las precondiciones del comportamiento «Consultar experiencia promocional»
-  - Cuando: el actor solicita «Consultar experiencia promocional» en esas circunstancias
+  - Dado: El comercio o guía inició sesión con su rol; existe al menos un registro de experiencia promocional.
+  - Cuando: El comercio o guía solicita consultar sus experiencias promocionales.
   - Entonces: Puedo abrir una experiencia y ver sus datos y sus vínculos.
 
 ### Modificar experiencia promocional
 
 - Criterio 1: Solo el comercio que promueve la experiencia o el guía que la dirige puede modificarla.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar experiencia promocional»
-  - Cuando: el actor solicita «Modificar experiencia promocional» en esas circunstancias
+  - Dado: El comercio o guía inició sesión con su rol; existe la experiencia promocional que se va a modificar.
+  - Cuando: El comercio o guía solicita modificar sus experiencias promocionales.
   - Entonces: Solo el comercio que promueve la experiencia o el guía que la dirige puede modificarla.
-- Criterio 2: el sistema lo rechaza.
-  - Dado: Se cumple la condición «el título y la fecha de activación quedan iguales a los de otra experiencia»
-  - Cuando: el actor solicita «Modificar experiencia promocional» en esas circunstancias
-  - Entonces: el sistema lo rechaza.
-- Criterio 3: el sistema lo rechaza.
-  - Dado: Se cumple la condición «la fecha de vencimiento no es posterior a la de activación»
-  - Cuando: el actor solicita «Modificar experiencia promocional» en esas circunstancias
-  - Entonces: el sistema lo rechaza.
-- Criterio 4: el sistema lo rechaza.
-  - Dado: Se cumple la condición «el cupo queda menor que una persona»
-  - Cuando: el actor solicita «Modificar experiencia promocional» en esas circunstancias
-  - Entonces: el sistema lo rechaza.
+- Criterio 2: Si el título y la fecha de activación quedan iguales a los de otra experiencia, el sistema lo rechaza.
+  - Dado: El comercio o guía inició sesión con su rol; existe la experiencia promocional que se va a modificar; el título y la fecha de activación quedan iguales a los de otra experiencia.
+  - Cuando: El comercio o guía solicita modificar sus experiencias promocionales.
+  - Entonces: El sistema lo rechaza.
+- Criterio 3: Si la fecha de vencimiento no es posterior a la de activación, el sistema lo rechaza.
+  - Dado: El comercio o guía inició sesión con su rol; existe la experiencia promocional que se va a modificar; la fecha de vencimiento no es posterior a la de activación.
+  - Cuando: El comercio o guía solicita modificar sus experiencias promocionales.
+  - Entonces: El sistema lo rechaza.
+- Criterio 4: Si el cupo queda menor que una persona, el sistema lo rechaza.
+  - Dado: El comercio o guía inició sesión con su rol; existe la experiencia promocional que se va a modificar; el cupo queda menor que una persona.
+  - Cuando: El comercio o guía solicita modificar sus experiencias promocionales.
+  - Entonces: El sistema lo rechaza.
 
 ### Eliminar experiencia promocional
 
 - Criterio 1: Solo el comercio que promueve la experiencia o el guía que la dirige puede eliminarla.
-  - Dado: Se cumplen las precondiciones del comportamiento «Eliminar experiencia promocional»
-  - Cuando: el actor solicita «Eliminar experiencia promocional» en esas circunstancias
+  - Dado: El comercio o guía inició sesión con su rol; existe la experiencia promocional que se va a eliminar.
+  - Cuando: El comercio o guía solicita eliminar sus experiencias promocionales.
   - Entonces: Solo el comercio que promueve la experiencia o el guía que la dirige puede eliminarla.
-- Criterio 2: se elimina.
-  - Dado: Se cumple la condición «ninguna credencial se adquirió bajo la experiencia»
-  - Cuando: el actor solicita «Eliminar experiencia promocional» en esas circunstancias
-  - Entonces: se elimina.
-- Criterio 3: el sistema no la elimina y me indica qué lo impide.
-  - Dado: Se cumple la condición «hay credenciales adquiridas bajo la experiencia»
-  - Cuando: el actor solicita «Eliminar experiencia promocional» en esas circunstancias
-  - Entonces: el sistema no la elimina y me indica qué lo impide.
+- Criterio 2: Si ninguna credencial se adquirió bajo la experiencia, se elimina.
+  - Dado: El comercio o guía inició sesión con su rol; existe la experiencia promocional que se va a eliminar; ninguna credencial se adquirió bajo la experiencia.
+  - Cuando: El comercio o guía solicita eliminar sus experiencias promocionales.
+  - Entonces: Se elimina.
+- Criterio 3: Si hay credenciales adquiridas bajo la experiencia, el sistema no la elimina y me indica qué lo impide.
+  - Dado: El comercio o guía inició sesión con su rol; existe la experiencia promocional que se va a eliminar; hay credenciales adquiridas bajo la experiencia.
+  - Cuando: El comercio o guía solicita eliminar sus experiencias promocionales.
+  - Entonces: El sistema no la elimina y me indica qué lo impide.
 
 ## 5. Restricciones técnicas
 
-PostgreSQL aloja reglas y transacciones. Aplicación web de tres capas con backend/frontend de referencia provisional.
+- Capa de datos: PostgreSQL alojado en Supabase y usado solo como PostgreSQL (sin Supabase Auth, API automática ni RLS). Objetos en el esquema `rutasvzla`. Las reglas de negocio se implementan en el gestor con restricciones, triggers, funciones y procedimientos en PL/pgSQL, y el gestor autoriza cada operación con roles y `GRANT`/`REVOKE`.
+- Capa de aplicación: Next.js en el servidor (server actions y `server/db`). Abre la transacción, ejecuta `SET LOCAL ROLE` con el rol de la sesión y llama a la función o al procedimiento. No repite las reglas del gestor ni decide permisos por su cuenta.
+- Capa de presentación: Next.js (server components y client components). Muestra los datos y los errores que devuelve el gestor; sus validaciones son solo de experiencia de usuario.
+- Tablas propias: `experiencia_turistica`, `promueve`, `dirige`, `transcurre`, `incluye`, `incluye_comercio`. Nombres físicos según las [convenciones de base de datos](../../../docs/development/database-conventions.md).
+- Claves foráneas hacia tablas de otras capacidades (se crean en `database/02_claves/`, después de todas las tablas):
+  - `comercio` (COMERCIO), de `actores-comercios` (Valeria).
+  - `guia` (GUIA), de `guias-contrataciones` (Sebastián).
+  - `ruta_turistica` (RUTA_TURISTICA), de `rutas-gestion` (Sebastián).
+  - `hito` (HITO), de `patrimonio-hitos` (Javier).
+- Roles que actúan: `rol_visitante`, `rol_guia`, `rol_comercio`.
 
 ## 6. Fuera de alcance
 
-Alterar el relacional aprobado o añadir funcionalidades ajenas a la capacidad.
+Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas de otras capacidades: solo se referencian o se leen, y cualquier cambio se coordina con su responsable.
 
 ## 7. Decisiones abiertas
 
-Validación humana del contrato y elección definitiva del stack.
+- Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
+- Acordar con Javier y Sebastián los datos de prueba de las tablas referidas.

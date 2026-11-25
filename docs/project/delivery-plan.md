@@ -9,7 +9,7 @@ Consulta la fecha oficial de entrega y el estado de la aplicación en el [README
 | Base territorial y actores | Estructuras SQL, claves, restricciones y roles | Integridad del esquema y accesos |
 | Patrimonio y movilidad | Hitos, anclajes, vías, tramos, paradas y rutas | Integridad referencial y topología |
 | Operaciones del negocio | Recorridos, incidencias, evaluaciones, promociones y credenciales | Procedimientos, triggers y transacciones |
-| API e interfaz | Formularios, consultas y operaciones conectadas a PostgreSQL | Validación, paginado, búsqueda y ordenamiento |
+| Aplicación y presentación (Next.js) | Server actions, formularios, consultas y operaciones conectadas a PostgreSQL | Rol correcto por operación, paginado, búsqueda y ordenamiento |
 | Integración y entrega | Seeds, reportes, seguridad, despliegue y guía de ejecución | Reproducción en un único equipo y defensa |
 
 ## Responsabilidad funcional

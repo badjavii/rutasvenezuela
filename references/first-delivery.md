@@ -400,41 +400,41 @@ La plataforma tiene 21 interfaces (V01 a V21): 18 pantallas y 3 reportes. Cada i
 
 #### **V01 · Iniciar sesión**
 
-Cubre HU-08. Entrada común a todos los roles: se elige el tipo de identificador (cédula o pasaporte, RIF, Registro Turístico Nacional o cédula de funcionario o administrador) y se escribe la contraseña.
+Cubre HU-08.
 
 
 ####
 
 #### **V02 · Explorar rutas**
 
-Cubre HU-03. El visitante busca rutas por categoría de hito y por municipio o estado de origen. Cada resultado dice si es fija o dinámica pública, su origen y cuántos hitos de esa categoría tiene.
+Cubre HU-03.
 
 
 #### **V03 · Ficha del hito**
 
-Cubre HU-01. Ficha de un hito con sus categorías, estado operativo, horario, ubicación, territorio y eventos culturales, y las rutas fijas y dinámicas públicas que lo incluyen.
+Cubre HU-01.
 
 
 #### **V04 · Detalle de ruta**
 
-Cubre HU-04, HU-05, HU-06, HU-32, VA-1, VA-3 y VA-4. Ficha de una ruta con su secuencia de hitos y paradas, y una pestaña por consulta: servicios, paradas, valoraciones, promociones, tiempos, seguridad y guías.
+Cubre HU-04, HU-05, HU-06, HU-32, VA-1, VA-3 y VA-4.
 
 
 #### **V05 · Realidad aumentada (móvil)**
 
-Cubre HU-02. En el teléfono, la app envía la posición del visitante y proyecta solo los anclajes en cuyo radio está; el detalle muestra el recurso 3D, su proyección y los hipervínculos.
+Cubre HU-02.
 
 
 ####
 
 #### **V06 · Recorrido en curso, historial y evaluar**
 
-Cubre HU-21, HU-22 y VA-2. Registra el recorrido en curso y los hitos por los que pasa el visitante, y propone un desvío si hay una incidencia activa en la ruta. Las pestañas Historial y Evaluar completan la vista.
+Cubre HU-21, HU-22 y VA-2.
 
 
 #### **V07 · Mis rutas**
 
-Cubre HU-25. El visitante arma sus rutas dinámicas: elige los hitos y su orden, la preferencia de transporte y si la ruta es privada o pública. Solo puede editar o eliminar las suyas.
+Cubre HU-25.
 
 #### ****
 
@@ -442,14 +442,14 @@ Cubre HU-25. El visitante arma sus rutas dinámicas: elige los hitos y su orden,
 
 #### **V08 · Mis credenciales**
 
-Cubre HU-23. Credenciales del visitante con su código, reserva, fecha, beneficiarios, monto y estado. Desde aquí adquiere una nueva y cancela una emitida.
+Cubre HU-23.
 
 
 ####
 
 #### **V09 · Reportar incidencia**
 
-Cubre HU-19. Formulario común a visitante, guía y funcionario para reportar una incidencia en un hito o en tramos seguidos. Si no la reporta un funcionario, queda preliminar hasta que uno la verifique.
+Cubre HU-19.
 
 #
 
@@ -457,62 +457,62 @@ Cubre HU-19. Formulario común a visitante, guía y funcionario para reportar un
 
 V10 · Validar y canjear credencial
 
-Cubre HU-07 y HU-27. El comercio o el guía escribe el código que muestra el visitante; el sistema dice si es auténtica, su estado y si está en su fecha y horario, y solo la canjea el aliado o guía asociado.
+Cubre: HU-07, HU-27
 
 
 V11 · Mis experiencias
 
-Cubre HU-18. El comercio o el guía ve las experiencias promocionales que promueve o dirige, con su ruta, vigencia, precio, descuento, cupo, código y guía, y las registra, modifica o elimina.
+Cubre: HU-18
 
 
 V12 · Gestión de incidencias
 
-Cubre HU-20, HU-36 y HU-37. Vista exclusiva del funcionario: verifica los reportes preliminares (los confirma como activos o los descarta), prorroga las incidencias activas y cierra las resueltas si su institución tiene competencia.
+Cubre: HU-20, HU-36, HU-37
 
 
 V13 · Territorio
 
-Cubre HU-12, HU-33 y HU-34. El administrador navega estados, municipios y parroquias en tres columnas y los registra, modifica o elimina; no se elimina un territorio del que dependen otros datos.
+Cubre: HU-12, HU-33, HU-34
 
 
 V14 · Hitos y eventos
 
-Cubre HU-10, HU-11 y HU-24. El administrador gestiona los hitos (categorías, estado operativo, horario y ubicación), las categorías y el cronograma de eventos culturales de cada hito.
+Cubre: HU-10, HU-11, HU-24
 
 
 V15 · Realidad aumentada
 
-Cubre HU-13 y HU-14. El administrador registra los puntos de anclaje de cada hito, con su posición, orientación, radio y escala, y los recursos 3D que proyectan; un recurso sirve para varios anclajes.
+Cubre: HU-13, HU-14
 
 
 V16 · Vías y paradas
 
-Cubre HU-15, HU-35 y HU-16. El administrador gestiona la red física: las vías con sus modos permitidos y su terreno, sus tramos y las conexiones entre ellos, y las paradas de transporte de cada tramo.
+Cubre: HU-15, HU-35, HU-16
 
 
 V17 · Rutas
 
-Cubre HU-17 y HU-28. El administrador arma las rutas fijas: la secuencia de hitos y paradas del origen al destino, su duración, mejor horario y dificultad, y los guías adscritos.
+Cubre: HU-17, HU-28
 
 
 V18 · Actores
 
-Cubre HU-09, HU-26, HU-29, HU-30 y HU-31. Cuentas de visitantes, guías, comercios, instituciones y funcionarios, una pestaña por tipo; el administrador las registra, consulta, modifica o elimina.
+Cubre: HU-09, HU-26, HU-29, HU-30, HU-31
 
 
 V19 · RP-1 Conservación e incidencias
 
-Cubre RP-1. Reporte para la institución: hitos por estado operativo e incidencias activas, críticas y días promedio de resolución en cada municipio donde tiene competencia.
+Cubre: RP-1
 
 
 V20 · RP-2 Experiencias y credenciales
 
-Cubre RP-2. Reporte para el comercio o el guía: por cada experiencia propia, su cupo, vencimiento, credenciales emitidas, canjeadas, canceladas y vencidas, y el monto abonado.
+Cubre: RP-2
 
 
 V21 · RP-3 Afluencia y calidad por ruta
 
-Cubre RP-3. Reporte para la institución o su funcionario: recorridos iniciados, completados y abandonados por ruta, porcentaje de finalización, calificación, seguridad e hito más visitado.
+Cubre: RP-3
 
 
 #

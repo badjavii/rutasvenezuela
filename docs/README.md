@@ -7,6 +7,7 @@ Este directorio contiene las guías operativas y la documentación derivada del 
 | Si quieres… | Comienza por… | Después consulta… |
 |---|---|---|
 | Entender el sistema y las capas | [Arquitectura](architecture.md) | [Contratos por capa](development/layer-contracts.md) |
+| Crear tablas y rutinas | [Convenciones de base de datos](development/database-conventions.md) | [Catálogo RR](requirements/relational-rules.md) |
 | Encontrar qué requisito corresponde a una HU, RR o pantalla | [Mapa de trazabilidad](requirements/traceability.md) | [Matriz detallada](requirements/traceability-detailed.csv) |
 | Leer las fuentes originales | [Referencias](../references/README.md) | [Informe íntegro](../references/first-delivery.md) |
 | Especificar una funcionalidad | [Guía SDD](development/sdd-guide.md) | [especificaciones SDD](../specs/README.md) |
@@ -25,7 +26,8 @@ docs/
 │   ├── git-workflow.md               # Ramas, commits, PR y tags
 │   ├── sdd-guide.md                  # Uso de plantillas SDD
 │   ├── tdd-guide.md                  # Método de pruebas
-│   └── layer-contracts.md            # Contratos entre capas
+│   ├── layer-contracts.md            # Contratos entre capas
+│   └── database-conventions.md       # Esquema, nombres y orden de scripts
 ├── requirements/
 │   ├── traceability.md               # Mapa agrupado
 │   ├── traceability.csv
