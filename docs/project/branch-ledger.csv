@@ -3,4 +3,4 @@ javier(docs/spec)-consolidate-planning,Javier Otero,docs,spec,Consolidar fuentes
 javier(docs/spec)-branch-readme-preview,Javier Otero,docs,spec,Demostración del README de trazabilidad del workflow,develop,develop,2026-11-23,,preview,2026-11-23
 javier(docs/spec)-sdd-tdd-traceability,Javier Otero,docs,spec,Plan inicial de trazabilidad SDD y TDD,main,main,,https://github.com/badjavii/rutasvenezuela/pull/2,closed,2026-11-23
 sebastian(docs/spec)-align-specs-architecture,Sebastián Armas,docs,spec,Corregir criterios de las specs y alinearlas con Next.js y Supabase,develop,develop,2026-11-24,https://github.com/badjavii/rutasvenezuela/pull/5,in_review,2026-11-24
-sebastian(feat/database)-schema-and-build,Sebastián Armas,feat,database,"Esquema rutasvzla, roles base, build.sql, tipos comunes y pruebas SQL en CI",develop,develop,2026-11-24,,ready_for_pr,2026-11-24
+sebastian(feat/database)-schema-and-build,Sebastián Armas,feat,database,"Esquema rutasvzla, roles base, build.sql, tipos comunes y pruebas SQL en CI",develop,develop,2026-11-24,https://github.com/badjavii/rutasvenezuela/pull/6,in_review,2026-11-24
