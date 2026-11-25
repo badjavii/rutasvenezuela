@@ -5,3 +5,4 @@
 \set ON_ERROR_STOP on
 
 \ir tests/00_esquema.sql
+\ir tests/territorio-catalogo.sql
