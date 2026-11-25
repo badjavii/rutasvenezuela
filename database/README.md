@@ -22,7 +22,7 @@ psql "$DATABASE_URL" -f database/build.sql
 psql "$DATABASE_URL" -f database/test.sql
 ```
 
-`DATABASE_URL` es la cadena de conexión del administrador de la base (`postgres`). Va en el entorno o en un `.env` que no se sube al repositorio. Sirve un PostgreSQL local o el de Supabase (su cadena de conexión directa).
+`DATABASE_URL` es la cadena de conexión del administrador de la base (`postgres`). Va en el entorno o en un `.env` que no se sube al repositorio. Usar una instancia local desechable o un proyecto de Supabase dedicado a pruebas sin datos que deban conservarse. No ejecutar la reconstrucción en el entorno compartido o de producción.
 
 La contraseña de `app_rv` no está en los scripts. Se fija una vez por servidor, a mano:
 

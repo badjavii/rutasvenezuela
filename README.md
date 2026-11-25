@@ -16,9 +16,13 @@ RutasVenezuela es una aplicación web para gestionar territorio, patrimonio, rut
 
 El núcleo es una base de datos PostgreSQL transaccional (OLTP), desplegada mediante Supabase, que concentra restricciones de integridad, procedimientos almacenados, funciones y triggers. La aplicación sigue una arquitectura web de tres capas lógicas: presentación, aplicación y datos.
 
-**Arquitectura adoptada:** Next.js con App Router y TypeScript reúne las capas de presentación y aplicación en un único proyecto; PostgreSQL en Supabase constituye la capa de datos. La lógica de negocio, las restricciones y la autorización a nivel de datos corresponden al gestor. La integración de esta estructura está propuesta en el [PR #5](https://github.com/badjavii/rutasvenezuela/pull/5), pendiente de revisión.
+**Arquitectura adoptada:** Next.js con App Router y TypeScript reúne las capas de presentación y aplicación en un único proyecto; PostgreSQL en Supabase constituye la capa de datos. La lógica de negocio, las restricciones y la autorización a nivel de datos corresponden al gestor.
 
 **Fecha de la segunda entrega:** 8 de diciembre de 2026.
+
+## Seguridad
+
+El diseño contempla roles de actor en PostgreSQL, transacciones con `SET LOCAL ROLE` y contexto de identidad por cuenta. Las rutinas verificarán propiedad y competencia además de los privilegios del rol. El navegador no accede al gestor. El contrato transversal de seguridad y sus casos TDD se encuentran en revisión; esta descripción no implica que la autenticación o autorización por registro esté implementada.
 
 ## Organización del repositorio
 
@@ -26,10 +30,9 @@ El núcleo es una base de datos PostgreSQL transaccional (OLTP), desplegada medi
 rutasvenezuela/
 ├── assets/                 # Recursos del proyecto
 ├── database/               # Estructuras, rutinas, triggers, seguridad y semillas
-├── backend/                # Directorio anterior; migración prevista en PR #5
-├── frontend/               # Directorio anterior; migración prevista en PR #5
+├── web/                    # Next.js: presentación y aplicación
 ├── specs/                  # SDD: constitución, especificaciones, planes y tareas
-├── references/             # Informe íntegro y contexto externo
+├── references/             # Informe académico y contexto externo
 ├── docs/                   # Guías, trazabilidad y pruebas planificadas
 ├── scripts/                # Validadores del proyecto
 ├── .github/                # Plantillas y automatizaciones
@@ -56,7 +59,7 @@ python3 scripts/validar_trazabilidad.py
 python3 scripts/validar_plan_sdd_tdd.py
 ```
 
-La aplicación todavía está en fase de planificación: no existe un comando de despliegue funcional. El PR #5 propone consolidar las carpetas `backend/` y `frontend/` en `web/`; mientras no se integre, el árbol anterior refleja el estado efectivo de `develop`. El procedimiento completo para configurar PostgreSQL y la aplicación Next.js se añadirá cuando estén implementados.
+La infraestructura de PostgreSQL ya dispone de scripts de construcción y pruebas. La aplicación Next.js aún no está implementada. Consulta [base de datos](database/README.md) para ejecutar las pruebas sobre una instancia local desechable. No ejecutar `build.sql` sobre una base compartida con datos: elimina y recrea el esquema `rutasvzla`.
 
 Las especificaciones se mantienen en [specs/README.md](specs/README.md) y se basan en las plantillas de la clase de APIs de Python.
 
@@ -70,7 +73,7 @@ Consulta [Git workflow](docs/development/git-workflow.md) para convenciones de r
 
 El workflow [Documentation Quality](.github/workflows/docs-quality.yml) comprueba automáticamente la documentación, el mapa de trazabilidad y la cobertura planificada de SDD/TDD. Se ejecuta sobre pull requests dirigidos a `develop` o `main`.
 
-Las pruebas funcionales de PostgreSQL, API e interfaz se añadirán durante la implementación.
+El workflow [Database](.github/workflows/database.yml) construye el esquema dos veces en PostgreSQL 17 y ejecuta las pruebas SQL. Las pruebas de aplicación e interfaz se añadirán durante su implementación.
 
 ## Documentación y referencias
 
