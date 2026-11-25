@@ -15,7 +15,7 @@ TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN
 ### Capa de datos (PostgreSQL en Supabase, esquema `rutasvzla`)
 
 - Tablas propias: `estado`, `municipio`, `parroquia` en `database/01_tablas/territorio-catalogo.sql` (clave primaria, `NOT NULL`, `UNIQUE` y `CHECK` simples).
-- Claves foráneas en `database/02_claves/territorio-catalogo.sql`.
+- Claves foráneas en `database/02_claves/territorio-catalogo.sql`. Se propone ON UPDATE CASCADE entre las tres relaciones territoriales para conservar las dependencias al corregir claves naturales, y ON DELETE RESTRICT para impedir eliminar padres con dependientes. Acordar la política de actualización con los responsables de claves entrantes de otros módulos. Los tipos VARCHAR(100) siguen la propuesta común pendiente de ratificación.
 - Reglas (ninguna asociada) en `database/03_reglas/territorio-catalogo.sql`: triggers, funciones y procedimientos en PL/pgSQL.
 - Privilegios en `database/04_seguridad/territorio-catalogo.sql`: `GRANT` sobre las rutinas a `rol_administrador`.
 - Datos de prueba en `database/05_datos/territorio-catalogo.sql`.
@@ -37,7 +37,7 @@ TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN
 
 ## 5. Verificación
 
-- Pruebas SQL de las reglas: [casos RR](../../../docs/testing/database-cases.csv).
+- Pruebas estructurales en [territorio-catalogo.sql](../../../database/tests/territorio-catalogo.sql), registradas en `database/test.sql`. Las pruebas de rutinas, permisos y referencias externas se completarán posteriormente.
 - Criterios de aceptación: [casos de aceptación](../../../docs/testing/acceptance-cases.csv).
 - Estados de las vistas: [casos de interfaz](../../../docs/testing/interface-cases.csv).
 - Un rol sin privilegio recibe el rechazo del gestor.

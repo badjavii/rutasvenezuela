@@ -1,12 +1,13 @@
 # Tareas: territorio catalogo
 
-El estado de implementación se registra solo aquí. No existen pruebas ejecutadas de esta capacidad.
+El estado de implementación se registra solo aquí. RED observado en CI: commit `ef17348`, la relación estado todavía no existía. La fase estructural espera verificación GREEN; las pruebas de rutinas y permisos siguen pendientes.
 
 ## T-01. Capa de datos
 
-- [ ] Crear `estado`, `municipio`, `parroquia` en `database/01_tablas/territorio-catalogo.sql`.
-- [ ] Agregar sus claves foráneas en `database/02_claves/territorio-catalogo.sql`.
-- [ ] Escribir las pruebas SQL de los criterios y confirmar RED.
+- [ ] Verificar en GREEN la creación de `estado`, `municipio`, `parroquia` en `database/01_tablas/territorio-catalogo.sql`.
+- [ ] Verificar en GREEN las claves foráneas en `database/02_claves/territorio-catalogo.sql`.
+- [x] Escribir pruebas estructurales y confirmar RED (commit `ef17348`, [CI](https://github.com/badjavii/rutasvenezuela/actions/runs/45542856563)).
+- [ ] Escribir las pruebas SQL de rutinas y criterios restantes, y confirmar RED.
 - [ ] Implementar en `database/03_reglas/territorio-catalogo.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_administrador` en `database/04_seguridad/territorio-catalogo.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/territorio-catalogo.sql`.
