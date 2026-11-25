@@ -2,7 +2,7 @@
 
 ## 1. Objetivo
 
-Describir el comportamiento verificable de actores identidades, conforme a la primera entrega.
+Describir el comportamiento verificable de actores identidades: 9 historias de Valeria Loreto (HU-09.1, HU-09.2, HU-09.3, HU-09.4, HU-26.1, HU-26.2, HU-26.3, HU-26.4, HU-08), conforme a la primera entrega.
 
 ## 2. Requisitos funcionales
 
@@ -18,125 +18,147 @@ Describir el comportamiento verificable de actores identidades, conforme a la pr
 
 ## 3. Reglas de negocio
 
-Consultar [RR](../../../docs/requirements/relational-rules.md) y [trazabilidad](../../../docs/requirements/traceability-detailed.csv). No modificar las restricciones del modelo relacional validado.
+Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+
+- RR-46 (HU-09.1, HU-09.2, HU-09.3, HU-09.4, HU-08): La cuenta de cada visitante es distinta de null y es clave alterna: una cuenta es de un solo visitante.
+- RR-47 (HU-08): La cuenta de cada comercio es distinta de null y es clave alterna: una cuenta es de un solo comercio.
+- RR-49 (HU-26.1, HU-26.2, HU-26.3, HU-26.4, HU-08): La cuenta de cada funcionario es distinta de null y es clave alterna: una cuenta es de un solo funcionario.
+- RR-50 (HU-26.1, HU-26.2, HU-26.3, HU-26.4): El ente al que pertenece cada funcionario es distinto de null.
+- RR-51 (HU-08): La cuenta de cada administrador es distinta de null y es clave alterna: una cuenta es de un solo administrador.
+- RR-61 (HU-09.1, HU-09.2, HU-09.3, HU-09.4, HU-08): Cada cuenta es de exactamente un actor: está en al menos una de las seis relaciones CUENTA_<ACTOR> y nunca en dos a la vez.
+- RR-62 (HU-09.1, HU-09.2, HU-09.3, HU-09.4, HU-08): Todo visitante tiene su cuenta.
+- RR-63 (HU-08): Todo comercio tiene su cuenta.
+- RR-64 (HU-26.1, HU-26.2, HU-26.3, HU-26.4, HU-08): Todo funcionario tiene su cuenta.
+- RR-65 (HU-08): Todo administrador tiene su cuenta.
+- RR-68 (HU-26.1, HU-26.2, HU-26.3, HU-26.4): Todo funcionario pertenece a un ente.
+- RR-120 (HU-09.1, HU-09.2, HU-09.3, HU-09.4): El grupo sanguíneo es uno de los ocho grupos ABO con su factor Rh.
 
 ## 4. Criterios de aceptación
 
 ### Registrar visitante
 
 - Criterio 1: Se identifica por su cédula de identidad o pasaporte; si ya existe, el sistema lo rechaza.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar visitante»
-  - Cuando: el actor solicita «Registrar visitante» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador solicita registrar visitantes.
   - Entonces: Se identifica por su cédula de identidad o pasaporte; si ya existe, el sistema lo rechaza.
 - Criterio 2: Tiene nombres, apellidos, país de origen, idioma nativo, teléfono de emergencia, grupo sanguíneo y especificaciones de accesibilidad física o sensorial.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar visitante»
-  - Cuando: el actor solicita «Registrar visitante» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador solicita registrar visitantes.
   - Entonces: Tiene nombres, apellidos, país de origen, idioma nativo, teléfono de emergencia, grupo sanguíneo y especificaciones de accesibilidad física o sensorial.
 - Criterio 3: Tiene una contraseña para entrar con su identificador.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar visitante»
-  - Cuando: el actor solicita «Registrar visitante» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador solicita registrar visitantes.
   - Entonces: Tiene una contraseña para entrar con su identificador.
 - Criterio 4: Una misma persona puede ser visitante y también tener otro rol, por ejemplo guía.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar visitante»
-  - Cuando: el actor solicita «Registrar visitante» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador solicita registrar visitantes.
   - Entonces: Una misma persona puede ser visitante y también tener otro rol, por ejemplo guía.
 
 ### Consultar visitante
 
 - Criterio 1: Puedo ver el listado de todos los visitantes.
-  - Dado: Se cumplen las precondiciones del comportamiento «Consultar visitante»
-  - Cuando: el actor solicita «Consultar visitante» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe al menos un registro de visitante.
+  - Cuando: El administrador solicita consultar los visitantes registrados.
   - Entonces: Puedo ver el listado de todos los visitantes.
 - Criterio 2: Puedo abrir un visitante y ver todos sus datos.
-  - Dado: Se cumplen las precondiciones del comportamiento «Consultar visitante»
-  - Cuando: el actor solicita «Consultar visitante» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe al menos un registro de visitante.
+  - Cuando: El administrador solicita consultar los visitantes registrados.
   - Entonces: Puedo abrir un visitante y ver todos sus datos.
 
 ### Modificar visitante
 
 - Criterio 1: Puedo cambiar cualquier dato del visitante.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar visitante»
-  - Cuando: el actor solicita «Modificar visitante» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe el visitante que se va a modificar.
+  - Cuando: El administrador solicita modificar los datos de un visitante.
   - Entonces: Puedo cambiar cualquier dato del visitante.
-- Criterio 2: el sistema lo rechaza.
-  - Dado: Se cumple la condición «cambio su cédula o pasaporte por uno que ya existe»
-  - Cuando: el actor solicita «Modificar visitante» en esas circunstancias
-  - Entonces: el sistema lo rechaza.
+- Criterio 2: Si cambio su cédula o pasaporte por uno que ya existe, el sistema lo rechaza.
+  - Dado: El administrador inició sesión con su rol; existe el visitante que se va a modificar.
+  - Cuando: El administrador cambia su cédula o pasaporte por uno que ya existe.
+  - Entonces: El sistema lo rechaza.
 
 ### Eliminar visitante
 
-- Criterio 1: evaluaciones, credenciales, rutas propias ni contrataciones de guía, se elimina.
-  - Dado: Se cumple la condición «el visitante no tiene recorridos»
-  - Cuando: el actor solicita «Eliminar visitante» en esas circunstancias
-  - Entonces: evaluaciones, credenciales, rutas propias ni contrataciones de guía, se elimina.
-- Criterio 2: evaluaciones, credenciales, rutas propias o contrataciones de guía, el sistema no lo elimina y me indica qué lo impide.
-  - Dado: Se cumple la condición «tiene recorridos»
-  - Cuando: el actor solicita «Eliminar visitante» en esas circunstancias
-  - Entonces: evaluaciones, credenciales, rutas propias o contrataciones de guía, el sistema no lo elimina y me indica qué lo impide.
+- Criterio 1: Si el visitante no tiene recorridos, evaluaciones, credenciales, rutas propias ni contrataciones de guía, se elimina.
+  - Dado: El administrador inició sesión con su rol; existe el visitante que se va a eliminar; el visitante no tiene recorridos, evaluaciones, credenciales, rutas propias ni contrataciones de guía.
+  - Cuando: El administrador solicita eliminar visitantes.
+  - Entonces: Se elimina.
+- Criterio 2: Si tiene recorridos, evaluaciones, credenciales, rutas propias o contrataciones de guía, el sistema no lo elimina y me indica qué lo impide.
+  - Dado: El administrador inició sesión con su rol; existe el visitante que se va a eliminar; el visitante tiene recorridos, evaluaciones, credenciales, rutas propias o contrataciones de guía.
+  - Cuando: El administrador solicita eliminar visitantes.
+  - Entonces: El sistema no lo elimina y me indica qué lo impide.
 
 ### Registrar funcionario
 
 - Criterio 1: Cada funcionario se identifica por su cédula y tiene nombre, cargo y una contraseña.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar funcionario»
-  - Cuando: el actor solicita «Registrar funcionario» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador solicita registrar las cuentas de los funcionarios públicos.
   - Entonces: Cada funcionario se identifica por su cédula y tiene nombre, cargo y una contraseña.
 - Criterio 2: Cada funcionario queda asociado a la institución a la que pertenece.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar funcionario»
-  - Cuando: el actor solicita «Registrar funcionario» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador solicita registrar las cuentas de los funcionarios públicos.
   - Entonces: Cada funcionario queda asociado a la institución a la que pertenece.
 
 ### Consultar funcionario
 
 - Criterio 1: Puedo ver los funcionarios de una institución.
-  - Dado: Se cumplen las precondiciones del comportamiento «Consultar funcionario»
-  - Cuando: el actor solicita «Consultar funcionario» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe al menos un registro de funcionario.
+  - Cuando: El administrador solicita consultar los funcionarios.
   - Entonces: Puedo ver los funcionarios de una institución.
 
 ### Modificar funcionario
 
 - Criterio 1: Puedo cambiar los datos del funcionario y su institución.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar funcionario»
-  - Cuando: el actor solicita «Modificar funcionario» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe el funcionario que se va a modificar.
+  - Cuando: El administrador solicita modificar las cuentas de los funcionarios.
   - Entonces: Puedo cambiar los datos del funcionario y su institución.
 - Criterio 2: El funcionario sigue asociado a una institución.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar funcionario»
-  - Cuando: el actor solicita «Modificar funcionario» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe el funcionario que se va a modificar.
+  - Cuando: El administrador solicita modificar las cuentas de los funcionarios.
   - Entonces: El funcionario sigue asociado a una institución.
 
 ### Eliminar funcionario
 
-- Criterio 1: se elimina su cuenta.
-  - Dado: Se cumple la condición «el funcionario no verificó ni cerró ninguna incidencia»
-  - Cuando: el actor solicita «Eliminar funcionario» en esas circunstancias
-  - Entonces: se elimina su cuenta.
-- Criterio 2: el sistema no lo elimina y me indica qué lo impide.
-  - Dado: Se cumple la condición «verificó o cerró alguna incidencia»
-  - Cuando: el actor solicita «Eliminar funcionario» en esas circunstancias
-  - Entonces: el sistema no lo elimina y me indica qué lo impide.
+- Criterio 1: Si el funcionario no verificó ni cerró ninguna incidencia, se elimina su cuenta.
+  - Dado: El administrador inició sesión con su rol; existe el funcionario que se va a eliminar; el funcionario no verificó ni cerró ninguna incidencia.
+  - Cuando: El administrador solicita eliminar cuentas de funcionarios.
+  - Entonces: Se elimina su cuenta.
+- Criterio 2: Si verificó o cerró alguna incidencia, el sistema no lo elimina y me indica qué lo impide.
+  - Dado: El administrador inició sesión con su rol; existe el funcionario que se va a eliminar; el funcionario verificó o cerró alguna incidencia.
+  - Cuando: El administrador solicita eliminar cuentas de funcionarios.
+  - Entonces: El sistema no lo elimina y me indica qué lo impide.
 
 ### Iniciar sesión
 
 - Criterio 1: El actor entra con su identificador (cédula o pasaporte del visitante, RIF del comercio o de la institución, registro del guía, o cédula del funcionario o del administrador) y su contraseña.
-  - Dado: Se cumplen las precondiciones del comportamiento «Iniciar sesión»
-  - Cuando: el actor solicita «Iniciar sesión» en esas circunstancias
+  - Dado: El actor tiene una cuenta con su identificador y su contraseña.
+  - Cuando: El actor solicita entrar con su identificador y su contraseña.
   - Entonces: El actor entra con su identificador (cédula o pasaporte del visitante, RIF del comercio o de la institución, registro del guía, o cédula del funcionario o del administrador) y su contraseña.
-- Criterio 2: el sistema rechaza la entrada.
-  - Dado: Se cumple la condición «el identificador o la contraseña no coinciden»
-  - Cuando: el actor solicita «Iniciar sesión» en esas circunstancias
-  - Entonces: el sistema rechaza la entrada.
-- Criterio 3: usa la plataforma con el rol de la interacción que esté haciendo.
-  - Dado: Se cumple la condición «la persona tiene varios roles»
-  - Cuando: el actor solicita «Iniciar sesión» en esas circunstancias
-  - Entonces: usa la plataforma con el rol de la interacción que esté haciendo.
+- Criterio 2: Si el identificador o la contraseña no coinciden, el sistema rechaza la entrada.
+  - Dado: El actor tiene una cuenta con su identificador y su contraseña; el identificador o la contraseña no coinciden.
+  - Cuando: El actor solicita entrar con su identificador y su contraseña.
+  - Entonces: El sistema rechaza la entrada.
+- Criterio 3: Si la persona tiene varios roles, usa la plataforma con el rol de la interacción que esté haciendo.
+  - Dado: El actor tiene una cuenta con su identificador y su contraseña; la persona tiene varios roles.
+  - Cuando: El actor solicita entrar con su identificador y su contraseña.
+  - Entonces: Usa la plataforma con el rol de la interacción que esté haciendo.
 
 ## 5. Restricciones técnicas
 
-PostgreSQL gestiona integridad y reglas. Aplicación web de tres capas; framework por confirmar.
+- Capa de datos: PostgreSQL alojado en Supabase y usado solo como PostgreSQL (sin Supabase Auth, API automática ni RLS). Objetos en el esquema `rutasvzla`. Las reglas de negocio se implementan en el gestor con restricciones, triggers, funciones y procedimientos en PL/pgSQL, y el gestor autoriza cada operación con roles y `GRANT`/`REVOKE`.
+- Capa de aplicación: Next.js en el servidor (server actions y `server/db`). Abre la transacción, ejecuta `SET LOCAL ROLE` con el rol de la sesión y llama a la función o al procedimiento. No repite las reglas del gestor ni decide permisos por su cuenta.
+- Capa de presentación: Next.js (server components y client components). Muestra los datos y los errores que devuelve el gestor; sus validaciones son solo de experiencia de usuario.
+- Tablas propias: `cuenta`, `visitante`, `funcionario`, `pertenece_a`, `administrador`. Nombres físicos según las [convenciones de base de datos](../../../docs/development/database-conventions.md).
+- Claves foráneas hacia tablas de otras capacidades (se crean en `database/02_claves/`, después de todas las tablas):
+  - `ente_publico` (ENTE_PUBLICO), de `instituciones-entes` (Javier).
+- Roles que actúan: `rol_visitante`, `rol_guia`, `rol_comercio`, `rol_ente`, `rol_funcionario`, `rol_administrador`.
 
 ## 6. Fuera de alcance
 
-Cambios de modelo relacional, funcionalidades no documentadas o patrones anticipados.
+Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas de otras capacidades: solo se referencian o se leen, y cualquier cambio se coordina con su responsable.
 
 ## 7. Decisiones abiertas
 
-Validar contratos entre capas y elección de stack de aplicación.
+- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Acordar con Javier los datos de prueba de las tablas referidas.
+- ¿Con qué identificador inicia sesión cada actor? `CUENTA` solo guarda `idCuenta` y `contrasena`; HU-08 habla de cédula, pasaporte, RIF o registro del guía según el actor.
+- Persona con varios roles (HU-08, criterio 3): cómo elige el rol de la interacción al iniciar sesión.

@@ -2,27 +2,47 @@
 
 ## 1. Objetivo
 
-Implementar [la especificación](spec.md) sin ampliar alcance.
+Implementar [la especificación](spec.md) (RP-2) sin añadir funcionalidades.
 
 ## 2. Estrategia general
 
-Escribir pruebas, verificar RED, implementar lo mínimo, confirmar GREEN, refactorizar y ejecutar regresión.
+TDD empezando por la capa de datos: prueba SQL → RED → SQL mínimo → GREEN → refactorización. Después la capa de aplicación, la capa de presentación y la regresión.
 
-## 3. Componentes afectados
+## 3. Componentes por capa
 
-- Datos: relaciones, rutinas y restricciones pertinentes.
-- API: validación y autorización de operaciones del SGBDR.
-- Interfaz: formularios y reportes vinculados.
-- Pruebas: [criterios](../../../docs/testing/acceptance-cases.csv), [integridad](../../../docs/testing/database-cases.csv) e [interfaz](../../../docs/testing/interface-cases.csv).
+### Capa de datos (PostgreSQL en Supabase, esquema `rutasvzla`)
 
-## 4. Verificación
+- Sin tablas propias: funciones o vistas de solo lectura sobre tablas de otras capacidades.
+- Reglas RR-52, RR-53, RR-54, RR-55, RR-56, RR-57, RR-58, RR-59, RR-69, RR-70, RR-71, RR-72, RR-73, RR-119, RR-122, RR-123, RR-124, RR-125, RR-126, RR-127, RR-128, RR-129, RR-130, RR-131, RR-132, RR-133, RR-134 en `database/03_reglas/reportes-promociones.sql`: triggers, funciones y procedimientos en PL/pgSQL.
+- Privilegios en `database/04_seguridad/reportes-promociones.sql`: `GRANT` sobre las rutinas a `rol_guia`, `rol_comercio`.
+- Datos de prueba en `database/05_datos/reportes-promociones.sql`.
 
-Pruebas de reglas, seguridad, rollback y flujos completos con evidencia.
+### Capa de aplicación (Next.js, servidor)
 
-## 5. Riesgos y decisiones pendientes
+- Server actions en `web/server/actions/reportes-promociones.ts` y acceso a datos en `web/server/db/`.
+- Cada operación: leer la sesión, abrir la transacción, `SET LOCAL ROLE` con el rol de la sesión, llamar a la función o al procedimiento y devolver el resultado o el error del gestor.
+- Sin reglas de negocio propias: solo validación de formato para la experiencia de usuario.
 
-Dependencia de identidades, rutas y contratos aún provisionales.
+### Capa de presentación (Next.js)
 
-## 6. Fuera del plan
+- Vistas: V20 (RP-2 Experiencias y credenciales), en `web/app/` y `web/components/`.
+- Listados con búsqueda, ordenamiento por columna y paginación.
 
-Cambios estructurales sin justificación académica.
+## 4. Dependencias con otras capacidades
+
+- Ninguna clave foránea hacia otras capacidades.
+
+## 5. Verificación
+
+- Pruebas SQL de las reglas: [casos RR](../../../docs/testing/database-cases.csv).
+- Criterios de aceptación: [casos de aceptación](../../../docs/testing/acceptance-cases.csv).
+- Estados de las vistas: [casos de interfaz](../../../docs/testing/interface-cases.csv).
+- Un rol sin privilegio recibe el rechazo del gestor.
+
+## 6. Riesgos y decisiones pendientes
+
+Ver la sección 7 de [la especificación](spec.md).
+
+## 7. Fuera del plan
+
+Modificaciones ajenas a la capacidad y despliegues no aprobados.

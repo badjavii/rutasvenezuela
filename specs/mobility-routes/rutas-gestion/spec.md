@@ -2,7 +2,7 @@
 
 ## 1. Objetivo
 
-Describir las capacidades verificables de rutas gestion, según los criterios de primera entrega.
+Describir el comportamiento verificable de rutas gestion: 9 historias de Sebastián Armas (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4), conforme a la primera entrega.
 
 ## 2. Requisitos funcionales
 
@@ -18,177 +18,199 @@ Describir las capacidades verificables de rutas gestion, según los criterios de
 
 ## 3. Reglas de negocio
 
-Consultar [RR](../../../docs/requirements/relational-rules.md) y [trazabilidad](../../../docs/requirements/traceability-detailed.csv). Conservar el relacional entregado.
+Restricciones del relacional asociadas a las historias de esta capacidad, tomadas del [catálogo RR](../../../docs/requirements/relational-rules.md). La asociación RR↔HU es preliminar: se confirma al escribir la prueba SQL de cada regla. No se modifican las restricciones del modelo relacional validado.
+
+- RR-22 (HU-25.1, HU-25.2, HU-25.3, HU-25.4): El visitante que crea cada ruta dinámica es distinto de null.
+- RR-34 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4): Toda ruta tiene al menos dos hitos: el de origen y el de destino.
+- RR-35 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): Toda ruta es fija o dinámica, exactamente una de las dos.
+- RR-36 (HU-03, HU-25.1, HU-25.2, HU-25.3, HU-25.4): Toda ruta dinámica la creó un visitante.
+- RR-106 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): La duración estimada, si la hay, es positiva. La visibilidad de una ruta dinámica es privada o pública, y su preferencia de transporte es a pie, bicicleta, transporte público o vehículo adaptado.
+- RR-107 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): Toda ruta fija tiene en RUTA_TURISTICA su duración estimada, su mejor horario de inicio y su nivel de dificultad.
+- RR-108 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): Dentro de una ruta, dos filas de CONFORMA o de USA nunca comparten número de orden, y todo orden es positivo.
+- RR-109 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): La secuencia de una ruta empieza en 1 con un hito y no deja huecos: toda fila con orden mayor que 1 tiene otra de la misma ruta con el orden anterior.
+- RR-110 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): Toda parada de una ruta tiene un hito de la misma ruta antes y otro después.
+- RR-111 (HU-03, HU-17.1, HU-17.2, HU-17.3, HU-17.4, HU-25.1, HU-25.2, HU-25.3, HU-25.4): El hito de orden 1 de una ruta, que es su origen, está en el municipio de la ruta.
+- RR-112 (HU-25.1, HU-25.2, HU-25.3, HU-25.4): Un recorrido es sobre una ruta fija, una ruta dinámica pública o una ruta dinámica que creó el mismo visitante que hace el recorrido.
 
 ## 4. Criterios de aceptación
 
 ### Rutas por categoría y territorio
 
 - Criterio 1: El visitante elige una categoría y un municipio o un estado.
-  - Dado: Se cumplen las precondiciones del comportamiento «Rutas por categoría y territorio»
-  - Cuando: el actor solicita «Rutas por categoría y territorio» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol.
+  - Cuando: El visitante solicita listar las rutas urbanas de una categoría en un municipio o en un estado.
   - Entonces: El visitante elige una categoría y un municipio o un estado.
 - Criterio 2: El sistema lista las rutas que incluyen al menos un hito de esa categoría y cuyo origen está en el municipio o el estado elegido.
-  - Dado: Se cumplen las precondiciones del comportamiento «Rutas por categoría y territorio»
-  - Cuando: el actor solicita «Rutas por categoría y territorio» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol.
+  - Cuando: El visitante solicita listar las rutas urbanas de una categoría en un municipio o en un estado.
   - Entonces: El sistema lista las rutas que incluyen al menos un hito de esa categoría y cuyo origen está en el municipio o el estado elegido.
 - Criterio 3: Aparecen las rutas fijas y las rutas dinámicas públicas; las dinámicas privadas no aparecen.
-  - Dado: Se cumplen las precondiciones del comportamiento «Rutas por categoría y territorio»
-  - Cuando: el actor solicita «Rutas por categoría y territorio» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol.
+  - Cuando: El visitante solicita listar las rutas urbanas de una categoría en un municipio o en un estado.
   - Entonces: Aparecen las rutas fijas y las rutas dinámicas públicas; las dinámicas privadas no aparecen.
-- Criterio 4: el sistema lo indica.
-  - Dado: Se cumple la condición «no hay rutas que cumplan el filtro»
-  - Cuando: el actor solicita «Rutas por categoría y territorio» en esas circunstancias
-  - Entonces: el sistema lo indica.
+- Criterio 4: Si no hay rutas que cumplan el filtro, el sistema lo indica.
+  - Dado: El visitante inició sesión con su rol; no hay rutas que cumplan el filtro.
+  - Cuando: El visitante solicita listar las rutas urbanas de una categoría en un municipio o en un estado.
+  - Entonces: El sistema lo indica.
 
 ### Registrar ruta fija
 
 - Criterio 1: La ruta es una secuencia ordenada de hitos y paradas con número de orden; el primero es el origen y el último el destino.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar ruta fija»
-  - Cuando: el actor solicita «Registrar ruta fija» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador solicita registrar rutas fijas.
   - Entonces: La ruta es una secuencia ordenada de hitos y paradas con número de orden; el primero es el origen y el último el destino.
 - Criterio 2: La ruta tiene al menos un hito de origen y uno de destino.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar ruta fija»
-  - Cuando: el actor solicita «Registrar ruta fija» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador solicita registrar rutas fijas.
   - Entonces: La ruta tiene al menos un hito de origen y uno de destino.
 - Criterio 3: No hay dos elementos con el mismo número de orden en la ruta.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar ruta fija»
-  - Cuando: el actor solicita «Registrar ruta fija» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador solicita registrar rutas fijas.
   - Entonces: No hay dos elementos con el mismo número de orden en la ruta.
 - Criterio 4: La ruta tiene duración estimada, mejor horario de inicio y nivel de dificultad.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar ruta fija»
-  - Cuando: el actor solicita «Registrar ruta fija» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador solicita registrar rutas fijas.
   - Entonces: La ruta tiene duración estimada, mejor horario de inicio y nivel de dificultad.
-- Criterio 5: el sistema la rechaza. El mismo nombre sí se acepta en otro municipio o estado.
-  - Dado: Se cumple la condición «registro una ruta con el mismo nombre en el mismo municipio y estado de origen que otra»
-  - Cuando: el actor solicita «Registrar ruta fija» en esas circunstancias
-  - Entonces: el sistema la rechaza. El mismo nombre sí se acepta en otro municipio o estado.
+- Criterio 5: Si registro una ruta con el mismo nombre en el mismo municipio y estado de origen que otra, el sistema la rechaza. El mismo nombre sí se acepta en otro municipio o estado.
+  - Dado: El administrador inició sesión con su rol.
+  - Cuando: El administrador registra una ruta con el mismo nombre en el mismo municipio y estado de origen que otra.
+  - Entonces: El sistema la rechaza. El mismo nombre sí se acepta en otro municipio o estado.
 
 ### Consultar ruta fija
 
 - Criterio 1: Puedo ver el listado de las rutas fijas.
-  - Dado: Se cumplen las precondiciones del comportamiento «Consultar ruta fija»
-  - Cuando: el actor solicita «Consultar ruta fija» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe al menos un registro de ruta fija.
+  - Cuando: El administrador solicita consultar las rutas fijas.
   - Entonces: Puedo ver el listado de las rutas fijas.
 - Criterio 2: Puedo abrir una ruta y ver su secuencia, su duración, su horario, su dificultad y sus guías.
-  - Dado: Se cumplen las precondiciones del comportamiento «Consultar ruta fija»
-  - Cuando: el actor solicita «Consultar ruta fija» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe al menos un registro de ruta fija.
+  - Cuando: El administrador solicita consultar las rutas fijas.
   - Entonces: Puedo abrir una ruta y ver su secuencia, su duración, su horario, su dificultad y sus guías.
 
 ### Modificar ruta fija
 
 - Criterio 1: Puedo cambiar sus datos y su secuencia de hitos y paradas.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar ruta fija»
-  - Cuando: el actor solicita «Modificar ruta fija» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe la ruta fija que se va a modificar.
+  - Cuando: El administrador solicita modificar una ruta fija.
   - Entonces: Puedo cambiar sus datos y su secuencia de hitos y paradas.
 - Criterio 2: La ruta sigue teniendo al menos un hito de origen y uno de destino.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar ruta fija»
-  - Cuando: el actor solicita «Modificar ruta fija» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe la ruta fija que se va a modificar.
+  - Cuando: El administrador solicita modificar una ruta fija.
   - Entonces: La ruta sigue teniendo al menos un hito de origen y uno de destino.
 - Criterio 3: No puede haber dos elementos con el mismo número de orden.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar ruta fija»
-  - Cuando: el actor solicita «Modificar ruta fija» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe la ruta fija que se va a modificar.
+  - Cuando: El administrador solicita modificar una ruta fija.
   - Entonces: No puede haber dos elementos con el mismo número de orden.
 - Criterio 4: La ruta sigue teniendo duración estimada, mejor horario de inicio y nivel de dificultad.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar ruta fija»
-  - Cuando: el actor solicita «Modificar ruta fija» en esas circunstancias
+  - Dado: El administrador inició sesión con su rol; existe la ruta fija que se va a modificar.
+  - Cuando: El administrador solicita modificar una ruta fija.
   - Entonces: La ruta sigue teniendo duración estimada, mejor horario de inicio y nivel de dificultad.
-- Criterio 5: el sistema lo rechaza; en otro municipio o estado se acepta.
-  - Dado: Se cumple la condición «el nombre queda igual al de otra ruta del mismo municipio y estado de origen»
-  - Cuando: el actor solicita «Modificar ruta fija» en esas circunstancias
-  - Entonces: el sistema lo rechaza; en otro municipio o estado se acepta.
+- Criterio 5: Si el nombre queda igual al de otra ruta del mismo municipio y estado de origen, el sistema lo rechaza; en otro municipio o estado se acepta.
+  - Dado: El administrador inició sesión con su rol; existe la ruta fija que se va a modificar; el nombre queda igual al de otra ruta del mismo municipio y estado de origen.
+  - Cuando: El administrador solicita modificar una ruta fija.
+  - Entonces: El sistema lo rechaza; en otro municipio o estado se acepta.
 
 ### Eliminar ruta fija
 
-- Criterio 1: experiencias ni contrataciones de guía, se elimina.
-  - Dado: Se cumple la condición «la ruta no tiene recorridos»
-  - Cuando: el actor solicita «Eliminar ruta fija» en esas circunstancias
-  - Entonces: experiencias ni contrataciones de guía, se elimina.
-- Criterio 2: experiencias o contrataciones de guía, no se borra, porque se conserva su historial.
-  - Dado: Se cumple la condición «tiene recorridos»
-  - Cuando: el actor solicita «Eliminar ruta fija» en esas circunstancias
-  - Entonces: experiencias o contrataciones de guía, no se borra, porque se conserva su historial.
+- Criterio 1: Si la ruta no tiene recorridos, experiencias ni contrataciones de guía, se elimina.
+  - Dado: El administrador inició sesión con su rol; existe la ruta fija que se va a eliminar; la ruta no tiene recorridos, experiencias ni contrataciones de guía.
+  - Cuando: El administrador solicita eliminar rutas fijas.
+  - Entonces: Se elimina.
+- Criterio 2: Si tiene recorridos, experiencias o contrataciones de guía, no se borra, porque se conserva su historial.
+  - Dado: El administrador inició sesión con su rol; existe la ruta fija que se va a eliminar; la ruta fija tiene recorridos, experiencias o contrataciones de guía.
+  - Cuando: El administrador solicita eliminar rutas fijas.
+  - Entonces: No se borra, porque se conserva su historial.
 
 ### Registrar ruta dinámica
 
 - Criterio 1: El visitante elige los hitos, el orden de visita y su preferencia de transporte.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar ruta dinámica»
-  - Cuando: el actor solicita «Registrar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol.
+  - Cuando: El visitante solicita registrar sus propias rutas, eligiendo hitos, orden de visita y transporte.
   - Entonces: El visitante elige los hitos, el orden de visita y su preferencia de transporte.
 - Criterio 2: La ruta tiene al menos un hito de origen y uno de destino.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar ruta dinámica»
-  - Cuando: el actor solicita «Registrar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol.
+  - Cuando: El visitante solicita registrar sus propias rutas, eligiendo hitos, orden de visita y transporte.
   - Entonces: La ruta tiene al menos un hito de origen y uno de destino.
 - Criterio 3: El visitante marca la ruta como privada o pública; la privada solo la ve él y la pública aparece en el catálogo.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar ruta dinámica»
-  - Cuando: el actor solicita «Registrar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol.
+  - Cuando: El visitante solicita registrar sus propias rutas, eligiendo hitos, orden de visita y transporte.
   - Entonces: El visitante marca la ruta como privada o pública; la privada solo la ve él y la pública aparece en el catálogo.
-- Criterio 4: el sistema la rechaza.
-  - Dado: Se cumple la condición «registro una ruta con el mismo nombre en el mismo municipio y estado de origen que otra»
-  - Cuando: el actor solicita «Registrar ruta dinámica» en esas circunstancias
-  - Entonces: el sistema la rechaza.
+- Criterio 4: Si registro una ruta con el mismo nombre en el mismo municipio y estado de origen que otra, el sistema la rechaza.
+  - Dado: El visitante inició sesión con su rol.
+  - Cuando: El visitante registra una ruta con el mismo nombre en el mismo municipio y estado de origen que otra.
+  - Entonces: El sistema la rechaza.
 - Criterio 5: La ruta tiene duración estimada, mejor horario de inicio y nivel de dificultad, como toda ruta; el visitante puede dejarlos en blanco.
-  - Dado: Se cumplen las precondiciones del comportamiento «Registrar ruta dinámica»
-  - Cuando: el actor solicita «Registrar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol.
+  - Cuando: El visitante solicita registrar sus propias rutas, eligiendo hitos, orden de visita y transporte.
   - Entonces: La ruta tiene duración estimada, mejor horario de inicio y nivel de dificultad, como toda ruta; el visitante puede dejarlos en blanco.
 
 ### Consultar ruta dinámica
 
 - Criterio 1: Veo la lista de mis rutas, privadas y públicas.
-  - Dado: Se cumplen las precondiciones del comportamiento «Consultar ruta dinámica»
-  - Cuando: el actor solicita «Consultar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol; existe al menos un registro de ruta dinámica.
+  - Cuando: El visitante solicita consultar sus rutas.
   - Entonces: Veo la lista de mis rutas, privadas y públicas.
 - Criterio 2: Puedo abrir una ruta y ver sus hitos, su orden y mi preferencia de transporte.
-  - Dado: Se cumplen las precondiciones del comportamiento «Consultar ruta dinámica»
-  - Cuando: el actor solicita «Consultar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol; existe al menos un registro de ruta dinámica.
+  - Cuando: El visitante solicita consultar sus rutas.
   - Entonces: Puedo abrir una ruta y ver sus hitos, su orden y mi preferencia de transporte.
 
 ### Modificar ruta dinámica
 
 - Criterio 1: Solo el visitante que creó la ruta puede modificarla.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar ruta dinámica»
-  - Cuando: el actor solicita «Modificar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol; existe la ruta dinámica que se va a modificar.
+  - Cuando: El visitante solicita modificar sus rutas.
   - Entonces: Solo el visitante que creó la ruta puede modificarla.
 - Criterio 2: Puedo cambiar los hitos, el orden de visita y la preferencia de transporte.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar ruta dinámica»
-  - Cuando: el actor solicita «Modificar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol; existe la ruta dinámica que se va a modificar.
+  - Cuando: El visitante solicita modificar sus rutas.
   - Entonces: Puedo cambiar los hitos, el orden de visita y la preferencia de transporte.
 - Criterio 3: Puedo pasar la ruta de privada a pública o al revés.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar ruta dinámica»
-  - Cuando: el actor solicita «Modificar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol; existe la ruta dinámica que se va a modificar.
+  - Cuando: El visitante solicita modificar sus rutas.
   - Entonces: Puedo pasar la ruta de privada a pública o al revés.
 - Criterio 4: La ruta sigue teniendo al menos un hito de origen y uno de destino.
-  - Dado: Se cumplen las precondiciones del comportamiento «Modificar ruta dinámica»
-  - Cuando: el actor solicita «Modificar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol; existe la ruta dinámica que se va a modificar.
+  - Cuando: El visitante solicita modificar sus rutas.
   - Entonces: La ruta sigue teniendo al menos un hito de origen y uno de destino.
-- Criterio 5: el sistema lo rechaza.
-  - Dado: Se cumple la condición «el nombre queda igual al de otra ruta del mismo municipio y estado de origen»
-  - Cuando: el actor solicita «Modificar ruta dinámica» en esas circunstancias
-  - Entonces: el sistema lo rechaza.
+- Criterio 5: Si el nombre queda igual al de otra ruta del mismo municipio y estado de origen, el sistema lo rechaza.
+  - Dado: El visitante inició sesión con su rol; existe la ruta dinámica que se va a modificar; el nombre queda igual al de otra ruta del mismo municipio y estado de origen.
+  - Cuando: El visitante solicita modificar sus rutas.
+  - Entonces: El sistema lo rechaza.
 
 ### Eliminar ruta dinámica
 
 - Criterio 1: Solo el visitante que creó la ruta puede eliminarla.
-  - Dado: Se cumplen las precondiciones del comportamiento «Eliminar ruta dinámica»
-  - Cuando: el actor solicita «Eliminar ruta dinámica» en esas circunstancias
+  - Dado: El visitante inició sesión con su rol; existe la ruta dinámica que se va a eliminar.
+  - Cuando: El visitante solicita eliminar sus rutas.
   - Entonces: Solo el visitante que creó la ruta puede eliminarla.
-- Criterio 2: se elimina.
-  - Dado: Se cumple la condición «la ruta no tiene recorridos ni experiencias»
-  - Cuando: el actor solicita «Eliminar ruta dinámica» en esas circunstancias
-  - Entonces: se elimina.
-- Criterio 3: no se borra, porque se conserva su historial.
-  - Dado: Se cumple la condición «la ruta ya tiene recorridos o una experiencia transcurre sobre ella»
-  - Cuando: el actor solicita «Eliminar ruta dinámica» en esas circunstancias
-  - Entonces: no se borra, porque se conserva su historial.
+- Criterio 2: Si la ruta no tiene recorridos ni experiencias, se elimina.
+  - Dado: El visitante inició sesión con su rol; existe la ruta dinámica que se va a eliminar; la ruta no tiene recorridos ni experiencias.
+  - Cuando: El visitante solicita eliminar sus rutas.
+  - Entonces: Se elimina.
+- Criterio 3: Si la ruta ya tiene recorridos o una experiencia transcurre sobre ella, no se borra, porque se conserva su historial.
+  - Dado: El visitante inició sesión con su rol; existe la ruta dinámica que se va a eliminar; la ruta ya tiene recorridos o una experiencia transcurre sobre ella.
+  - Cuando: El visitante solicita eliminar sus rutas.
+  - Entonces: No se borra, porque se conserva su historial.
 
 ## 5. Restricciones técnicas
 
-PostgreSQL contiene invariantes. Arquitectura web de tres capas; stack de referencia provisional.
+- Capa de datos: PostgreSQL alojado en Supabase y usado solo como PostgreSQL (sin Supabase Auth, API automática ni RLS). Objetos en el esquema `rutasvzla`. Las reglas de negocio se implementan en el gestor con restricciones, triggers, funciones y procedimientos en PL/pgSQL, y el gestor autoriza cada operación con roles y `GRANT`/`REVOKE`.
+- Capa de aplicación: Next.js en el servidor (server actions y `server/db`). Abre la transacción, ejecuta `SET LOCAL ROLE` con el rol de la sesión y llama a la función o al procedimiento. No repite las reglas del gestor ni decide permisos por su cuenta.
+- Capa de presentación: Next.js (server components y client components). Muestra los datos y los errores que devuelve el gestor; sus validaciones son solo de experiencia de usuario.
+- Tablas propias: `ruta_turistica`, `ruta_fija`, `ruta_dinamica`, `conforma`, `usa`, `crea`. Nombres físicos según las [convenciones de base de datos](../../../docs/development/database-conventions.md).
+- Claves foráneas hacia tablas de otras capacidades (se crean en `database/02_claves/`, después de todas las tablas):
+  - `municipio` (MUNICIPIO), de `territorio-catalogo` (Javier).
+  - `hito` (HITO), de `patrimonio-hitos` (Javier).
+  - `parada_transporte` (PARADA_TRANSPORTE), de `movilidad-paradas` (Sebastián).
+  - `visitante` (VISITANTE), de `actores-identidades` (Valeria).
+- Roles que actúan: `rol_visitante`, `rol_administrador`.
 
 ## 6. Fuera de alcance
 
-Cambiar el modelo relacional o agregar nuevas reglas sin fuente.
+Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas de otras capacidades: solo se referencian o se leen, y cualquier cambio se coordina con su responsable.
 
 ## 7. Decisiones abiertas
 
-Revisar contratos entre capas y confirmar tecnología de API/UI.
+- Confirmar con su responsable la asociación preliminar RR↔HU de la sección 3.
+- Acordar con Javier y Valeria los datos de prueba de las tablas referidas.
