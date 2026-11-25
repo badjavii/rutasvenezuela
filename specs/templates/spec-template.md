@@ -10,7 +10,7 @@ Comportamientos que debe ofrecer el sistema; describir acción, recurso afectado
 
 ## 3. Reglas de negocio
 
-Reglas independientes de HTTP, base de datos o framework. Cada regla debe ser verificable.
+RR del modelo relacional que aplican, con su código. Cada regla debe ser verificable.
 
 ## 4. Criterios de aceptación
 

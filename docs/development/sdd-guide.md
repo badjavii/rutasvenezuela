@@ -28,7 +28,7 @@ Las especificaciones existentes son propuestas iniciales derivadas del informe, 
 
 ## 4. Responsabilidades entre capas
 
-Cada integrante desarrolla su funcionalidad a través de PostgreSQL, API e interfaz cuando corresponda. La base de datos conserva reglas de integridad y transacciones; el backend valida y autoriza. No se fija un framework de API mientras esté pendiente la decisión colectiva.
+Cada integrante desarrolla su funcionalidad a través de las tres capas cuando corresponda: datos (PostgreSQL), aplicación y presentación (Next.js). La base de datos conserva las reglas de integridad, las transacciones y la autorización con roles; la capa de aplicación fija el rol y llama a las rutinas, sin repetir reglas. Ver [arquitectura](../architecture.md).
 
 ## 5. Control de cambios
 
