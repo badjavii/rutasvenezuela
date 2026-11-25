@@ -7,9 +7,9 @@ RR-5,La cuenta que genera cada incidencia es distinta de null.,Javier,HU-19|RP-1
 RR-6,El hito afectado es distinto de null.,Javier,HU-19|RP-1,PRELIMINAR
 RR-7,El funcionario que verifica es distinto de null.,Javier,HU-20|RP-1,PRELIMINAR
 RR-8,El funcionario que cierra es distinto de null.,Javier,HU-37|RP-1,PRELIMINAR
-RR-9,El recorrido que respalda cada evaluación es distinto de null.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
-RR-10,El hito evaluado es distinto de null.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
-RR-11,La ruta evaluada es distinta de null.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-9,El recorrido que respalda cada evaluación es distinto de null.,Javier,HU-06|HU-22,PRELIMINAR
+RR-10,El hito evaluado es distinto de null.,Javier,HU-06|HU-22,PRELIMINAR
+RR-11,La ruta evaluada es distinta de null.,Javier,HU-06|HU-22,PRELIMINAR
 RR-12,La denominación oficial es clave alterna: es distinta de null y no se repite.,Javier,HU-31.1–31.4,PRELIMINAR
 RR-13,Todo hito tiene al menos una categoría.,Javier,HU-01|HU-10.1–10.4|HU-11.1–11.4,PRELIMINAR
 RR-14,Todo hito tiene su ubicación.,Javier,HU-01|HU-10.1–10.4,PRELIMINAR
@@ -17,7 +17,7 @@ RR-15,Todo punto de anclaje proyecta un recurso 3D.,Javier,HU-02|HU-13.1–13.4|
 RR-16,Todo ente tiene competencia sobre al menos un municipio.,Javier,HU-31.1–31.4,PRELIMINAR
 RR-17,Todo ente tiene su cuenta.,Javier,HU-31.1–31.4,PRELIMINAR
 RR-18,Toda incidencia la generó una cuenta.,Javier,HU-19|RP-1,PRELIMINAR
-RR-19,Toda evaluación la respalda un recorrido.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-19,Toda evaluación la respalda un recorrido.,Javier,HU-06|HU-22,PRELIMINAR
 RR-74,"El estado operativo de todo hito es disponible, en restauración, clausurado temporalmente o cerrado permanentemente.",Javier,HU-01|HU-10.1–10.4,PRELIMINAR
 RR-75,Un hito tiene al menos una fila en ABRE si y solo si no es de libre acceso.,Javier,HU-01|HU-10.1–10.4,PRELIMINAR
 RR-76,"En todo horario, el día es un día de la semana y la hora de cierre es posterior a la de apertura.",Javier,HU-01|HU-10.1–10.4,PRELIMINAR
@@ -27,9 +27,9 @@ RR-79,El tramo sobre el que está un hito es de su mismo municipio.,Javier,HU-01
 RR-80,"El radio de activación y la escala son positivos, la altitud respecto al suelo no es negativa, el azimut y la rotación están en [0, 360) y la inclinación en [−90, 90].",Javier,HU-02|HU-13.1–13.4,PRELIMINAR
 RR-81,Todo recurso 3D tiene un tamaño positivo.,Javier,HU-02|HU-14.1–14.4,PRELIMINAR
 RR-82,"El nivel territorial es nacional, estadal o municipal. Un ente municipal tiene exactamente una fila en COMPETENCIA. Todas las filas de COMPETENCIA de un ente estadal tienen el mismo estado.",Javier,HU-31.1–31.4,PRELIMINAR
-RR-83,"El estado es preliminar, activa, descartada, vencida o resuelta, y la severidad es bajo, medio o crítico.",Javier|Sebastián,HU-19|RP-1|VA-2|VA-4,PRELIMINAR
-RR-84,"Toda incidencia tiene fila en AFECTA_HITO o en AFECTA_TRAMO, pero no en las dos.",Javier|Sebastián,HU-19|RP-1|VA-2|VA-4,PRELIMINAR
-RR-85,"Si una incidencia afecta dos o más tramos, cada tramo afectado tiene una fila en CONECTA con otro tramo afectado por la misma incidencia.",Javier|Sebastián,HU-19|RP-1|VA-2|VA-4,PRELIMINAR
+RR-83,"El estado es preliminar, activa, descartada, vencida o resuelta, y la severidad es bajo, medio o crítico.",Javier,HU-19|RP-1|VA-2|VA-4,PRELIMINAR
+RR-84,"Toda incidencia tiene fila en AFECTA_HITO o en AFECTA_TRAMO, pero no en las dos.",Javier,HU-19|RP-1|VA-2|VA-4,PRELIMINAR
+RR-85,"Si una incidencia afecta dos o más tramos, cada tramo afectado tiene una fila en CONECTA con otro tramo afectado por la misma incidencia.",Javier,HU-19|RP-1|VA-2|VA-4,PRELIMINAR
 RR-86,"La cuenta que genera una incidencia está en CUENTA_VISITANTE, CUENTA_GUIA o CUENTA_FUNCIONARIO.",Javier,HU-19|HU-20|RP-1,PRELIMINAR
 RR-87,"Una incidencia preliminar la generó la cuenta de un visitante o de un guía, y no tiene fila en VERIFICA ni en CIERRA.",Javier,HU-19|HU-20|RP-1,PRELIMINAR
 RR-88,"Si la generó un visitante o un guía y ya no está preliminar, tiene fila en VERIFICA. Si la generó un funcionario, no la tiene. Toda incidencia descartada tiene fila en VERIFICA.",Javier,HU-19|HU-20|RP-1,PRELIMINAR
@@ -38,13 +38,13 @@ RR-90,El funcionario que cierra pertenece a un ente con competencia sobre el mun
 RR-91,"Una incidencia activa o vencida está activa si y solo si su fechaEstimadaResolucion, o la nuevaFecha de alguna fila de PRORROGA con su mismo numeroReporte, todavía no pasó. Si ya pasaron todas, está vencida. (Solo en lenguaje natural: necesita la fecha de hoy, que el lenguaje de restricciones del curso no define.)",Javier,HU-36|HU-37|RP-1|VA-4,PRELIMINAR
 RR-92,"La nuevaFecha de toda prórroga es posterior a la fecha estimada de resolución de su incidencia, y esa incidencia no está preliminar ni descartada.",Javier,HU-36|HU-37|RP-1,PRELIMINAR
 RR-93,La fecha estimada de resolución y la fecha de cierre no son anteriores a la fecha de detección.,Javier,HU-19|HU-36|HU-37|RP-1,PRELIMINAR
-RR-94,La calificación y el índice de seguridad son enteros de 1 a 5.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
-RR-95,"Toda evaluación tiene fila en EVALUA_HITO o en EVALUA_RUTA, exactamente en una.",Valeria|Javier,HU-06|HU-22,PRELIMINAR
-RR-96,"Si una evaluación es de una ruta, el recorrido que la respalda está completado y es sobre esa misma ruta.",Valeria|Javier,HU-06|HU-22,PRELIMINAR
-RR-97,"Si una evaluación es de un hito, el recorrido que la respalda ya terminó y tiene fila en TRANSITA con ese hito.",Valeria|Javier,HU-06|HU-22,PRELIMINAR
-RR-98,La fecha de emisión de una evaluación no es anterior al fin del recorrido que la respalda.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
-RR-99,La marca recorridoVerificado es verdadera si y solo si el recorrido que respalda la evaluación está completado.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
-RR-100,Dos evaluaciones distintas de ruta no las respalda el mismo recorrido. Tampoco dos evaluaciones distintas del mismo hito.,Valeria|Javier,HU-06|HU-22,PRELIMINAR
+RR-94,La calificación y el índice de seguridad son enteros de 1 a 5.,Javier,HU-06|HU-22,PRELIMINAR
+RR-95,"Toda evaluación tiene fila en EVALUA_HITO o en EVALUA_RUTA, exactamente en una.",Javier,HU-06|HU-22,PRELIMINAR
+RR-96,"Si una evaluación es de una ruta, el recorrido que la respalda está completado y es sobre esa misma ruta.",Javier,HU-06|HU-22,PRELIMINAR
+RR-97,"Si una evaluación es de un hito, el recorrido que la respalda ya terminó y tiene fila en TRANSITA con ese hito.",Javier,HU-06|HU-22,PRELIMINAR
+RR-98,La fecha de emisión de una evaluación no es anterior al fin del recorrido que la respalda.,Javier,HU-06|HU-22,PRELIMINAR
+RR-99,La marca recorridoVerificado es verdadera si y solo si el recorrido que respalda la evaluación está completado.,Javier,HU-06|HU-22,PRELIMINAR
+RR-100,Dos evaluaciones distintas de ruta no las respalda el mismo recorrido. Tampoco dos evaluaciones distintas del mismo hito.,Javier,HU-06|HU-22,PRELIMINAR
 RR-20,La ubicación de cada parada es distinta de null.,Sebastián,HU-05|HU-16.1–16.4,PRELIMINAR
 RR-21,El tramo donde está cada parada es distinto de null.,Sebastián,HU-05|HU-16.1–16.4,PRELIMINAR
 RR-22,El visitante que crea cada ruta dinámica es distinto de null.,Sebastián,HU-25.1–25.4,PRELIMINAR
