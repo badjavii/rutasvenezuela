@@ -3,7 +3,7 @@
 
 <img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="620">
 
-# RutasVenezuela: trazabilidad del workflow de la rama
+*RutasVenezuela: trazabilidad del workflow de la rama*
 
 Documento de seguimiento exclusivo de esta rama. El README institucional se conserva en `develop` y `main`.
 

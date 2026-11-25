@@ -14,9 +14,9 @@ Sistema web de gestión de rutas turísticas : UCAB
 
 RutasVenezuela es una aplicación web para gestionar territorio, patrimonio, rutas turísticas, movilidad, recorridos, visitantes, incidencias, experiencias y reportes. Se desarrolla como proyecto de la asignatura Sistemas de Bases de Datos de la Universidad Católica Andrés Bello (UCAB).
 
-El núcleo es una base de datos PostgreSQL transaccional (OLTP), desplegada mediante Supabase, que concentra restricciones de integridad, procedimientos almacenados, funciones y triggers. La aplicación sigue una arquitectura web de tres capas: presentación, servicio y datos.
+El núcleo es una base de datos PostgreSQL transaccional (OLTP), desplegada mediante Supabase, que concentra restricciones de integridad, procedimientos almacenados, funciones y triggers. La aplicación sigue una arquitectura web de tres capas lógicas: presentación, aplicación y datos.
 
-**Stack de referencia:** React.js para la interfaz y Python/FastAPI para el backend; la elección definitiva de estas tecnologías todavía está pendiente de confirmación. La base de datos y sus reglas de negocio permanecen como prioridad.
+**Arquitectura adoptada:** Next.js con App Router y TypeScript reúne las capas de presentación y aplicación en un único proyecto; PostgreSQL en Supabase constituye la capa de datos. La lógica de negocio, las restricciones y la autorización a nivel de datos corresponden al gestor. La integración de esta estructura está propuesta en el [PR #5](https://github.com/badjavii/rutasvenezuela/pull/5), pendiente de revisión.
 
 **Fecha de la segunda entrega:** 8 de diciembre de 2026.
 
@@ -26,8 +26,8 @@ El núcleo es una base de datos PostgreSQL transaccional (OLTP), desplegada medi
 rutasvenezuela/
 ├── assets/                 # Recursos del proyecto
 ├── database/               # Estructuras, rutinas, triggers, seguridad y semillas
-├── backend/                # Aplicación de servidor
-├── frontend/               # Aplicación web
+├── backend/                # Directorio anterior; migración prevista en PR #5
+├── frontend/               # Directorio anterior; migración prevista en PR #5
 ├── specs/                  # SDD: constitución, especificaciones, planes y tareas
 ├── references/             # Informe íntegro y contexto externo
 ├── docs/                   # Guías, trazabilidad y pruebas planificadas
@@ -56,7 +56,7 @@ python3 scripts/validar_trazabilidad.py
 python3 scripts/validar_plan_sdd_tdd.py
 ```
 
-La aplicación todavía está en fase de planificación: no existe un comando de despliegue funcional. El procedimiento completo para configurar PostgreSQL, backend y frontend se añadirá cuando estén implementados.
+La aplicación todavía está en fase de planificación: no existe un comando de despliegue funcional. El PR #5 propone consolidar las carpetas `backend/` y `frontend/` en `web/`; mientras no se integre, el árbol anterior refleja el estado efectivo de `develop`. El procedimiento completo para configurar PostgreSQL y la aplicación Next.js se añadirá cuando estén implementados.
 
 Las especificaciones se mantienen en [specs/README.md](specs/README.md) y se basan en las plantillas de la clase de APIs de Python.
 
