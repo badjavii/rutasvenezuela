@@ -108,7 +108,7 @@ def main():
         pattern = (
             r"(?:javier|sebastian|valeria)"
             r"\((?:feat|docs|test|fix|ci|refactor)/"
-            r"(?:database|backend|frontend|spec|integration|infra)\)"
+            r"(?:database|application|presentation|spec|integration|infra)\)"
             r"-[a-z0-9]+(?:-[a-z0-9]+)*"
         )
         require(re.fullmatch(pattern, branch),

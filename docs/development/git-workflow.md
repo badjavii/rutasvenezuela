@@ -24,7 +24,7 @@ Las ramas de trabajo se conservan aun después de integrar sus PR. No se elimina
 
 - **Author:** `javier`, `sebastian`, `valeria`.
 - **Kind:** `feat`, `docs`, `test`, `fix`, `ci`, `refactor`.
-- **Layer:** `database`, `backend`, `frontend`, `spec`, `integration`, `infra`.
+- **Layer:** `database`, `application`, `presentation`, `spec`, `integration`, `infra`. `database` es la capa de datos (PostgreSQL), `application` la capa de aplicación (server actions de Next.js) y `presentation` la capa de presentación (páginas y componentes de Next.js).
 - **Description:** inglés, minúsculas, palabras separadas con guiones.
 
 Ejemplos:
@@ -33,10 +33,10 @@ Ejemplos:
 javier(docs/spec)-consolidate-planning
 javier(feat/database)-territory-tables
 javier(test/database)-incident-integrity
-javier(feat/backend)-incident-reporting
+javier(feat/application)-incident-reporting
 sebastian(feat/database)-road-segments
-sebastian(feat/backend)-route-endpoints
-valeria(feat/frontend)-credential-management
+sebastian(feat/application)-route-actions
+valeria(feat/presentation)-credential-management
 valeria(test/integration)-credential-redemption
 ```
 
@@ -87,9 +87,9 @@ Los mensajes de commit se escriben en inglés, usando un verbo en imperativo, si
 feat(database): create territory tables
 test(database): cover incident integrity constraints
 docs(spec): document territory acceptance scenarios
-fix(frontend): correct credential form validation
+fix(presentation): correct credential form validation
 ci(workflows): validate traceability on develop
-refactor(backend): simplify route response mapping
+refactor(application): simplify route action errors
 ```
 
 Hacer commits pequeños, progresivos y atribuibles al integrante real. No agrupar todo en un solo commit ni fabricar contribuciones.
@@ -101,10 +101,10 @@ Hacer commits pequeños, progresivos y atribuibles al integrante real. No agrupa
 ```text
 feat(database): implement territory schema
 docs(spec): consolidate SDD and TDD planning
-fix(backend): handle invalid route parameters
+fix(application): handle invalid route parameters
 ```
 
-**Descripción:** en español, siguiendo la [plantilla oficial](../../.github/pull_request_template.md). Debe contener propósito, módulo, responsable, especificación OpenSpec, cambios realizados, pruebas previstas y ejecutadas, dependencias y riesgos.
+**Descripción:** en español, siguiendo la [plantilla oficial](../../.github/pull_request_template.md). Debe contener propósito, módulo, responsable, especificación SDD, cambios realizados, pruebas previstas y ejecutadas, dependencias y riesgos.
 
 **Comentarios en revisión:** describir el comportamiento observado, la corrección concreta solicitada y el requisito/escenario afectado; evitar mensajes ambiguos. Contestar el hilo con la decisión aplicada y el commit que la resuelve.
 
@@ -142,4 +142,4 @@ El tag debe señalar exactamente el commit publicado; no crear versiones en rama
 
 ## 8. Responsabilidades
 
-Cada integrante desarrolla su dominio a través de base de datos, API e interfaz, según la historia. Las dependencias entre módulos se revisan con el responsable correspondiente. No se ejecutan merges a `main` ni despliegues sin revisión humana.
+Cada integrante desarrolla su dominio a través de las capas de datos, aplicación y presentación, según la historia. Las dependencias entre módulos se revisan con el responsable correspondiente. No se ejecutan merges a `main` ni despliegues sin revisión humana.
