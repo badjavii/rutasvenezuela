@@ -1,46 +1,96 @@
-<!-- BRANCH_TRACE_README -->
 <div align="center">
 
-<img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="620">
+<img src="assets/rutasvenezuela-logo.svg" alt="RutasVenezuela" width="700">
 
-*RutasVenezuela: trazabilidad del workflow de la rama*
+Sistema web de gestión de rutas turísticas : UCAB
 
-Documento de seguimiento exclusivo de esta rama. El README institucional se conserva en `develop` y `main`.
+![Database](https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Planning-6C7086?style=for-the-badge)
 
 </div>
 
-## Identificación de la rama
+## Sobre el proyecto
 
-| Campo | Valor |
+RutasVenezuela es una aplicación web para gestionar territorio, patrimonio, rutas turísticas, movilidad, recorridos, visitantes, incidencias, experiencias y reportes. Se desarrolla como proyecto de la asignatura Sistemas de Bases de Datos de la Universidad Católica Andrés Bello (UCAB).
+
+El núcleo es una base de datos PostgreSQL transaccional (OLTP), desplegada mediante Supabase, que concentra restricciones de integridad, procedimientos almacenados, funciones y triggers. La aplicación sigue una arquitectura web de tres capas lógicas: presentación, aplicación y datos.
+
+**Arquitectura adoptada:** Next.js con App Router y TypeScript reúne las capas de presentación y aplicación en un único proyecto; PostgreSQL en Supabase constituye la capa de datos. La lógica de negocio, las restricciones y la autorización a nivel de datos corresponden al gestor. La integración de esta estructura está propuesta en el [PR #5](https://github.com/badjavii/rutasvenezuela/pull/5), pendiente de revisión.
+
+**Fecha de la segunda entrega:** 8 de diciembre de 2026.
+
+## Organización del repositorio
+
+```text
+rutasvenezuela/
+├── assets/                 # Recursos del proyecto
+├── database/               # Estructuras, rutinas, triggers, seguridad y semillas
+├── backend/                # Directorio anterior; migración prevista en PR #5
+├── frontend/               # Directorio anterior; migración prevista en PR #5
+├── specs/                  # SDD: constitución, especificaciones, planes y tareas
+├── references/             # Informe íntegro y contexto externo
+├── docs/                   # Guías, trazabilidad y pruebas planificadas
+├── scripts/                # Validadores del proyecto
+├── .github/                # Plantillas y automatizaciones
+├── AGENTS.md               # Instrucciones para agentes de desarrollo
+└── README.md
+```
+
+## Especificaciones y pruebas
+
+El desarrollo combina SDD (definir qué debe cumplir cada capacidad mediante las plantillas de especificación) y TDD (derivar pruebas verificables antes de implementar).
+
+La primera entrega documenta 103 historias de usuario, 324 criterios de aceptación, 134 restricciones relacionales y 21 interfaces. Consulta la [matriz detallada HU → especificación](docs/requirements/traceability-detailed.csv) para localizar la especificación SDD asociada. Estas referencias se conectan con especificaciones del dominio y planes de pruebas; todavía no representan funcionalidades implementadas ni pruebas ejecutadas.
+
+La puerta de entrada a toda la documentación es [docs/README.md](docs/README.md). Allí encontrarás las guías [SDD](docs/development/sdd-guide.md) y [TDD](docs/development/tdd-guide.md), la [trazabilidad académica](docs/requirements/traceability.md) y las [fuentes originales](references/README.md).
+
+## Instalación y ejecución
+
+```bash
+git clone https://github.com/badjavii/rutasvenezuela.git
+cd rutasvenezuela
+
+# Validaciones documentales, sin dependencias adicionales
+python3 scripts/validar_trazabilidad.py
+python3 scripts/validar_plan_sdd_tdd.py
+```
+
+La aplicación todavía está en fase de planificación: no existe un comando de despliegue funcional. El PR #5 propone consolidar las carpetas `backend/` y `frontend/` en `web/`; mientras no se integre, el árbol anterior refleja el estado efectivo de `develop`. El procedimiento completo para configurar PostgreSQL y la aplicación Next.js se añadirá cuando estén implementados.
+
+Las especificaciones se mantienen en [specs/README.md](specs/README.md) y se basan en las plantillas de la clase de APIs de Python.
+
+## Colaboración
+
+Las ramas individuales se proponen y revisan mediante pull requests hacia `develop`. La rama `main` se reserva para versiones estables; su promoción exige revisión, validación y un Git tag de versión. Las ramas de trabajo se conservan.
+
+Consulta [Git workflow](docs/development/git-workflow.md) para convenciones de ramas, commits, PR, revisiones, integración y versionado.
+
+## Integración continua
+
+El workflow [Documentation Quality](.github/workflows/docs-quality.yml) comprueba automáticamente la documentación, el mapa de trazabilidad y la cobertura planificada de SDD/TDD. Se ejecuta sobre pull requests dirigidos a `develop` o `main`.
+
+Las pruebas funcionales de PostgreSQL, API e interfaz se añadirán durante la implementación.
+
+## Documentación y referencias
+
+- [Índice de documentación](docs/README.md)
+- [Informe original de la primera entrega, sin imágenes](references/first-delivery.md)
+- [Repositorio de contexto y referencias externas](references/README.md)
+- [Especificaciones SDD](specs/README.md)
+
+## Créditos
+
+Este proyecto está orgullosamente diseñado y desarrollado por el Equipo 2 de la asignatura Sistemas de Bases de Datos de la Universidad Católica Andrés Bello (UCAB), bajo la supervisión de la profesora Marlene Goncalves Da Silva.
+
+| Integrante | Responsabilidades principales |
 |---|---|
-| Rama | `sebastian(feat/database)-schema-and-build` |
-| Responsable | Sebastián Armas |
-| Tipo de cambio | `feat` |
-| Capa | `database` |
-| Fecha de creación | 2026-11-24 |
-| Rama de origen | `develop` |
-| Destino de integración | `develop` |
-| Pull request | Pendiente de apertura |
-| Estado | En preparación |
+| Javier Otero | Territorio, patrimonio, hitos, instituciones, incidencias y evaluaciones |
+| Sebastián Armas | Movilidad, vías, tramos, rutas, guías y recorridos |
+| Valeria Loreto | Actores, visitantes, comercios, experiencias promocionales y credenciales |
 
-## Propósito y alcance
+Cada integrante desarrolla las funcionalidades de su dominio a través de las capas pertinentes de la aplicación.
 
-Esquema rutasvzla, roles base, build.sql, tipos comunes y pruebas SQL en CI
+## Licencia
 
-## Cambios contemplados
-
-- Especificaciones y criterios de aceptación asociados a este trabajo.
-- Cambios necesarios de la capa o módulo, sin alterar funcionalidades ajenas.
-- Pruebas y documentación que correspondan al alcance de la rama.
-
-## Verificación
-
-- Casos TDD: pendientes de concretar según las especificaciones aplicables.
-- Pruebas ejecutadas: ninguna declarada sin evidencia.
-- GitHub Actions: se revisará al abrir el PR.
-
-## Integración y referencias
-
-[Constitución SDD](specs/constitution.md) · [Git workflow](docs/development/git-workflow.md)
-
-Antes de abrir un PR, ejecutar `bash scripts/prepare-pr.sh`. El README institucional debe restaurarse para que el PR no incluya este documento; su historial de commits permanece en la rama. La matriz central se encuentra en `docs/project/branch-ledger.csv`.
+Este proyecto se distribuye bajo la GNU General Public License, versión 3 (GPL-3.0). Consulta el archivo [LICENSE](LICENSE) para conocer los términos completos.
