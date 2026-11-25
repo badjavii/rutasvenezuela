@@ -8,6 +8,8 @@ Se conservan dos referencias de trabajo independientes de las especificaciones S
 
 Documento exportado de Google Docs y limpiado exclusivamente para retirar 26 imágenes incrustadas y sus declaraciones Base64. El texto académico, las tablas, fórmulas, capítulos, historias y restricciones se mantienen sin reescritura. Es la fuente de verdad principal del modelo relacional entregado, las HU, las RR y los criterios de aceptación.
 
+Corresponde al PDF entregado a la profesora el 05/11/2026: `RutasVenezuela_Entrega1 (2).pdf`, único archivo de `RutasVenezuela_Entrega1_final.zip`. El 24/11/2026 se comparó con ese PDF: el esquema relacional (84 relaciones, atributos y claves foráneas), las 59 RE, las 134 RR, las 103 historias con sus 324 criterios y la matriz del capítulo 8 coinciden. Lo único distinto eran los pies de las 21 vistas del capítulo 3, que traían descripciones agregadas en el documento después de la entrega; se devolvieron al texto entregado (por ejemplo, «Cubre HU-08.»).
+
 **Aviso de publicación:** el informe incluye nombres y números de identificación de integrantes, presentes en el original. Este repositorio es público; el equipo debe confirmar que su publicación es apropiada. Cualquier futura edición de esos datos debe acordarse explícitamente, nunca hacerla pasar por una copia íntegra.
 
 ## 2. Repositorio de contexto de Sebastián

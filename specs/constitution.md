@@ -27,11 +27,17 @@ Las decisiones arquitectónicas y de dominio pertenecen al equipo. Los agentes n
 
 ## 6. Seguridad y arquitectura
 
-PostgreSQL conserva integridad y reglas transaccionales. El backend valida, autoriza y accede al gestor; el frontend presenta la información. No versionar secretos ni usar credenciales privilegiadas en el navegador.
+Tres capas y dos tecnologías ([arquitectura](../docs/architecture.md)):
+
+- Capa de datos: PostgreSQL alojado en Supabase y usado solo como PostgreSQL, en el esquema `rutasvzla`. Conserva la integridad, las reglas de negocio (restricciones, triggers, funciones y procedimientos en PL/pgSQL) y la autorización, con un rol por actor y `GRANT`/`REVOKE`.
+- Capa de aplicación: Next.js en el servidor (server actions). En cada operación abre una transacción, fija el rol de la sesión con `SET LOCAL ROLE` y llama a la función o al procedimiento. No repite reglas del gestor ni decide permisos.
+- Capa de presentación: Next.js (server components y client components). Presenta la información y los errores del gestor.
+
+No versionar secretos ni enviar credenciales del gestor al navegador.
 
 ## 7. Lenguaje y documentación
 
-Código, identificadores y nombres Git en inglés; documentación y especificaciones en español. Evitar negritas ornamentales y rayas largas como separadores de títulos.
+Código de la aplicación, nombres Git y commits en inglés; documentación y especificaciones en español. Los objetos de la base de datos conservan los nombres en español del modelo relacional, en minúsculas y snake_case ([convenciones](../docs/development/database-conventions.md)). Evitar negritas ornamentales y rayas largas como separadores de títulos.
 
 ## 8. Verificación y definición de terminado
 

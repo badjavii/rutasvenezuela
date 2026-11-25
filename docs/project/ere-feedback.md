@@ -17,7 +17,7 @@ La evidencia aportada es una página escaneada del ERE con anotaciones manuscrit
 | ERE | Documentar observaciones y opciones de mejora; no rediseñar automáticamente |
 | Generalizaciones | Alternativa de modelado conceptual, no requisito obligatorio de implementación |
 | Pruebas PostgreSQL | Pueden planificarse desde ahora con el esquema relacional vigente |
-| API / interfaz | Contratos todavía por revisar; FastAPI y React propuestos, alternativa Node.js pendiente |
+| Aplicación / presentación | Next.js adoptado el 24/11/2026; ver [arquitectura](../architecture.md) |
 
 ## Acciones acordadas
 

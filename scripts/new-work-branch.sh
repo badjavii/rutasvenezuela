@@ -14,7 +14,7 @@ summary="$5"
 
 [[ "$author" =~ ^(javier|sebastian|valeria)$ ]] || { echo 'Autor inválido' >&2; exit 2; }
 [[ "$kind" =~ ^(feat|docs|test|fix|ci|refactor)$ ]] || { echo 'Tipo inválido' >&2; exit 2; }
-[[ "$layer" =~ ^(database|backend|frontend|spec|integration|infra)$ ]] || { echo 'Capa inválida' >&2; exit 2; }
+[[ "$layer" =~ ^(database|application|presentation|spec|integration|infra)$ ]] || { echo 'Capa inválida' >&2; exit 2; }
 [[ "$slug" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]] || { echo 'Descripción de rama inválida' >&2; exit 2; }
 [[ -n "$summary" ]] || { echo 'La descripción no puede estar vacía' >&2; exit 2; }
 

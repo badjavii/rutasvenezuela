@@ -10,9 +10,9 @@ Prueba → RED → Implementación mínima → GREEN → Refactor, si aporta.
 
 ## 3. Componentes afectados
 
-- Aplicación: servicios y componentes.
-- API: rutas, esquemas y validación.
-- Datos: tablas, procedimientos, funciones y triggers.
+- Capa de datos: tablas, claves, restricciones, triggers, funciones, procedimientos y privilegios.
+- Capa de aplicación: server actions con `SET LOCAL ROLE`.
+- Capa de presentación: páginas y componentes según los mockups.
 - Pruebas: cobertura que se incorporará.
 
 ## 4. Verificación
