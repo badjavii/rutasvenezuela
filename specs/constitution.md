@@ -37,7 +37,7 @@ No versionar secretos ni enviar credenciales del gestor al navegador.
 
 ## 7. Lenguaje y documentación
 
-Código de la aplicación, nombres Git y commits en inglés; documentación y especificaciones en español. Los objetos de la base de datos conservan los nombres en español del modelo relacional, en minúsculas y snake_case ([convenciones](../docs/development/database-conventions.md)). Evitar negritas ornamentales y rayas largas como separadores de títulos.
+Código de la aplicación, nombres Git y commits en inglés; documentación y especificaciones en español. Los objetos de la base de datos conservan los nombres en español del modelo relacional, en minúsculas y snake_case ([convenciones](../docs/development/database-conventions.md)). Evitar negritas ornamentales y rayas largas como separadores de títulos. El código TypeScript y sus pruebas cumplen la [guía de legibilidad](../docs/development/typescript-style-guide.md), con funciones declaradas, tipado estricto y control de flujo explícito.
 
 ## 8. Verificación y definición de terminado
 
