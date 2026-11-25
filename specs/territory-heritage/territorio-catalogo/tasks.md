@@ -1,11 +1,11 @@
 # Tareas: territorio catalogo
 
-El estado de implementación se registra solo aquí. RED observado en CI: commit `ef17348`, la relación estado todavía no existía. La fase estructural espera verificación GREEN; las pruebas de rutinas y permisos siguen pendientes.
+El estado de implementación se registra solo aquí. RED observado en CI: commit `ef17348`, la relación estado todavía no existía. GREEN observado en PostgreSQL 17 para el commit `fff4984` ([CI](https://github.com/badjavii/rutasvenezuela/actions/runs/45542953133)); las pruebas de rutinas y permisos siguen pendientes.
 
 ## T-01. Capa de datos
 
-- [ ] Verificar en GREEN la creación de `estado`, `municipio`, `parroquia` en `database/01_tablas/territorio-catalogo.sql`.
-- [ ] Verificar en GREEN las claves foráneas en `database/02_claves/territorio-catalogo.sql`.
+- [x] Verificar en GREEN la creación de `estado`, `municipio`, `parroquia` en `database/01_tablas/territorio-catalogo.sql`.
+- [x] Verificar en GREEN las claves foráneas en `database/02_claves/territorio-catalogo.sql`.
 - [x] Escribir pruebas estructurales y confirmar RED (commit `ef17348`, [CI](https://github.com/badjavii/rutasvenezuela/actions/runs/45542856563)).
 - [ ] Escribir las pruebas SQL de rutinas y criterios restantes, y confirmar RED.
 - [ ] Implementar en `database/03_reglas/territorio-catalogo.sql` hasta GREEN y refactorizar.
