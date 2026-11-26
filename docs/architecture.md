@@ -39,7 +39,7 @@ La base de datos determina las invariantes y los permisos aunque la aplicación 
 
 - Un rol de PostgreSQL por actor: `rol_visitante`, `rol_guia`, `rol_comercio`, `rol_ente`, `rol_funcionario` y `rol_administrador`, con `GRANT`/`REVOKE` sobre funciones, procedimientos y tablas.
 - La aplicación se conecta como `app_rv` (`LOGIN NOINHERIT`), miembro de los roles de actor. Sin `SET ROLE` no tiene privilegios propios.
-- `fn_iniciar_sesion` (`SECURITY DEFINER`) valida la contraseña de `cuenta` con `pgcrypto` y devuelve el rol. La aplicación guarda la cuenta y el rol en una cookie firmada.
+- `fn_iniciar_sesion` (`SECURITY DEFINER`) valida la contraseña de `cuenta` con `pgcrypto` y devuelve el rol. Antes de que exista una sesión, la aplicación la llama con `SET LOCAL ROLE rol_autenticacion`, un rol técnico que solo puede ejecutar esa rutina. La aplicación guarda la cuenta y el rol en una cookie firmada.
 - En cada operación: `SET LOCAL ROLE` y `set_config('app.id_cuenta', …, true)` dentro de la transacción, para que las rutinas sepan quién actúa.
 - `rv_owner` es dueño del esquema y de los objetos; `postgres` solo se usa para crear la base y los roles.
 

@@ -4,7 +4,7 @@ Scripts de PostgreSQL de RutasVenezuela, en el esquema `rutasvzla`. El orden, lo
 
 ```text
 database/
-├── 00_esquema.sql     # extensión, esquema y roles base; común, no crea tablas
+├── 00_esquema.sql     # pgcrypto en extensions, esquema y roles base; común, no crea tablas
 ├── 01_tablas/         # CREATE TABLE sin claves foráneas, un archivo por capacidad (ya creados, vacíos)
 ├── 02_claves/         # claves foráneas, un archivo por capacidad (ya creados, vacíos)
 ├── 03_reglas/         # triggers, funciones y procedimientos (PL/pgSQL)
@@ -14,6 +14,8 @@ database/
 ├── build.sql          # ejecuta todo en orden con \ir, en una transacción
 └── test.sql           # corre las pruebas de tests/
 ```
+
+Requiere PostgreSQL 16 o posterior; la revisión de GitHub usa PostgreSQL 17.
 
 Construir la base desde cero y probarla (borra y recrea el esquema `rutasvzla`; los roles se conservan):
 
