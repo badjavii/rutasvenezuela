@@ -7,4 +7,4 @@ sebastian(feat/database)-schema-and-build,Sebastián Armas,feat,database,"Esquem
 javier(docs/spec)-security-contract,Javier Otero,docs,spec,Contrato transversal de seguridad,develop,develop,2026-11-24,https://github.com/badjavii/rutasvenezuela/pull/7,in_review,2026-11-24
 javier(docs/application)-typescript-conventions,Javier Otero,docs,application,Convenciones TypeScript y Next.js,develop,develop,2026-11-24,https://github.com/badjavii/rutasvenezuela/pull/8,in_review,2026-11-24
 javier(feat/database)-territory-tables,Javier Otero,feat,database,Tablas y pruebas estructurales del catálogo territorial,develop,develop,2026-11-24,https://github.com/badjavii/rutasvenezuela/pull/9,in_review,2026-11-24
-sebastian(fix/database)-auth-role-and-extensions,Sebastián Armas,fix,database,"Rol de autenticación, pgcrypto en extensions y pruebas de membresías",develop,develop,2026-11-26,,in_progress,2026-11-26
+sebastian(fix/database)-auth-role-and-extensions,Sebastián Armas,fix,database,"Rol de autenticación, pgcrypto en extensions y pruebas de membresías",develop,develop,2026-11-26,,ready_for_pr,2026-11-26
