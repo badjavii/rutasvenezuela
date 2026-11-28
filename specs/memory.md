@@ -11,3 +11,7 @@ El progreso individual se registra exclusivamente en el `tasks.md` de cada capac
 ## Iteración territorial
 
 PR #9: las pruebas estructurales de estado, municipio y parroquia verificaron RED (`ef17348`) y GREEN (`fff4984`) en PostgreSQL 17. La propuesta de tipos y acciones referenciales requiere revisión; las rutinas, permisos, datos de prueba persistentes y aplicación siguen pendientes. No se declara completada la capacidad.
+
+## Aprobación de specs
+
+27/11/2026: Sebastián aprobó sus 8 especificaciones de `mobility-routes`. Sus 33 historias pasan a `ESPECIFICADO_APROBADO` en la [matriz](../docs/requirements/traceability-detailed.csv), y cada spec registra sus decisiones de implementación en la sección 8. Javier y Valeria aprueban las suyas del mismo modo.

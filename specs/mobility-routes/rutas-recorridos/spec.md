@@ -74,3 +74,11 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 - Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier y Valeria los datos de prueba de las tablas referidas.
+
+## 8. Decisiones de implementación
+
+Aprobadas por Sebastián Armas el 27/11/2026, junto con la especificación. No agregan reglas: aplican las RR, los criterios y las [convenciones de base de datos](../../../docs/development/database-conventions.md) a casos que el informe no detalla.
+
+- Ciclo: iniciar crea `recorrido`, `realiza` con el visitante de la sesión y `sobre`, con la hora de inicio del gestor; registrar el paso por un hito inserta en `transita` con la hora del gestor; terminar guarda la hora de fin y el estado. Las horas las pone el gestor, no el navegador. No hay rutinas para modificar un recorrido terminado ni para eliminarlo (criterios 5 y 6).
+- RR-112, RR-114 y RR-115 se verifican cuando se escribe el recorrido (al iniciarlo, registrar un paso o terminarlo), no cuando la ruta cambia después: modificar la secuencia o la visibilidad de una ruta no invalida el historial.
+- Autorización por registro: solo el visitante de `realiza` registra pasos y termina su recorrido, y la lista del criterio 7 devuelve solo los suyos.

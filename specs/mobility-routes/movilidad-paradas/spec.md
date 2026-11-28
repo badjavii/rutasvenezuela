@@ -119,3 +119,12 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 - Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier los datos de prueba de las tablas referidas.
+
+## 8. Decisiones de implementación
+
+Aprobadas por Sebastián Armas el 27/11/2026, junto con la especificación. No agregan reglas: aplican las RR, los criterios y las [convenciones de base de datos](../../../docs/development/database-conventions.md) a casos que el informe no detalla.
+
+- Registrar una parada incluye su ubicación (`se_localiza`), su tramo (`esta_en`) y al menos un horario (`funciona`) en la misma operación. RR-31, RR-32 y RR-33 se verifican al confirmar la transacción.
+- Que la vía esté habilitada (registrar, criterio 6; modificar, criterio 3) se comprueba al registrar la parada o cambiar su tramo. Si la vía se cierra después, la parada se conserva y HU-05 deja de ofrecerla para transbordo.
+- Claves foráneas: `equipamiento_urbano`, `se_localiza`, `esta_en`, `funciona` y `cercana` → `parada_transporte` con `ON DELETE CASCADE` (datos de la parada); `usa` → `parada_transporte` con `ON DELETE RESTRICT` (HU-16.4, criterio 2: si forma parte de una ruta no se elimina); `esta_en` → `tramo` con `ON DELETE RESTRICT`.
+- `ubicacion_geografica` y `horario` son de `patrimonio-hitos` (Javier): registrar una parada inserta su ubicación y su horario si todavía no existen. Se coordina con Javier.
