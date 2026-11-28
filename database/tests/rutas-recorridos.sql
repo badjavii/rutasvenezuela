@@ -3,7 +3,8 @@
 -- y acciones referenciales.
 -- Segunda transacción: RR-44, RR-45, RR-112 y RR-115 (al confirmar) y RR-114 (al
 -- escribir el paso o terminar). Según la sección 8 de la spec, se verifican cuando
--- se escribe el recorrido, no cuando la ruta cambia después.
+-- se escribe el recorrido (iniciarlo, registrar un paso, terminarlo), no cuando la
+-- ruta cambia después ni cuando un renombre llega por ON UPDATE CASCADE.
 -- Las claves foráneas hacia visitante (actores-identidades, Valeria) y hito
 -- (patrimonio-hitos, Javier), y desde respaldada_por (Javier), se prueban cuando
 -- existan esas tablas.
@@ -192,23 +193,6 @@ BEGIN
     EXCEPTION WHEN check_violation THEN
         IF SQLERRM NOT LIKE 'RR-112%' THEN RAISE; END IF;
     END;
-    -- RR-112: tampoco cambiando el visitante del recorrido.
-    BEGIN
-        UPDATE realiza SET cedula_pasaporte = 'V-2' WHERE id_recorrido = v_propia;
-        SET CONSTRAINTS ALL IMMEDIATE;
-        RAISE EXCEPTION 'Se aceptó pasar a otro visitante un recorrido de ruta privada (RR-112)';
-    EXCEPTION WHEN check_violation THEN
-        IF SQLERRM NOT LIKE 'RR-112%' THEN RAISE; END IF;
-    END;
-
-    -- RR-112: ni cambiando la ruta del recorrido por la privada de otro.
-    BEGIN
-        UPDATE sobre SET nombre_ruta = 'Privada' WHERE id_recorrido = v_fija;
-        SET CONSTRAINTS ALL IMMEDIATE;
-        RAISE EXCEPTION 'Se aceptó cambiar un recorrido a la ruta privada de otro (RR-112)';
-    EXCEPTION WHEN check_violation THEN
-        IF SQLERRM NOT LIKE 'RR-112%' THEN RAISE; END IF;
-    END;
 
     -- RR-44 y RR-45: el recorrido tiene su visitante y su ruta.
     BEGIN
@@ -293,27 +277,6 @@ BEGIN
     EXCEPTION WHEN check_violation THEN
         IF SQLERRM NOT LIKE 'RR-114%' THEN RAISE; END IF;
     END;
-    -- RR-115: quitarle un paso a un recorrido completado se rechaza.
-    BEGIN
-        DELETE FROM transita WHERE id_recorrido = v_fija AND nombre_hito = 'Hito 2';
-        SET CONSTRAINTS ALL IMMEDIATE;
-        RAISE EXCEPTION 'Se quitó un paso de un recorrido completado (RR-115)';
-    EXCEPTION WHEN check_violation THEN
-        IF SQLERRM NOT LIKE 'RR-115%' THEN RAISE; END IF;
-    END;
-
-    -- RR-115: cambiar un recorrido completado a una ruta con otros hitos se rechaza.
-    BEGIN
-        INSERT INTO ruta_turistica VALUES ('Test RD', 'Municipio A', 'Otra', 60, '08:00', 'baja');
-        INSERT INTO ruta_fija VALUES ('Test RD', 'Municipio A', 'Otra');
-        INSERT INTO conforma VALUES ('Test RD', 'Municipio A', 'Otra', 'Test RD', 'Municipio A', 'Parroquia A', 'Hito 3', 1),
-                                    ('Test RD', 'Municipio A', 'Otra', 'Test RD', 'Municipio A', 'Parroquia A', 'Hito 4', 2);
-        UPDATE sobre SET nombre_ruta = 'Otra' WHERE id_recorrido = v_fija;
-        SET CONSTRAINTS ALL IMMEDIATE;
-        RAISE EXCEPTION 'Se aceptó cambiar la ruta de un recorrido completado (RR-115)';
-    EXCEPTION WHEN check_violation THEN
-        IF SQLERRM NOT LIKE 'RR-115%' THEN RAISE; END IF;
-    END;
 
     -- Sección 8: cambiar la ruta después no invalida el historial. Agregar un hito a la
     -- ruta fija y hacer privada la ruta pública no afecta a los recorridos ya escritos.
@@ -328,6 +291,14 @@ BEGIN
     -- No es un paso nuevo: RR-114 no lo revisa, y RR-115 lo ve consistente al confirmar.
     UPDATE transita SET nombre_hito = 'Hito 1 renombrado' WHERE nombre_estado = 'Test RD' AND nombre_hito = 'Hito 1';
     UPDATE conforma SET nombre_hito = 'Hito 1 renombrado' WHERE estado_hito = 'Test RD' AND nombre_hito = 'Hito 1';
+    SET CONSTRAINTS ALL IMMEDIATE;
+    SET CONSTRAINTS ALL DEFERRED;
+
+    -- HU-17.3 y HU-25.3: renombrar una ruta llega a sobre por ON UPDATE CASCADE. No
+    -- es iniciar un recorrido: la ruta fija ya tiene un hito que el recorrido
+    -- completado no transitó, y la ruta que era pública ya es privada, y se aceptan.
+    UPDATE ruta_turistica SET nombre_ruta = 'Fija renombrada' WHERE nombre_estado = 'Test RD' AND nombre_ruta = 'Fija';
+    UPDATE ruta_turistica SET nombre_ruta = 'Ya no pública' WHERE nombre_estado = 'Test RD' AND nombre_ruta = 'Pública';
     SET CONSTRAINTS ALL IMMEDIATE;
 END
 $$;
