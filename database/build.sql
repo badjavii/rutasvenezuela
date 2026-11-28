@@ -3,6 +3,9 @@
 --   psql "$DATABASE_URL" -f database/build.sql
 -- Todo corre en una sola transacción: si algo falla, la base queda como estaba.
 
+-- Los scripts están en UTF-8. Sin esta línea, psql en Windows puede leerlos con la
+-- codificación de la consola y guardar mal las tildes de los CHECK ('caminería').
+\encoding UTF8
 \set ON_ERROR_STOP on
 
 BEGIN;
