@@ -14,7 +14,7 @@ PR #9: las pruebas estructurales de estado, municipio y parroquia verificaron RE
 
 ## Iteración de vías y tramos
 
-28/11/2026: las pruebas estructurales de `via`, `via_modo`, `tramo` y `conecta` verificaron RED (`3e4ea47`) y GREEN (`be59af0`) en PostgreSQL 18. RR-29, RR-30, las rutinas, los permisos y los datos de prueba siguen pendientes. No se declara completada la capacidad.
+28/11/2026: las pruebas estructurales de `via`, `via_modo`, `tramo` y `conecta` verificaron RED (`3e4ea47`) y GREEN (`be59af0`) en PostgreSQL 18. RR-29 y RR-30 verificaron RED (`6f5dfce`) y GREEN (`e95b135`) con triggers de restricción diferidos. Las rutinas, los permisos y los datos de prueba siguen pendientes. No se declara completada la capacidad.
 
 ## Aprobación de specs
 

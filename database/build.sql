@@ -52,7 +52,25 @@ SET LOCAL search_path TO rutasvzla, public, extensions;
 \ir 02_claves/rutas-recorridos.sql
 \ir 02_claves/territorio-catalogo.sql
 
--- 3 a 5. Reglas (03_reglas), seguridad (04_seguridad) y datos de prueba (05_datos):
+-- 3. Reglas: triggers, funciones y procedimientos, cuando ya existen las claves.
+\ir 03_reglas/actores-comercios.sql
+\ir 03_reglas/actores-identidades.sql
+\ir 03_reglas/credenciales-gestion.sql
+\ir 03_reglas/evaluaciones-publicacion.sql
+\ir 03_reglas/guias-contrataciones.sql
+\ir 03_reglas/incidencias-gestion.sql
+\ir 03_reglas/instituciones-entes.sql
+\ir 03_reglas/movilidad-paradas.sql
+\ir 03_reglas/movilidad-vias-y-tramos.sql
+\ir 03_reglas/patrimonio-anclajes-3d.sql
+\ir 03_reglas/patrimonio-eventos.sql
+\ir 03_reglas/patrimonio-hitos.sql
+\ir 03_reglas/promociones-experiencias.sql
+\ir 03_reglas/rutas-gestion.sql
+\ir 03_reglas/rutas-recorridos.sql
+\ir 03_reglas/territorio-catalogo.sql
+
+-- 4 y 5. Seguridad (04_seguridad) y datos de prueba (05_datos):
 -- se agregan aquí en la fase 2, con el mismo patrón de un archivo por capacidad.
 
 COMMIT;

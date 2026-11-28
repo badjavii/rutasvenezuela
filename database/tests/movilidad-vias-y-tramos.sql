@@ -167,3 +167,115 @@ $$;
 
 ROLLBACK;
 \echo 'OK: movilidad-vias-y-tramos (estructuras y claves)'
+
+-- RR-29 y RR-30 (sección 8 de la spec): se verifican al confirmar la transacción.
+-- La prueba termina en ROLLBACK, así que adelanta esa verificación con
+-- SET CONSTRAINTS ALL IMMEDIATE, que ejecuta los triggers diferidos pendientes.
+-- Cada rechazo se comprueba por su SQLSTATE (check_violation) y por la RR del mensaje.
+
+BEGIN;
+SET LOCAL ROLE rv_owner;
+SET LOCAL search_path TO rutasvzla, pg_catalog;
+
+DO $$
+BEGIN
+    INSERT INTO estado VALUES ('Test RR');
+    INSERT INTO municipio VALUES ('Test RR', 'Municipio A'), ('Test RR', 'Municipio B');
+
+    -- HU-15.1: la vía, sus modos y sus tramos se registran en la misma transacción.
+    -- La vía se inserta antes que sus tramos y modos, y no hay error hasta confirmar.
+    INSERT INTO via VALUES ('Test RR', 'Municipio A', 'Calle Uno', 'calle', 'asfalto', 'habilitada');
+    INSERT INTO via_modo VALUES ('Test RR', 'Municipio A', 'Calle Uno', 'a pie');
+    INSERT INTO tramo VALUES ('Test RR', 'Municipio A', 'Calle Uno', 1, false, false),
+                             ('Test RR', 'Municipio A', 'Calle Uno', 2, false, true);
+    INSERT INTO via VALUES ('Test RR', 'Municipio A', 'Calle Dos', 'calle', 'asfalto', 'habilitada');
+    INSERT INTO via_modo VALUES ('Test RR', 'Municipio A', 'Calle Dos', 'a pie'),
+                                ('Test RR', 'Municipio A', 'Calle Dos', 'bicicleta');
+    INSERT INTO tramo VALUES ('Test RR', 'Municipio A', 'Calle Dos', 1, false, false);
+    SET CONSTRAINTS ALL IMMEDIATE;
+    SET CONSTRAINTS ALL DEFERRED;
+
+    -- RR-29: una vía sin tramos se rechaza.
+    BEGIN
+        INSERT INTO via VALUES ('Test RR', 'Municipio A', 'Sin Tramo', 'calle', 'asfalto', 'habilitada');
+        INSERT INTO via_modo VALUES ('Test RR', 'Municipio A', 'Sin Tramo', 'a pie');
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se aceptó una vía sin tramos (RR-29)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-29%' THEN RAISE; END IF;
+    END;
+
+    -- RR-29: no se elimina el último tramo de una vía.
+    BEGIN
+        DELETE FROM tramo WHERE nombre_via = 'Calle Dos' AND numero_tramo = 1;
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se eliminó el último tramo de una vía (RR-29)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-29%' THEN RAISE; END IF;
+    END;
+
+    -- RR-29: pasar el único tramo a otra vía deja la primera sin tramos.
+    BEGIN
+        UPDATE tramo SET nombre_via = 'Calle Uno', numero_tramo = 3
+            WHERE nombre_via = 'Calle Dos' AND numero_tramo = 1;
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se dejó una vía sin tramos al mover su tramo (RR-29)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-29%' THEN RAISE; END IF;
+    END;
+
+    -- Eliminar un tramo cuando quedan otros sí se acepta.
+    DELETE FROM tramo WHERE nombre_via = 'Calle Uno' AND numero_tramo = 2;
+    SET CONSTRAINTS ALL IMMEDIATE;
+    SET CONSTRAINTS ALL DEFERRED;
+
+    -- RR-30: una vía sin modos se rechaza.
+    BEGIN
+        INSERT INTO via VALUES ('Test RR', 'Municipio A', 'Sin Modo', 'calle', 'asfalto', 'habilitada');
+        INSERT INTO tramo VALUES ('Test RR', 'Municipio A', 'Sin Modo', 1, false, false);
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se aceptó una vía sin modos (RR-30)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-30%' THEN RAISE; END IF;
+    END;
+
+    -- RR-30: no se quita el último modo de una vía.
+    BEGIN
+        DELETE FROM via_modo WHERE nombre_via = 'Calle Uno';
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se quitó el último modo de una vía (RR-30)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-30%' THEN RAISE; END IF;
+    END;
+
+    -- RR-30: pasar el único modo a otra vía deja la primera sin modos.
+    BEGIN
+        UPDATE via_modo SET nombre_via = 'Calle Dos', modo = 'vehículo adaptado'
+            WHERE nombre_via = 'Calle Uno';
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se dejó una vía sin modos al mover su modo (RR-30)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-30%' THEN RAISE; END IF;
+    END;
+
+    -- Quitar un modo cuando quedan otros, o cambiar el único por otro, sí se acepta.
+    DELETE FROM via_modo WHERE nombre_via = 'Calle Dos' AND modo = 'bicicleta';
+    UPDATE via_modo SET modo = 'bicicleta' WHERE nombre_via = 'Calle Uno';
+    SET CONSTRAINTS ALL IMMEDIATE;
+    SET CONSTRAINTS ALL DEFERRED;
+
+    -- Renombrar la vía o cambiarla de municipio lleva consigo sus tramos y modos
+    -- (ON UPDATE CASCADE), así que se acepta.
+    UPDATE via SET nombre_via = 'Calle Uno corregida' WHERE nombre_via = 'Calle Uno';
+    UPDATE via SET nombre_municipio = 'Municipio B' WHERE nombre_via = 'Calle Uno corregida';
+    SET CONSTRAINTS ALL IMMEDIATE;
+    SET CONSTRAINTS ALL DEFERRED;
+
+    -- HU-15.4, criterio 1: eliminar la vía elimina sus tramos y modos, y se acepta.
+    DELETE FROM via WHERE nombre_via = 'Calle Dos';
+    SET CONSTRAINTS ALL IMMEDIATE;
+END
+$$;
+
+ROLLBACK;
+\echo 'OK: movilidad-vias-y-tramos (RR-29 y RR-30)'
