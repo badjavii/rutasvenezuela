@@ -10,7 +10,16 @@ Todos los objetos del proyecto van en el esquema `rutasvzla`, no en `public`. Ca
 SET search_path TO rutasvzla, public, extensions;
 ```
 
-`public` y `extensions` quedan solo para extensiones como `pgcrypto`: en un PostgreSQL local está en `public` y en Supabase en `extensions`. Un esquema que no existe en el `search_path` se ignora, así que la misma línea sirve en los dos.
+`pgcrypto` se instala siempre en el esquema `extensions`, en local igual que en Supabase. Las rutinas la llaman con el esquema escrito: `extensions.crypt(…)` y `extensions.gen_salt(…)`.
+
+Las rutinas `SECURITY DEFINER` no usan ese `search_path`, sino uno propio y fijo, para que nadie pueda hacerles usar una tabla o función homónima de otro esquema. Por eso nombran `pgcrypto` con su esquema:
+
+```sql
+CREATE FUNCTION fn_iniciar_sesion(…) RETURNS …
+    LANGUAGE plpgsql SECURITY DEFINER
+    SET search_path = rutasvzla, pg_temp
+AS $$ … extensions.crypt(p_contrasena, v_hash) … $$;
+```
 
 ## Nombres
 
@@ -43,7 +52,7 @@ Cada restricción que implementa una RR lleva un comentario con su código (`-- 
 
 ## Tipos
 
-**Propuesta, pendiente de aprobación de los tres.** El PDF de la primera entrega fija los atributos de cada relación, pero casi nunca su tipo. Para que las claves foráneas entre capacidades coincidan, todos usan esta tabla.
+**Vigente desde el 27/11/2026** (PR #9 la aplica a las tablas del territorio). Quien necesite cambiar un tipo lo propone en un PR antes de usarlo, porque las claves foráneas de otros dependen de él. El PDF de la primera entrega fija los atributos de cada relación, pero casi nunca su tipo. Para que las claves foráneas entre capacidades coincidan, todos usan esta tabla.
 
 **Regla principal:** una columna que es clave foránea tiene exactamente el tipo de la columna que referencia, aunque el modelo la renombre (`estado_hito`, `tramo_origen`, `municipio_ruta`…).
 
@@ -55,7 +64,7 @@ Cada restricción que implementa una RR lleva un comentario con su código (`-- 
 | Identificadores que escribe el actor y códigos: `cedulaPasaporte`, `cedulaFuncionario`, `cedulaAdmin`, `rifInstitucional`, `rifJuridico`, `rtn`, `codigoLicencia`, `codigoTerminal`, `codigoCredencial`, `codigoPromocional`, `codigoResena`, `cuentaBancaria`, `telefonoEmergencia` | `VARCHAR(30)` |
 | `correo` | `VARCHAR(254)` |
 | Claves que genera el sistema: `idCuenta`, `idRecorrido`, `idRecurso`, `numeroReporte`, `nroContratacion` | `INTEGER GENERATED ALWAYS AS IDENTITY` en la tabla que las crea; `INTEGER` donde se referencian |
-| `contrasena` | `TEXT` (hash de `crypt(…, gen_salt('bf'))`, nunca el texto) |
+| `contrasena` | `TEXT` (hash de `extensions.crypt(…, extensions.gen_salt('bf'))`, nunca el texto) |
 | Listas cerradas: `estadoOperativo`, `estadoVia`, `estadoParada`, `estadoRecorrido`, `estadoCredencial`, `tipoVia`, `modo`, `modalidad`, `nivelTerritorial`, `nivelSeveridad`, `nivelDificultad`, `nivelAdecuacion`, `categoriaComercial`, `visibilidad`, `preferenciaTransporte`, `grupoSanguineo`, `diaSemana` | `VARCHAR(30)` + `CHECK (… IN (…))` con su `-- RR-n`, sin `ENUM`, para que la regla se lea igual que en el capítulo 7 |
 | Fechas: `fechaActivacion`, `fechaCierre`, `fechaContratacion`, `fechaEmision`, `fechaEstimadaResolucion`, `fechaInicio`, `fechaVencimiento`, `nuevaFecha` | `DATE` |
 | Fecha y hora: `fechaHoraDeteccion`, `fechaHoraInicio`, `fechaHoraFin`, `fechaHoraPaso`, `fechaHoraProgramada` | `TIMESTAMP` (hora de Venezuela: `app_rv` trabaja en `America/Caracas`) |
@@ -69,13 +78,36 @@ Cada restricción que implementa una RR lleva un comentario con su código (`-- 
 
 Si un atributo no aparece aquí, se agrega a la tabla en el mismo PR que lo usa.
 
+## Acciones referenciales
+
+**Vigente desde el 27/11/2026**, con el mismo criterio del PR #9.
+
+| Acción | Regla | Por qué |
+|---|---|---|
+| `ON UPDATE CASCADE` | En **toda** clave foránea | Las claves son naturales y van en cadena: el nombre del estado y del municipio forman parte de la clave de `via`, `tramo`, `hito`, `ruta_turistica` y sus dependientes. Basta un eslabón sin `CASCADE` para que el gestor rechace el «modificar» de un estado o municipio (HU-12.3, HU-33.3, HU-34.3) en cuanto existan filas que lo referencian |
+| `ON DELETE RESTRICT` | Por defecto | No se elimina una fila que otras referencian. Es lo que piden los criterios de eliminación del catálogo territorial («si tiene municipios, el sistema no lo elimina») |
+| `ON DELETE CASCADE` | Solo cuando un criterio HU-n.4 pide borrar también lo dependiente | Se cita el criterio en un comentario junto a la clave foránea |
+
+Formato, como en `database/02_claves/territorio-catalogo.sql`:
+
+```sql
+ALTER TABLE via
+    ADD CONSTRAINT fk_via_municipio
+    FOREIGN KEY (nombre_estado, nombre_municipio)
+    REFERENCES municipio (nombre_estado, nombre_municipio)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT;
+```
+
+En las pruebas, el rechazo de `ON DELETE RESTRICT` se captura con `EXCEPTION WHEN foreign_key_violation OR restrict_violation`: PostgreSQL 18 lo reporta como `restrict_violation` (23001) y las versiones anteriores como `foreign_key_violation` (23503). Así la prueba pasa en el CI (PostgreSQL 17) y en una instalación local más nueva.
+
 ## Scripts y orden de construcción
 
 Un archivo por capacidad en cada carpeta, con el mismo nombre de la capacidad (por ejemplo `database/01_tablas/patrimonio-hitos.sql`). El autor es el responsable de esa capacidad. Así dos integrantes nunca editan el mismo archivo.
 
 | Orden | Carpeta | Contenido |
 |---|---|---|
-| 0 | `database/00_esquema.sql` | Extensiones, esquema `rutasvzla` y roles base (`rv_owner`, `app_rv`, roles de actor). Es común y no crea tablas |
+| 0 | `database/00_esquema.sql` | `pgcrypto` en `extensions`, esquema `rutasvzla` y roles base (`rv_owner`, `app_rv`, roles de actor y `rol_autenticacion`). Es común y no crea tablas |
 | 1 | `database/01_tablas/` | `CREATE TABLE` con clave primaria, `NOT NULL`, `UNIQUE` y `CHECK` simples, sin claves foráneas |
 | 2 | `database/02_claves/` | `ALTER TABLE … ADD CONSTRAINT … FOREIGN KEY` |
 | 3 | `database/03_reglas/` | Triggers, funciones y procedimientos en PL/pgSQL |

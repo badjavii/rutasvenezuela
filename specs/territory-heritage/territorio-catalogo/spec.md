@@ -21,7 +21,7 @@ Describir el comportamiento verificable de territorio catalogo: 12 historias de 
 
 ## 3. Reglas de negocio
 
-No tiene RR propias: el capítulo 7 de la primera entrega escribe cada RR sobre una relación, y esta capacidad no tiene tablas. Las RR de las tablas que consulta las implementan sus dueños.
+La capacidad posee ESTADO, MUNICIPIO y PARROQUIA conforme al capítulo 6.1. No tiene RR explícitas asignadas en el capítulo 7; las claves e integridad referencial se derivan del modelo relacional y de los criterios de aceptación. Las referencias entrantes de otros módulos corresponden a sus responsables.
 
 ## 4. Criterios de aceptación
 
