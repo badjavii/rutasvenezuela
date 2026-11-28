@@ -16,6 +16,10 @@ PR #9: las pruebas estructurales de estado, municipio y parroquia verificaron RE
 
 28/11/2026: las pruebas estructurales de `via`, `via_modo`, `tramo` y `conecta` verificaron RED (`3e4ea47`) y GREEN (`be59af0`) en PostgreSQL 18. RR-29 y RR-30 verificaron RED (`6f5dfce`) y GREEN (`e95b135`) con triggers de restricción diferidos. Las rutinas, los permisos y los datos de prueba siguen pendientes. No se declara completada la capacidad.
 
+## Iteración de paradas
+
+28/11/2026: tablas, claves y reglas de movilidad-paradas (RR-20, RR-21, RR-31, RR-32, RR-33, RR-101, RR-104, RR-105 y vía habilitada) verificaron RED (`51374d9`) y GREEN (`6fab451`) en PostgreSQL 18. `build.sql` y `test.sql` fijan `\encoding UTF8` (`bdc0f68`): sin eso, psql en Windows con la salida redirigida guardaba mal las tildes de los `CHECK`. Pendiente: las claves foráneas hacia `ubicacion_geografica`, `horario` e `hito`, los valores de `nivel_adecuacion` y `nivel_dificultad` (el informe no los define), las rutinas y los permisos.
+
 ## Aprobación de specs
 
 27/11/2026: Sebastián aprobó sus 8 especificaciones de `mobility-routes`. Sus 33 historias pasan a `ESPECIFICADO_APROBADO` en la [matriz](../docs/requirements/traceability-detailed.csv), y cada spec registra sus decisiones de implementación en la sección 8. Javier y Valeria aprueban las suyas del mismo modo.
