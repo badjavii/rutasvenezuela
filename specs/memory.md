@@ -24,6 +24,10 @@ PR #9: las pruebas estructurales de estado, municipio y parroquia verificaron RE
 
 28/11/2026: tablas, claves y reglas de rutas-gestion (RR-22, RR-34, RR-35, RR-36, RR-106 a RR-111) verificaron RED (`ff6f1d5`) y GREEN (`1925caf`) en PostgreSQL 18. La secuencia de cada ruta (RR-34, RR-108, RR-109, RR-110) se verifica al confirmar con `fn_verificar_secuencia_ruta`. Pendiente: claves hacia `hito` y `visitante`, rutinas y permisos.
 
+## Iteración de recorridos
+
+28/11/2026: tablas, claves y reglas de rutas-recorridos (RR-27, RR-28, RR-44, RR-45, RR-112 a RR-115) verificaron RED (`5929e31`) y GREEN (`a83eb99`) en PostgreSQL 18. Ningún trigger de recorridos está en las tablas de rutas: cambiar la ruta después no invalida el historial (sección 8). Pendiente: claves hacia `visitante` y `hito`, rutinas y permisos.
+
 ## Aprobación de specs
 
 27/11/2026: Sebastián aprobó sus 8 especificaciones de `mobility-routes`. Sus 33 historias pasan a `ESPECIFICADO_APROBADO` en la [matriz](../docs/requirements/traceability-detailed.csv), y cada spec registra sus decisiones de implementación en la sección 8. Javier y Valeria aprueban las suyas del mismo modo.
