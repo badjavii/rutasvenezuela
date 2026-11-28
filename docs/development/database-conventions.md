@@ -52,7 +52,7 @@ Cada restricción que implementa una RR lleva un comentario con su código (`-- 
 
 ## Tipos
 
-**Propuesta, pendiente de aprobación de los tres.** El PDF de la primera entrega fija los atributos de cada relación, pero casi nunca su tipo. Para que las claves foráneas entre capacidades coincidan, todos usan esta tabla.
+**Vigente desde el 27/11/2026** (PR #9 la aplica a las tablas del territorio). Quien necesite cambiar un tipo lo propone en un PR antes de usarlo, porque las claves foráneas de otros dependen de él. El PDF de la primera entrega fija los atributos de cada relación, pero casi nunca su tipo. Para que las claves foráneas entre capacidades coincidan, todos usan esta tabla.
 
 **Regla principal:** una columna que es clave foránea tiene exactamente el tipo de la columna que referencia, aunque el modelo la renombre (`estado_hito`, `tramo_origen`, `municipio_ruta`…).
 
@@ -77,6 +77,27 @@ Cada restricción que implementa una RR lleva un comentario con su código (`-- 
 | Sí/no: `libreAcceso`, `recorridoVerificado`, `tieneDesnivel`, `tieneEscalinata` | `BOOLEAN` |
 
 Si un atributo no aparece aquí, se agrega a la tabla en el mismo PR que lo usa.
+
+## Acciones referenciales
+
+**Vigente desde el 27/11/2026**, con el mismo criterio del PR #9.
+
+| Acción | Regla | Por qué |
+|---|---|---|
+| `ON UPDATE CASCADE` | En **toda** clave foránea | Las claves son naturales y van en cadena: el nombre del estado y del municipio forman parte de la clave de `via`, `tramo`, `hito`, `ruta_turistica` y sus dependientes. Basta un eslabón sin `CASCADE` para que el gestor rechace el «modificar» de un estado o municipio (HU-12.3, HU-33.3, HU-34.3) en cuanto existan filas que lo referencian |
+| `ON DELETE RESTRICT` | Por defecto | No se elimina una fila que otras referencian. Es lo que piden los criterios de eliminación del catálogo territorial («si tiene municipios, el sistema no lo elimina») |
+| `ON DELETE CASCADE` | Solo cuando un criterio HU-n.4 pide borrar también lo dependiente | Se cita el criterio en un comentario junto a la clave foránea |
+
+Formato, como en `database/02_claves/territorio-catalogo.sql`:
+
+```sql
+ALTER TABLE via
+    ADD CONSTRAINT fk_via_municipio
+    FOREIGN KEY (nombre_estado, nombre_municipio)
+    REFERENCES municipio (nombre_estado, nombre_municipio)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT;
+```
 
 ## Scripts y orden de construcción
 
