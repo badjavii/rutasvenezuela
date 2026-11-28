@@ -26,6 +26,10 @@ RutasVenezuela es el proyecto del Equipo 2 de Sistemas de Bases de Datos (UCAB).
 - No modificar `main`, fusionar cambios, forzar refs o desplegar sin autorización.
 - No subir secretos ni alterar fuentes académicas originales.
 
+## Convenciones de código
+
+Aplicar la [guía de TypeScript](docs/development/typescript-style-guide.md) al código propio y las pruebas: funciones nombradas, sin flechas ni any, tipos estrictos, control de flujo explícito y separación de capas. Configurar lint y typecheck al inicializar web/; no afirmar que se ejecutaron si aún no existen.
+
 ## README de trazabilidad y registro de ramas
 
 - Crear ramas desde `origin/develop` con `bash scripts/new-work-branch.sh`.

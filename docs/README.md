@@ -10,6 +10,7 @@ Este directorio contiene las guías operativas y la documentación derivada del 
 | Crear tablas y rutinas | [Convenciones de base de datos](development/database-conventions.md) | [Catálogo RR](requirements/relational-rules.md) |
 | Encontrar qué requisito corresponde a una HU, RR o pantalla | [Mapa de trazabilidad](requirements/traceability.md) | [Matriz detallada](requirements/traceability-detailed.csv) |
 | Leer las fuentes originales | [Referencias](../references/README.md) | [Informe íntegro](../references/first-delivery.md) |
+| Programar en Next.js y TypeScript | [Guía de legibilidad](development/typescript-style-guide.md) | [Contratos por capa](development/layer-contracts.md) |
 | Especificar una funcionalidad | [Guía SDD](development/sdd-guide.md) | [especificaciones SDD](../specs/README.md) |
 | Preparar o ejecutar pruebas | [Guía TDD](development/tdd-guide.md) | [Casos de prueba](testing/) |
 | Trabajar con ramas o abrir un PR | [Git workflow](development/git-workflow.md) | [Plantilla de PR](../.github/pull_request_template.md) |

@@ -43,3 +43,7 @@ Se documentarán al crear el proyecto Next.js.
 ## Créditos
 
 Módulo perteneciente al proyecto RutasVenezuela, desarrollado para la asignatura Sistemas de Bases de Datos de la UCAB.
+
+## Estilo de código
+
+Consultar [convenciones TypeScript](../docs/development/typescript-style-guide.md) antes de inicializar o escribir código de la aplicación. Los controles de lint y typecheck se incorporarán con el proyecto Next.js.
