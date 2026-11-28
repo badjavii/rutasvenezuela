@@ -13,4 +13,4 @@ sebastian(docs/spec)-implementation-guide,Sebastián Armas,docs,spec,Guía de c�
 sebastian(docs/spec)-approve-mobility-specs,Sebastián Armas,docs,spec,Aprobar las specs de movilidad y rutas con sus decisiones,develop,develop,2026-11-27,https://github.com/badjavii/rutasvenezuela/pull/13,merged,2026-11-28
 sebastian(feat/database)-vias-y-tramos-tablas,Sebastián Armas,feat,database,Tablas y claves de vías y tramos,develop,develop,2026-11-28,https://github.com/badjavii/rutasvenezuela/pull/14,merged,2026-11-28
 sebastian(feat/database)-vias-al-menos-uno,Sebastián Armas,feat,database,RR-29 y RR-30 de vías con triggers diferidos,develop,develop,2026-11-28,https://github.com/badjavii/rutasvenezuela/pull/15,merged,2026-11-28
-sebastian(feat/database)-paradas,Sebastián Armas,feat,database,"Tablas, claves y reglas de paradas",develop,develop,2026-11-28,,ready_for_pr,2026-11-28
+sebastian(feat/database)-paradas,Sebastián Armas,feat,database,"Tablas, claves y reglas de paradas",develop,develop,2026-11-28,https://github.com/badjavii/rutasvenezuela/pull/16,in_review,2026-11-28
