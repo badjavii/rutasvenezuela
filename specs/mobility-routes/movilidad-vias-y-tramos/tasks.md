@@ -9,7 +9,8 @@ El estado de implementación se registra solo aquí. Pruebas estructurales: RED 
 - [x] Escribir las pruebas estructurales (RR-102, RR-103, claves y acciones referenciales de HU-15.4 y HU-35.4, criterio 1) y confirmar RED (`3e4ea47`).
 - [x] Escribir las pruebas SQL de RR-29 y RR-30 y confirmar RED (`6f5dfce`).
 - [ ] Escribir las pruebas SQL de las rutinas (registrar, consultar, modificar y eliminar vías y tramos) y confirmar RED.
-- [ ] Probar HU-15.4 y HU-35.4, criterio 2, cuando existan `esta_en`, `afecta_tramo` y `se_ubica_en`.
+- [x] Probar HU-15.4 y HU-35.4, criterio 2, para paradas (`esta_en`, en las pruebas de movilidad-paradas, `6fab451`).
+- [ ] Probar HU-15.4 y HU-35.4, criterio 2, para incidencias e hitos cuando existan `afecta_tramo` y `se_ubica_en` (Javier).
 - [x] Implementar RR-29 y RR-30 en `database/03_reglas/movilidad-vias-y-tramos.sql` con triggers de restricción diferidos (GREEN, `e95b135`).
 - [ ] Implementar las rutinas en `database/03_reglas/movilidad-vias-y-tramos.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_administrador` en `database/04_seguridad/movilidad-vias-y-tramos.sql`.
