@@ -33,7 +33,7 @@ Tres capas y dos tecnologías ([arquitectura](../docs/architecture.md)):
 - Capa de aplicación: Next.js en el servidor (server actions). En cada operación abre una transacción, fija el rol de la sesión con `SET LOCAL ROLE` y llama a la función o al procedimiento. No repite reglas del gestor ni decide permisos.
 - Capa de presentación: Next.js (server components y client components). Presenta la información y los errores del gestor.
 
-No versionar secretos ni enviar credenciales del gestor al navegador.
+No versionar secretos ni enviar credenciales del gestor al navegador. El [contrato transversal de seguridad](../docs/development/security.md) establece identidad transaccional, autenticación inicial y autorización por registro. Su aprobación precede a la implementación de rutinas protegidas.
 
 ## 7. Lenguaje y documentación
 

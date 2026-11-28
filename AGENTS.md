@@ -36,3 +36,7 @@ Aplicar la [guía de TypeScript](docs/development/typescript-style-guide.md) al 
 - Antes del PR, restaurar README estable con `bash scripts/prepare-pr.sh`; no integrar el README de trazabilidad de la rama.
 - Usar [el registro de ramas](docs/project/branch-ledger.csv) para fechas y estado, sin inventar PR o ejecución de pruebas.
 - La rama de demostración del README no es base de desarrollo.
+
+## Seguridad transversal
+
+Consultar [el contrato de seguridad](docs/development/security.md) antes de implementar autenticación, acceso a datos o rutinas protegidas. No asumir que el rol autoriza cada registro. La aprobación del contrato precede a las rutinas, no a las tablas.
