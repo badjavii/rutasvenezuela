@@ -10,7 +10,16 @@ Todos los objetos del proyecto van en el esquema `rutasvzla`, no en `public`. Ca
 SET search_path TO rutasvzla, public, extensions;
 ```
 
-`public` y `extensions` quedan solo para extensiones como `pgcrypto`: en un PostgreSQL local está en `public` y en Supabase en `extensions`. Un esquema que no existe en el `search_path` se ignora, así que la misma línea sirve en los dos.
+`pgcrypto` se instala siempre en el esquema `extensions`, en local igual que en Supabase. Las rutinas la llaman con el esquema escrito: `extensions.crypt(…)` y `extensions.gen_salt(…)`.
+
+Las rutinas `SECURITY DEFINER` no usan ese `search_path`, sino uno propio y fijo, para que nadie pueda hacerles usar una tabla o función homónima de otro esquema. Por eso nombran `pgcrypto` con su esquema:
+
+```sql
+CREATE FUNCTION fn_iniciar_sesion(…) RETURNS …
+    LANGUAGE plpgsql SECURITY DEFINER
+    SET search_path = rutasvzla, pg_temp
+AS $$ … extensions.crypt(p_contrasena, v_hash) … $$;
+```
 
 ## Nombres
 
@@ -55,7 +64,7 @@ Cada restricción que implementa una RR lleva un comentario con su código (`-- 
 | Identificadores que escribe el actor y códigos: `cedulaPasaporte`, `cedulaFuncionario`, `cedulaAdmin`, `rifInstitucional`, `rifJuridico`, `rtn`, `codigoLicencia`, `codigoTerminal`, `codigoCredencial`, `codigoPromocional`, `codigoResena`, `cuentaBancaria`, `telefonoEmergencia` | `VARCHAR(30)` |
 | `correo` | `VARCHAR(254)` |
 | Claves que genera el sistema: `idCuenta`, `idRecorrido`, `idRecurso`, `numeroReporte`, `nroContratacion` | `INTEGER GENERATED ALWAYS AS IDENTITY` en la tabla que las crea; `INTEGER` donde se referencian |
-| `contrasena` | `TEXT` (hash de `crypt(…, gen_salt('bf'))`, nunca el texto) |
+| `contrasena` | `TEXT` (hash de `extensions.crypt(…, extensions.gen_salt('bf'))`, nunca el texto) |
 | Listas cerradas: `estadoOperativo`, `estadoVia`, `estadoParada`, `estadoRecorrido`, `estadoCredencial`, `tipoVia`, `modo`, `modalidad`, `nivelTerritorial`, `nivelSeveridad`, `nivelDificultad`, `nivelAdecuacion`, `categoriaComercial`, `visibilidad`, `preferenciaTransporte`, `grupoSanguineo`, `diaSemana` | `VARCHAR(30)` + `CHECK (… IN (…))` con su `-- RR-n`, sin `ENUM`, para que la regla se lea igual que en el capítulo 7 |
 | Fechas: `fechaActivacion`, `fechaCierre`, `fechaContratacion`, `fechaEmision`, `fechaEstimadaResolucion`, `fechaInicio`, `fechaVencimiento`, `nuevaFecha` | `DATE` |
 | Fecha y hora: `fechaHoraDeteccion`, `fechaHoraInicio`, `fechaHoraFin`, `fechaHoraPaso`, `fechaHoraProgramada` | `TIMESTAMP` (hora de Venezuela: `app_rv` trabaja en `America/Caracas`) |
@@ -75,7 +84,7 @@ Un archivo por capacidad en cada carpeta, con el mismo nombre de la capacidad (p
 
 | Orden | Carpeta | Contenido |
 |---|---|---|
-| 0 | `database/00_esquema.sql` | Extensiones, esquema `rutasvzla` y roles base (`rv_owner`, `app_rv`, roles de actor). Es común y no crea tablas |
+| 0 | `database/00_esquema.sql` | `pgcrypto` en `extensions`, esquema `rutasvzla` y roles base (`rv_owner`, `app_rv`, roles de actor y `rol_autenticacion`). Es común y no crea tablas |
 | 1 | `database/01_tablas/` | `CREATE TABLE` con clave primaria, `NOT NULL`, `UNIQUE` y `CHECK` simples, sin claves foráneas |
 | 2 | `database/02_claves/` | `ALTER TABLE … ADD CONSTRAINT … FOREIGN KEY` |
 | 3 | `database/03_reglas/` | Triggers, funciones y procedimientos en PL/pgSQL |
