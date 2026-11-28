@@ -8,4 +8,4 @@ javier(docs/spec)-security-contract,Javier Otero,docs,spec,Contrato transversal 
 javier(docs/application)-typescript-conventions,Javier Otero,docs,application,Convenciones TypeScript y Next.js,develop,develop,2026-11-24,https://github.com/badjavii/rutasvenezuela/pull/8,in_review,2026-11-24
 javier(feat/database)-territory-tables,Javier Otero,feat,database,Tablas y pruebas estructurales del catálogo territorial,develop,develop,2026-11-24,https://github.com/badjavii/rutasvenezuela/pull/9,in_review,2026-11-24
 sebastian(fix/database)-auth-role-and-extensions,Sebastián Armas,fix,database,"Rol de autenticación, pgcrypto en extensions y pruebas de membresías",develop,develop,2026-11-26,https://github.com/badjavii/rutasvenezuela/pull/10,merged,2026-11-27
-sebastian(docs/database)-ratify-types-and-fk-actions,Sebastián Armas,docs,database,Tipos y acciones referenciales vigentes,develop,develop,2026-11-27,,in_progress,2026-11-27
+sebastian(docs/database)-ratify-types-and-fk-actions,Sebastián Armas,docs,database,Tipos y acciones referenciales vigentes,develop,develop,2026-11-27,,ready_for_pr,2026-11-27
