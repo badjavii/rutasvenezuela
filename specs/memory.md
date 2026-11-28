@@ -22,7 +22,7 @@ PR #9: las pruebas estructurales de estado, municipio y parroquia verificaron RE
 
 ## Iteración de rutas
 
-28/11/2026: tablas, claves y reglas de rutas-gestion (RR-22, RR-34, RR-35, RR-36, RR-106 a RR-111) verificaron RED (`ff6f1d5`) y GREEN (`1925caf`) en PostgreSQL 18. La secuencia de cada ruta (RR-34, RR-108, RR-109, RR-110) se verifica al confirmar con `fn_verificar_secuencia_ruta`. Pendiente: claves hacia `hito` y `visitante`, rutinas y permisos.
+28/11/2026: tablas, claves y reglas de rutas-gestion (RR-22, RR-34, RR-35, RR-36, RR-106 a RR-111) verificaron RED (`ff6f1d5`) y GREEN (`1925caf`) en PostgreSQL 18. La secuencia de cada ruta (RR-34, RR-108, RR-109, RR-110 y RR-111) se verifica al confirmar con `fn_verificar_secuencia_ruta`. RR-111 era un `CHECK` y pasó ahí (`4d004f4`): al renombrar un municipio, la cascada cambia el municipio de la ruta y el del hito en pasos distintos, y el `CHECK` lo rechazaba a mitad. Pendiente: claves hacia `hito` y `visitante`, rutinas y permisos.
 
 ## Iteración de recorridos
 

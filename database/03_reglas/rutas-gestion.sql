@@ -7,7 +7,9 @@ SET search_path TO rutasvzla, public, extensions;
 
 -- Registrar o modificar una ruta envía la ruta, su tipo, su creador y su secuencia
 -- completa juntos (sección 8 de la spec). Por eso RR-34, RR-35, RR-36, RR-108,
--- RR-109 y RR-110 se verifican al confirmar, con triggers de restricción diferidos.
+-- RR-109, RR-110 y RR-111 se verifican al confirmar, con triggers de restricción
+-- diferidos. RR-111 además necesita esperar a que terminen las cascadas: renombrar
+-- un municipio cambia el de la ruta y el del hito en pasos distintos.
 --
 -- Cada regla se revisa por ruta con una función fn_verificar_*. Los triggers la
 -- llaman con la ruta de la fila antes del cambio (OLD) y después (NEW): una fila
@@ -70,7 +72,7 @@ BEGIN
 END;
 $$;
 
--- RR-34, RR-108, RR-109 y RR-110: la secuencia de hitos y paradas de una ruta.
+-- RR-34, RR-108, RR-109, RR-110 y RR-111: la secuencia de hitos y paradas de una ruta.
 CREATE FUNCTION fn_verificar_secuencia_ruta(
     p_estado ruta_turistica.nombre_estado%TYPE,
     p_municipio ruta_turistica.nombre_municipio%TYPE,
@@ -138,6 +140,16 @@ BEGIN
                WHERE nombre_estado = p_estado AND nombre_municipio = p_municipio AND nombre_ruta = p_ruta
                  AND (orden < v_primer_hito OR orden > v_ultimo_hito)) THEN
         RAISE EXCEPTION 'RR-110: en la ruta % (%, %) cada parada debe tener un hito antes y otro después.',
+            p_ruta, p_municipio, p_estado
+            USING ERRCODE = 'check_violation';
+    END IF;
+
+    -- RR-111: el hito de orden 1, que es el origen, está en el municipio de la ruta.
+    IF EXISTS (SELECT 1 FROM conforma
+               WHERE estado_ruta = p_estado AND municipio_ruta = p_municipio AND nombre_ruta = p_ruta
+                 AND orden = 1
+                 AND (estado_hito <> estado_ruta OR municipio_hito <> municipio_ruta)) THEN
+        RAISE EXCEPTION 'RR-111: el origen de la ruta % (%, %) debe estar en su municipio.',
             p_ruta, p_municipio, p_estado
             USING ERRCODE = 'check_violation';
     END IF;
@@ -230,8 +242,8 @@ CREATE CONSTRAINT TRIGGER tg_crea_creador
     DEFERRABLE INITIALLY DEFERRED
     FOR EACH ROW EXECUTE FUNCTION tf_ruta_dinamica_creador('nombre_estado', 'nombre_municipio', 'nombre_ruta');
 
--- RR-34, RR-108, RR-109 y RR-110: una ruta nueva o renombrada, y cualquier cambio
--- en sus hitos o paradas.
+-- RR-34, RR-108, RR-109, RR-110 y RR-111: una ruta nueva o renombrada, y cualquier
+-- cambio en sus hitos o paradas.
 CREATE CONSTRAINT TRIGGER tg_ruta_turistica_secuencia
     AFTER INSERT OR UPDATE OF nombre_estado, nombre_municipio, nombre_ruta ON ruta_turistica
     DEFERRABLE INITIALLY DEFERRED

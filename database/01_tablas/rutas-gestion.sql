@@ -53,6 +53,8 @@ CREATE TABLE ruta_dinamica (
 -- una sola numeración (sección 8 de la spec).
 -- uq_conforma_orden es diferible: se verifica al confirmar, como el resto de la
 -- secuencia, para poder renumerar sin choques intermedios.
+-- RR-111 tampoco es un CHECK: al renombrar un municipio, ON UPDATE CASCADE cambia el
+-- municipio de la ruta y el del hito en pasos distintos. Está en 03_reglas.
 CREATE TABLE conforma (
     estado_ruta VARCHAR(100) NOT NULL,
     municipio_ruta VARCHAR(100) NOT NULL,
@@ -70,11 +72,7 @@ CREATE TABLE conforma (
     CONSTRAINT uq_conforma_orden UNIQUE (estado_ruta, municipio_ruta, nombre_ruta, orden)
         DEFERRABLE INITIALLY DEFERRED,
     -- RR-108
-    CONSTRAINT ck_conforma_orden CHECK (orden >= 1),
-    -- RR-111
-    CONSTRAINT ck_conforma_origen CHECK (
-        orden <> 1 OR (estado_hito = estado_ruta AND municipio_hito = municipio_ruta)
-    )
+    CONSTRAINT ck_conforma_orden CHECK (orden >= 1)
 );
 
 -- Paradas de la ruta con su orden.
