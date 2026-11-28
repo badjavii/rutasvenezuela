@@ -1,8 +1,8 @@
 -- Pruebas de rutas-gestion.
--- Primera transacción: tablas, claves, CHECK de RR-106, RR-108 (orden positivo) y
--- RR-111, NOT NULL de RR-22 y acciones referenciales (sección 8 de la spec).
+-- Primera transacción: tablas, claves, CHECK de RR-106 y RR-108 (orden positivo),
+-- NOT NULL de RR-22 y acciones referenciales (sección 8 de la spec).
 -- Segunda transacción: reglas que se verifican al confirmar (RR-34, RR-35, RR-36,
--- RR-108, RR-109, RR-110) y RR-107.
+-- RR-108, RR-109, RR-110, RR-111) y RR-107.
 -- Las claves foráneas hacia hito (patrimonio-hitos, Javier) y visitante
 -- (actores-identidades, Valeria), y las referencias entrantes de sobre, sirve,
 -- contrata_ruta, transcurre y evalua_ruta, se prueban cuando existan esas tablas.
@@ -110,14 +110,6 @@ BEGIN
     EXCEPTION WHEN check_violation THEN NULL;
     END;
 
-    -- RR-111: el hito de orden 1 (origen) está en el municipio de la ruta.
-    BEGIN
-        INSERT INTO conforma VALUES ('Test RG', 'Municipio B', 'Ruta Uno',
-                                     'Test RG', 'Municipio A', 'Parroquia A', 'Hito 1', 1);
-        RAISE EXCEPTION 'Se aceptó un origen fuera del municipio de la ruta (RR-111)';
-    EXCEPTION WHEN check_violation THEN NULL;
-    END;
-
     BEGIN
         INSERT INTO usa VALUES ('No existe', 'Test RG', 'Municipio A', 'Ruta Uno', 4);
         RAISE EXCEPTION 'Se aceptó una parada inexistente en una ruta';
@@ -179,7 +171,7 @@ SET LOCAL search_path TO rutasvzla, pg_catalog;
 DO $$
 BEGIN
     INSERT INTO estado VALUES ('Test RS');
-    INSERT INTO municipio VALUES ('Test RS', 'Municipio A');
+    INSERT INTO municipio VALUES ('Test RS', 'Municipio A'), ('Test RS', 'Municipio B');
     INSERT INTO via VALUES ('Test RS', 'Municipio A', 'Calle R', 'calle', 'asfalto', 'habilitada');
     INSERT INTO via_modo VALUES ('Test RS', 'Municipio A', 'Calle R', 'a pie');
     INSERT INTO tramo VALUES ('Test RS', 'Municipio A', 'Calle R', 1, false, false);
@@ -359,8 +351,31 @@ BEGIN
         IF SQLERRM NOT LIKE 'RR-110%' THEN RAISE; END IF;
     END;
 
+    -- RR-111: el hito de orden 1 (origen) está en el municipio de la ruta.
+    BEGIN
+        INSERT INTO ruta_turistica VALUES ('Test RS', 'Municipio B', 'Origen ajeno', 60, '08:00', 'baja');
+        INSERT INTO ruta_fija VALUES ('Test RS', 'Municipio B', 'Origen ajeno');
+        INSERT INTO conforma VALUES ('Test RS', 'Municipio B', 'Origen ajeno', 'Test RS', 'Municipio A', 'Parroquia A', 'Hito 1', 1),
+                                    ('Test RS', 'Municipio B', 'Origen ajeno', 'Test RS', 'Municipio B', 'Parroquia B', 'Hito 2', 2);
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se aceptó un origen fuera del municipio de la ruta (RR-111)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-111%' THEN RAISE; END IF;
+    END;
+
     -- Renombrar una ruta lleva consigo su tipo, su creador y su secuencia, y se acepta.
     UPDATE ruta_turistica SET nombre_ruta = 'Dinámica renombrada' WHERE nombre_ruta = 'Dinámica';
+    SET CONSTRAINTS ALL IMMEDIATE;
+    SET CONSTRAINTS ALL DEFERRED;
+
+    -- HU-33.3: renombrar el municipio se acepta. ON UPDATE CASCADE cambia el
+    -- municipio de la ruta, y la clave conforma → hito (pendiente, Javier) cambiará el
+    -- del hito; aquí se hace a mano. Entre los dos cambios el origen queda en otro
+    -- municipio, por eso RR-111 se verifica al confirmar y no con un CHECK.
+    UPDATE municipio SET nombre_municipio = 'Municipio A2'
+        WHERE nombre_estado = 'Test RS' AND nombre_municipio = 'Municipio A';
+    UPDATE conforma SET municipio_hito = 'Municipio A2'
+        WHERE estado_hito = 'Test RS' AND municipio_hito = 'Municipio A';
     SET CONSTRAINTS ALL IMMEDIATE;
     SET CONSTRAINTS ALL DEFERRED;
 
@@ -371,4 +386,4 @@ END
 $$;
 
 ROLLBACK;
-\echo 'OK: rutas-gestion (RR-34, RR-35, RR-36, RR-107, RR-108, RR-109 y RR-110)'
+\echo 'OK: rutas-gestion (RR-34, RR-35, RR-36, RR-107, RR-108, RR-109, RR-110 y RR-111)'
