@@ -70,14 +70,18 @@ BEGIN
     BEGIN
         DELETE FROM estado WHERE nombre_estado = 'Test A';
         RAISE EXCEPTION 'Se eliminó un estado con municipios';
-    EXCEPTION WHEN foreign_key_violation THEN NULL;
+    -- PostgreSQL 18 reporta ON DELETE RESTRICT como restrict_violation (23001);
+    -- PostgreSQL 17 o anterior, como foreign_key_violation (23503).
+    EXCEPTION WHEN foreign_key_violation OR restrict_violation THEN NULL;
     END;
 
     BEGIN
         DELETE FROM municipio WHERE nombre_estado = 'Test A'
             AND nombre_municipio = 'Libertador';
         RAISE EXCEPTION 'Se eliminó un municipio con parroquias';
-    EXCEPTION WHEN foreign_key_violation THEN NULL;
+    -- PostgreSQL 18 reporta ON DELETE RESTRICT como restrict_violation (23001);
+    -- PostgreSQL 17 o anterior, como foreign_key_violation (23503).
+    EXCEPTION WHEN foreign_key_violation OR restrict_violation THEN NULL;
     END;
 
     -- Modificar nombres naturales conserva la integridad de las relaciones.
