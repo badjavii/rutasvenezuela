@@ -332,6 +332,12 @@ BEGIN
     UPDATE esta_en SET numero_tramo = 2 WHERE codigo_terminal = 'PR-1';
     -- Si la vía se cierra después, la parada se conserva (sección 8 de la spec).
     UPDATE via SET estado_via = 'cierre total por mantenimiento' WHERE nombre_via = 'Abierta';
+    -- Y la vía cerrada se puede renombrar: el cambio llega a esta_en por ON UPDATE
+    -- CASCADE y no es un cambio de tramo de la parada (HU-15.3).
+    UPDATE via SET nombre_via = 'Abierta renombrada' WHERE nombre_via = 'Abierta';
+    IF NOT EXISTS (SELECT 1 FROM esta_en WHERE codigo_terminal = 'PR-1' AND nombre_via = 'Abierta renombrada') THEN
+        RAISE EXCEPTION 'Renombrar una vía cerrada no llegó a sus paradas';
+    END IF;
 
     -- HU-16.4, criterio 1: eliminar la parada con todos sus datos se acepta.
     DELETE FROM parada_transporte WHERE codigo_terminal = 'PR-1';
