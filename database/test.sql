@@ -11,3 +11,4 @@
 \ir tests/territorio-catalogo.sql
 \ir tests/movilidad-vias-y-tramos.sql
 \ir tests/movilidad-paradas.sql
+\ir tests/rutas-gestion.sql
