@@ -194,6 +194,25 @@ BEGIN
         IF SQLERRM NOT LIKE 'RR-112%' THEN RAISE; END IF;
     END;
 
+    -- RR-112: reemplazar el visitante o la ruta (eliminar e insertar) es volver a
+    -- escribir el recorrido, y también se revisa.
+    BEGIN
+        DELETE FROM realiza WHERE id_recorrido = v_propia;
+        INSERT INTO realiza VALUES (v_propia, 'V-2');
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se aceptó dar a otro visitante un recorrido de ruta privada (RR-112)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-112%' THEN RAISE; END IF;
+    END;
+    BEGIN
+        DELETE FROM sobre WHERE id_recorrido = v_fija;
+        INSERT INTO sobre VALUES (v_fija, 'Test RD', 'Municipio A', 'Privada');
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se aceptó pasar un recorrido a la ruta privada de otro (RR-112)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-112%' THEN RAISE; END IF;
+    END;
+
     -- RR-44 y RR-45: el recorrido tiene su visitante y su ruta.
     BEGIN
         INSERT INTO recorrido (fecha_hora_inicio) VALUES ('2026-11-28 08:00') RETURNING id_recorrido INTO v_ajena;

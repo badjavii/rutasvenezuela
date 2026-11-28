@@ -9,7 +9,9 @@ SET search_path TO rutasvzla, public, extensions;
 -- recorrido (al iniciarlo, registrar un paso o terminarlo), no cuando la ruta
 -- cambia después. Por eso ningún trigger de esta capacidad está en las tablas de
 -- rutas-gestion: cambiar la secuencia o la visibilidad de una ruta no invalida el
--- historial.
+-- historial. Por lo mismo, los UPDATE de realiza, sobre y transita no se revisan:
+-- llegan por ON UPDATE CASCADE al renombrar una ruta o un hito, y ninguna rutina
+-- cambia el visitante o la ruta de un recorrido ni le quita pasos.
 --
 -- Iniciar un recorrido escribe recorrido, realiza y sobre juntos, en cualquier
 -- orden: RR-44, RR-45 y RR-112 se verifican al confirmar. Terminar puede registrar
@@ -81,8 +83,8 @@ CREATE CONSTRAINT TRIGGER tg_sobre_con_ruta
     FOR EACH ROW EXECUTE FUNCTION tf_recorrido_con_ruta();
 
 -- RR-112 (HU-28, criterio 2): la ruta es fija, dinámica pública o dinámica creada
--- por el mismo visitante. Se revisa al escribir sobre o realiza. Si todavía falta
--- uno de los dos, lo reclaman RR-44 o RR-45.
+-- por el mismo visitante. Se revisa al iniciar el recorrido, cuando se insertan sobre
+-- y realiza. Si todavía falta uno de los dos, lo reclaman RR-44 o RR-45.
 CREATE FUNCTION tf_sobre_ruta_permitida() RETURNS trigger
 LANGUAGE plpgsql
 SET search_path = rutasvzla, pg_temp
@@ -114,18 +116,21 @@ END;
 $$;
 
 CREATE CONSTRAINT TRIGGER tg_sobre_ruta_permitida
-    AFTER INSERT OR UPDATE ON sobre
+    AFTER INSERT ON sobre
     DEFERRABLE INITIALLY DEFERRED
     FOR EACH ROW EXECUTE FUNCTION tf_sobre_ruta_permitida();
 
 CREATE CONSTRAINT TRIGGER tg_realiza_ruta_permitida
-    AFTER INSERT OR UPDATE ON realiza
+    AFTER INSERT ON realiza
     DEFERRABLE INITIALLY DEFERRED
     FOR EACH ROW EXECUTE FUNCTION tf_sobre_ruta_permitida();
 
 -- RR-114, al registrar un paso: el hito está en la secuencia de la ruta del
 -- recorrido y el paso ocurre entre el inicio y el fin. Solo se revisa el paso
 -- escrito, no los anteriores, que pudieron ser válidos con la secuencia de entonces.
+-- Tampoco se revisa cuando cambia el hito de un paso: eso solo pasa al renombrar el
+-- hito (ON UPDATE CASCADE hacia transita y conforma, en pasos distintos), y no es
+-- un paso nuevo.
 CREATE FUNCTION tf_transita_paso_valido() RETURNS trigger
 LANGUAGE plpgsql
 SET search_path = rutasvzla, pg_temp
@@ -157,7 +162,7 @@ END;
 $$;
 
 CREATE TRIGGER tg_transita_paso_valido
-    AFTER INSERT OR UPDATE ON transita
+    AFTER INSERT OR UPDATE OF fecha_hora_paso ON transita
     FOR EACH ROW EXECUTE FUNCTION tf_transita_paso_valido();
 
 -- RR-114, al cambiar el inicio o el fin: los pasos ya registrados quedan dentro.
@@ -181,19 +186,14 @@ CREATE TRIGGER tg_recorrido_pasos_en_rango
     FOR EACH ROW EXECUTE FUNCTION tf_recorrido_pasos_en_rango();
 
 -- RR-115: un recorrido completado pasó por todos los hitos de su ruta. Se revisa al
--- completarlo, al quitarle un paso o al cambiarle la ruta, no al cambiar la ruta.
+-- terminarlo como completado, contra la secuencia que la ruta tiene en ese momento.
 CREATE FUNCTION tf_recorrido_completo() RETURNS trigger
 LANGUAGE plpgsql
 SET search_path = rutasvzla, pg_temp
 AS $$
 DECLARE
-    v_id recorrido.id_recorrido%TYPE;
+    v_id recorrido.id_recorrido%TYPE := NEW.id_recorrido;
 BEGIN
-    IF TG_TABLE_NAME = 'transita' THEN
-        v_id := OLD.id_recorrido;
-    ELSE
-        v_id := NEW.id_recorrido;
-    END IF;
     IF EXISTS (SELECT 1
                FROM recorrido x
                JOIN sobre s ON s.id_recorrido = x.id_recorrido
@@ -215,15 +215,5 @@ $$;
 
 CREATE CONSTRAINT TRIGGER tg_recorrido_completo
     AFTER INSERT OR UPDATE OF estado_recorrido ON recorrido
-    DEFERRABLE INITIALLY DEFERRED
-    FOR EACH ROW EXECUTE FUNCTION tf_recorrido_completo();
-
-CREATE CONSTRAINT TRIGGER tg_transita_completo
-    AFTER DELETE OR UPDATE ON transita
-    DEFERRABLE INITIALLY DEFERRED
-    FOR EACH ROW EXECUTE FUNCTION tf_recorrido_completo();
-
-CREATE CONSTRAINT TRIGGER tg_sobre_completo
-    AFTER UPDATE ON sobre
     DEFERRABLE INITIALLY DEFERRED
     FOR EACH ROW EXECUTE FUNCTION tf_recorrido_completo();
