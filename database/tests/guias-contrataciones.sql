@@ -186,6 +186,24 @@ BEGIN
     EXCEPTION WHEN foreign_key_violation OR restrict_violation THEN NULL;
     END;
 
+    -- HU-29.4, criterio 2: basta con estar adscrito, aunque no tenga contrataciones.
+    BEGIN
+        INSERT INTO ruta_turistica VALUES ('Test GC', 'Municipio A', 'Fija 2', 60, '08:00', 'baja');
+        INSERT INTO ruta_fija VALUES ('Test GC', 'Municipio A', 'Fija 2');
+        INSERT INTO sirve VALUES ('RTN-1', 'LIC-2', 'Test GC', 'Municipio A', 'Fija 2');
+        DELETE FROM guia WHERE rtn = 'RTN-1' AND codigo_licencia = 'LIC-2';
+        RAISE EXCEPTION 'Se eliminó un guía adscrito a una ruta';
+    EXCEPTION WHEN foreign_key_violation OR restrict_violation THEN NULL;
+    END;
+    -- ...o con tener contrataciones, aunque ya no esté adscrito (HU-28, criterio 3).
+    BEGIN
+        INSERT INTO contratacion (fecha_contratacion) VALUES ('2026-12-05') RETURNING nro_contratacion INTO v_nro;
+        INSERT INTO contrata_guia VALUES (v_nro, 'RTN-1', 'LIC-2');
+        DELETE FROM guia WHERE rtn = 'RTN-1' AND codigo_licencia = 'LIC-2';
+        RAISE EXCEPTION 'Se eliminó un guía con contrataciones';
+    EXCEPTION WHEN foreign_key_violation OR restrict_violation THEN NULL;
+    END;
+
     -- HU-29.4, criterio 1: un guía sin adscripciones ni contrataciones se elimina con sus datos.
     INSERT INTO cuenta_guia VALUES ('RTN-1', 'LIC-2', 1002);
     INSERT INTO guia_idioma VALUES ('RTN-1', 'LIC-2', 'español');
@@ -324,8 +342,12 @@ BEGIN
 
     -- RR-117: un guía solo se adscribe a rutas fijas de sus zonas...
     BEGIN
-        DELETE FROM trabaja WHERE rtn = 'RTN-1' AND nombre_municipio = 'Municipio B';
-        INSERT INTO sirve VALUES ('RTN-1', 'LIC-1', 'Test GR', 'Municipio B', 'Fija B');
+        INSERT INTO guia VALUES ('RTN-4', 'LIC-4', 'Acreditación', 1, 10);
+        INSERT INTO cuenta_guia VALUES ('RTN-4', 'LIC-4', 2004);
+        INSERT INTO guia_idioma VALUES ('RTN-4', 'LIC-4', 'español');
+        INSERT INTO guia_especialidad VALUES ('RTN-4', 'LIC-4', 'historia');
+        INSERT INTO trabaja VALUES ('RTN-4', 'LIC-4', 'Test GR', 'Municipio A');
+        INSERT INTO sirve VALUES ('RTN-4', 'LIC-4', 'Test GR', 'Municipio B', 'Fija B');
         SET CONSTRAINTS ALL IMMEDIATE;
         RAISE EXCEPTION 'Se adscribió un guía a una ruta fuera de sus zonas (RR-117)';
     EXCEPTION WHEN check_violation THEN
@@ -363,6 +385,16 @@ BEGIN
             SELECT min(nro_contratacion), 'RTN-3', 'LIC-3' FROM contrata_ruta WHERE nombre_estado = 'Test GR';
         SET CONSTRAINTS ALL IMMEDIATE;
         RAISE EXCEPTION 'Se aceptó cambiar la contratación a un guía no adscrito (RR-118)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-118%' THEN RAISE; END IF;
+    END;
+    -- ...y si se reemplaza la ruta por una a la que el guía no está adscrito.
+    BEGIN
+        DELETE FROM contrata_ruta WHERE nombre_estado = 'Test GR';
+        INSERT INTO contrata_ruta
+            SELECT min(nro_contratacion), 'Test GR', 'Municipio B', 'Fija B' FROM contrata_guia WHERE rtn = 'RTN-1';
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se aceptó cambiar la contratación a una ruta sin el guía adscrito (RR-118)';
     EXCEPTION WHEN check_violation THEN
         IF SQLERRM NOT LIKE 'RR-118%' THEN RAISE; END IF;
     END;
