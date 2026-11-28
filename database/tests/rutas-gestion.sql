@@ -235,6 +235,15 @@ BEGIN
         IF SQLERRM NOT LIKE 'RR-35%' THEN RAISE; END IF;
     END;
 
+    -- RR-35: quitarle el tipo a una ruta también se rechaza.
+    BEGIN
+        DELETE FROM ruta_fija WHERE nombre_ruta = 'Fija';
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se dejó una ruta sin tipo (RR-35)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-35%' THEN RAISE; END IF;
+    END;
+
     -- RR-36: una ruta dinámica sin creador se rechaza.
     BEGIN
         INSERT INTO ruta_turistica VALUES ('Test RS', 'Municipio A', 'Huérfana', NULL, NULL, NULL);
@@ -269,7 +278,16 @@ BEGIN
         IF SQLERRM NOT LIKE 'RR-107%' THEN RAISE; END IF;
     END;
 
-    -- RR-34 (HU-17.1, criterio 2): una ruta con un solo hito se rechaza...
+    -- RR-34 (HU-17.1, criterio 2): una ruta sin hitos se rechaza...
+    BEGIN
+        INSERT INTO ruta_turistica VALUES ('Test RS', 'Municipio A', 'Sin hitos', 60, '08:00', 'baja');
+        INSERT INTO ruta_fija VALUES ('Test RS', 'Municipio A', 'Sin hitos');
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se aceptó una ruta sin hitos (RR-34)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-34%' THEN RAISE; END IF;
+    END;
+    -- ...una con un solo hito también...
     BEGIN
         INSERT INTO ruta_turistica VALUES ('Test RS', 'Municipio A', 'Un hito', 60, '08:00', 'baja');
         INSERT INTO ruta_fija VALUES ('Test RS', 'Municipio A', 'Un hito');
