@@ -25,7 +25,7 @@ BEGIN
     INSERT INTO conforma VALUES ('Test RC', 'Municipio A', 'Ruta', 'Test RC', 'Municipio A', 'Parroquia A', 'Hito 1', 1),
                                 ('Test RC', 'Municipio A', 'Ruta', 'Test RC', 'Municipio A', 'Parroquia A', 'Hito 2', 2);
 
-    -- HU-28, criterio 1: el recorrido nuevo recibe su identificador del gestor.
+    -- HU-21, criterio 1: el recorrido nuevo recibe su identificador del gestor.
     INSERT INTO recorrido (fecha_hora_inicio) VALUES ('2026-11-28 08:00') RETURNING id_recorrido INTO v_id;
     INSERT INTO realiza VALUES (v_id, 'V-1');
     INSERT INTO sobre VALUES (v_id, 'Test RC', 'Municipio A', 'Ruta');
@@ -40,12 +40,12 @@ BEGIN
     EXCEPTION WHEN not_null_violation THEN NULL;
     END;
 
-    -- HU-28, criterio 5: repetir la ruta crea otro recorrido.
+    -- HU-21, criterio 5: repetir la ruta crea otro recorrido.
     INSERT INTO recorrido (fecha_hora_inicio) VALUES ('2026-11-29 08:00') RETURNING id_recorrido INTO v_otro;
     INSERT INTO realiza VALUES (v_otro, 'V-1');
     INSERT INTO sobre VALUES (v_otro, 'Test RC', 'Municipio A', 'Ruta');
 
-    -- RR-113 (HU-28, criterio 4): terminado tiene fin posterior al inicio y estado.
+    -- RR-113 (HU-21, criterio 4): terminado tiene fin posterior al inicio y estado.
     UPDATE recorrido SET fecha_hora_fin = '2026-11-28 10:00', estado_recorrido = 'completado'
         WHERE id_recorrido = v_id;
     UPDATE recorrido SET fecha_hora_fin = '2026-11-29 09:00', estado_recorrido = 'abandonado'
@@ -106,7 +106,7 @@ BEGIN
     EXCEPTION WHEN foreign_key_violation THEN NULL;
     END;
 
-    -- HU-28, criterio 3: los pasos por los hitos, cada uno con su fecha y hora.
+    -- HU-21, criterio 3: los pasos por los hitos, cada uno con su fecha y hora.
     INSERT INTO transita VALUES (v_id, 'Test RC', 'Municipio A', 'Parroquia A', 'Hito 1', '2026-11-28 08:30');
     BEGIN
         INSERT INTO transita VALUES (v_id, 'Test RC', 'Municipio A', 'Parroquia A', 'Hito 1', '2026-11-28 08:40');
@@ -126,7 +126,7 @@ BEGIN
         RAISE EXCEPTION 'Se eliminó una ruta con recorridos';
     EXCEPTION WHEN foreign_key_violation OR restrict_violation THEN NULL;
     END;
-    -- HU-28, criterio 6: el recorrido tampoco se elimina mientras tenga sus datos.
+    -- HU-21, criterio 6: el recorrido tampoco se elimina mientras tenga sus datos.
     BEGIN
         DELETE FROM recorrido WHERE id_recorrido = v_id;
         RAISE EXCEPTION 'Se eliminó un recorrido del historial';
@@ -170,7 +170,7 @@ BEGIN
         FROM unnest(ARRAY['Fija', 'Privada', 'Pública']) AS r,
              (VALUES ('Hito 1', 1), ('Hito 2', 2)) AS s(h, o);
 
-    -- HU-28, criterios 1 y 2: rutas fijas, dinámicas públicas y las propias del visitante.
+    -- HU-21, criterios 1 y 2: rutas fijas, dinámicas públicas y las propias del visitante.
     INSERT INTO recorrido (fecha_hora_inicio) VALUES ('2026-11-28 08:00') RETURNING id_recorrido INTO v_fija;
     INSERT INTO realiza VALUES (v_fija, 'V-2');
     INSERT INTO sobre VALUES (v_fija, 'Test RD', 'Municipio A', 'Fija');

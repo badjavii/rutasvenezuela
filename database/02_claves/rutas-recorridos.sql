@@ -6,7 +6,7 @@
 
 SET search_path TO rutasvzla, public, extensions;
 
--- HU-28, criterios 5 y 6: los recorridos quedan en el historial y no hay rutinas
+-- HU-21, criterios 5 y 6: los recorridos quedan en el historial y no hay rutinas
 -- para eliminarlos. Sus datos usan la acción por defecto, ON DELETE RESTRICT.
 ALTER TABLE realiza
     ADD CONSTRAINT fk_realiza_recorrido
