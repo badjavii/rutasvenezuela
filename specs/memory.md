@@ -26,7 +26,7 @@ PR #9: las pruebas estructurales de estado, municipio y parroquia verificaron RE
 
 ## Iteración de recorridos
 
-28/11/2026: tablas, claves y reglas de rutas-recorridos (RR-27, RR-28, RR-44, RR-45, RR-112 a RR-115) verificaron RED (`5929e31`) y GREEN (`a83eb99`) en PostgreSQL 18. Ningún trigger de recorridos está en las tablas de rutas: cambiar la ruta después no invalida el historial (sección 8). Pendiente: claves hacia `visitante` y `hito`, rutinas y permisos.
+28/11/2026: tablas, claves y reglas de rutas-recorridos (RR-27, RR-28, RR-44, RR-45, RR-112 a RR-115) verificaron RED (`5929e31`) y GREEN (`a83eb99`) en PostgreSQL 18. Ningún trigger de recorridos está en las tablas de rutas, y los UPDATE de `realiza`, `sobre` y `transita` (que llegan por cascada al renombrar una ruta o un hito) no se revisan: cambiar la ruta después no invalida el historial (sección 8; `56ba4a3`). Pendiente: claves hacia `visitante` y `hito`, rutinas y permisos.
 
 ## Aprobación de specs
 
