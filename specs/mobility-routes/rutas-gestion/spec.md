@@ -213,3 +213,13 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 - Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier y Valeria los datos de prueba de las tablas referidas.
+
+## 8. Decisiones de implementación
+
+Aprobadas por Sebastián Armas el 27/11/2026, junto con la especificación. No agregan reglas: aplican las RR, los criterios y las [convenciones de base de datos](../../../docs/development/database-conventions.md) a casos que el informe no detalla.
+
+- Registrar o modificar una ruta envía su secuencia completa de hitos y paradas. RR-34, RR-108, RR-109, RR-110 y RR-111 se verifican al confirmar la transacción. El `orden` es una sola numeración para hitos (`conforma`) y paradas (`usa`).
+- RR-35 (fija o dinámica, exactamente una) y RR-22 y RR-36 (creador de la dinámica) también se verifican al confirmar.
+- Claves foráneas: `ruta_fija`, `ruta_dinamica`, `conforma`, `usa`, `crea` y `sirve` → ruta con `ON DELETE CASCADE` (datos propios y adscripciones de guías); `sobre`, `transcurre` (Valeria) y `contrata_ruta` con `ON DELETE RESTRICT` (HU-17.4, criterio 2; HU-25.4, criterio 3); `evalua_ruta` (Javier) con `ON DELETE RESTRICT`.
+- Autorización por registro: modificar o eliminar una ruta dinámica exige que `crea` la vincule con `fn_visitante_actual()`; consultar rutas dinámicas devuelve solo las del visitante; HU-03 lista las rutas fijas y las dinámicas públicas.
+- El nombre es único por estado y municipio entre todas las rutas, porque es la clave del modelo. Un visitante puede recibir el rechazo por una ruta de otro (HU-25.1, criterio 4); el mensaje no revela datos de esa ruta.

@@ -56,4 +56,13 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 ## 7. Decisiones abiertas
 
 - Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
-- Definir qué tablas de otras capacidades lee cada consulta o reporte.
+- Las tablas que lee cada consulta están en la sección 8.
+
+## 8. Decisiones de implementación
+
+Aprobadas por Sebastián Armas el 27/11/2026, junto con la especificación. No agregan reglas: aplican las RR, los criterios y las [convenciones de base de datos](../../../docs/development/database-conventions.md) a casos que el informe no detalla.
+
+- Iniciados son todos los recorridos de la ruta en el rango, incluidos los que siguen en curso. El porcentaje de finalización es completados entre iniciados.
+- Rango de fechas: los recorridos por su hora de inicio y las evaluaciones por `fecha_emision`.
+- Competencia: el ente ve los municipios de su `competencia`; el funcionario, los del ente al que pertenece (`pertenece_a`).
+- Lee: `ruta_turistica`, `ruta_dinamica`, `recorrido`, `sobre` y `transita` (propias); `evaluacion_experiencia`, `evalua_ruta`, `competencia` y `cuenta_ente_publico` (Javier); `pertenece_a` y `cuenta_funcionario` (Valeria).

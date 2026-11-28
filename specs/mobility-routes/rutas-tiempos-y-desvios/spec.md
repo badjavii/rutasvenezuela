@@ -68,4 +68,13 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 ## 7. Decisiones abiertas
 
 - Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
-- Definir qué tablas de otras capacidades lee cada consulta o reporte.
+- Las tablas que lee cada consulta están en la sección 8.
+
+## 8. Decisiones de implementación
+
+Aprobadas por Sebastián Armas el 27/11/2026, junto con la especificación. No agregan reglas: aplican las RR, los criterios y las [convenciones de base de datos](../../../docs/development/database-conventions.md) a casos que el informe no detalla.
+
+- Los tramos de una ruta (VA-2) son los tramos donde están sus hitos (`se_ubica_en`) y sus paradas (`esta_en`): la ruta no guarda tramos.
+- VA-2 excluye los tramos conectados cuya vía tiene cierre total por mantenimiento. Es una interpretación, coherente con HU-05, criterio 3. Las conexiones se leen en los dos sentidos de `conecta`.
+- VA-1: el porcentaje por hito es la parte de los recorridos de la ruta con fila en `transita` para ese hito; el hito de abandono es el último transitado por los recorridos abandonados; el tiempo entre hitos consecutivos sigue el `orden` de `conforma` con `fecha_hora_paso`. El rango de fechas se aplica a la hora de inicio del recorrido.
+- Lee: `recorrido`, `sobre`, `transita`, `conforma`, `ruta_dinamica`, `tramo`, `conecta`, `via`, `via_modo` y `esta_en` (propias); `se_ubica_en`, `incidencia` y `afecta_tramo` (Javier).

@@ -1,9 +1,9 @@
 codigo,titulo,responsable,tipo,capacidad,vista,rr_preliminares,especificacion,criterios,estado
 HU-01,Ficha del hito y sus rutas,Javier,Consulta,patrimonio-hitos,V03,"1,2,13,14,74-79",specs/territory-heritage/patrimonio-hitos/spec.md,4,ESPECIFICADO_SIN_APROBAR
 HU-02,Recursos 3D cercanos,Javier,Consulta,patrimonio-anclajes-3d,V05,"3,15,78,80,81",specs/territory-heritage/patrimonio-anclajes-3d/spec.md,7,ESPECIFICADO_SIN_APROBAR
-HU-03,Rutas por categoría y territorio,Sebastián,Consulta,rutas-gestion,V02,"34-36,106-111",specs/mobility-routes/rutas-gestion/spec.md,4,ESPECIFICADO_SIN_APROBAR
-HU-04,Servicios en un recorrido,Sebastián,Consulta,movilidad-servicios-y-transbordos,V04,"34,45,110",specs/mobility-routes/movilidad-servicios-y-transbordos/spec.md,7,ESPECIFICADO_SIN_APROBAR
-HU-05,Paradas de transbordo operativas,Sebastián,Consulta,movilidad-servicios-y-transbordos,V04,"20,21,31-33,101,104",specs/mobility-routes/movilidad-servicios-y-transbordos/spec.md,4,ESPECIFICADO_SIN_APROBAR
+HU-03,Rutas por categoría y territorio,Sebastián,Consulta,rutas-gestion,V02,"34-36,106-111",specs/mobility-routes/rutas-gestion/spec.md,4,ESPECIFICADO_APROBADO
+HU-04,Servicios en un recorrido,Sebastián,Consulta,movilidad-servicios-y-transbordos,V04,"34,45,110",specs/mobility-routes/movilidad-servicios-y-transbordos/spec.md,7,ESPECIFICADO_APROBADO
+HU-05,Paradas de transbordo operativas,Sebastián,Consulta,movilidad-servicios-y-transbordos,V04,"20,21,31-33,101,104",specs/mobility-routes/movilidad-servicios-y-transbordos/spec.md,4,ESPECIFICADO_APROBADO
 HU-06,Valoraciones de una ruta,Valeria,Consulta,evaluaciones-consulta,V04,"9-11,19,94-100",specs/actors-commerce/evaluaciones-consulta/spec.md,4,ESPECIFICADO_SIN_APROBAR
 HU-07,Validar credencial,Valeria,Consulta,credenciales-gestion,V10,"55-59,72,73,127-134",specs/actors-commerce/credenciales-gestion/spec.md,3,ESPECIFICADO_SIN_APROBAR
 HU-32,Experiencias vigentes de un recorrido,Valeria,Consulta,promociones-experiencias,V04,"52-54,69-71,122-126",specs/actors-commerce/promociones-experiencias/spec.md,3,ESPECIFICADO_SIN_APROBAR
@@ -31,18 +31,18 @@ HU-14.1,Registrar recurso 3D,Javier,CRUD,patrimonio-anclajes-3d,V15,"3,15,81",sp
 HU-14.2,Consultar recurso 3D,Javier,CRUD,patrimonio-anclajes-3d,V15,"3,15,81",specs/territory-heritage/patrimonio-anclajes-3d/spec.md,2,ESPECIFICADO_SIN_APROBAR
 HU-14.3,Modificar recurso 3D,Javier,CRUD,patrimonio-anclajes-3d,V15,"3,15,81",specs/territory-heritage/patrimonio-anclajes-3d/spec.md,2,ESPECIFICADO_SIN_APROBAR
 HU-14.4,Eliminar recurso 3D,Javier,CRUD,patrimonio-anclajes-3d,V15,"3,15,81",specs/territory-heritage/patrimonio-anclajes-3d/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-15.1,Registrar vía,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,30,102",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,4,ESPECIFICADO_SIN_APROBAR
-HU-15.2,Consultar vía,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,30,102",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-15.3,Modificar vía,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,30,102",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,3,ESPECIFICADO_SIN_APROBAR
-HU-15.4,Eliminar vía,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,30,102",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-16.1,Registrar parada de transporte,Sebastián,CRUD,movilidad-paradas,V16,"20,21,31-33,101,104,105",specs/mobility-routes/movilidad-paradas/spec.md,7,ESPECIFICADO_SIN_APROBAR
-HU-16.2,Consultar parada de transporte,Sebastián,CRUD,movilidad-paradas,V16,"20,21,31-33,101,104,105",specs/mobility-routes/movilidad-paradas/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-16.3,Modificar parada de transporte,Sebastián,CRUD,movilidad-paradas,V16,"20,21,31-33,101,104,105",specs/mobility-routes/movilidad-paradas/spec.md,4,ESPECIFICADO_SIN_APROBAR
-HU-16.4,Eliminar parada de transporte,Sebastián,CRUD,movilidad-paradas,V16,"20,21,31-33,101,104,105",specs/mobility-routes/movilidad-paradas/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-17.1,Registrar ruta fija,Sebastián,CRUD,rutas-gestion,V17,"34,35,106-111",specs/mobility-routes/rutas-gestion/spec.md,5,ESPECIFICADO_SIN_APROBAR
-HU-17.2,Consultar ruta fija,Sebastián,CRUD,rutas-gestion,V17,"34,35,106-111",specs/mobility-routes/rutas-gestion/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-17.3,Modificar ruta fija,Sebastián,CRUD,rutas-gestion,V17,"34,35,106-111",specs/mobility-routes/rutas-gestion/spec.md,5,ESPECIFICADO_SIN_APROBAR
-HU-17.4,Eliminar ruta fija,Sebastián,CRUD,rutas-gestion,V17,"34,35,106-111",specs/mobility-routes/rutas-gestion/spec.md,2,ESPECIFICADO_SIN_APROBAR
+HU-15.1,Registrar vía,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,30,102",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,4,ESPECIFICADO_APROBADO
+HU-15.2,Consultar vía,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,30,102",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,2,ESPECIFICADO_APROBADO
+HU-15.3,Modificar vía,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,30,102",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,3,ESPECIFICADO_APROBADO
+HU-15.4,Eliminar vía,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,30,102",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,2,ESPECIFICADO_APROBADO
+HU-16.1,Registrar parada de transporte,Sebastián,CRUD,movilidad-paradas,V16,"20,21,31-33,101,104,105",specs/mobility-routes/movilidad-paradas/spec.md,7,ESPECIFICADO_APROBADO
+HU-16.2,Consultar parada de transporte,Sebastián,CRUD,movilidad-paradas,V16,"20,21,31-33,101,104,105",specs/mobility-routes/movilidad-paradas/spec.md,2,ESPECIFICADO_APROBADO
+HU-16.3,Modificar parada de transporte,Sebastián,CRUD,movilidad-paradas,V16,"20,21,31-33,101,104,105",specs/mobility-routes/movilidad-paradas/spec.md,4,ESPECIFICADO_APROBADO
+HU-16.4,Eliminar parada de transporte,Sebastián,CRUD,movilidad-paradas,V16,"20,21,31-33,101,104,105",specs/mobility-routes/movilidad-paradas/spec.md,2,ESPECIFICADO_APROBADO
+HU-17.1,Registrar ruta fija,Sebastián,CRUD,rutas-gestion,V17,"34,35,106-111",specs/mobility-routes/rutas-gestion/spec.md,5,ESPECIFICADO_APROBADO
+HU-17.2,Consultar ruta fija,Sebastián,CRUD,rutas-gestion,V17,"34,35,106-111",specs/mobility-routes/rutas-gestion/spec.md,2,ESPECIFICADO_APROBADO
+HU-17.3,Modificar ruta fija,Sebastián,CRUD,rutas-gestion,V17,"34,35,106-111",specs/mobility-routes/rutas-gestion/spec.md,5,ESPECIFICADO_APROBADO
+HU-17.4,Eliminar ruta fija,Sebastián,CRUD,rutas-gestion,V17,"34,35,106-111",specs/mobility-routes/rutas-gestion/spec.md,2,ESPECIFICADO_APROBADO
 HU-18.1,Registrar experiencia promocional,Valeria,CRUD,promociones-experiencias,V11,"52-54,69-71,122-126",specs/actors-commerce/promociones-experiencias/spec.md,5,ESPECIFICADO_SIN_APROBAR
 HU-18.2,Consultar experiencia promocional,Valeria,CRUD,promociones-experiencias,V11,"52-54,69-71,122-126",specs/actors-commerce/promociones-experiencias/spec.md,2,ESPECIFICADO_SIN_APROBAR
 HU-18.3,Modificar experiencia promocional,Valeria,CRUD,promociones-experiencias,V11,"52-54,69-71,122-126",specs/actors-commerce/promociones-experiencias/spec.md,4,ESPECIFICADO_SIN_APROBAR
@@ -54,18 +54,18 @@ HU-24.1,Registrar evento cultural,Javier,CRUD,patrimonio-eventos,V14,,specs/terr
 HU-24.2,Consultar evento cultural,Javier,CRUD,patrimonio-eventos,V14,,specs/territory-heritage/patrimonio-eventos/spec.md,1,ESPECIFICADO_SIN_APROBAR
 HU-24.3,Modificar evento cultural,Javier,CRUD,patrimonio-eventos,V14,,specs/territory-heritage/patrimonio-eventos/spec.md,3,ESPECIFICADO_SIN_APROBAR
 HU-24.4,Eliminar evento cultural,Javier,CRUD,patrimonio-eventos,V14,,specs/territory-heritage/patrimonio-eventos/spec.md,1,ESPECIFICADO_SIN_APROBAR
-HU-25.1,Registrar ruta dinámica,Sebastián,CRUD,rutas-gestion,V07,"22,35,36,106-112",specs/mobility-routes/rutas-gestion/spec.md,5,ESPECIFICADO_SIN_APROBAR
-HU-25.2,Consultar ruta dinámica,Sebastián,CRUD,rutas-gestion,V07,"22,35,36,106-112",specs/mobility-routes/rutas-gestion/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-25.3,Modificar ruta dinámica,Sebastián,CRUD,rutas-gestion,V07,"22,35,36,106-112",specs/mobility-routes/rutas-gestion/spec.md,5,ESPECIFICADO_SIN_APROBAR
-HU-25.4,Eliminar ruta dinámica,Sebastián,CRUD,rutas-gestion,V07,"22,35,36,106-112",specs/mobility-routes/rutas-gestion/spec.md,3,ESPECIFICADO_SIN_APROBAR
+HU-25.1,Registrar ruta dinámica,Sebastián,CRUD,rutas-gestion,V07,"22,35,36,106-112",specs/mobility-routes/rutas-gestion/spec.md,5,ESPECIFICADO_APROBADO
+HU-25.2,Consultar ruta dinámica,Sebastián,CRUD,rutas-gestion,V07,"22,35,36,106-112",specs/mobility-routes/rutas-gestion/spec.md,2,ESPECIFICADO_APROBADO
+HU-25.3,Modificar ruta dinámica,Sebastián,CRUD,rutas-gestion,V07,"22,35,36,106-112",specs/mobility-routes/rutas-gestion/spec.md,5,ESPECIFICADO_APROBADO
+HU-25.4,Eliminar ruta dinámica,Sebastián,CRUD,rutas-gestion,V07,"22,35,36,106-112",specs/mobility-routes/rutas-gestion/spec.md,3,ESPECIFICADO_APROBADO
 HU-26.1,Registrar funcionario,Valeria,CRUD,actores-identidades,V18,"49,50,64,68",specs/actors-commerce/actores-identidades/spec.md,2,ESPECIFICADO_SIN_APROBAR
 HU-26.2,Consultar funcionario,Valeria,CRUD,actores-identidades,V18,"49,50,64,68",specs/actors-commerce/actores-identidades/spec.md,1,ESPECIFICADO_SIN_APROBAR
 HU-26.3,Modificar funcionario,Valeria,CRUD,actores-identidades,V18,"49,50,64,68",specs/actors-commerce/actores-identidades/spec.md,2,ESPECIFICADO_SIN_APROBAR
 HU-26.4,Eliminar funcionario,Valeria,CRUD,actores-identidades,V18,"49,50,64,68",specs/actors-commerce/actores-identidades/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-29.1,Registrar guía,Sebastián,CRUD,guias-contrataciones,V18,"23,37-40,116-118",specs/mobility-routes/guias-contrataciones/spec.md,4,ESPECIFICADO_SIN_APROBAR
-HU-29.2,Consultar guía,Sebastián,CRUD,guias-contrataciones,V18,"23,37-40,116-118",specs/mobility-routes/guias-contrataciones/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-29.3,Modificar guía,Sebastián,CRUD,guias-contrataciones,V18,"23,37-40,116-118",specs/mobility-routes/guias-contrataciones/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-29.4,Eliminar guía,Sebastián,CRUD,guias-contrataciones,V18,"23,37-40,116-118",specs/mobility-routes/guias-contrataciones/spec.md,2,ESPECIFICADO_SIN_APROBAR
+HU-29.1,Registrar guía,Sebastián,CRUD,guias-contrataciones,V18,"23,37-40,116-118",specs/mobility-routes/guias-contrataciones/spec.md,4,ESPECIFICADO_APROBADO
+HU-29.2,Consultar guía,Sebastián,CRUD,guias-contrataciones,V18,"23,37-40,116-118",specs/mobility-routes/guias-contrataciones/spec.md,2,ESPECIFICADO_APROBADO
+HU-29.3,Modificar guía,Sebastián,CRUD,guias-contrataciones,V18,"23,37-40,116-118",specs/mobility-routes/guias-contrataciones/spec.md,2,ESPECIFICADO_APROBADO
+HU-29.4,Eliminar guía,Sebastián,CRUD,guias-contrataciones,V18,"23,37-40,116-118",specs/mobility-routes/guias-contrataciones/spec.md,2,ESPECIFICADO_APROBADO
 HU-30.1,Registrar comercio,Valeria,CRUD,actores-comercios,V18,"47,48,60,63,66,67,119,121",specs/actors-commerce/actores-comercios/spec.md,5,ESPECIFICADO_SIN_APROBAR
 HU-30.2,Consultar comercio,Valeria,CRUD,actores-comercios,V18,"47,48,60,63,66,67,119,121",specs/actors-commerce/actores-comercios/spec.md,2,ESPECIFICADO_SIN_APROBAR
 HU-30.3,Modificar comercio,Valeria,CRUD,actores-comercios,V18,"47,48,60,63,66,67,119,121",specs/actors-commerce/actores-comercios/spec.md,4,ESPECIFICADO_SIN_APROBAR
@@ -82,23 +82,23 @@ HU-34.1,Registrar parroquia,Javier,CRUD,territorio-catalogo,V13,,specs/territory
 HU-34.2,Consultar parroquia,Javier,CRUD,territorio-catalogo,V13,,specs/territory-heritage/territorio-catalogo/spec.md,1,ESPECIFICADO_SIN_APROBAR
 HU-34.3,Modificar parroquia,Javier,CRUD,territorio-catalogo,V13,,specs/territory-heritage/territorio-catalogo/spec.md,3,ESPECIFICADO_SIN_APROBAR
 HU-34.4,Eliminar parroquia,Javier,CRUD,territorio-catalogo,V13,,specs/territory-heritage/territorio-catalogo/spec.md,2,ESPECIFICADO_SIN_APROBAR
-HU-35.1,Registrar tramo,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,103",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,4,ESPECIFICADO_SIN_APROBAR
-HU-35.2,Consultar tramo,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,103",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,1,ESPECIFICADO_SIN_APROBAR
-HU-35.3,Modificar tramo,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,103",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,3,ESPECIFICADO_SIN_APROBAR
-HU-35.4,Eliminar tramo,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,103",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,2,ESPECIFICADO_SIN_APROBAR
+HU-35.1,Registrar tramo,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,103",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,4,ESPECIFICADO_APROBADO
+HU-35.2,Consultar tramo,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,103",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,1,ESPECIFICADO_APROBADO
+HU-35.3,Modificar tramo,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,103",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,3,ESPECIFICADO_APROBADO
+HU-35.4,Eliminar tramo,Sebastián,CRUD,movilidad-vias-y-tramos,V16,"29,103",specs/mobility-routes/movilidad-vias-y-tramos/spec.md,2,ESPECIFICADO_APROBADO
 HU-08,Iniciar sesión,Valeria,Negocio,actores-identidades,V01,"46,47,49,51,61-65",specs/actors-commerce/actores-identidades/spec.md,3,ESPECIFICADO_SIN_APROBAR
 HU-19,Reportar incidencia,Javier,Negocio,incidencias-gestion,V09,"5,6,18,83-88,93",specs/territory-heritage/incidencias-gestion/spec.md,6,ESPECIFICADO_SIN_APROBAR
 HU-20,Verificar incidencia,Javier,Negocio,incidencias-gestion,V12,"7,86-88",specs/territory-heritage/incidencias-gestion/spec.md,4,ESPECIFICADO_SIN_APROBAR
-HU-21,Registrar recorrido,Sebastián,Negocio,rutas-recorridos,V06,"27,28,44,45,112-115",specs/mobility-routes/rutas-recorridos/spec.md,7,ESPECIFICADO_SIN_APROBAR
+HU-21,Registrar recorrido,Sebastián,Negocio,rutas-recorridos,V06,"27,28,44,45,112-115",specs/mobility-routes/rutas-recorridos/spec.md,7,ESPECIFICADO_APROBADO
 HU-22,Publicar evaluación,Javier,Negocio,evaluaciones-publicacion,V06,"9-11,19,94-100",specs/territory-heritage/evaluaciones-publicacion/spec.md,7,ESPECIFICADO_SIN_APROBAR
 HU-27,Canjear credencial,Valeria,Negocio,credenciales-gestion,V10,"55-59,72,73,127-134",specs/actors-commerce/credenciales-gestion/spec.md,4,ESPECIFICADO_SIN_APROBAR
-HU-28,Asignar guías a una ruta fija,Sebastián,Negocio,guias-contrataciones,V17,"40,117,118",specs/mobility-routes/guias-contrataciones/spec.md,4,ESPECIFICADO_SIN_APROBAR
+HU-28,Asignar guías a una ruta fija,Sebastián,Negocio,guias-contrataciones,V17,"40,117,118",specs/mobility-routes/guias-contrataciones/spec.md,4,ESPECIFICADO_APROBADO
 HU-36,Prorrogar incidencia,Javier,Negocio,incidencias-gestion,V12,91-93,specs/territory-heritage/incidencias-gestion/spec.md,5,ESPECIFICADO_SIN_APROBAR
 HU-37,Cerrar incidencia,Javier,Negocio,incidencias-gestion,V12,"8,89-93",specs/territory-heritage/incidencias-gestion/spec.md,3,ESPECIFICADO_SIN_APROBAR
 RP-1,Estado de conservación e incidencias por territorio,Javier,Reporte,reportes-conservacion,V19,"5-8,18,83-93",specs/territory-heritage/reportes-conservacion/spec.md,4,ESPECIFICADO_SIN_APROBAR
 RP-2,Desempeño de experiencias y credenciales,Valeria,Reporte,reportes-promociones,V20,"52-59,69-73,119,122-134",specs/actors-commerce/reportes-promociones/spec.md,3,ESPECIFICADO_SIN_APROBAR
-RP-3,Afluencia y calidad percibida por ruta,Sebastián,Reporte,reportes-afluencia,V21,"44,45,113-115",specs/mobility-routes/reportes-afluencia/spec.md,6,ESPECIFICADO_SIN_APROBAR
-VA-1,Tiempos reales de una ruta,Sebastián,Valor agregado,rutas-tiempos-y-desvios,V04,"106,112-115",specs/mobility-routes/rutas-tiempos-y-desvios/spec.md,5,ESPECIFICADO_SIN_APROBAR
-VA-2,Desvío por incidencia,Sebastián,Valor agregado,rutas-tiempos-y-desvios,V06,"83-85,102,103,110,113",specs/mobility-routes/rutas-tiempos-y-desvios/spec.md,3,ESPECIFICADO_SIN_APROBAR
-VA-3,Contratación de guía,Sebastián,Valor agregado,guias-contrataciones,V04,"24-26,41-43,117,118",specs/mobility-routes/guias-contrataciones/spec.md,3,ESPECIFICADO_SIN_APROBAR
+RP-3,Afluencia y calidad percibida por ruta,Sebastián,Reporte,reportes-afluencia,V21,"44,45,113-115",specs/mobility-routes/reportes-afluencia/spec.md,6,ESPECIFICADO_APROBADO
+VA-1,Tiempos reales de una ruta,Sebastián,Valor agregado,rutas-tiempos-y-desvios,V04,"106,112-115",specs/mobility-routes/rutas-tiempos-y-desvios/spec.md,5,ESPECIFICADO_APROBADO
+VA-2,Desvío por incidencia,Sebastián,Valor agregado,rutas-tiempos-y-desvios,V06,"83-85,102,103,110,113",specs/mobility-routes/rutas-tiempos-y-desvios/spec.md,3,ESPECIFICADO_APROBADO
+VA-3,Contratación de guía,Sebastián,Valor agregado,guias-contrataciones,V04,"24-26,41-43,117,118",specs/mobility-routes/guias-contrataciones/spec.md,3,ESPECIFICADO_APROBADO
 VA-4,Semáforo de seguridad de una ruta,Javier,Valor agregado,reportes-seguridad-rutas,V04,"83-85,89-91",specs/territory-heritage/reportes-seguridad-rutas/spec.md,5,ESPECIFICADO_SIN_APROBAR

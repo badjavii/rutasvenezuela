@@ -152,3 +152,14 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 - Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier los datos de prueba de las tablas referidas.
+
+## 8. Decisiones de implementación
+
+Aprobadas por Sebastián Armas el 27/11/2026, junto con la especificación. No agregan reglas: aplican las RR, los criterios y las [convenciones de base de datos](../../../docs/development/database-conventions.md) a casos que el informe no detalla.
+
+- Claves foráneas: `tramo` → `via` y `via_modo` → `via` con `ON DELETE CASCADE` (HU-15.4, criterio 1: la vía se elimina junto con sus tramos); `conecta` → `tramo`, origen y destino, con `ON DELETE CASCADE` (HU-35.4, criterio 1: solo bloquean incidencias, paradas o hitos). Las referencias entrantes `esta_en`, `afecta_tramo` y `se_ubica_en` → `tramo` usan `ON DELETE RESTRICT`, que es lo que cumple HU-15.4 y HU-35.4, criterio 2.
+- RR-29 y RR-30 se verifican al confirmar la transacción, con un trigger de restricción diferido. Registrar una vía incluye sus modos y al menos un tramo en la misma operación. No se puede eliminar el último tramo de una vía ni quitarle su último modo.
+- `numero_tramo` lo asigna la rutina: el siguiente número dentro de la vía, empezando en 1.
+- `conecta` guarda cada conexión una sola vez y se lee en los dos sentidos, como la RR-85. La rutina no inserta (B, A) si ya existe (A, B).
+- Los `CHECK` de la RR-102 usan los textos exactos del capítulo 7, con tildes (`'caminería'`, `'transporte público'`, `'vehículo adaptado'`…).
+- Integración: cambiar el municipio de una vía con un hito en alguno de sus tramos lo rechaza la RR-79 (`patrimonio-hitos`, Javier).

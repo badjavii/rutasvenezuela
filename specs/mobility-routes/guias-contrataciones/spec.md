@@ -141,3 +141,13 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 
 - Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
 - Acordar con Javier y Valeria los datos de prueba de las tablas referidas.
+
+## 8. Decisiones de implementación
+
+Aprobadas por Sebastián Armas el 27/11/2026, junto con la especificación. No agregan reglas: aplican las RR, los criterios y las [convenciones de base de datos](../../../docs/development/database-conventions.md) a casos que el informe no detalla.
+
+- Registrar un guía crea su cuenta (`cuenta`, de `actores-identidades`, Valeria), su `cuenta_guia` y al menos un idioma, una especialidad y una zona (`trabaja`) en la misma operación. RR-37 a RR-40 se verifican al confirmar la transacción.
+- «Una misma persona puede ser guía y también visitante» (registrar, criterio 4) se cumple con dos cuentas, una por actor (RR-61).
+- Claves foráneas: `cuenta_guia`, `guia_idioma`, `guia_especialidad` y `trabaja` → `guia` con `ON DELETE CASCADE`; `sirve`, `contrata_guia` y `dirige` (Valeria) → `guia` con `ON DELETE RESTRICT`. Eliminar un guía elimina también su cuenta (RR-61); si validó credenciales, `valida` → `cuenta` (Valeria, `RESTRICT`) impide la eliminación (HU-29.4).
+- Contratación: el visitante sale de la sesión (`fn_visitante_actual()`), `nro_contratacion` lo genera el gestor y `fecha_contratacion` es el día del recorrido acompañado, que elige el visitante.
+- RR-117 se verifica al adscribir y RR-118 al contratar.

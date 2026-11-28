@@ -80,4 +80,12 @@ Cambiar el modelo relacional o agregar reglas sin fuente. Crear o alterar tablas
 ## 7. Decisiones abiertas
 
 - Al escribir la prueba SQL de cada historia, indicar qué RR de la sección 3 cubre.
-- Definir qué tablas de otras capacidades lee cada consulta o reporte.
+- Las tablas que lee cada consulta están en la sección 8.
+
+## 8. Decisiones de implementación
+
+Aprobadas por Sebastián Armas el 27/11/2026, junto con la especificación. No agregan reglas: aplican las RR, los criterios y las [convenciones de base de datos](../../../docs/development/database-conventions.md) a casos que el informe no detalla.
+
+- Distancia (HU-04, criterio 6): haversine con radio terrestre de 6 371 km para la componente horizontal, combinada con la diferencia de elevación: d = √(h² + Δe²). Solo `radians`, `sin`, `cos`, `asin` y `sqrt`, sin tipos espaciales. La posición actual del visitante llega como parámetro de latitud y longitud.
+- Los tramos conectados (HU-05, criterio 2) se leen en los dos sentidos de `conecta`.
+- Lee: `conforma`, `usa`, `ruta_dinamica`, `parada_transporte`, `se_localiza`, `esta_en`, `tramo`, `conecta` y `via` (propias); `comercio` y `ubicado` (Valeria); `registra`, `ubicacion_geografica`, `incidencia` y `afecta_tramo` (Javier).
