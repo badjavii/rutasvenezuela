@@ -6,6 +6,7 @@ Este directorio contiene las guías operativas y la documentación derivada del 
 
 | Si quieres… | Comienza por… | Después consulta… |
 |---|---|---|
+| Saber cómo abordamos la implementación, quién hace qué y en qué orden | [Guía de implementación](project/implementation-guide.md) | [Plan de entrega](project/delivery-plan.md) |
 | Entender el sistema y las capas | [Arquitectura](architecture.md) | [Contratos por capa](development/layer-contracts.md) |
 | Crear tablas y rutinas | [Convenciones de base de datos](development/database-conventions.md) | [Catálogo RR](requirements/relational-rules.md) |
 | Encontrar qué requisito corresponde a una HU, RR o pantalla | [Mapa de trazabilidad](requirements/traceability.md) | [Matriz detallada](requirements/traceability-detailed.csv) |
@@ -42,6 +43,7 @@ docs/
 │   ├── interface-cases.csv
 │   └── integration-cases.csv
 └── project/
+    ├── implementation-guide.md
     ├── delivery-plan.md
     ├── ere-feedback.md
     └── decisions.md
