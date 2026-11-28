@@ -12,3 +12,4 @@
 \ir tests/movilidad-vias-y-tramos.sql
 \ir tests/movilidad-paradas.sql
 \ir tests/rutas-gestion.sql
+\ir tests/rutas-recorridos.sql
