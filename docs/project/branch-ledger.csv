@@ -10,5 +10,5 @@ javier(feat/database)-territory-tables,Javier Otero,feat,database,Tablas y prueb
 sebastian(fix/database)-auth-role-and-extensions,Sebastián Armas,fix,database,"Rol de autenticación, pgcrypto en extensions y pruebas de membresías",develop,develop,2026-11-26,https://github.com/badjavii/rutasvenezuela/pull/10,merged,2026-11-27
 sebastian(docs/database)-ratify-types-and-fk-actions,Sebastián Armas,docs,database,Tipos y acciones referenciales vigentes,develop,develop,2026-11-27,https://github.com/badjavii/rutasvenezuela/pull/12,merged,2026-11-27
 sebastian(docs/spec)-implementation-guide,Sebastián Armas,docs,spec,Guía de cómo abordamos la implementación,develop,develop,2026-11-26,https://github.com/badjavii/rutasvenezuela/pull/11,merged,2026-11-27
-sebastian(docs/spec)-approve-mobility-specs,Sebastián Armas,docs,spec,Aprobar las specs de movilidad y rutas con sus decisiones,develop,develop,2026-11-27,https://github.com/badjavii/rutasvenezuela/pull/13,in_review,2026-11-27
+sebastian(docs/spec)-approve-mobility-specs,Sebastián Armas,docs,spec,Aprobar las specs de movilidad y rutas con sus decisiones,develop,develop,2026-11-27,https://github.com/badjavii/rutasvenezuela/pull/13,merged,2026-11-28
 sebastian(feat/database)-vias-y-tramos-tablas,Sebastián Armas,feat,database,Tablas y claves de vías y tramos,develop,develop,2026-11-28,,in_progress,2026-11-28
