@@ -1,12 +1,14 @@
 # Tareas: movilidad vias y tramos
 
-El estado de implementación se registra solo aquí. No existen pruebas ejecutadas de esta capacidad.
+El estado de implementación se registra solo aquí. Pruebas estructurales: RED en PostgreSQL 18 local para el commit `3e4ea47` (la relación `via` todavía no existía) y GREEN para `be59af0`, confirmado también en PostgreSQL 17 por el [CI del PR #14](https://github.com/badjavii/rutasvenezuela/actions/runs/46111936506). El CI solo corre en el PR, sobre su último commit. RR-29, RR-30, las rutinas y los permisos siguen pendientes.
 
 ## T-01. Capa de datos
 
-- [ ] Crear `via`, `via_modo`, `tramo`, `conecta` en `database/01_tablas/movilidad-vias-y-tramos.sql`.
-- [ ] Agregar sus claves foráneas en `database/02_claves/movilidad-vias-y-tramos.sql`.
-- [ ] Escribir las pruebas SQL de RR-29, RR-30, RR-102, RR-103 y confirmar RED.
+- [x] Crear `via`, `via_modo`, `tramo`, `conecta` en `database/01_tablas/movilidad-vias-y-tramos.sql` (GREEN, `be59af0`).
+- [x] Agregar sus claves foráneas en `database/02_claves/movilidad-vias-y-tramos.sql` (GREEN, `be59af0`).
+- [x] Escribir las pruebas estructurales (RR-102, RR-103, claves y acciones referenciales de HU-15.4 y HU-35.4, criterio 1) y confirmar RED (`3e4ea47`).
+- [ ] Escribir las pruebas SQL de RR-29, RR-30 y las rutinas, y confirmar RED.
+- [ ] Probar HU-15.4 y HU-35.4, criterio 2, cuando existan `esta_en`, `afecta_tramo` y `se_ubica_en`.
 - [ ] Implementar en `database/03_reglas/movilidad-vias-y-tramos.sql` hasta GREEN y refactorizar.
 - [ ] Otorgar privilegios a `rol_administrador` en `database/04_seguridad/movilidad-vias-y-tramos.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/movilidad-vias-y-tramos.sql`.

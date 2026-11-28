@@ -6,3 +6,4 @@
 
 \ir tests/00_esquema.sql
 \ir tests/territorio-catalogo.sql
+\ir tests/movilidad-vias-y-tramos.sql
