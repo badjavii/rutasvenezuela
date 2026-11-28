@@ -17,20 +17,21 @@ Navegador ──► Next.js ─────────────────�
 
 La razón de fondo: el proyecto se evalúa sobre el gestor, así que las reglas y la seguridad viven en la base y no en TypeScript. Detalle en [arquitectura](../architecture.md) y [contratos por capa](../development/layer-contracts.md).
 
-## 2. Dónde estamos (26/11/2026)
+## 2. Dónde estamos (27/11/2026)
 
 | Pieza | Estado | Dónde |
 |---|---|---|
+| Arquitectura (Next.js + PostgreSQL en Supabase, tres capas lógicas) | **Aprobada por la profesora** en la consulta presencial del 26/11 | [Arquitectura](../architecture.md) |
 | Specs SDD de las 23 capacidades | En `develop`, cada responsable debe aprobar las suyas | [specs/](../../specs/README.md) |
-| Esquema base, roles, `build.sql`, `test.sql` y CI con PostgreSQL 17 | En `develop` (PR #6) | [database/](../../database/README.md) |
-| Rol `rol_autenticacion` y pgcrypto en el esquema `extensions` | En revisión (PR #10) | `database/00_esquema.sql` |
-| Contrato de seguridad (identidad, propiedad, competencia, 23 casos) | En revisión (PR #7) | `docs/development/security.md` (al integrarse) |
-| Convenciones de TypeScript y Next.js | En revisión (PR #8) | `docs/development/` |
-| Primeras tablas: catálogo territorial | En revisión (PR #9), sirve de ejemplo para las demás | `database/01_tablas/territorio-catalogo.sql` |
+| Esquema base, roles, `rol_autenticacion`, pgcrypto en `extensions`, `build.sql`, `test.sql` y CI con PostgreSQL 17 | En `develop` (PR #6 y #10) | [database/](../../database/README.md) |
+| Tabla de tipos y acciones referenciales | Vigentes (PR #12) | [Convenciones de base de datos](../development/database-conventions.md) |
+| Primeras tablas: catálogo territorial | En `develop` (PR #9). Es el ejemplo a seguir | `database/01_tablas/territorio-catalogo.sql` |
+| Convenciones de TypeScript y Next.js | En `develop` (PR #8), con ajustes anotados en su revisión para cuando se cree `web/` | [Guía de TypeScript](../development/typescript-style-guide.md) |
+| Contrato de seguridad (identidad, propiedad, competencia, 23 casos) | En revisión (PR #7). La propuesta se revisará con la profesora en una sesión virtual | `docs/development/security.md` (al integrarse) |
 | Proyecto Next.js en `web/` | Sin crear | [web/README.md](../../web/README.md) |
 | Proyecto de Supabase y `.env` | Sin crear | — |
 
-Según el calendario de la primera entrega (sección 1.4), hoy cierra el sprint 3. Solo está hecha la base del esquema, así que hay que replanificar lo que queda (sección 6).
+Según el calendario de la primera entrega (sección 1.4), el sprint 3 cerró el 26/11. Están hechas la base del esquema y las tablas del territorio, así que hay que replanificar lo que queda (sección 6).
 
 ## 3. Qué le toca a cada uno
 
@@ -91,7 +92,7 @@ Es el mismo ciclo para todos. Una rama puede cubrir una sola capa (por ejemplo, 
 ### 4.1 Antes de empezar
 
 1. Leer y **aprobar tu spec** (`spec.md`, `plan.md`, `tasks.md`). Si un criterio no coincide con el informe, se corrige la spec primero, en un PR de documentación.
-2. Revisar los tipos en las [convenciones de base de datos](../development/database-conventions.md): una clave foránea tiene el mismo tipo que la columna a la que apunta.
+2. Usar los tipos y las acciones referenciales de las [convenciones de base de datos](../development/database-conventions.md): una clave foránea tiene el mismo tipo que la columna a la que apunta, `ON UPDATE CASCADE` siempre y `ON DELETE RESTRICT` por defecto.
 
 ### 4.2 Crear la rama
 
@@ -121,14 +122,15 @@ REFACTOR  ordenar sin cambiar el comportamiento → CI sigue pasando
 - Cada prueba va entre `BEGIN … ROLLBACK`, así no deja datos.
 - Por cada RR hay al menos un caso válido (se acepta) y uno de violación (el gestor rechaza). Son 268 casos planificados en [database-cases.csv](../testing/database-cases.csv).
 - Se anota el commit RED y el GREEN en `tasks.md` y en la descripción del PR. Es la evidencia de que se hizo TDD.
-- El PR #9 (catálogo territorial) es el ejemplo a seguir: prueba de duplicados, nulos y claves foráneas inexistentes.
+- El PR #9 (catálogo territorial) es el ejemplo a seguir: prueba de duplicados, nulos, claves foráneas inexistentes, borrado con dependientes y propagación del renombre.
+- El rechazo de un `ON DELETE RESTRICT` se captura con `WHEN foreign_key_violation OR restrict_violation`: PostgreSQL 18 usa el segundo código y el CI (PostgreSQL 17) el primero.
 
 ### 4.4 Qué va en cada carpeta
 
 | Orden | Carpeta | Qué escribe el dueño | Prueba RED típica |
 |---|---|---|---|
 | 1 | `01_tablas/<cap>.sql` | `CREATE TABLE` con clave primaria, `NOT NULL`, `UNIQUE` y `CHECK` simples | Insertar duplicado o nulo y esperar el rechazo |
-| 2 | `02_claves/<cap>.sql` | Claves foráneas de **tus** tablas, aunque apunten a tablas de otro | Insertar con referencia inexistente |
+| 2 | `02_claves/<cap>.sql` | Claves foráneas de **tus** tablas, aunque apunten a tablas de otro, con `ON UPDATE CASCADE ON DELETE RESTRICT` | Insertar con referencia inexistente; borrar un padre con dependientes |
 | 3 | `03_reglas/<cap>.sql` | Triggers, funciones y procedimientos en PL/pgSQL para las RR y las operaciones | Caso válido y caso de violación de cada RR |
 | 4 | `04_seguridad/<cap>.sql` | `GRANT EXECUTE` de cada rutina al rol del actor | Rol sin permiso → rechazo del gestor |
 | 5 | `05_datos/<cap>.sql` | Datos de prueba persistentes | Conteos y consultas sobre los datos |
@@ -139,7 +141,7 @@ REFACTOR  ordenar sin cambiar el comportamiento → CI sigue pasando
 
 Cuando la base de una capacidad está en `develop`:
 
-1. **Server action** en `web/server/actions/<cap>.ts`: usa `conActor(sesion, operación)`. Este helper abre la transacción, hace `SET LOCAL ROLE`, fija `app.id_cuenta` y llama a la rutina. No contiene reglas de negocio ni decisiones de permisos.
+1. **Server action** en `web/server/actions/<cap>.ts`: usa el helper `conActor(sesion, operación)` del contrato de seguridad (en la revisión del PR #8 se propuso llamarlo `withActor`, porque el código va en inglés). Este helper abre la transacción, hace `SET LOCAL ROLE`, fija `app.id_cuenta` y llama a la rutina. No contiene reglas de negocio ni decisiones de permisos.
 2. **Prueba de la action:** el rol correcto obtiene el resultado y un rol sin privilegio recibe el error del gestor.
 3. **Vista** en `web/app/`: los estados de la [matriz de interfaz](../testing/interface-cases.csv). Los listados tienen búsqueda, orden y paginación.
 
@@ -160,7 +162,7 @@ gh pr create --base develop    # descripción en español con la plantilla del r
 Las piezas dependen unas de otras. Este es el orden y el porqué:
 
 ```text
-Fase 0  Acuerdos      tipos, acciones referenciales, specs aprobadas, PR #7 #8 #10
+Fase 0  Acuerdos      specs aprobadas, contrato de seguridad (#7) y sesión con la profesora
    │
 Fase 1  Tablas        01_tablas + 02_claves de las 84 relaciones
    │                  (sin tablas no hay dónde probar reglas)
@@ -201,7 +203,7 @@ Mantiene el contenido y el orden de los sprints, y comprime las fechas a los 12 
 
 | Fase | Fechas | Qué tiene que quedar en `develop` |
 |---|---|---|
-| 0. Acuerdos | 26/11–27/11 | PR #7, #8, #9 y #10 integrados. Tabla de tipos y acciones referenciales aprobadas. Cada uno aprueba sus specs. Proyecto de Supabase creado |
+| 0. Acuerdos | 26/11–27/11 | Hecho: PR #8, #9, #10 y #12 integrados, con tipos y acciones referenciales vigentes. Falta: que cada uno apruebe sus specs, el PR #7 y crear el proyecto de Supabase |
 | 1. Tablas | 27/11–29/11 | `01_tablas` y `02_claves` de las 84 relaciones, con sus pruebas estructurales |
 | 2. Reglas y base web | 29/11–02/12 | RR y CRUD de los sprints S1–S2 en `03_reglas`, con `04_seguridad` y `05_datos`. `web/` creado, con `conActor` e inicio de sesión |
 | 3. Funcionalidad | 01/12–05/12 | Server actions y vistas por capacidad: CRUD (S1–S2), operaciones (S3), consultas, reportes y VA (S4) |
@@ -212,7 +214,7 @@ Cada integrante avanza con sus HU en el orden de la tabla de sprints: primero lo
 
 ## 7. Reglas de seguridad, en corto
 
-El detalle y los 23 casos de prueba están en el contrato de seguridad (PR #7). Lo que todos deben respetar:
+El detalle y los 23 casos de prueba están en el contrato de seguridad (PR #7). Es una **propuesta**: la profesora aprobó la arquitectura, pero la seguridad se revisará con ella en una sesión virtual. Lo que todos deben respetar mientras tanto:
 
 1. **Next.js se conecta con un solo usuario, `app_rv`**, que no tiene permisos propios. En cada operación cambia al rol del actor con `SET LOCAL ROLE`, dentro de una transacción.
 2. **Los roles de actor no tienen permisos sobre tablas**, solo `EXECUTE` sobre las rutinas que les corresponden. Así nadie salta las reglas con un `UPDATE` directo.
@@ -238,10 +240,11 @@ Que esté documentada no la hace terminada. Solo cuenta lo que se ejecutó.
 
 | Decisión | Qué falta | Bloquea |
 |---|---|---|
-| Tabla común de tipos | Aprobación de los tres (hoy dice «Propuesta») | Fase 1 |
-| Acciones referenciales (`ON UPDATE CASCADE`, `ON DELETE RESTRICT`, como en el PR #9) | Ratificar para todo el modelo | Fase 1 |
-| Integrar PR #7 con los ajustes de concurrencia (`FOR SHARE`) y revocación de sesiones | Revisión de Javier | Fase 2 |
-| Identificador de inicio de sesión y cuentas con varios roles (HU-08) | Decisión de Valeria y del equipo | Inicio de sesión |
+| Cómo se marca una spec como aprobada (hoy todas las HU dicen `ESPECIFICADO_SIN_APROBAR` en la [matriz](../requirements/traceability-detailed.csv)) | Acordar el mecanismo | Fase 1 |
+| Sesión virtual con la profesora sobre la propuesta de seguridad: cuentas del gestor, `GRANT EXECUTE` frente a permisos sobre tablas o vistas, autorización sin RLS, autenticación y privilegios de sistema | Agendarla | Fase 2 |
+| Integrar PR #7 con los ajustes de concurrencia (`FOR SHARE`), revocación de sesiones y nombre del helper | Revisión de Javier, después de la sesión | Fase 2 |
+| Identificador de inicio de sesión (HU-08). Una cuenta es de un solo actor: lo fija la RR-61 | Decisión de Valeria y del equipo | Inicio de sesión |
+| Zona horaria también a nivel de base, no solo en `app_rv`, para que un `now()` ejecutado por el build dé la hora de Venezuela | Comprobar si Supabase lo permite | Fase 2 |
 | Modelo entidad-relación corregido (entregable 1, S2) | Aplicar las observaciones del [ERE](ere-feedback.md), R/V Javier | Documento de la segunda entrega |
 | Quién crea el proyecto de Supabase y cómo se comparte el `.env` | Acordar | Fase 2b |
 | Quién inicializa `web/` | Acordar | Fase 2b |
