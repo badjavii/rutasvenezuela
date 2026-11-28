@@ -99,6 +99,8 @@ ALTER TABLE via
     ON DELETE RESTRICT;
 ```
 
+En las pruebas, el rechazo de `ON DELETE RESTRICT` se captura con `EXCEPTION WHEN foreign_key_violation OR restrict_violation`: PostgreSQL 18 lo reporta como `restrict_violation` (23001) y las versiones anteriores como `foreign_key_violation` (23503). Así la prueba pasa en el CI (PostgreSQL 17) y en una instalación local más nueva.
+
 ## Scripts y orden de construcción
 
 Un archivo por capacidad en cada carpeta, con el mismo nombre de la capacidad (por ejemplo `database/01_tablas/patrimonio-hitos.sql`). El autor es el responsable de esa capacidad. Así dos integrantes nunca editan el mismo archivo.
