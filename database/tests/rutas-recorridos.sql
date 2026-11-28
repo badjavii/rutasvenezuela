@@ -21,6 +21,8 @@ BEGIN
     INSERT INTO municipio VALUES ('Test RC', 'Municipio A');
     INSERT INTO ruta_turistica VALUES ('Test RC', 'Municipio A', 'Ruta', 60, '08:00', 'baja');
     INSERT INTO ruta_fija VALUES ('Test RC', 'Municipio A', 'Ruta');
+    INSERT INTO conforma VALUES ('Test RC', 'Municipio A', 'Ruta', 'Test RC', 'Municipio A', 'Parroquia A', 'Hito 1', 1),
+                                ('Test RC', 'Municipio A', 'Ruta', 'Test RC', 'Municipio A', 'Parroquia A', 'Hito 2', 2);
 
     -- HU-28, criterio 1: el recorrido nuevo recibe su identificador del gestor.
     INSERT INTO recorrido (fecha_hora_inicio) VALUES ('2026-11-28 08:00') RETURNING id_recorrido INTO v_id;
@@ -199,6 +201,15 @@ BEGIN
         IF SQLERRM NOT LIKE 'RR-112%' THEN RAISE; END IF;
     END;
 
+    -- RR-112: ni cambiando la ruta del recorrido por la privada de otro.
+    BEGIN
+        UPDATE sobre SET nombre_ruta = 'Privada' WHERE id_recorrido = v_fija;
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se aceptó cambiar un recorrido a la ruta privada de otro (RR-112)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-112%' THEN RAISE; END IF;
+    END;
+
     -- RR-44 y RR-45: el recorrido tiene su visitante y su ruta.
     BEGIN
         INSERT INTO recorrido (fecha_hora_inicio) VALUES ('2026-11-28 08:00') RETURNING id_recorrido INTO v_ajena;
@@ -287,6 +298,19 @@ BEGIN
         DELETE FROM transita WHERE id_recorrido = v_fija AND nombre_hito = 'Hito 2';
         SET CONSTRAINTS ALL IMMEDIATE;
         RAISE EXCEPTION 'Se quitó un paso de un recorrido completado (RR-115)';
+    EXCEPTION WHEN check_violation THEN
+        IF SQLERRM NOT LIKE 'RR-115%' THEN RAISE; END IF;
+    END;
+
+    -- RR-115: cambiar un recorrido completado a una ruta con otros hitos se rechaza.
+    BEGIN
+        INSERT INTO ruta_turistica VALUES ('Test RD', 'Municipio A', 'Otra', 60, '08:00', 'baja');
+        INSERT INTO ruta_fija VALUES ('Test RD', 'Municipio A', 'Otra');
+        INSERT INTO conforma VALUES ('Test RD', 'Municipio A', 'Otra', 'Test RD', 'Municipio A', 'Parroquia A', 'Hito 3', 1),
+                                    ('Test RD', 'Municipio A', 'Otra', 'Test RD', 'Municipio A', 'Parroquia A', 'Hito 4', 2);
+        UPDATE sobre SET nombre_ruta = 'Otra' WHERE id_recorrido = v_fija;
+        SET CONSTRAINTS ALL IMMEDIATE;
+        RAISE EXCEPTION 'Se aceptó cambiar la ruta de un recorrido completado (RR-115)';
     EXCEPTION WHEN check_violation THEN
         IF SQLERRM NOT LIKE 'RR-115%' THEN RAISE; END IF;
     END;
