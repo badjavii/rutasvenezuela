@@ -15,4 +15,4 @@ sebastian(feat/database)-vias-y-tramos-tablas,Sebastián Armas,feat,database,Tab
 sebastian(feat/database)-vias-al-menos-uno,Sebastián Armas,feat,database,RR-29 y RR-30 de vías con triggers diferidos,develop,develop,2026-11-28,https://github.com/badjavii/rutasvenezuela/pull/15,merged,2026-11-28
 sebastian(feat/database)-paradas,Sebastián Armas,feat,database,"Tablas, claves y reglas de paradas",develop,develop,2026-11-28,https://github.com/badjavii/rutasvenezuela/pull/16,in_review,2026-11-28
 sebastian(feat/database)-rutas-gestion,Sebastián Armas,feat,database,"Tablas, claves y reglas de rutas",develop,develop,2026-11-28,https://github.com/badjavii/rutasvenezuela/pull/17,in_review,2026-11-28
-sebastian(feat/database)-rutas-recorridos,Sebastián Armas,feat,database,"Tablas, claves y reglas de recorridos",develop,develop,2026-11-28,,ready_for_pr,2026-11-28
+sebastian(feat/database)-rutas-recorridos,Sebastián Armas,feat,database,"Tablas, claves y reglas de recorridos",develop,develop,2026-11-28,https://github.com/badjavii/rutasvenezuela/pull/18,in_review,2026-11-28
