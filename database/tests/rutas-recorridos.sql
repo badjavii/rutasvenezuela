@@ -321,6 +321,14 @@ BEGIN
     INSERT INTO conforma VALUES ('Test RD', 'Municipio A', 'Fija', 'Test RD', 'Municipio A', 'Parroquia A', 'Hito 5', 2);
     UPDATE ruta_dinamica SET visibilidad = 'privada' WHERE nombre_ruta = 'Pública';
     SET CONSTRAINTS ALL IMMEDIATE;
+    SET CONSTRAINTS ALL DEFERRED;
+
+    -- HU-10.3: renombrar un hito llega por ON UPDATE CASCADE a transita y a conforma
+    -- (claves hacia hito pendientes, Javier; aquí se hace a mano), en pasos distintos.
+    -- No es un paso nuevo: RR-114 no lo revisa, y RR-115 lo ve consistente al confirmar.
+    UPDATE transita SET nombre_hito = 'Hito 1 renombrado' WHERE nombre_estado = 'Test RD' AND nombre_hito = 'Hito 1';
+    UPDATE conforma SET nombre_hito = 'Hito 1 renombrado' WHERE estado_hito = 'Test RD' AND nombre_hito = 'Hito 1';
+    SET CONSTRAINTS ALL IMMEDIATE;
 END
 $$;
 
