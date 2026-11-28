@@ -8,7 +8,7 @@ El estado de implementación se registra solo aquí. Tablas, claves y reglas: RE
 - [x] Agregar las claves foráneas hacia `parada_transporte` y `tramo` en `database/02_claves/movilidad-paradas.sql` (GREEN, `6fab451`).
 - [ ] Agregar `se_localiza` → `ubicacion_geografica`, `funciona` → `horario` y `cercana` → `hito` cuando existan (Javier), y probarlas.
 - [x] Escribir las pruebas SQL de RR-20, RR-21, RR-31, RR-32, RR-33, RR-101, RR-104, RR-105 y de la vía habilitada (HU-16.1, criterio 6) y confirmar RED (`51374d9`).
-- [ ] Probar HU-16.4, criterio 2, cuando exista `usa` (rutas-gestion).
+- [x] Probar HU-16.4, criterio 2 (en las pruebas de rutas-gestion, `1925caf`).
 - [x] Implementar RR-31, RR-32 y RR-33 (triggers diferidos), RR-101 y la vía habilitada en `database/03_reglas/movilidad-paradas.sql` (GREEN, `6fab451`).
 - [ ] Escribir las rutinas de registrar, consultar, modificar y eliminar paradas, con sus pruebas.
 - [ ] Otorgar privilegios a `rol_administrador` en `database/04_seguridad/movilidad-paradas.sql`.

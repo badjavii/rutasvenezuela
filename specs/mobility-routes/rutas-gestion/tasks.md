@@ -1,13 +1,15 @@
 # Tareas: rutas gestion
 
-El estado de implementación se registra solo aquí. No existen pruebas ejecutadas de esta capacidad.
+El estado de implementación se registra solo aquí. Tablas, claves y reglas: RED en PostgreSQL 18 local para el commit `ff6f1d5` (la relación `ruta_turistica` todavía no existía) y GREEN para `1925caf`. Quitar cualquiera de los diez triggers o de las seis restricciones hace fallar una prueba. Las claves foráneas hacia `hito` (Javier) y `visitante` (Valeria), y desde `sobre`, `sirve`, `contrata_ruta`, `transcurre` y `evalua_ruta`, esperan esas tablas; las rutinas y los permisos siguen pendientes.
 
 ## T-01. Capa de datos
 
-- [ ] Crear `ruta_turistica`, `ruta_fija`, `ruta_dinamica`, `conforma`, `usa`, `crea` en `database/01_tablas/rutas-gestion.sql`.
-- [ ] Agregar sus claves foráneas en `database/02_claves/rutas-gestion.sql`.
-- [ ] Escribir las pruebas SQL de RR-22, RR-34, RR-35, RR-36, RR-106, RR-107, RR-108, RR-109, RR-110, RR-111 y confirmar RED.
-- [ ] Implementar en `database/03_reglas/rutas-gestion.sql` hasta GREEN y refactorizar.
+- [x] Crear `ruta_turistica`, `ruta_fija`, `ruta_dinamica`, `conforma`, `usa`, `crea` en `database/01_tablas/rutas-gestion.sql` (GREEN, `1925caf`). `nivel_dificultad` queda sin `CHECK`: el informe no define sus valores.
+- [x] Agregar las claves foráneas hacia `municipio`, `ruta_turistica`, `ruta_dinamica` y `parada_transporte` en `database/02_claves/rutas-gestion.sql` (GREEN, `1925caf`).
+- [ ] Agregar `conforma` → `hito` (Javier) y `crea` → `visitante` (Valeria) cuando existan, y probarlas.
+- [x] Escribir las pruebas SQL de RR-22, RR-34, RR-35, RR-36, RR-106, RR-107, RR-108, RR-109, RR-110, RR-111 y confirmar RED (`ff6f1d5`).
+- [x] Implementar RR-34, RR-35, RR-36, RR-108, RR-109 y RR-110 (triggers diferidos) y RR-107 en `database/03_reglas/rutas-gestion.sql` (GREEN, `1925caf`).
+- [ ] Escribir las rutinas de registrar, consultar, modificar y eliminar rutas, con la autorización por registro de la sección 8, y sus pruebas.
 - [ ] Otorgar privilegios a `rol_visitante`, `rol_administrador` en `database/04_seguridad/rutas-gestion.sql`.
 - [ ] Cargar datos de prueba en `database/05_datos/rutas-gestion.sql`.
 
