@@ -6,7 +6,7 @@
 
 SET search_path TO rutasvzla, public, extensions;
 
--- Capítulo 6.2; HU-28. El identificador lo genera el gestor (criterio 1).
+-- Capítulo 6.2; HU-21. El identificador lo genera el gestor (criterio 1).
 -- Un recorrido en curso no tiene fin ni estado; uno terminado tiene los dos.
 CREATE TABLE recorrido (
     id_recorrido INTEGER GENERATED ALWAYS AS IDENTITY,
@@ -40,7 +40,7 @@ CREATE TABLE sobre (
     CONSTRAINT pk_sobre PRIMARY KEY (id_recorrido)
 );
 
--- Pasos por los hitos, con su fecha y hora (HU-28, criterio 3). RR-114 y RR-115
+-- Pasos por los hitos, con su fecha y hora (HU-21, criterio 3). RR-114 y RR-115
 -- están en 03_reglas.
 CREATE TABLE transita (
     id_recorrido INTEGER NOT NULL,

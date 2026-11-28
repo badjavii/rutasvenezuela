@@ -82,7 +82,7 @@ CREATE CONSTRAINT TRIGGER tg_sobre_con_ruta
     DEFERRABLE INITIALLY DEFERRED
     FOR EACH ROW EXECUTE FUNCTION tf_recorrido_con_ruta();
 
--- RR-112 (HU-28, criterio 2): la ruta es fija, dinámica pública o dinámica creada
+-- RR-112 (HU-21, criterio 2): la ruta es fija, dinámica pública o dinámica creada
 -- por el mismo visitante. Se revisa al iniciar el recorrido, cuando se insertan sobre
 -- y realiza. Si todavía falta uno de los dos, lo reclaman RR-44 o RR-45.
 CREATE FUNCTION tf_sobre_ruta_permitida() RETURNS trigger
