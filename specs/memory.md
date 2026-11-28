@@ -28,6 +28,10 @@ PR #9: las pruebas estructurales de estado, municipio y parroquia verificaron RE
 
 28/11/2026: tablas, claves y reglas de rutas-recorridos (RR-27, RR-28, RR-44, RR-45, RR-112 a RR-115) verificaron RED (`5929e31`) y GREEN (`a83eb99`) en PostgreSQL 18. Ningún trigger de recorridos está en las tablas de rutas, y los UPDATE de `realiza`, `sobre` y `transita` (que llegan por cascada al renombrar una ruta o un hito) no se revisan: cambiar la ruta después no invalida el historial (sección 8; `56ba4a3`). Pendiente: claves hacia `visitante` y `hito`, rutinas y permisos.
 
+## Iteración de guías
+
+28/11/2026: tablas, claves y reglas de guias-contrataciones (RR-23 a RR-26, RR-37 a RR-43, RR-116, RR-117 y RR-118) verificaron RED (`d4d9fcc`) y GREEN (`35b8c57`) en PostgreSQL 18. RR-117 se verifica al adscribir y al quitar la zona de una ruta adscrita; RR-118, solo al contratar, para que quitar la adscripción (HU-28, criterio 3) no invalide las contrataciones ya hechas (sección 8). Pendiente: claves hacia `cuenta` y `visitante`, rutinas y permisos.
+
 ## Aprobación de specs
 
 27/11/2026: Sebastián aprobó sus 8 especificaciones de `mobility-routes`. Sus 33 historias pasan a `ESPECIFICADO_APROBADO` en la [matriz](../docs/requirements/traceability-detailed.csv), y cada spec registra sus decisiones de implementación en la sección 8. Javier y Valeria aprueban las suyas del mismo modo.
