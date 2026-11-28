@@ -1,6 +1,6 @@
 # Tareas: movilidad vias y tramos
 
-El estado de implementación se registra solo aquí. Pruebas estructurales: RED en PostgreSQL 18 local para el commit `3e4ea47` (la relación `via` todavía no existía) y GREEN para `be59af0`. El CI solo corre en el PR, sobre su último commit. RR-29, RR-30, las rutinas y los permisos siguen pendientes.
+El estado de implementación se registra solo aquí. Pruebas estructurales: RED en PostgreSQL 18 local para el commit `3e4ea47` (la relación `via` todavía no existía) y GREEN para `be59af0`, confirmado también en PostgreSQL 17 por el [CI del PR #14](https://github.com/badjavii/rutasvenezuela/actions/runs/46111936506). El CI solo corre en el PR, sobre su último commit. RR-29, RR-30, las rutinas y los permisos siguen pendientes.
 
 ## T-01. Capa de datos
 
