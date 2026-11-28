@@ -13,3 +13,4 @@
 \ir tests/movilidad-paradas.sql
 \ir tests/rutas-gestion.sql
 \ir tests/rutas-recorridos.sql
+\ir tests/guias-contrataciones.sql
